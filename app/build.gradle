@@ -71,6 +71,12 @@ dependencies {
     //add oaid
     implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
 
+    //add agsdk
+    implementation(name: 'adsgreat_base_4.2.5_ag', ext: 'jar')
+    implementation(name: 'adsgreat_imageloader_4.2.5_ag', ext: 'jar')
+    implementation(name: 'adsgreat_video_4.2.5_ag', ext: 'jar')
+    implementation project(path: ':adapter_cn:agsdk')
+
     //cloudmobi cn
     implementation(name: 'suib_base_4.2.7_sucn', ext: 'jar')
     implementation(name: 'suib_imageloader_4.2.7_sucn', ext: 'jar')

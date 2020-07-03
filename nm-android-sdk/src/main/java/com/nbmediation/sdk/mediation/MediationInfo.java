@@ -29,7 +29,7 @@ public interface MediationInfo {
     int MEDIATION_ID_22 = 22;
     int MEDIATION_ID_23 = 23;
     int MEDIATION_ID_30 = 30;
-
+    int MEDIATION_ID_32 = 32;
 
     String MEDIATION_NAME_1 = "QWRUaW1pbmc=";
     String MEDIATION_NAME_2 = "QWRNb2I=";
@@ -53,4 +53,6 @@ public interface MediationInfo {
     String MEDIATION_NAME_22 = "S1M=";//KS
     String MEDIATION_NAME_23 = "QWxpb24=";//Alion
     String MEDIATION_NAME_30 = "RnliZXI=";
+
+    String MEDIATION_NAME_32 = "UGx1Z2luMQ==";//Plugin1 -agsdk
 }

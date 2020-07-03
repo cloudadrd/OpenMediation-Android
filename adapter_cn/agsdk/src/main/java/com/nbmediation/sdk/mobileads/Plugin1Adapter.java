@@ -123,6 +123,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
             AdLog.getSingleton().LogD(TAG + "videoStart: ");
             if (mCallback != null) {
                 mCallback.onRewardedVideoAdStarted();
+                mCallback.onRewardedVideoAdShowSuccess();
             }
         }
 

@@ -192,7 +192,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 390):
+Constant Pool (count = 380):
   + String []
   + String [,]
   + String [1.1]
@@ -206,7 +206,6 @@ Constant Pool (count = 390):
   + String [frequency]
   + String [get uri is no module]
   + String [http://u.suibyuming.com/v1/sdkupdate?vs=%1$s&pkg=%2$s&slot=%3$s&aid=%4$s&gaid=%5$s&version=%6$s&net=%7$s&time=%8$s]
-  + String [last_switch]
   + String [md5]
   + String [method_name]
   + String [module_name]
@@ -218,22 +217,6 @@ Constant Pool (count = 390):
   + String [response data error.]
   + String [switch]
   + String [version]
-  + String [{
-    "error":"OK",
-    "err_no":0,
-    "frequency":60,
-    "modules":[
-        {
-            "version":"4.2.5",
-            "download_url":"http://172.31.1.157:8080/download/agsdk-release-4.2.5.zip",
-            "md5":"1ccedc496d7f8e69120d15aa49797627",
-            "switch":1,
-            "class_name":"",
-            "method_name":"",
-            "module_name":"agsdk"
-        }
-    ]
-}]
   + Class [android/content/Context]
   + Class [android/content/pm/PackageManager]
   + Class [android/net/ConnectivityManager]
@@ -273,9 +256,8 @@ Constant Pool (count = 390):
   + Class [org/json/JSONArray]
   + Class [org/json/JSONObject]
   + Long [1500]
-  + Fieldref [com/cloudtech/shell/a.a Ljava/lang/String;]
-  + Fieldref [com/cloudtech/shell/a.b Z]
-  + Fieldref [com/cloudtech/shell/a.c Lcom/cloudtech/shell/d/c$a;]
+  + Fieldref [com/cloudtech/shell/a.a Z]
+  + Fieldref [com/cloudtech/shell/a.b Lcom/cloudtech/shell/d/c$a;]
   + Fieldref [com/cloudtech/shell/b/b.b Ljava/lang/String;]
   + Fieldref [com/cloudtech/shell/b/b.c Ljava/lang/String;]
   + Fieldref [com/cloudtech/shell/b/b.d Z]
@@ -316,9 +298,7 @@ Constant Pool (count = 390):
   + Methodref [com/cloudtech/shell/f/f.a ()Ljava/lang/String;]
   + Methodref [com/cloudtech/shell/f/f.a (I)V]
   + Methodref [com/cloudtech/shell/f/f.a (J)Z]
-  + Methodref [com/cloudtech/shell/f/f.a (Ljava/lang/String;I)V]
   + Methodref [com/cloudtech/shell/f/f.b ()I]
-  + Methodref [com/cloudtech/shell/f/f.b (Ljava/lang/String;)I]
   + Methodref [com/cloudtech/shell/f/f.c ()J]
   + Methodref [com/cloudtech/shell/f/j.a ()Lcom/cloudtech/shell/f/j;]
   + Methodref [com/cloudtech/shell/f/j.a (Ljava/lang/Runnable;)V]
@@ -375,22 +355,20 @@ Constant Pool (count = 390):
   + NameAndType [a (Lcom/cloudtech/shell/b/d;)V]
   + NameAndType [a (Ljava/lang/Runnable;)V]
   + NameAndType [a (Ljava/lang/String;)V]
-  + NameAndType [a (Ljava/lang/String;I)V]
   + NameAndType [a (Ljava/lang/Throwable;)V]
   + NameAndType [a I]
   + NameAndType [a Ljava/lang/String;]
+  + NameAndType [a Z]
   + NameAndType [add (Ljava/lang/Object;)Z]
   + NameAndType [append (I)Ljava/lang/StringBuilder;]
   + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + NameAndType [b ()I]
-  + NameAndType [b (Ljava/lang/String;)I]
+  + NameAndType [b Lcom/cloudtech/shell/d/c$a;]
   + NameAndType [b Ljava/lang/String;]
   + NameAndType [b Ljava/util/List;]
-  + NameAndType [b Z]
   + NameAndType [c ()J]
   + NameAndType [c ()Ljava/util/List;]
   + NameAndType [c (Ljava/lang/String;)V]
-  + NameAndType [c Lcom/cloudtech/shell/d/c$a;]
   + NameAndType [c Ljava/lang/String;]
   + NameAndType [checkPermission (Ljava/lang/String;II)I]
   + NameAndType [checkPermission (Ljava/lang/String;Ljava/lang/String;)I]
@@ -472,7 +450,6 @@ Constant Pool (count = 390):
   + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Utf8 [(Ljava/lang/String;)Lorg/json/JSONArray;]
   + Utf8 [(Ljava/lang/String;)V]
-  + Utf8 [(Ljava/lang/String;I)V]
   + Utf8 [(Ljava/lang/String;II)I]
   + Utf8 [(Ljava/lang/String;Lcom/cloudtech/shell/d/c$a;)V]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
@@ -567,7 +544,6 @@ Constant Pool (count = 390):
   + Utf8 [java/util/concurrent/TimeUnit]
   + Utf8 [l]
   + Utf8 [lastIndexOf]
-  + Utf8 [last_switch]
   + Utf8 [length]
   + Utf8 [md5]
   + Utf8 [method_name]
@@ -595,33 +571,14 @@ Constant Pool (count = 390):
   + Utf8 [toString]
   + Utf8 [valueOf]
   + Utf8 [version]
-  + Utf8 [{
-    "error":"OK",
-    "err_no":0,
-    "frequency":60,
-    "modules":[
-        {
-            "version":"4.2.5",
-            "download_url":"http://172.31.1.157:8080/download/agsdk-release-4.2.5.zip",
-            "md5":"1ccedc496d7f8e69120d15aa49797627",
-            "switch":1,
-            "class_name":"",
-            "method_name":"",
-            "module_name":"agsdk"
-        }
-    ]
-}]
 
-Fields (count = 3):
-  + Field:        a Ljava/lang/String;
-    Access flags: 0x8
-      = static java.lang.String a
-  + Field:        b Z
+Fields (count = 2):
+  + Field:        a Z
     Access flags: 0xa
-      = private static boolean b
-  + Field:        c Lcom/cloudtech/shell/d/c$a;
+      = private static boolean a
+  + Field:        b Lcom/cloudtech/shell/d/c$a;
     Access flags: 0xa
-      = private static com.cloudtech.shell.d.c$a c
+      = private static com.cloudtech.shell.d.c$a b
 
 Methods (count = 9):
   + Method:       a(Lcom/nbmediation/sdk/core/SdkShellCallback;)V
@@ -629,40 +586,40 @@ Methods (count = 9):
       = public static void a(com.nbmediation.sdk.core.SdkShellCallback)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 15, locals = 1, stack = 4):
-      [0] invokestatic #114
+      [0] invokestatic #109
         + Methodref [com/cloudtech/shell/f/j.a ()Lcom/cloudtech/shell/f/j;]
-      [3] new #33
+      [3] new #31
         + Class [com/cloudtech/shell/a$1]
       [6] dup
       [7] aload_0 v0
-      [8] invokespecial #96
+      [8] invokespecial #93
         + Methodref [com/cloudtech/shell/a$1.<init> (Lcom/nbmediation/sdk/core/SdkShellCallback;)V]
-      [11] invokevirtual #115
+      [11] invokevirtual #110
         + Methodref [com/cloudtech/shell/f/j.a (Ljava/lang/Runnable;)V]
       [14] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2):
-        [0] -> line 57
-        [14] -> line 82
+        [0] -> line 65
+        [14] -> line 90
   + Method:       a()Z
     Access flags: 0x9
       = public static boolean a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 231, locals = 7, stack = 6):
-      [0] getstatic #68
-        + Fieldref [com/cloudtech/shell/a.b Z]
+      [0] getstatic #65
+        + Fieldref [com/cloudtech/shell/a.a Z]
       [3] ifeq +10 (target=13)
       [6] ldc #4
         + String [The last request has not been completed.]
-      [8] invokestatic #119
+      [8] invokestatic #114
         + Methodref [com/cloudtech/shell/f/m.c (Ljava/lang/String;)V]
       [11] iconst_0
       [12] ireturn
       [13] iconst_1
-      [14] putstatic #68
-        + Fieldref [com/cloudtech/shell/a.b Z]
-      [17] invokestatic #106
+      [14] putstatic #65
+        + Fieldref [com/cloudtech/shell/a.a Z]
+      [17] invokestatic #103
         + Methodref [com/cloudtech/shell/f/a.a ()Landroid/content/Context;]
       [20] dup
       [21] astore_0 v0
@@ -672,7 +629,7 @@ Methods (count = 9):
       [29] ldc #13
         + String [http://u.suibyuming.com/v1/sdkupdate?vs=%1$s&pkg=%2$s&slot=%3$s&aid=%4$s&gaid=%5$s&version=%6$s&net=%7$s&time=%8$s]
       [31] astore_1 v1
-      [32] invokestatic #107
+      [32] invokestatic #104
         + Methodref [com/cloudtech/shell/f/f.a ()Ljava/lang/String;]
       [35] astore_2 v2
       [36] aload_0 v0
@@ -680,9 +637,9 @@ Methods (count = 9):
       [38] astore_3 v3
       [39] ldc #8
         + String [connectivity]
-      [41] invokevirtual #88
+      [41] invokevirtual #85
         + Methodref [android/content/Context.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
-      [44] checkcast #29
+      [44] checkcast #27
         + Class [android/net/ConnectivityManager]
       [47] astore v4
       [49] bipush 8
@@ -693,22 +650,22 @@ Methods (count = 9):
       [56] astore v6
       [58] dup
       [59] astore_3 v3
-      [60] invokevirtual #86
+      [60] invokevirtual #83
         + Methodref [android/content/Context.getPackageManager ()Landroid/content/pm/PackageManager;]
       [63] aload v6
       [65] aload_3 v3
-      [66] invokevirtual #87
+      [66] invokevirtual #84
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
-      [69] invokevirtual #89
+      [69] invokevirtual #86
         + Methodref [android/content/pm/PackageManager.checkPermission (Ljava/lang/String;Ljava/lang/String;)I]
       [72] ifne +26 (target=98)
       [75] aload_3 v3
       [76] aload v6
-      [78] invokestatic #92
+      [78] invokestatic #89
         + Methodref [android/os/Process.myPid ()I]
-      [81] invokestatic #93
+      [81] invokestatic #90
         + Methodref [android/os/Process.myUid ()I]
-      [84] invokevirtual #85
+      [84] invokevirtual #82
         + Methodref [android/content/Context.checkPermission (Ljava/lang/String;II)I]
       [87] ifeq +7 (target=94)
       [90] iconst_1
@@ -718,13 +675,13 @@ Methods (count = 9):
       [98] iconst_0
       [99] ifeq +24 (target=123)
       [102] aload v4
-      [104] invokevirtual #90
+      [104] invokevirtual #87
         + Methodref [android/net/ConnectivityManager.getActiveNetworkInfo ()Landroid/net/NetworkInfo;]
       [107] dup
       [108] astore_3 v3
       [109] ifnull +10 (target=119)
       [112] aload_3 v3
-      [113] invokevirtual #91
+      [113] invokevirtual #88
         + Methodref [android/net/NetworkInfo.getType ()I]
       [116] goto +5 (target=121)
       [119] bipush 8
@@ -732,12 +689,12 @@ Methods (count = 9):
       [123] iload v5
       [125] istore_3 v3
       [126] aload_0 v0
-      [127] invokestatic #94
+      [127] invokestatic #91
         + Methodref [com/cloudtech/shell/a.a (Landroid/content/Context;)Ljava/lang/String;]
       [130] astore v4
       [132] aload_1 v1
       [133] bipush 8
-      [135] anewarray #53
+      [135] anewarray #51
         + Class [java/lang/Object]
       [138] dup
       [139] iconst_0
@@ -746,7 +703,7 @@ Methods (count = 9):
       [143] dup
       [144] iconst_1
       [145] aload_0 v0
-      [146] invokevirtual #87
+      [146] invokevirtual #84
         + Methodref [android/content/Context.getPackageName ()Ljava/lang/String;]
       [149] aastore
       [150] dup
@@ -756,12 +713,12 @@ Methods (count = 9):
       [154] dup
       [155] iconst_3
       [156] aload_0 v0
-      [157] invokestatic #116
+      [157] invokestatic #111
         + Methodref [com/cloudtech/shell/f/l.a (Landroid/content/Context;)Ljava/lang/String;]
       [160] aastore
       [161] dup
       [162] iconst_4
-      [163] invokestatic #120
+      [163] invokestatic #115
         + Methodref [com/cloudtech/shell/gp/GpsHelper.getAdvertisingId ()Ljava/lang/String;]
       [166] aastore
       [167] dup
@@ -772,60 +729,60 @@ Methods (count = 9):
       [172] dup
       [173] bipush 6
       [175] iload_3 v3
-      [176] invokestatic #122
+      [176] invokestatic #117
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [179] aastore
       [180] dup
       [181] bipush 7
-      [183] invokestatic #134
+      [183] invokestatic #129
         + Methodref [java/lang/System.currentTimeMillis ()J]
-      [186] invokestatic #123
+      [186] invokestatic #118
         + Methodref [java/lang/Long.valueOf (J)Ljava/lang/Long;]
       [189] aastore
-      [190] invokestatic #125
+      [190] invokestatic #120
         + Methodref [java/lang/String.format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
       [193] astore_0 v0
-      [194] ldc #22
+      [194] ldc #21
         + String [requestUrl:]
       [196] aload_0 v0
-      [197] invokestatic #126
+      [197] invokestatic #121
         + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [200] invokevirtual #124
+      [200] invokevirtual #119
         + Methodref [java/lang/String.concat (Ljava/lang/String;)Ljava/lang/String;]
-      [203] invokestatic #117
+      [203] invokestatic #112
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/String;)V]
       [206] aload_0 v0
-      [207] getstatic #69
-        + Fieldref [com/cloudtech/shell/a.c Lcom/cloudtech/shell/d/c$a;]
+      [207] getstatic #66
+        + Fieldref [com/cloudtech/shell/a.b Lcom/cloudtech/shell/d/c$a;]
       [210] astore_1 v1
       [211] astore_0 v0
-      [212] new #42
+      [212] new #40
         + Class [com/cloudtech/shell/d/d]
       [215] dup
       [216] aload_0 v0
       [217] aload_1 v1
-      [218] invokespecial #104
+      [218] invokespecial #101
         + Methodref [com/cloudtech/shell/d/d.<init> (Ljava/lang/String;Lcom/cloudtech/shell/d/c$a;)V]
       [221] astore_1 v1
-      [222] invokestatic #114
+      [222] invokestatic #109
         + Methodref [com/cloudtech/shell/f/j.a ()Lcom/cloudtech/shell/f/j;]
       [225] aload_1 v1
-      [226] invokevirtual #115
+      [226] invokevirtual #110
         + Methodref [com/cloudtech/shell/f/j.a (Ljava/lang/Runnable;)V]
       [229] iconst_1
       [230] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 35):
-        [0] -> line 86
-        [6] -> line 87
-        [11] -> line 88
-        [13] -> line 91
-        [17] -> line 1189 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [21] -> line 1190 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [29] -> line 1193 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [32] -> line 1195 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [36] -> line 1196 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
+        [0] -> line 94
+        [6] -> line 95
+        [11] -> line 96
+        [13] -> line 99
+        [17] -> line 1198 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [21] -> line 1199 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [29] -> line 1202 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [32] -> line 1204 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [36] -> line 1205 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
         [38] -> line 2054 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:54:62]
         [41] -> line 2055 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:54:62]
         [49] -> line 2056 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:54:62]
@@ -840,78 +797,78 @@ Methods (count = 9):
         [102] -> line 2058 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:54:62]
         [108] -> line 2059 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:54:62]
         [123] -> line 2062 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:54:62]
-        [125] -> line 1196 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [126] -> line 1198 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [132] -> line 1199 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [157] -> line 1200 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [176] -> line 1201 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [190] -> line 1199 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:189:202]
-        [193] -> line 92
-        [194] -> line 94
-        [206] -> line 96
+        [125] -> line 1205 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [126] -> line 1207 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [132] -> line 1208 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [157] -> line 1209 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [176] -> line 1210 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [190] -> line 1208 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:198:211]
+        [193] -> line 100
+        [194] -> line 102
+        [206] -> line 104
         [212] -> line 4020 [com/cloudtech/shell/http/HttpRequester.requestByGet(Ljava/lang/String;Lcom/cloudtech/shell/http/HttpRequester$Listener;)V:20:22]
         [222] -> line 4021 [com/cloudtech/shell/http/HttpRequester.requestByGet(Ljava/lang/String;Lcom/cloudtech/shell/http/HttpRequester$Listener;)V:20:22]
-        [229] -> line 98
+        [229] -> line 106
   + Method:       a(Ljava/lang/String;)Lcom/cloudtech/shell/b/d;
     Access flags: 0x9
       = public static com.cloudtech.shell.b.d a(java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 218, locals = 6, stack = 3):
-      [0] new #64
+      [0] new #62
         + Class [org/json/JSONObject]
       [3] dup
       [4] aload_0 v0
-      [5] invokespecial #139
+      [5] invokespecial #134
         + Methodref [org/json/JSONObject.<init> (Ljava/lang/String;)V]
       [8] dup
       [9] astore_0 v0
       [10] ldc #10
         + String [err_no]
-      [12] invokevirtual #140
+      [12] invokevirtual #135
         + Methodref [org/json/JSONObject.optInt (Ljava/lang/String;)I]
       [15] ifeq +10 (target=25)
-      [18] ldc #23
+      [18] ldc #22
         + String [response data error.]
-      [20] invokestatic #119
+      [20] invokestatic #114
         + Methodref [com/cloudtech/shell/f/m.c (Ljava/lang/String;)V]
       [23] aconst_null
       [24] areturn
-      [25] new #38
+      [25] new #36
         + Class [com/cloudtech/shell/b/d]
       [28] dup
-      [29] invokespecial #102
+      [29] invokespecial #99
         + Methodref [com/cloudtech/shell/b/d.<init> ()V]
       [32] dup
       [33] astore_1 v1
       [34] aload_0 v0
       [35] ldc #11
         + String [frequency]
-      [37] invokevirtual #140
+      [37] invokevirtual #135
         + Methodref [org/json/JSONObject.optInt (Ljava/lang/String;)I]
-      [40] putfield #74
+      [40] putfield #71
         + Fieldref [com/cloudtech/shell/b/d.a I]
       [43] aload_1 v1
-      [44] getfield #74
+      [44] getfield #71
         + Fieldref [com/cloudtech/shell/b/d.a I]
-      [47] invokestatic #108
+      [47] invokestatic #105
         + Methodref [com/cloudtech/shell/f/f.a (I)V]
       [50] aload_0 v0
-      [51] ldc #19
+      [51] ldc #18
         + String [modules]
-      [53] invokevirtual #141
+      [53] invokevirtual #136
         + Methodref [org/json/JSONObject.optJSONArray (Ljava/lang/String;)Lorg/json/JSONArray;]
       [56] dup
       [57] astore_0 v0
       [58] ifnull +12 (target=70)
       [61] aload_0 v0
-      [62] invokevirtual #137
+      [62] invokevirtual #132
         + Methodref [org/json/JSONArray.length ()I]
       [65] dup
       [66] istore_2 v2
       [67] ifne +10 (target=77)
-      [70] ldc #20
+      [70] ldc #19
         + String [modules is null,not data！]
-      [72] invokestatic #119
+      [72] invokestatic #114
         + Methodref [com/cloudtech/shell/f/m.c (Ljava/lang/String;)V]
       [75] aconst_null
       [76] areturn
@@ -922,86 +879,86 @@ Methods (count = 9):
       [81] ificmpge +135 (target=216)
       [84] aload_0 v0
       [85] iload_3 v3
-      [86] invokevirtual #138
+      [86] invokevirtual #133
         + Methodref [org/json/JSONArray.optJSONObject (I)Lorg/json/JSONObject;]
       [89] astore v4
-      [91] new #39
+      [91] new #37
         + Class [com/cloudtech/shell/b/d$a]
       [94] dup
-      [95] invokespecial #103
+      [95] invokespecial #100
         + Methodref [com/cloudtech/shell/b/d$a.<init> ()V]
       [98] dup
       [99] astore v5
       [101] aload v4
-      [103] ldc #25
+      [103] ldc #24
         + String [version]
-      [105] invokevirtual #142
+      [105] invokevirtual #137
         + Methodref [org/json/JSONObject.optString (Ljava/lang/String;)Ljava/lang/String;]
-      [108] putfield #76
+      [108] putfield #73
         + Fieldref [com/cloudtech/shell/b/d$a.a Ljava/lang/String;]
       [111] aload v5
       [113] aload v4
       [115] ldc #9
         + String [download_url]
-      [117] invokevirtual #142
+      [117] invokevirtual #137
         + Methodref [org/json/JSONObject.optString (Ljava/lang/String;)Ljava/lang/String;]
-      [120] putfield #77
+      [120] putfield #74
         + Fieldref [com/cloudtech/shell/b/d$a.b Ljava/lang/String;]
       [123] aload v5
       [125] aload v4
-      [127] ldc #15
+      [127] ldc #14
         + String [md5]
-      [129] invokevirtual #142
+      [129] invokevirtual #137
         + Methodref [org/json/JSONObject.optString (Ljava/lang/String;)Ljava/lang/String;]
-      [132] putfield #78
+      [132] putfield #75
         + Fieldref [com/cloudtech/shell/b/d$a.c Ljava/lang/String;]
       [135] aload v5
       [137] aload v4
-      [139] ldc #24
+      [139] ldc #23
         + String [switch]
-      [141] invokevirtual #140
+      [141] invokevirtual #135
         + Methodref [org/json/JSONObject.optInt (Ljava/lang/String;)I]
-      [144] putfield #79
+      [144] putfield #76
         + Fieldref [com/cloudtech/shell/b/d$a.d I]
       [147] aload v5
       [149] aload v4
       [151] ldc #7
         + String [class_name]
-      [153] invokevirtual #142
+      [153] invokevirtual #137
         + Methodref [org/json/JSONObject.optString (Ljava/lang/String;)Ljava/lang/String;]
-      [156] putfield #80
+      [156] putfield #77
         + Fieldref [com/cloudtech/shell/b/d$a.e Ljava/lang/String;]
       [159] aload v5
       [161] aload v4
-      [163] ldc #16
+      [163] ldc #15
         + String [method_name]
-      [165] invokevirtual #142
+      [165] invokevirtual #137
         + Methodref [org/json/JSONObject.optString (Ljava/lang/String;)Ljava/lang/String;]
-      [168] putfield #81
+      [168] putfield #78
         + Fieldref [com/cloudtech/shell/b/d$a.f Ljava/lang/String;]
       [171] aload v5
       [173] aload v4
-      [175] ldc #17
+      [175] ldc #16
         + String [module_name]
-      [177] invokevirtual #142
+      [177] invokevirtual #137
         + Methodref [org/json/JSONObject.optString (Ljava/lang/String;)Ljava/lang/String;]
-      [180] putfield #82
+      [180] putfield #79
         + Fieldref [com/cloudtech/shell/b/d$a.g Ljava/lang/String;]
       [183] aload v5
       [185] aload v4
-      [187] ldc #18
+      [187] ldc #17
         + String [module_type]
-      [189] invokevirtual #140
+      [189] invokevirtual #135
         + Methodref [org/json/JSONObject.optInt (Ljava/lang/String;)I]
-      [192] invokestatic #101
+      [192] invokestatic #98
         + Methodref [com/cloudtech/shell/b/c.a (I)Lcom/cloudtech/shell/b/c;]
-      [195] putfield #83
+      [195] putfield #80
         + Fieldref [com/cloudtech/shell/b/d$a.h Lcom/cloudtech/shell/b/c;]
       [198] aload_1 v1
-      [199] getfield #75
+      [199] getfield #72
         + Fieldref [com/cloudtech/shell/b/d.b Ljava/util/List;]
       [202] aload v5
-      [204] invokeinterface #145, 512
+      [204] invokeinterface #140, 512
         + InterfaceMethodref [java/util/List.add (Ljava/lang/Object;)Z]
       [209] pop
       [210] iinc v3, 1
@@ -1011,118 +968,118 @@ Methods (count = 9):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 25):
-        [0] -> line 129
-        [9] -> line 130
-        [18] -> line 131
-        [23] -> line 132
-        [25] -> line 134
-        [33] -> line 135
-        [43] -> line 137
-        [50] -> line 138
-        [57] -> line 140
-        [70] -> line 141
-        [75] -> line 142
-        [77] -> line 144
-        [84] -> line 145
-        [91] -> line 146
-        [99] -> line 147
-        [111] -> line 148
-        [123] -> line 149
-        [135] -> line 150
-        [147] -> line 151
-        [159] -> line 152
-        [171] -> line 153
-        [183] -> line 154
-        [198] -> line 155
-        [210] -> line 144
-        [216] -> line 157
+        [0] -> line 137
+        [9] -> line 138
+        [18] -> line 139
+        [23] -> line 140
+        [25] -> line 142
+        [33] -> line 143
+        [43] -> line 145
+        [50] -> line 146
+        [57] -> line 148
+        [70] -> line 149
+        [75] -> line 150
+        [77] -> line 152
+        [84] -> line 153
+        [91] -> line 154
+        [99] -> line 155
+        [111] -> line 156
+        [123] -> line 157
+        [135] -> line 158
+        [147] -> line 159
+        [159] -> line 160
+        [171] -> line 161
+        [183] -> line 162
+        [198] -> line 163
+        [210] -> line 152
+        [216] -> line 165
   + Method:       a(Landroid/content/Context;)Ljava/lang/String;
     Access flags: 0xa
       = private static java.lang.String a(android.content.Context)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 342, locals = 7, stack = 4):
-      [0] new #55
+      [0] new #53
         + Class [java/lang/StringBuilder]
       [3] dup
-      [4] invokespecial #127
+      [4] invokespecial #122
         + Methodref [java/lang/StringBuilder.<init> ()V]
       [7] astore_1 v1
       [8] ldc #1
         + String []
       [10] astore_2 v2
       [11] aload_0 v0
-      [12] invokestatic #98
+      [12] invokestatic #95
         + Methodref [com/cloudtech/shell/a/b.a (Landroid/content/Context;)Lcom/cloudtech/shell/a/b;]
-      [15] invokevirtual #99
+      [15] invokevirtual #96
         + Methodref [com/cloudtech/shell/a/b.c ()Ljava/util/List;]
       [18] dup
       [19] astore_0 v0
-      [20] invokeinterface #148, 256
+      [20] invokeinterface #143, 256
         + InterfaceMethodref [java/util/List.size ()I]
       [25] ifne +10 (target=35)
       [28] ldc #12
         + String [get uri is no module]
-      [30] invokestatic #117
+      [30] invokestatic #112
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/String;)V]
       [33] aload_2 v2
       [34] areturn
-      [35] new #58
+      [35] new #56
         + Class [java/util/HashMap]
       [38] dup
       [39] aload_0 v0
-      [40] invokeinterface #148, 256
+      [40] invokeinterface #143, 256
         + InterfaceMethodref [java/util/List.size ()I]
-      [45] invokespecial #135
+      [45] invokespecial #130
         + Methodref [java/util/HashMap.<init> (I)V]
       [48] astore_3 v3
       [49] aload_0 v0
-      [50] invokeinterface #147, 256
+      [50] invokeinterface #142, 256
         + InterfaceMethodref [java/util/List.iterator ()Ljava/util/Iterator;]
       [55] astore v4
       [57] aload v4
-      [59] invokeinterface #143, 256
+      [59] invokeinterface #138, 256
         + InterfaceMethodref [java/util/Iterator.hasNext ()Z]
       [64] ifeq +79 (target=143)
       [67] aload v4
-      [69] invokeinterface #144, 256
+      [69] invokeinterface #139, 256
         + InterfaceMethodref [java/util/Iterator.next ()Ljava/lang/Object;]
-      [74] checkcast #36
+      [74] checkcast #34
         + Class [com/cloudtech/shell/b/b]
       [77] astore v5
       [79] aload_3 v3
       [80] aload v5
-      [82] getfield #70
+      [82] getfield #67
         + Fieldref [com/cloudtech/shell/b/b.b Ljava/lang/String;]
-      [85] invokeinterface #149, 512
+      [85] invokeinterface #144, 512
         + InterfaceMethodref [java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;]
-      [90] checkcast #51
+      [90] checkcast #49
         + Class [java/lang/Integer]
       [93] dup
       [94] astore v6
       [96] ifnonnull +22 (target=118)
       [99] aload_3 v3
       [100] aload v5
-      [102] getfield #70
+      [102] getfield #67
         + Fieldref [com/cloudtech/shell/b/b.b Ljava/lang/String;]
       [105] iconst_1
-      [106] invokestatic #122
+      [106] invokestatic #117
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [109] invokeinterface #150, 768
+      [109] invokeinterface #145, 768
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [114] pop
       [115] goto -58 (target=57)
       [118] aload_3 v3
       [119] aload v5
-      [121] getfield #70
+      [121] getfield #67
         + Fieldref [com/cloudtech/shell/b/b.b Ljava/lang/String;]
       [124] aload v6
-      [126] invokevirtual #121
+      [126] invokevirtual #116
         + Methodref [java/lang/Integer.intValue ()I]
       [129] iconst_1
       [130] iadd
-      [131] invokestatic #122
+      [131] invokestatic #117
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
-      [134] invokeinterface #150, 768
+      [134] invokeinterface #145, 768
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
       [139] pop
       [140] goto -83 (target=57)
@@ -1130,53 +1087,53 @@ Methods (count = 9):
       [144] istore v4
       [146] iload v4
       [148] aload_0 v0
-      [149] invokeinterface #148, 256
+      [149] invokeinterface #143, 256
         + InterfaceMethodref [java/util/List.size ()I]
       [154] ificmpge +138 (target=292)
       [157] aload_0 v0
       [158] iload v4
-      [160] invokeinterface #146, 512
+      [160] invokeinterface #141, 512
         + InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [165] checkcast #36
+      [165] checkcast #34
         + Class [com/cloudtech/shell/b/b]
       [168] dup
       [169] astore v5
-      [171] getfield #72
+      [171] getfield #69
         + Fieldref [com/cloudtech/shell/b/b.d Z]
       [174] ifne +24 (target=198)
       [177] aload_3 v3
       [178] aload v5
-      [180] getfield #70
+      [180] getfield #67
         + Fieldref [com/cloudtech/shell/b/b.b Ljava/lang/String;]
-      [183] invokeinterface #149, 512
+      [183] invokeinterface #144, 512
         + InterfaceMethodref [java/util/Map.get (Ljava/lang/Object;)Ljava/lang/Object;]
-      [188] checkcast #51
+      [188] checkcast #49
         + Class [java/lang/Integer]
-      [191] invokevirtual #121
+      [191] invokevirtual #116
         + Methodref [java/lang/Integer.intValue ()I]
       [194] iconst_1
       [195] ificmpgt +91 (target=286)
       [198] iconst_m1
       [199] istore v6
       [201] aload v5
-      [203] invokevirtual #100
+      [203] invokevirtual #97
         + Methodref [com/cloudtech/shell/b/b.a ()I]
       [206] ifeq +11 (target=217)
       [209] aload v5
-      [211] getfield #72
+      [211] getfield #69
         + Fieldref [com/cloudtech/shell/b/b.d Z]
       [214] ifne +13 (target=227)
       [217] aload v5
-      [219] invokevirtual #100
+      [219] invokevirtual #97
         + Methodref [com/cloudtech/shell/b/b.a ()I]
       [222] istore v6
       [224] goto +18 (target=242)
       [227] aload v5
-      [229] getfield #73
+      [229] getfield #70
         + Fieldref [com/cloudtech/shell/b/b.l I]
       [232] ifeq +10 (target=242)
       [235] aload v5
-      [237] getfield #73
+      [237] getfield #70
         + Fieldref [com/cloudtech/shell/b/b.l I]
       [240] istore v6
       [242] iload v6
@@ -1184,44 +1141,44 @@ Methods (count = 9):
       [245] ificmpeq +41 (target=286)
       [248] aload_1 v1
       [249] aload v5
-      [251] getfield #70
+      [251] getfield #67
         + Fieldref [com/cloudtech/shell/b/b.b Ljava/lang/String;]
-      [254] invokevirtual #129
+      [254] invokevirtual #124
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [257] ldc #2
         + String [,]
-      [259] invokevirtual #129
+      [259] invokevirtual #124
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [262] iload v6
-      [264] invokevirtual #128
+      [264] invokevirtual #123
         + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
       [267] ldc #2
         + String [,]
-      [269] invokevirtual #129
+      [269] invokevirtual #124
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [272] aload v5
-      [274] getfield #71
+      [274] getfield #68
         + Fieldref [com/cloudtech/shell/b/b.c Ljava/lang/String;]
-      [277] invokevirtual #129
+      [277] invokevirtual #124
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [280] ldc #2
         + String [,]
-      [282] invokevirtual #129
+      [282] invokevirtual #124
         + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
       [285] pop
       [286] iinc v4, 1
       [289] goto -143 (target=146)
       [292] aload_1 v1
-      [293] invokevirtual #131
+      [293] invokevirtual #126
         + Methodref [java/lang/StringBuilder.length ()I]
       [296] ifle +33 (target=329)
       [299] aload_1 v1
       [300] ldc #2
         + String [,]
-      [302] invokevirtual #130
+      [302] invokevirtual #125
         + Methodref [java/lang/StringBuilder.lastIndexOf (Ljava/lang/String;)I]
       [305] aload_1 v1
-      [306] invokevirtual #131
+      [306] invokevirtual #126
         + Methodref [java/lang/StringBuilder.length ()I]
       [309] iconst_1
       [310] isub
@@ -1229,20 +1186,20 @@ Methods (count = 9):
       [314] aload_1 v1
       [315] iconst_0
       [316] aload_1 v1
-      [317] invokevirtual #131
+      [317] invokevirtual #126
         + Methodref [java/lang/StringBuilder.length ()I]
       [320] iconst_1
       [321] isub
-      [322] invokevirtual #132
+      [322] invokevirtual #127
         + Methodref [java/lang/StringBuilder.substring (II)Ljava/lang/String;]
       [325] astore_2 v2
       [326] goto +14 (target=340)
       [329] aload_1 v1
-      [330] invokevirtual #133
+      [330] invokevirtual #128
         + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
       [333] astore_2 v2
       [334] goto +6 (target=340)
-      [337] invokestatic #118
+      [337] invokestatic #113
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/Throwable;)V]
       [340] aload_2 v2
       [341] areturn
@@ -1253,79 +1210,79 @@ Methods (count = 9):
       + Class [java/lang/Throwable]
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 54):
-        [0] -> line 206
-        [8] -> line 207
-        [11] -> line 209
-        [19] -> line 210
-        [28] -> line 211
-        [33] -> line 212
-        [35] -> line 214
-        [49] -> line 215
-        [79] -> line 217
+        [0] -> line 215
+        [8] -> line 216
+        [11] -> line 218
+        [19] -> line 219
+        [28] -> line 220
+        [33] -> line 221
+        [35] -> line 223
+        [49] -> line 224
+        [79] -> line 226
         [82] -> line 4084 [com/cloudtech/shell/entity/ModulePo.getModuleName()Ljava/lang/String;:84:84]
-        [85] -> line 217
-        [94] -> line 219
-        [99] -> line 220
+        [85] -> line 226
+        [94] -> line 228
+        [99] -> line 229
         [102] -> line 5084 [com/cloudtech/shell/entity/ModulePo.getModuleName()Ljava/lang/String;:84:84]
-        [105] -> line 220
-        [118] -> line 222
+        [105] -> line 229
+        [118] -> line 231
         [121] -> line 6084 [com/cloudtech/shell/entity/ModulePo.getModuleName()Ljava/lang/String;:84:84]
-        [124] -> line 222
-        [140] -> line 224
-        [143] -> line 225
-        [157] -> line 226
-        [169] -> line 233
+        [124] -> line 231
+        [140] -> line 233
+        [143] -> line 234
+        [157] -> line 235
+        [169] -> line 242
         [171] -> line 6100 [com/cloudtech/shell/entity/ModulePo.isDynamic()Z:100:100]
-        [174] -> line 233
+        [174] -> line 242
         [180] -> line 7084 [com/cloudtech/shell/entity/ModulePo.getModuleName()Ljava/lang/String;:84:84]
-        [183] -> line 233
-        [198] -> line 238
-        [201] -> line 239
+        [183] -> line 242
+        [198] -> line 247
+        [201] -> line 248
         [211] -> line 7100 [com/cloudtech/shell/entity/ModulePo.isDynamic()Z:100:100]
-        [214] -> line 239
-        [217] -> line 240
-        [227] -> line 241
+        [214] -> line 248
+        [217] -> line 249
+        [227] -> line 250
         [229] -> line 7188 [com/cloudtech/shell/entity/ModulePo.getCurrentSwitch()I:188:188]
-        [232] -> line 241
-        [235] -> line 242
+        [232] -> line 250
+        [235] -> line 251
         [237] -> line 8188 [com/cloudtech/shell/entity/ModulePo.getCurrentSwitch()I:188:188]
-        [240] -> line 242
-        [242] -> line 244
-        [248] -> line 247
+        [240] -> line 251
+        [242] -> line 253
+        [248] -> line 256
         [251] -> line 9084 [com/cloudtech/shell/entity/ModulePo.getModuleName()Ljava/lang/String;:84:84]
-        [254] -> line 247
-        [259] -> line 248
-        [264] -> line 249
-        [269] -> line 250
+        [254] -> line 256
+        [259] -> line 257
+        [264] -> line 258
+        [269] -> line 259
         [274] -> line 9092 [com/cloudtech/shell/entity/ModulePo.getVersion()Ljava/lang/String;:92:92]
-        [277] -> line 251
-        [282] -> line 252
-        [286] -> line 225
-        [292] -> line 254
-        [314] -> line 255
-        [329] -> line 257
-        [334] -> line 262
-        [337] -> line 261
-        [340] -> line 263
+        [277] -> line 260
+        [282] -> line 261
+        [286] -> line 234
+        [292] -> line 263
+        [314] -> line 264
+        [329] -> line 266
+        [334] -> line 271
+        [337] -> line 270
+        [340] -> line 272
   + Method:       d()Z
     Access flags: 0xa
       = private static boolean d()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 49, locals = 4, stack = 6):
-      [0] getstatic #84
+      [0] getstatic #81
         + Fieldref [java/util/concurrent/TimeUnit.SECONDS Ljava/util/concurrent/TimeUnit;]
-      [3] invokestatic #111
+      [3] invokestatic #107
         + Methodref [com/cloudtech/shell/f/f.b ()I]
       [6] i2l
-      [7] invokevirtual #136
+      [7] invokevirtual #131
         + Methodref [java/util/concurrent/TimeUnit.toMillis (J)J]
       [10] lstore_0 v0
-      [11] invokestatic #113
+      [11] invokestatic #108
         + Methodref [com/cloudtech/shell/f/f.c ()J]
       [14] lstore_2 v2
-      [15] invokestatic #134
+      [15] invokestatic #129
         + Methodref [java/lang/System.currentTimeMillis ()J]
-      [18] ldc2_w #65
+      [18] ldc2_w #63
         + Long [1500]
       [21] ladd
       [22] lload_0 v0
@@ -1333,18 +1290,18 @@ Methods (count = 9):
       [24] ladd
       [25] lcmp
       [26] iflt +10 (target=36)
-      [29] ldc #21
+      [29] ldc #20
         + String [request server execute ok]
-      [31] invokestatic #117
+      [31] invokestatic #112
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/String;)V]
       [34] iconst_1
       [35] ireturn
       [36] ldc #5
         + String [Time has not arrived...]
-      [38] invokestatic #119
+      [38] invokestatic #114
         + Methodref [com/cloudtech/shell/f/m.c (Ljava/lang/String;)V]
       [41] goto +6 (target=47)
-      [44] invokestatic #118
+      [44] invokestatic #113
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/Throwable;)V]
       [47] iconst_0
       [48] ireturn
@@ -1355,149 +1312,83 @@ Methods (count = 9):
       + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 10):
-        [0] -> line 268
-        [11] -> line 269
-        [15] -> line 270
-        [22] -> line 271
-        [29] -> line 272
-        [34] -> line 273
-        [36] -> line 275
-        [41] -> line 278
-        [44] -> line 277
-        [47] -> line 279
+        [0] -> line 277
+        [11] -> line 278
+        [15] -> line 279
+        [22] -> line 280
+        [29] -> line 281
+        [34] -> line 282
+        [36] -> line 284
+        [41] -> line 287
+        [44] -> line 286
+        [47] -> line 288
   + Method:       b()Z
     Access flags: 0x1008
       = static synthetic boolean b()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 4, locals = 0, stack = 1):
-      [0] invokestatic #95
+      [0] invokestatic #92
         + Methodref [com/cloudtech/shell/a.d ()Z]
       [3] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1):
-        [0] -> line 35
+        [0] -> line 34
   + Method:       a(Lcom/cloudtech/shell/b/d;)V
     Access flags: 0x1008
       = static synthetic void a(com.cloudtech.shell.b.d)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 69, locals = 3, stack = 2):
-      [0] invokestatic #134
+    + Code attribute instructions (code length = 12, locals = 1, stack = 2):
+      [0] invokestatic #129
         + Methodref [java/lang/System.currentTimeMillis ()J]
-      [3] invokestatic #109
+      [3] invokestatic #106
         + Methodref [com/cloudtech/shell/f/f.a (J)Z]
       [6] pop
-      [7] ldc #14
-        + String [last_switch]
-      [9] invokestatic #112
-        + Methodref [com/cloudtech/shell/f/f.b (Ljava/lang/String;)I]
-      [12] istore_1 v1
-      [13] iconst_1
-      [14] istore_2 v2
-      [15] iload_1 v1
-      [16] ifne +23 (target=39)
-      [19] aload_0 v0
-      [20] getfield #75
-        + Fieldref [com/cloudtech/shell/b/d.b Ljava/util/List;]
-      [23] iconst_0
-      [24] invokeinterface #146, 512
-        + InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [29] checkcast #39
-        + Class [com/cloudtech/shell/b/d$a]
-      [32] iconst_1
-      [33] putfield #79
-        + Fieldref [com/cloudtech/shell/b/d$a.d I]
-      [36] goto +22 (target=58)
-      [39] iconst_4
-      [40] istore_2 v2
-      [41] aload_0 v0
-      [42] getfield #75
-        + Fieldref [com/cloudtech/shell/b/d.b Ljava/util/List;]
-      [45] iconst_0
-      [46] invokeinterface #146, 512
-        + InterfaceMethodref [java/util/List.get (I)Ljava/lang/Object;]
-      [51] checkcast #39
-        + Class [com/cloudtech/shell/b/d$a]
-      [54] iconst_4
-      [55] putfield #79
-        + Fieldref [com/cloudtech/shell/b/d$a.d I]
-      [58] ldc #14
-        + String [last_switch]
-      [60] iload_2 v2
-      [61] invokestatic #110
-        + Methodref [com/cloudtech/shell/f/f.a (Ljava/lang/String;I)V]
-      [64] aload_0 v0
-      [65] invokestatic #105
+      [7] aload_0 v0
+      [8] invokestatic #102
         + Methodref [com/cloudtech/shell/e/c.a (Lcom/cloudtech/shell/b/d;)V]
-      [68] return
+      [11] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 10):
-        [0] -> line 9161 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [7] -> line 9162 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [13] -> line 9163 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [15] -> line 9164 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [19] -> line 9165 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [39] -> line 9167 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [41] -> line 9168 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [58] -> line 9171 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [64] -> line 9172 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:161:173]
-        [68] -> line 35
+      + Line number table attribute (count = 3):
+        [0] -> line 9169 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:169:182]
+        [7] -> line 9181 [com/cloudtech/shell/SdkImpl.handleSuccess(Lcom/cloudtech/shell/entity/Response;)V:169:182]
+        [11] -> line 34
   + Method:       c()V
     Access flags: 0x1008
       = static synthetic void c()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 0, stack = 1):
       [0] iconst_0
-      [1] putstatic #68
-        + Fieldref [com/cloudtech/shell/a.b Z]
+      [1] putstatic #65
+        + Fieldref [com/cloudtech/shell/a.a Z]
       [4] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2):
-        [0] -> line 9284 [com/cloudtech/shell/SdkImpl.over()V:284:285]
-        [4] -> line 35
+        [0] -> line 9293 [com/cloudtech/shell/SdkImpl.over()V:293:294]
+        [4] -> line 34
   - Method:       <clinit>()V
     Access flags: 0x8
       = static void <clinit>()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 20, locals = 0, stack = 2):
-      [0] ldc #26
-        + String [{
-    "error":"OK",
-    "err_no":0,
-    "frequency":60,
-    "modules":[
-        {
-            "version":"4.2.5",
-            "download_url":"http://172.31.1.157:8080/download/agsdk-release-4.2.5.zip",
-            "md5":"1ccedc496d7f8e69120d15aa49797627",
-            "switch":1,
-            "class_name":"",
-            "method_name":"",
-            "module_name":"agsdk"
-        }
-    ]
-}]
-      [2] putstatic #67
-        + Fieldref [com/cloudtech/shell/a.a Ljava/lang/String;]
-      [5] iconst_0
-      [6] putstatic #68
-        + Fieldref [com/cloudtech/shell/a.b Z]
-      [9] new #34
+    + Code attribute instructions (code length = 15, locals = 0, stack = 2):
+      [0] iconst_0
+      [1] putstatic #65
+        + Fieldref [com/cloudtech/shell/a.a Z]
+      [4] new #32
         + Class [com/cloudtech/shell/a$2]
-      [12] dup
-      [13] invokespecial #97
+      [7] dup
+      [8] invokespecial #94
         + Methodref [com/cloudtech/shell/a$2.<init> ()V]
-      [16] putstatic #69
-        + Fieldref [com/cloudtech/shell/a.c Lcom/cloudtech/shell/d/c$a;]
-      [19] return
+      [11] putstatic #66
+        + Fieldref [com/cloudtech/shell/a.b Lcom/cloudtech/shell/d/c$a;]
+      [14] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 3):
-        [0] -> line 37
-        [5] -> line 54
-        [9] -> line 103
+      + Line number table attribute (count = 2):
+        [0] -> line 62
+        [4] -> line 111
 
 Class file attributes (count = 2):
   + Inner classes attribute (count = 4):
@@ -1599,7 +1490,7 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1):
-        [0] -> line 57
+        [0] -> line 65
   + Method:       run()V
     Access flags: 0x11
       = public final void run()
@@ -1624,12 +1515,12 @@ Methods (count = 2):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 6):
-        [0] -> line 64
-        [3] -> line 69
-        [6] -> line 74
-        [12] -> line 75
-        [16] -> line 77
-        [25] -> line 79
+        [0] -> line 72
+        [3] -> line 77
+        [6] -> line 82
+        [12] -> line 83
+        [16] -> line 85
+        [25] -> line 87
 
 Class file attributes (count = 3):
   + Enclosing method attribute:
@@ -1730,7 +1621,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 1):
-        [0] -> line 103
+        [0] -> line 111
   + Method:       a([B)V
     Access flags: 0x11
       = public final void a(byte[])
@@ -1772,14 +1663,14 @@ Methods (count = 3):
       + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 8):
-        [0] -> line 107
-        [9] -> line 109
-        [21] -> line 112
-        [30] -> line 113
-        [34] -> line 117
-        [37] -> line 116
-        [40] -> line 118
-        [43] -> line 119
+        [0] -> line 115
+        [9] -> line 117
+        [21] -> line 120
+        [30] -> line 121
+        [34] -> line 125
+        [37] -> line 124
+        [40] -> line 126
+        [43] -> line 127
   + Method:       a(Ljava/lang/String;)V
     Access flags: 0x11
       = public final void a(java.lang.String)
@@ -1800,9 +1691,9 @@ Methods (count = 3):
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 3):
-        [0] -> line 123
-        [12] -> line 124
-        [15] -> line 125
+        [0] -> line 131
+        [12] -> line 132
+        [15] -> line 133
 
 Class file attributes (count = 3):
   + Enclosing method attribute:
@@ -9419,14 +9310,14 @@ Constant Pool (count = 136):
   + String []
   + String [1.0.1]
   + String [1.0.2]
-  + String [58203a88caacd3addea7cf5b3307c82c]
+  + String [11240e14e6102e57df2c25d12cc8f181]
   + String [700]
-  + String [758f05dfea81a08d5cef78e3b38b32fe]
   + String [\.]
+  + String [a5ea983386bff2758603db55e2880e01]
   + String [plugin-main]
-  + String [plugin-main-debug-1.0.1.zip]
+  + String [plugin-main-release-1.0.1.zip]
   + String [plugin-manager]
-  + String [plugin-manager-debug-1.0.2.zip]
+  + String [plugin-manager-release-1.0.2.zip]
   + Class [com/cloudtech/shell/a/b]
   + Class [com/cloudtech/shell/b/b]
   + Class [com/cloudtech/shell/b/c]
@@ -9513,9 +9404,8 @@ Constant Pool (count = 136):
   + Utf8 [([Lcom/cloudtech/shell/b/b;)V]
   + Utf8 [1.0.1]
   + Utf8 [1.0.2]
-  + Utf8 [58203a88caacd3addea7cf5b3307c82c]
+  + Utf8 [11240e14e6102e57df2c25d12cc8f181]
   + Utf8 [700]
-  + Utf8 [758f05dfea81a08d5cef78e3b38b32fe]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
   + Utf8 [Code]
@@ -9528,6 +9418,7 @@ Constant Pool (count = 136):
   + Utf8 [Z]
   + Utf8 [\.]
   + Utf8 [a]
+  + Utf8 [a5ea983386bff2758603db55e2880e01]
   + Utf8 [b]
   + Utf8 [c]
   + Utf8 [com/cloudtech/shell/a/b]
@@ -9547,9 +9438,9 @@ Constant Pool (count = 136):
   + Utf8 [java/lang/Throwable]
   + Utf8 [parseInt]
   + Utf8 [plugin-main]
-  + Utf8 [plugin-main-debug-1.0.1.zip]
+  + Utf8 [plugin-main-release-1.0.1.zip]
   + Utf8 [plugin-manager]
-  + Utf8 [plugin-manager-debug-1.0.2.zip]
+  + Utf8 [plugin-manager-release-1.0.2.zip]
   + Utf8 [split]
 
 Fields (count = 2):
@@ -9581,7 +9472,7 @@ Methods (count = 3):
       [18] ifnull +12 (target=30)
       [21] aload_1 v1
       [22] ldc #11
-        + String [plugin-manager-debug-1.0.2.zip]
+        + String [plugin-manager-release-1.0.2.zip]
       [24] invokestatic #39
         + Methodref [com/cloudtech/shell/e/a.a (Landroid/content/Context;Ljava/lang/String;)Z]
       [27] ifne +6 (target=33)
@@ -9591,14 +9482,14 @@ Methods (count = 3):
         + String [plugin-manager]
       [36] ldc #3
         + String [1.0.2]
-      [38] ldc #4
-        + String [58203a88caacd3addea7cf5b3307c82c]
+      [38] ldc #7
+        + String [a5ea983386bff2758603db55e2880e01]
       [40] ldc #1
         + String []
       [42] ldc #1
         + String []
       [44] ldc #11
-        + String [plugin-manager-debug-1.0.2.zip]
+        + String [plugin-manager-release-1.0.2.zip]
       [46] getstatic #29
         + Fieldref [com/cloudtech/shell/b/c.a Lcom/cloudtech/shell/b/c;]
       [49] invokestatic #41
@@ -9618,7 +9509,7 @@ Methods (count = 3):
       [71] ifnull +12 (target=83)
       [74] aload_1 v1
       [75] ldc #9
-        + String [plugin-main-debug-1.0.1.zip]
+        + String [plugin-main-release-1.0.1.zip]
       [77] invokestatic #39
         + Methodref [com/cloudtech/shell/e/a.a (Landroid/content/Context;Ljava/lang/String;)Z]
       [80] ifne +4 (target=84)
@@ -9628,14 +9519,14 @@ Methods (count = 3):
         + String [plugin-main]
       [87] ldc #2
         + String [1.0.1]
-      [89] ldc #6
-        + String [758f05dfea81a08d5cef78e3b38b32fe]
+      [89] ldc #4
+        + String [11240e14e6102e57df2c25d12cc8f181]
       [91] ldc #1
         + String []
       [93] ldc #1
         + String []
       [95] ldc #9
-        + String [plugin-main-debug-1.0.1.zip]
+        + String [plugin-main-release-1.0.1.zip]
       [97] getstatic #30
         + Fieldref [com/cloudtech/shell/b/c.b Lcom/cloudtech/shell/b/c;]
       [100] invokestatic #41
@@ -9785,7 +9676,7 @@ Methods (count = 3):
       [168] iload v10
       [170] ifeq +89 (target=259)
       [173] aload_2 v2
-      [174] ldc #7
+      [174] ldc #6
         + String [\.]
       [176] invokevirtual #50
         + Methodref [java/lang/String.split (Ljava/lang/String;)[Ljava/lang/String;]
@@ -14572,7 +14463,7 @@ Interfaces (count = 0):
 
 Constant Pool (count = 145):
   + String []
-  + String [:plugin]
+  + String [:plugin2]
   + String [Sample程序不容错]
   + String [activity]
   + Class [android/app/ActivityManager]
@@ -14661,7 +14552,7 @@ Constant Pool (count = 145):
   + Utf8 [(Ljava/lang/String;)Ljava/lang/Object;]
   + Utf8 [(Ljava/lang/String;)Z]
   + Utf8 [(Ljava/lang/String;Ljava/lang/Throwable;)V]
-  + Utf8 [:plugin]
+  + Utf8 [:plugin2]
   + Utf8 [<init>]
   + Utf8 [Callback]
   + Utf8 [Code]
@@ -14761,7 +14652,7 @@ Methods (count = 4):
         + Methodref [com/tencent/shadow/core/common/LoggerFactory.setILoggerFactory (Lcom/tencent/shadow/core/common/ILoggerFactory;)V]
       [10] aload_0 v0
       [11] ldc #2
-        + String [:plugin]
+        + String [:plugin2]
       [13] invokestatic #36
         + Methodref [com/cloudtech/shell/shadow/InitApplication.isProcess (Landroid/content/Context;Ljava/lang/String;)Z]
       [16] ifeq +8 (target=24)
@@ -14936,8 +14827,7 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [com/cloudtech/shell/shadow/share/LoadPluginCallback$Callback]
 
-Constant Pool (count = 43):
-  + String [TikTok]
+Constant Pool (count = 41):
   + Class [com/cloudtech/shell/shadow/InitApplication]
   + Class [com/cloudtech/shell/shadow/InitApplication$1]
   + Class [com/cloudtech/shell/shadow/share/LoadPluginCallback]
@@ -14967,7 +14857,6 @@ Constant Pool (count = 43):
   + Utf8 [Ljava/util/Map;]
   + Utf8 [PLUGIN_LOADERS]
   + Utf8 [SourceFile]
-  + Utf8 [TikTok]
   + Utf8 [afterLoadPlugin]
   + Utf8 [beforeLoadPlugin]
   + Utf8 [com/cloudtech/shell/shadow/InitApplication]
@@ -14989,7 +14878,7 @@ Methods (count = 3):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #10
+      [1] invokespecial #9
         + Methodref [java/lang/Object.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -15010,21 +14899,20 @@ Methods (count = 3):
     Access flags: 0x11
       = public final void afterLoadPlugin(java.lang.String,android.content.pm.ApplicationInfo,java.lang.ClassLoader,android.content.res.Resources)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 13, locals = 5, stack = 3):
-      [0] getstatic #9
+    + Code attribute instructions (code length = 12, locals = 5, stack = 3):
+      [0] getstatic #8
         + Fieldref [com/nbmediation/sdk/NmAds.PLUGIN_LOADERS Ljava/util/Map;]
-      [3] ldc #1
-        + String [TikTok]
-      [5] aload_3 v3
-      [6] invokeinterface #11, 768
+      [3] aload_1 v1
+      [4] aload_3 v3
+      [5] invokeinterface #10, 768
         + InterfaceMethodref [java/util/Map.put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;]
-      [11] pop
-      [12] return
+      [10] pop
+      [11] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 2):
-        [0] -> line 67
-        [12] -> line 69
+        [0] -> line 68
+        [11] -> line 69
 
 Class file attributes (count = 3):
   + Enclosing method attribute:
@@ -20224,7 +20112,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 133):
+Constant Pool (count = 126):
   + String [247]
   + String [KEY_EXCUTE_TIME]
   + String [KEY_INTERVAL_SECOND]
@@ -20244,7 +20132,6 @@ Constant Pool (count = 133):
   + Class [java/lang/Exception]
   + Class [java/lang/Object]
   + Class [java/lang/RuntimeException]
-  + Fieldref [android/os/Build$VERSION.SDK_INT I]
   + Fieldref [com/cloudtech/shell/f/f.a Landroid/content/SharedPreferences;]
   + Fieldref [com/cloudtech/shell/f/f.b Landroid/content/SharedPreferences;]
   + Fieldref [com/cloudtech/shell/f/f.c Ljava/lang/String;]
@@ -20252,7 +20139,6 @@ Constant Pool (count = 133):
   + Fieldref [com/cloudtech/shell/f/f.e J]
   + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
   + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
-  + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
   + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/Exception;)V]
   + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/String;)V]
   + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
@@ -20265,7 +20151,6 @@ Constant Pool (count = 133):
   + InterfaceMethodref [android/content/SharedPreferences$Editor.putLong (Ljava/lang/String;J)Landroid/content/SharedPreferences$Editor;]
   + InterfaceMethodref [android/content/SharedPreferences$Editor.putString (Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;]
   + NameAndType [<init> (Ljava/lang/String;)V]
-  + NameAndType [SDK_INT I]
   + NameAndType [a (Ljava/lang/Exception;)V]
   + NameAndType [a Landroid/content/SharedPreferences;]
   + NameAndType [apply ()V]
@@ -20274,7 +20159,6 @@ Constant Pool (count = 133):
   + NameAndType [commit ()Z]
   + NameAndType [d ()Landroid/content/SharedPreferences;]
   + NameAndType [d I]
-  + NameAndType [e ()Landroid/content/SharedPreferences;]
   + NameAndType [e J]
   + NameAndType [edit ()Landroid/content/SharedPreferences$Editor;]
   + NameAndType [getInt (Ljava/lang/String;I)I]
@@ -20295,12 +20179,10 @@ Constant Pool (count = 133):
   + Utf8 [(J)Z]
   + Utf8 [(Landroid/content/Context;)V]
   + Utf8 [(Ljava/lang/Exception;)V]
-  + Utf8 [(Ljava/lang/String;)I]
   + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;I)I]
   + Utf8 [(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
   + Utf8 [(Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-  + Utf8 [(Ljava/lang/String;I)V]
   + Utf8 [(Ljava/lang/String;J)J]
   + Utf8 [(Ljava/lang/String;J)Landroid/content/SharedPreferences$Editor;]
   + Utf8 [(Ljava/lang/String;J)V]
@@ -20324,7 +20206,6 @@ Constant Pool (count = 133):
   + Utf8 [OnSharedPreferenceChangeListener]
   + Utf8 [PreferencesUtils.java]
   + Utf8 [Prefs class not correctly instantiated please call Prefs.iniPrefs(mContext) in the Application class onCreate.]
-  + Utf8 [SDK_INT]
   + Utf8 [SourceFile]
   + Utf8 [VERSION]
   + Utf8 [VERSION_CODES]
@@ -20375,30 +20256,30 @@ Fields (count = 5):
     Access flags: 0xa
       = private static long e
 
-Methods (count = 15):
+Methods (count = 12):
   + Method:       a(Landroid/content/Context;)V
     Access flags: 0x9
       = public static void a(android.content.Context)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 27, locals = 1, stack = 3):
-      [0] getstatic #21
+      [0] getstatic #20
         + Fieldref [com/cloudtech/shell/f/f.a Landroid/content/SharedPreferences;]
       [3] ifnonnull +23 (target=26)
       [6] aload_0 v0
       [7] ldc #7
         + String [cloudmobi_dex_loader_key]
       [9] iconst_0
-      [10] invokevirtual #26
+      [10] invokevirtual #25
         + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-      [13] putstatic #21
+      [13] putstatic #20
         + Fieldref [com/cloudtech/shell/f/f.a Landroid/content/SharedPreferences;]
       [16] aload_0 v0
       [17] ldc #6
         + String [cloudmobi_dex_ct_default]
       [19] iconst_0
-      [20] invokevirtual #26
+      [20] invokevirtual #25
         + Methodref [android/content/Context.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-      [23] putstatic #22
+      [23] putstatic #21
         + Fieldref [com/cloudtech/shell/f/f.b Landroid/content/SharedPreferences;]
       [26] return
       Code attribute exceptions (count = 0):
@@ -20414,34 +20295,9 @@ Methods (count = 15):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 20, locals = 0, stack = 3):
       [0] getstatic #21
-        + Fieldref [com/cloudtech/shell/f/f.a Landroid/content/SharedPreferences;]
+        + Fieldref [com/cloudtech/shell/f/f.b Landroid/content/SharedPreferences;]
       [3] ifnull +7 (target=10)
       [6] getstatic #21
-        + Fieldref [com/cloudtech/shell/f/f.a Landroid/content/SharedPreferences;]
-      [9] areturn
-      [10] new #19
-        + Class [java/lang/RuntimeException]
-      [13] dup
-      [14] ldc #5
-        + String [Prefs class not correctly instantiated please call Prefs.iniPrefs(mContext) in the Application class onCreate.]
-      [16] invokespecial #30
-        + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/String;)V]
-      [19] athrow
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 3):
-        [0] -> line 42
-        [6] -> line 43
-        [10] -> line 45
-  + Method:       e()Landroid/content/SharedPreferences;
-    Access flags: 0xa
-      = private static android.content.SharedPreferences e()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 20, locals = 0, stack = 3):
-      [0] getstatic #22
-        + Fieldref [com/cloudtech/shell/f/f.b Landroid/content/SharedPreferences;]
-      [3] ifnull +7 (target=10)
-      [6] getstatic #22
         + Fieldref [com/cloudtech/shell/f/f.b Landroid/content/SharedPreferences;]
       [9] areturn
       [10] new #19
@@ -20449,7 +20305,7 @@ Methods (count = 15):
       [13] dup
       [14] ldc #5
         + String [Prefs class not correctly instantiated please call Prefs.iniPrefs(mContext) in the Application class onCreate.]
-      [16] invokespecial #30
+      [16] invokespecial #28
         + Methodref [java/lang/RuntimeException.<init> (Ljava/lang/String;)V]
       [19] athrow
       Code attribute exceptions (count = 0):
@@ -20463,23 +20319,23 @@ Methods (count = 15):
       = public static void a(java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 30, locals = 2, stack = 3):
-      [0] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
-      [3] invokeinterface #31, 256
+      [0] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
+      [3] invokeinterface #29, 256
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [8] dup
       [9] astore_1 v1
       [10] ldc #4
         + String [KEY_SLOT_ID]
       [12] aload_0 v0
-      [13] invokeinterface #39, 768
+      [13] invokeinterface #37, 768
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putString (Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;]
       [18] pop
       [19] aload_1 v1
-      [20] invokeinterface #35, 256
+      [20] invokeinterface #33, 256
         + InterfaceMethodref [android/content/SharedPreferences$Editor.apply ()V]
       [25] aload_0 v0
-      [26] putstatic #23
+      [26] putstatic #22
         + Fieldref [com/cloudtech/shell/f/f.c Ljava/lang/String;]
       [29] return
       Code attribute exceptions (count = 0):
@@ -20495,19 +20351,19 @@ Methods (count = 15):
       = public static java.lang.String a()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 0, stack = 3):
-      [0] getstatic #23
+      [0] getstatic #22
         + Fieldref [com/cloudtech/shell/f/f.c Ljava/lang/String;]
       [3] ifnull +7 (target=10)
-      [6] getstatic #23
+      [6] getstatic #22
         + Fieldref [com/cloudtech/shell/f/f.c Ljava/lang/String;]
       [9] areturn
-      [10] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
+      [10] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
       [13] ldc #4
         + String [KEY_SLOT_ID]
       [15] ldc #1
         + String [247]
-      [17] invokeinterface #34, 768
+      [17] invokeinterface #32, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [22] areturn
       Code attribute exceptions (count = 0):
@@ -20520,23 +20376,23 @@ Methods (count = 15):
       = public static void a(int)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 30, locals = 2, stack = 3):
-      [0] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
-      [3] invokeinterface #31, 256
+      [0] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
+      [3] invokeinterface #29, 256
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [8] dup
       [9] astore_1 v1
       [10] ldc #3
         + String [KEY_INTERVAL_SECOND]
       [12] iload_0 v0
-      [13] invokeinterface #37, 768
+      [13] invokeinterface #35, 768
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
       [18] pop
       [19] aload_1 v1
-      [20] invokeinterface #35, 256
+      [20] invokeinterface #33, 256
         + InterfaceMethodref [android/content/SharedPreferences$Editor.apply ()V]
       [25] iload_0 v0
-      [26] putstatic #24
+      [26] putstatic #23
         + Fieldref [com/cloudtech/shell/f/f.d I]
       [29] return
       Code attribute exceptions (count = 0):
@@ -20552,18 +20408,18 @@ Methods (count = 15):
       = public static int b()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 23, locals = 0, stack = 3):
-      [0] getstatic #24
+      [0] getstatic #23
         + Fieldref [com/cloudtech/shell/f/f.d I]
       [3] ifeq +7 (target=10)
-      [6] getstatic #24
+      [6] getstatic #23
         + Fieldref [com/cloudtech/shell/f/f.d I]
       [9] ireturn
-      [10] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
+      [10] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
       [13] ldc #3
         + String [KEY_INTERVAL_SECOND]
       [15] bipush 60
-      [17] invokeinterface #32, 768
+      [17] invokeinterface #30, 768
         + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
       [22] ireturn
       Code attribute exceptions (count = 0):
@@ -20577,22 +20433,22 @@ Methods (count = 15):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 30, locals = 3, stack = 4):
       [0] lload_0 v0
-      [1] putstatic #25
+      [1] putstatic #24
         + Fieldref [com/cloudtech/shell/f/f.e J]
-      [4] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
-      [7] invokeinterface #31, 256
+      [4] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
+      [7] invokeinterface #29, 256
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [12] dup
       [13] astore_2 v2
       [14] ldc #2
         + String [KEY_EXCUTE_TIME]
       [16] lload_0 v0
-      [17] invokeinterface #38, 1024
+      [17] invokeinterface #36, 1024
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putLong (Ljava/lang/String;J)Landroid/content/SharedPreferences$Editor;]
       [22] pop
       [23] aload_2 v2
-      [24] invokeinterface #36, 256
+      [24] invokeinterface #34, 256
         + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
       [29] ireturn
       Code attribute exceptions (count = 0):
@@ -20607,20 +20463,20 @@ Methods (count = 15):
       = public static long c()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 24, locals = 0, stack = 4):
-      [0] getstatic #25
+      [0] getstatic #24
         + Fieldref [com/cloudtech/shell/f/f.e J]
       [3] lconst_0
       [4] lcmp
       [5] ifeq +7 (target=12)
-      [8] getstatic #25
+      [8] getstatic #24
         + Fieldref [com/cloudtech/shell/f/f.e J]
       [11] lreturn
-      [12] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
+      [12] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
       [15] ldc #2
         + String [KEY_EXCUTE_TIME]
       [17] lconst_0
-      [18] invokeinterface #33, 1024
+      [18] invokeinterface #31, 1024
         + InterfaceMethodref [android/content/SharedPreferences.getLong (Ljava/lang/String;J)J]
       [23] lreturn
       Code attribute exceptions (count = 0):
@@ -20633,22 +20489,22 @@ Methods (count = 15):
       = public static void a(java.lang.String,java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 29, locals = 3, stack = 3):
-      [0] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
-      [3] invokeinterface #31, 256
+      [0] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
+      [3] invokeinterface #29, 256
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [8] dup
       [9] astore_2 v2
       [10] aload_0 v0
       [11] aload_1 v1
-      [12] invokeinterface #39, 768
+      [12] invokeinterface #37, 768
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putString (Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;]
       [17] pop
       [18] aload_2 v2
-      [19] invokeinterface #35, 256
+      [19] invokeinterface #33, 256
         + InterfaceMethodref [android/content/SharedPreferences$Editor.apply ()V]
       [24] return
-      [25] invokestatic #29
+      [25] invokestatic #27
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/Exception;)V]
       [28] return
       Code attribute exceptions (count = 1):
@@ -20667,11 +20523,11 @@ Methods (count = 15):
       = public static java.lang.String b(java.lang.String,java.lang.String)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 11, locals = 2, stack = 3):
-      [0] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
+      [0] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
       [3] aload_0 v0
       [4] aload_1 v1
-      [5] invokeinterface #34, 768
+      [5] invokeinterface #32, 768
         + InterfaceMethodref [android/content/SharedPreferences.getString (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;]
       [10] areturn
       Code attribute exceptions (count = 0):
@@ -20683,22 +20539,22 @@ Methods (count = 15):
       = public static void a(java.lang.String,long)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 29, locals = 4, stack = 4):
-      [0] invokestatic #28
-        + Methodref [com/cloudtech/shell/f/f.e ()Landroid/content/SharedPreferences;]
-      [3] invokeinterface #31, 256
+      [0] invokestatic #26
+        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
+      [3] invokeinterface #29, 256
         + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
       [8] dup
       [9] astore_3 v3
       [10] aload_0 v0
       [11] lload_1 v1
-      [12] invokeinterface #38, 1024
+      [12] invokeinterface #36, 1024
         + InterfaceMethodref [android/content/SharedPreferences$Editor.putLong (Ljava/lang/String;J)Landroid/content/SharedPreferences$Editor;]
       [17] pop
       [18] aload_3 v3
-      [19] invokeinterface #35, 256
+      [19] invokeinterface #33, 256
         + InterfaceMethodref [android/content/SharedPreferences$Editor.apply ()V]
       [24] return
-      [25] invokestatic #29
+      [25] invokestatic #27
         + Methodref [com/cloudtech/shell/f/m.a (Ljava/lang/Exception;)V]
       [28] return
       Code attribute exceptions (count = 1):
@@ -20712,73 +20568,19 @@ Methods (count = 15):
         [24] -> line 136
         [25] -> line 135
         [28] -> line 137
-  + Method:       b(Ljava/lang/String;)I
-    Access flags: 0x9
-      = public static int b(java.lang.String)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 11, locals = 1, stack = 3):
-      [0] invokestatic #27
-        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
-      [3] aload_0 v0
-      [4] iconst_0
-      [5] invokeinterface #32, 768
-        + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
-      [10] ireturn
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 1):
-        [0] -> line 215
-  + Method:       a(Ljava/lang/String;I)V
-    Access flags: 0x9
-      = public static void a(java.lang.String,int)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 41, locals = 3, stack = 3):
-      [0] invokestatic #27
-        + Methodref [com/cloudtech/shell/f/f.d ()Landroid/content/SharedPreferences;]
-      [3] invokeinterface #31, 256
-        + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
-      [8] dup
-      [9] astore_2 v2
-      [10] aload_0 v0
-      [11] iload_1 v1
-      [12] invokeinterface #37, 768
-        + InterfaceMethodref [android/content/SharedPreferences$Editor.putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
-      [17] pop
-      [18] getstatic #20
-        + Fieldref [android/os/Build$VERSION.SDK_INT I]
-      [21] bipush 9
-      [23] ificmpge +11 (target=34)
-      [26] aload_2 v2
-      [27] invokeinterface #36, 256
-        + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
-      [32] pop
-      [33] return
-      [34] aload_2 v2
-      [35] invokeinterface #35, 256
-        + InterfaceMethodref [android/content/SharedPreferences$Editor.apply ()V]
-      [40] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 6):
-        [0] -> line 287
-        [9] -> line 288
-        [18] -> line 289
-        [26] -> line 290
-        [34] -> line 292
-        [40] -> line 294
   - Method:       <clinit>()V
     Access flags: 0x8
       = static void <clinit>()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 13, locals = 0, stack = 2):
       [0] aconst_null
-      [1] putstatic #23
+      [1] putstatic #22
         + Fieldref [com/cloudtech/shell/f/f.c Ljava/lang/String;]
       [4] iconst_0
-      [5] putstatic #24
+      [5] putstatic #23
         + Fieldref [com/cloudtech/shell/f/f.d I]
       [8] lconst_0
-      [9] putstatic #25
+      [9] putstatic #24
         + Fieldref [com/cloudtech/shell/f/f.e J]
       [12] return
       Code attribute exceptions (count = 0):

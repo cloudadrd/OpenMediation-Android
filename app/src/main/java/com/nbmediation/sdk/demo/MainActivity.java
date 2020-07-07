@@ -21,13 +21,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.nbmediation.sdk.InitCallback;
 import com.nbmediation.sdk.NmAds;
+import com.nbmediation.sdk.api.unity.NmSdk;
 import com.nbmediation.sdk.banner.AdSize;
 import com.nbmediation.sdk.banner.BannerAd;
 import com.nbmediation.sdk.banner.BannerAdListener;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.demo.utils.NewApiUtils;
 import com.nbmediation.sdk.interstitial.InterstitialAd;
 import com.nbmediation.sdk.interstitial.InterstitialAdListener;
@@ -332,6 +335,24 @@ public class MainActivity extends AppCompatActivity {
         } else {
             interstitialButton.setText("Interstitial Ad Loading...");
         }
+    }
+
+    public void showVideo1(View view) {
+        if (NmManager.getInstance().isRewardedVideoReady("236")) {
+            NmSdk.showRewardedVideo("236", "");
+        } else {
+            Toast.makeText(this, "没准备好，稍后再试", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void showVideo2(View view) {
+        if (NmManager.getInstance().isRewardedVideoReady("246")) {
+            NmSdk.showRewardedVideo("246", "");
+        } else {
+            Toast.makeText(this, "没准备好，稍后再试", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }

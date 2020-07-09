@@ -50,8 +50,21 @@ public class AlionAdapter extends CustomAdsAdapter {
     public void initRewardedVideo(Activity activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
         String error = check(activity);
+
+
         if (TextUtils.isEmpty(error)) {
-            initSdk(activity, mAppKey, "5013395");
+            String[] split = mAppKey.split("#");
+            String appId = null;
+            if (split.length == 1) {
+                appId = split[0];
+            }
+
+            boolean mVertical = true;
+            if (split.length > 1) {
+                mVertical = "0".equals(split[1]);
+            }
+
+            initSdk(activity, appId, "", mVertical);
             if (callback != null) {
                 callback.onRewardedVideoInitSuccess();
             }
@@ -123,11 +136,17 @@ public class AlionAdapter extends CustomAdsAdapter {
     }
 
 
-    private void initSdk(final Activity activity, final String appId, String tid) {
+    private void initSdk(final Activity activity, final String appId, String tid, final boolean vertical) {
         HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ADManager.getInstance().init(activity.getApplication(), appId).setException(true);//对接加载聚合广告需要申请appid(加载聚合广告和新闻需要appid)
+                MDIDHandler.init(activity);
+                if (vertical) {
+                    VideoManager.getInstance().setVideoOrientation(Config.AD_VERTIVAL_SCREEN_DISPLAY);
+                } else {
+                    VideoManager.getInstance().setVideoOrientation(Config.AD_HORIZONTAL_SCREEN_DISPLAY);
+                }
+                ADManager.getInstance().init(activity.getApplication(), appId).setException(true).setOaid(MDIDHandler.getMdid());//对接加载聚合广告需要申请appid(加载聚合广告和新闻需要appid)
 //                .setTtId(tid); //可选。向瑞狮运营申请tid
             }
         });
@@ -138,10 +157,9 @@ public class AlionAdapter extends CustomAdsAdapter {
 
 
     private void realLoadRvAd(final Activity activity, final String adUnitId, final RewardedVideoCallback rvCallback) {
-        VideoManager.getInstance().setVideoOrientation(Config.AD_HORIZONTAL_SCREEN_DISPLAY);
         VideoManager.getInstance().setAdScalingModel(Config.AD_SCALING_MODE_SCALE_TO_FIT);
+        ADManager.getInstance().setOaid(MDIDHandler.getMdid());
         //视频的尺寸
-
         VideoManager.getInstance().setImageAcceptedSize(1080, 1920);
         //参数，activity对象，广告位id,视频的回调
         HandlerUtil.runOnUiThread(new Runnable() {

@@ -144,41 +144,41 @@ dependencies {
 
 
     //AdColony
-    implementation rootProject.ext.dependencies.adcolony
-    implementation project(path: ':adapter:adcolony')
+//    implementation rootProject.ext.dependencies.adcolony
+//    implementation project(path: ':adapter:adcolony')
+//
+//    //admob
+//    implementation rootProject.ext.dependencies.admob
+//    implementation project(path: ':adapter:admob')
+//
+//    //adtiming
+//    implementation rootProject.ext.dependencies.adtiming
+//    implementation project(path: ':adapter:adtiming')
+//
+//    //Applovin
+//    implementation rootProject.ext.dependencies.applovin
+//    implementation project(path: ':adapter:applovin')
+//
+//    //chartboost
+//    implementation rootProject.ext.dependencies.chartboost
+//    implementation project(path: ':adapter:chartboost')
 
-    //admob
-    implementation rootProject.ext.dependencies.admob
-    implementation project(path: ':adapter:admob')
-
-    //adtiming
-    implementation rootProject.ext.dependencies.adtiming
-    implementation project(path: ':adapter:adtiming')
-
-    //Applovin
-    implementation rootProject.ext.dependencies.applovin
-    implementation project(path: ':adapter:applovin')
-
-    //chartboost
-    implementation rootProject.ext.dependencies.chartboost
-    implementation project(path: ':adapter:chartboost')
-
-    //facebook
-    implementation(rootProject.ext.dependencies.facebook) {
-        exclude group: 'com.google.android.gms', module: 'play-services-ads'
-    }
-    implementation(name: 'BiddingKit', ext: 'aar')
-    implementation project(path: ':adapter:facebook')
-
-    //fyber
-    implementation "com.fyber.vamp:core-sdk:${rootProject.ext.dependencies.fyber}"
-    implementation "com.fyber.vamp:video-kit:${rootProject.ext.dependencies.fyber}"
-    implementation "com.fyber.vamp:mraid-kit:${rootProject.ext.dependencies.fyber}"
-    implementation project(path: ':adapter:fyber')
-
-    //ironsource
-    implementation rootProject.ext.dependencies.ironsource
-    implementation project(path: ':adapter:ironsource')
+//    //facebook
+//    implementation(rootProject.ext.dependencies.facebook) {
+//        exclude group: 'com.google.android.gms', module: 'play-services-ads'
+//    }
+//    implementation(name: 'BiddingKit', ext: 'aar')
+//    implementation project(path: ':adapter:facebook')
+//
+//    //fyber
+//    implementation "com.fyber.vamp:core-sdk:${rootProject.ext.dependencies.fyber}"
+//    implementation "com.fyber.vamp:video-kit:${rootProject.ext.dependencies.fyber}"
+//    implementation "com.fyber.vamp:mraid-kit:${rootProject.ext.dependencies.fyber}"
+//    implementation project(path: ':adapter:fyber')
+//
+//    //ironsource
+//    implementation rootProject.ext.dependencies.ironsource
+//    implementation project(path: ':adapter:ironsource')
 
     //mintegral
     implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
@@ -191,25 +191,25 @@ dependencies {
     implementation project(path: ':adapter:mintegral')
 
     //mopub
-    implementation(rootProject.ext.dependencies.mopub) { transitive = true }
-    implementation project(path: ':adapter:mopub')
+//    implementation(rootProject.ext.dependencies.mopub) { transitive = true }
+//    implementation project(path: ':adapter:mopub')
 
     //TapJoy
-    implementation rootProject.ext.dependencies.tapjoy
-    implementation rootProject.ext.dependencies.play_service_base
-    implementation rootProject.ext.dependencies.play_service_ads_identifier
-    implementation project(path: ':adapter:tapjoy')
+//    implementation rootProject.ext.dependencies.tapjoy
+//    implementation rootProject.ext.dependencies.play_service_base
+//    implementation rootProject.ext.dependencies.play_service_ads_identifier
+//    implementation project(path: ':adapter:tapjoy')
 
     //tiktok en
 //    compileOnly(name: 'open_ad_sdk_en', ext: 'aar')
 
     //unity
-    implementation rootProject.ext.dependencies.unity
-    implementation project(path: ':adapter:unity')
+//    implementation rootProject.ext.dependencies.unity
+//    implementation project(path: ':adapter:unity')
 
     //vungle
-    implementation rootProject.ext.dependencies.vungle
-    implementation project(path: ':adapter:vungle')
+//    implementation rootProject.ext.dependencies.vungle
+//    implementation project(path: ':adapter:vungle')
 
 }
 

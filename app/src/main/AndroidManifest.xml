@@ -12,7 +12,9 @@
         android:name=".App"
         android:supportsRtl="true"
         tools:ignore="HardcodedDebugMode"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory">
 
         <activity android:name="com.nbmediation.sdk.demo.MainActivity">
             <intent-filter>

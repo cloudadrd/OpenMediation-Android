@@ -30,6 +30,7 @@ dependencies {
 
     compileOnly rootProject.ext.dependencies.alion
     compileOnly(name: 'nm-android-sdk', ext: 'aar')
+    compileOnly(name: 'msa_mdid_1.0.13', ext: 'aar')
 }
 
 repositories {

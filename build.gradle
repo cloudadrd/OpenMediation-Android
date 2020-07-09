@@ -7,6 +7,7 @@ buildscript {
         google()
         jcenter()
         maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+        maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.1'
@@ -125,6 +126,11 @@ allprojects {
 
         maven {
             url "http://test.vlion.cn:8081/nexus/content/repositories/inland/"
+        }
+
+        //huawei
+        maven {
+            url 'https://developer.huawei.com/repo/'
         }
     }
 }

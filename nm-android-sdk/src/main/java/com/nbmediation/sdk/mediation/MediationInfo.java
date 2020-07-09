@@ -28,6 +28,8 @@ public interface MediationInfo {
     int MEDIATION_ID_21 = 21;
     int MEDIATION_ID_22 = 22;
     int MEDIATION_ID_23 = 23;
+    int MEDIATION_ID_24 = 24;
+
     int MEDIATION_ID_30 = 30;
     int MEDIATION_ID_32 = 32;
 
@@ -45,6 +47,7 @@ public interface MediationInfo {
     String MEDIATION_NAME_13 = "VGlrVG9r";
     String MEDIATION_NAME_14 = "TWludGVncmFs";
     String MEDIATION_NAME_15 = "SXJvblNvdXJjZQ==";
+
     String MEDIATION_NAME_17 = "Q2xvdWRtb2Jp";
     String MEDIATION_NAME_18 = "SHlBZFhPcGVu";
     String MEDIATION_NAME_19 = "VEM=";
@@ -52,6 +55,10 @@ public interface MediationInfo {
     String MEDIATION_NAME_21 = "WllU";//ZYT
     String MEDIATION_NAME_22 = "S1M=";//KS
     String MEDIATION_NAME_23 = "QWxpb24=";//Alion
+    String MEDIATION_NAME_24 = "SHVhd2Vp";//Huawei
+
+
+
     String MEDIATION_NAME_30 = "RnliZXI=";
 
     String MEDIATION_NAME_32 = "UGx1Z2luMQ==";//Plugin1 -agsdk

@@ -143,6 +143,9 @@ dependencies {
     implementation project(path: ':adapter_cn:alion')
 
 
+    //huawei
+    implementation 'com.huawei.hms:ads-lite:13.4.30.301'
+
     //AdColony
     implementation rootProject.ext.dependencies.adcolony
     implementation project(path: ':adapter:adcolony')
@@ -210,6 +213,7 @@ dependencies {
     //vungle
     implementation rootProject.ext.dependencies.vungle
     implementation project(path: ':adapter:vungle')
+
 
 }
 

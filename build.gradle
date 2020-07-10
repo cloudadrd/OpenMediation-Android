@@ -86,7 +86,7 @@ ext {
             "sigmob"                     : 'windAd-2.18.2',
             "hyadxopen"                  : 'hyadxopensdk',
             "tencentad"                  : 'GDTSDK.unionNormal.4.191.1061',
-            "zyt"                        : 'com.zyt:mediation-only:1.1.1',
+            "zyt"                        : 'com.zyt:mediation-only:1.1.7',
             "alion"                      : 'cn.vlion.inland:inlandmix:8.4',
             'ks'                         : 'ks_adsdk-2.6.9-publish-release',
 

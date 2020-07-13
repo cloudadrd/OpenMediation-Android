@@ -58,11 +58,11 @@ public class AlionAdapter extends CustomAdsAdapter {
                 appId = split[0];
             }
 
-            boolean mVertical = false;
+            boolean mVertical = true;
             if (split.length > 1) {
                 mVertical = "0".equals(split[1]);
             }
-            initSdk(activity, appId, "5013395", mVertical);
+            initSdk(activity, appId, "", mVertical);
             if (callback != null) {
                 callback.onRewardedVideoInitSuccess();
             }
@@ -156,7 +156,6 @@ public class AlionAdapter extends CustomAdsAdapter {
 
 
     private void realLoadRvAd(final Context activity, final String adUnitId, final RewardedVideoCallback rvCallback) {
-        VideoManager.getInstance().setVideoOrientation(Config.AD_HORIZONTAL_SCREEN_DISPLAY);
         VideoManager.getInstance().setAdScalingModel(Config.AD_SCALING_MODE_SCALE_TO_FIT);
         ADManager.getInstance().setOaid(MDIDHandler.getMdid());
         //视频的尺寸

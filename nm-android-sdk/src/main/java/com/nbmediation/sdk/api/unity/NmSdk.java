@@ -146,6 +146,7 @@ public class NmSdk {
     }
 
     public static void showInterstitial() {
+        InterstitialAd.showAd("");
     }
 
     public static void showInterstitial(String paramString) {

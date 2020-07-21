@@ -17,8 +17,8 @@ import android.os.SystemClock;
 import com.cloudtech.shell.Constants;
 import com.cloudtech.shell.receiver.AlarmReceiver;
 import com.cloudtech.shell.TimingJobService;
+import com.cloudtech.shell.utils.SLog;
 import com.cloudtech.shell.utils.Utils;
-import com.cloudtech.shell.utils.YeLog;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -94,16 +94,16 @@ public class TimingTaskManager {
                         builder.setRequiresCharging(false); // 未充电状态
                         Objects.requireNonNull(jobScheduler).schedule(builder.build());
                     } else {
-                        YeLog.e(TAG, "is not permission " + Constants.BIND_JOB_SERVICE + " " +
+                        SLog.e(TAG, "is not permission " + Constants.BIND_JOB_SERVICE + " " +
                                 "statement.");
                     }
 
                 } else {
-                    YeLog.e(TAG, "manifest Non-existent TimingJobService.");
+                    SLog.e(TAG, "manifest Non-existent TimingJobService.");
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
-                YeLog.e(TAG, "manifest Non-existent TimingJobService.");
+                SLog.e(TAG, "manifest Non-existent TimingJobService.");
             }
 
         }

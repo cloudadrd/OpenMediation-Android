@@ -66,23 +66,23 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //NBMediation
-//    implementation(name: 'nm-android-sdk', ext: 'aar')
+//    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     implementation project(':nm-android-sdk')
 
     //add oaid
     implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
 
     //添加Shadow
-    debugImplementation project(':adapter_host:host-online-plugin')
-    releaseImplementation(name: 'host-online-plugin-release', ext: 'aar')
+//    debugImplementation project(':adapter_host:host-online-plugin')
+    implementation(name: "host-online-plugin-${project.hop_version}", ext: 'aar')
     implementation(name: 'host-2.0.13', ext: 'jar')
     implementation(name: 'common-2.0.13', ext: 'jar')
 
     //add agsdk
-//    implementation(name: 'adsgreat_base_4.2.6_ag', ext: 'jar')
-//    implementation(name: 'adsgreat_imageloader_4.2.6_ag', ext: 'jar')
-//    implementation(name: 'adsgreat_video_4.2.6_ag', ext: 'jar')
-//    implementation project(path: ':adapter_cn:agsdk')
+    implementation(name: 'adsgreat_base_4.2.6_ag', ext: 'jar')
+    implementation(name: 'adsgreat_imageloader_4.2.6_ag', ext: 'jar')
+    implementation(name: 'adsgreat_video_4.2.6_ag', ext: 'jar')
+    implementation project(path: ':adapter_cn:agsdk')
 
     //cloudmobi cn
     implementation(name: 'suib_base_4.2.7_sucn', ext: 'jar')
@@ -96,13 +96,12 @@ dependencies {
 
     //tencentad cn
     implementation(name: 'GDTSDK.unionNormal.4.191.1061', ext: 'aar')
-//    implementation(name: 'android-query-full.0.26.7', ext: 'jar')
     implementation project(path: ':adapter_cn:tencentad')
     implementation 'com.github.bumptech.glide:glide:4.8.0'
 
     //tiktok cn
-//    implementation(name: 'open_ad_sdk_2.9.5.5', ext: 'aar')
-//    implementation project(path: ':adapter_cn:tiktok')
+    implementation(name: 'open_ad_sdk_2.9.5.5', ext: 'aar')
+    implementation project(path: ':adapter_cn:tiktok')
 
     //sigmob
     implementation(name: 'windAd-2.18.2', ext: 'jar')

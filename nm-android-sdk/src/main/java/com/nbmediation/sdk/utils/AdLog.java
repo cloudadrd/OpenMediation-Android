@@ -10,7 +10,7 @@ import android.util.Log;
 import com.nbmediation.sdk.BuildConfig;
 
 /**
- * 
+ *
  */
 public class AdLog {
     private static class AdLogHolder {
@@ -22,7 +22,7 @@ public class AdLog {
     }
 
     private boolean isDebug = BuildConfig.DEBUG;
-    private static final String TAG = "Om";
+    private static final String TAG = "Om_" + BuildConfig.VERSION_NAME;
 
     private AdLog() {
 

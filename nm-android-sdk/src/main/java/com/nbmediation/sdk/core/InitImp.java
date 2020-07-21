@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.nbmediation.sdk.BuildConfig;
 import com.nbmediation.sdk.InitCallback;
 import com.nbmediation.sdk.utils.ActLifecycle;
 import com.nbmediation.sdk.utils.AdLog;
@@ -17,7 +18,6 @@ import com.nbmediation.sdk.utils.DeveloperLog;
 import com.nbmediation.sdk.utils.HandlerUtil;
 import com.nbmediation.sdk.utils.IOUtil;
 import com.nbmediation.sdk.utils.JsonUtil;
-import com.nbmediation.sdk.utils.ApplicationCache;
 import com.nbmediation.sdk.utils.SdkUtil;
 import com.nbmediation.sdk.utils.WorkExecutor;
 import com.nbmediation.sdk.utils.cache.DataCache;
@@ -41,8 +41,6 @@ import org.json.JSONObject;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -99,10 +97,10 @@ public final class InitImp {
     private static void initShellSdk(Context context) {
         try {
             Class<?> shellClass = Class.forName("com.cloudtech.shell.SdkShell");
-            Method method = shellClass.getDeclaredMethod("initialize", Context.class, String.class, SdkShellCallback.class);
-            method.invoke(null, context, "242", new SdkShellCallback() {
+            Method method = shellClass.getDeclaredMethod("initialize", Context.class, String.class, ShellCallback.class);
+            method.invoke(null, context, "242", new ShellCallback() {
                 @Override
-                public void over() {
+                public void notifyUpdate() {
                     AdapterUtil.createAdapterAll();
                 }
             });
@@ -174,7 +172,9 @@ public final class InitImp {
 
     private static void doAfterGetConfig(String appKey, Configurations config) {
         try {
-//            DeveloperLog.enableDebug(AdtUtil.getApplication(), config.getD() == 1);
+            if (!BuildConfig.DEBUG) {
+                DeveloperLog.enableDebug(AdtUtil.getApplication(), config.getD() == 1);
+            }
             AdLog.getSingleton().init(AdtUtil.getApplication());
             EventUploadManager.getInstance().updateReportSettings(config);
             //reports error logs

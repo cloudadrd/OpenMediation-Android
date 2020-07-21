@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 /**
  * Created by jiantao.tu on 2018/4/19.
@@ -23,10 +22,10 @@ public class Utils {
         try {
             androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure
                 .ANDROID_ID);
-            //YeLog.d(String.format("[msg=get AndroidId][result=success][androidId=%s]",
+            //SLog.d(String.format("[msg=get AndroidId][result=success][androidId=%s]",
             // androidId));
         } catch (Exception e) {
-            YeLog.e(String.format("[msg=get AndroidId][result=fail]"));
+            SLog.e(String.format("[msg=get AndroidId][result=fail]"));
         }
         return androidId;
     }

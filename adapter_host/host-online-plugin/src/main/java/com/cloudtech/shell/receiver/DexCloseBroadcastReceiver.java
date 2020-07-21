@@ -3,10 +3,9 @@ package com.cloudtech.shell.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.cloudtech.shell.listener.DexCloseListener;
-import com.cloudtech.shell.utils.YeLog;
+import com.cloudtech.shell.utils.SLog;
 
 /**
  * Created by jiantao.tu on 2018/4/8.
@@ -28,7 +27,7 @@ public class DexCloseBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (ACTION.equals(intent.getAction())) {
-            YeLog.i("DexCloseBroadcastReceiver go-go-go package="+context.getPackageName());
+            SLog.i("DexCloseBroadcastReceiver go-go-go package="+context.getPackageName());
             listener.onCloseOk();
         }
     }

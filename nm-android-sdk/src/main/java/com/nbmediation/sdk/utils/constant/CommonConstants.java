@@ -3,6 +3,8 @@
 
 package com.nbmediation.sdk.utils.constant;
 
+import com.nbmediation.sdk.BuildConfig;
+
 public interface CommonConstants {
     String INIT_URL = "http://omapi.adsgreat.cn:19015/init";//http://om-demo-lb-1458560685.cn-north-1.elb.amazonaws.com.cn:19015/init http://192.168.1.185:19011/init
 
@@ -10,7 +12,7 @@ public interface CommonConstants {
     int PLAT_FORM_ANDROID = 1;
     int API_VERSION = 1;
 
-    String SDK_VERSION_NAME = "1.1.0";
+    String SDK_VERSION_NAME = BuildConfig.VERSION_NAME;
 
     String ADTYPE_BANNER = "Banner";
     String ADTYPE_NATIVE = "Native";

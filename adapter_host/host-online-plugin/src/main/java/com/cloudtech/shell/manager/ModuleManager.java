@@ -11,7 +11,7 @@ import com.cloudtech.shell.entity.Response;
 import com.cloudtech.shell.http.DownloadManager;
 import com.cloudtech.shell.utils.ContextHolder;
 import com.cloudtech.shell.shadow.ShadowLoader;
-import com.cloudtech.shell.utils.YeLog;
+import com.cloudtech.shell.utils.SLog;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class ModuleManager {
         for (Response.Module module : responseVO.modules) {
 
             if (TextUtils.isEmpty(module.moduleName) || TextUtils.isEmpty(module.version)) {
-                YeLog.e("saveModules continue. moduleName=" + module.moduleName + ",version=" + module.version);
+                SLog.e("saveModules continue. moduleName=" + module.moduleName + ",version=" + module.version);
                 continue;
             }
             boolean isDown = (Constants.DOWNLOAD & module.switchVal) > 0;
@@ -64,10 +64,14 @@ public class ModuleManager {
                     medium = Integer.parseInt(vs[1]);
                     sized = Integer.parseInt(vs[2]);
                 } catch (Exception e) {
-                    YeLog.e(e);
+                    SLog.e(e);
                     continue;
                 }
-
+                //start 如果是下载指令客户端自行增加激活指令，权宜之计!
+                if (isDown && !isDel) {
+                    isActive = true;
+                }
+                //end
                 modulePo = new ModulePo(module.moduleName
                         , module.version
                         , true
@@ -92,6 +96,7 @@ public class ModuleManager {
             }
             modulePo.setDown(isDown);
             modulePo.setDel(isDel);
+
             modulePo.setActive(isActive);
             list.add(modulePo);
         }
@@ -115,21 +120,23 @@ public class ModuleManager {
         for (ModulePo module : moduleList) {
             if (module.isDown()) {
 
-                YeLog.i("ready to execute the download. " + getModuleAndVersionStr(module));
+                SLog.i("ready to execute the download. " + getModuleAndVersionStr(module));
 
                 download(module);
 
-            } else if (module.isActive()) {
+            }
+
+            if (module.isActive()) {
                 if (activeMap.containsKey(module.getModuleName())) continue;
 
-                YeLog.i("ready to execute the active. " + getModuleAndVersionStr(module));
+                SLog.i("ready to execute the active. " + getModuleAndVersionStr(module));
 
                 if (active(module))
                     activeMap.put(module.getModuleName(), module);
 
             } else if (module.isDel()) {
 
-                YeLog.i("ready to execute the delete. " + getModuleAndVersionStr(module));
+                SLog.i("ready to execute the delete. " + getModuleAndVersionStr(module));
 
                 delete(module);
 
@@ -143,12 +150,12 @@ public class ModuleManager {
             boolean isManagerPlugin = module.getPluginType() == PluginType.MANAGER;
             boolean isMainPlugin = module.getPluginType() == PluginType.MAIN_PLUGIN;
             if (!isManagerPlugin && !isManagerActive) {
-                YeLog.i("active fail. manager module not ready,pluginType="
+                SLog.i("active fail. manager module not ready,pluginType="
                         + module.getPluginType() + " info=" + getModuleAndVersionStr(module));
                 return false;
             }
             if (!isManagerPlugin && !isMainPlugin && !isMainActive) {
-                YeLog.i("active fail. manager module not ready,pluginType="
+                SLog.i("active fail. manager module not ready,pluginType="
                         + module.getPluginType() + " info=" + getModuleAndVersionStr(module));
                 return false;
             }
@@ -171,9 +178,9 @@ public class ModuleManager {
             } else if (module.getPluginType() == PluginType.MAIN_PLUGIN) {
                 isMainActive = true;
             }
-            YeLog.i("active success. " + getModuleAndVersionStr(module));
+            SLog.i("active success. " + getModuleAndVersionStr(module));
         } catch (Throwable e) {
-            YeLog.e(e);
+            SLog.e(e);
             return false;
         }
         return true;
@@ -187,7 +194,7 @@ public class ModuleManager {
                 throw new NullPointerException("context is null. " + getModuleAndVersionStr(module));
 
             if (!module.isDynamic()) {
-                YeLog.i("native module,not delete. " + getModuleAndVersionStr(module));
+                SLog.i("native module,not delete. " + getModuleAndVersionStr(module));
                 return;
             }
             
@@ -200,9 +207,9 @@ public class ModuleManager {
             删除数据库
              */
             ModuleDao.getInstance(context).deleteById(module.getId());
-            YeLog.i("delete success. " + getModuleAndVersionStr(module));
+            SLog.i("delete success. " + getModuleAndVersionStr(module));
         } catch (Throwable e) {
-            YeLog.e(e);
+            SLog.e(e);
         }
     }
 
@@ -216,7 +223,7 @@ public class ModuleManager {
              */
             File file = PluginFileManager.getFilePath(context, module.getModuleName(), module.getVersion(), module.getPluginType());
             if (file.exists()) {
-                YeLog.i("Files already exist and are not downloaded. " + getModuleAndVersionStr(module));
+                SLog.i("Files already exist and are not downloaded. " + getModuleAndVersionStr(module));
                 return;
             }
 
@@ -224,7 +231,7 @@ public class ModuleManager {
             是否下载链接为空 or 是否是静态模块
              */
             if (TextUtils.isEmpty(module.getDownloadUrl()) || !module.isDynamic()) {
-                YeLog.e("downloadUrl is null or module is static. " + getModuleAndVersionStr(module));
+                SLog.e("downloadUrl is null or module is static. " + getModuleAndVersionStr(module));
                 return;
             }
 
@@ -233,7 +240,7 @@ public class ModuleManager {
              */
             file = PluginFileManager.createFile(context, UUID.randomUUID().toString() + ".zip");
             if (!DownloadManager.download(module.getDownloadUrl(), file)) {
-                YeLog.e("download failure. " + getModuleAndVersionStr(module));
+                SLog.e("download failure. " + getModuleAndVersionStr(module));
                 return;
             }
 
@@ -246,9 +253,9 @@ public class ModuleManager {
              */
             module.setCurrentSwitch(Constants.DOWNLOAD);
             ModuleDao.getInstance(context).replace(module);
-            YeLog.i("download success. " + getModuleAndVersionStr(module));
+            SLog.i("download success. " + getModuleAndVersionStr(module));
         } catch (Throwable e) {
-            YeLog.e(e);
+            SLog.e(e);
         }
     }
 

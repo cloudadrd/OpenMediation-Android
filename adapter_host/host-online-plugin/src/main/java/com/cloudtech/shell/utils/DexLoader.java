@@ -76,7 +76,7 @@ public class DexLoader {
         DexCloseBroadcastReceiver receiver = new DexCloseBroadcastReceiver(new DexCloseListener() {
             @Override
             public void onCloseOk() {
-                YeLog.i(TAG, "come have closeBroadcast.. moduleName=" + moduleName);
+                SLog.i(TAG, "come have closeBroadcast.. moduleName=" + moduleName);
                 waitDown.countDown();
             }
         });
@@ -86,7 +86,7 @@ public class DexLoader {
             executeCall(context, moduleName, version, className, "close", new Class[]{Context.class}, context);
         } catch (Throwable e) {
             context.unregisterReceiver(receiver);
-            YeLog.i(TAG, "deleteDexFile and unregisterReceiver1 moduleName=" + moduleName);
+            SLog.i(TAG, "deleteDexFile and unregisterReceiver1 moduleName=" + moduleName);
             throw e;
         }
         waitDown.await(timeoutNum, TimeUnit.SECONDS);
@@ -99,7 +99,7 @@ public class DexLoader {
         } finally {
             if (DEX_LOADS != null) DEX_LOADS.remove(moduleName);
             context.unregisterReceiver(receiver);
-            YeLog.i(TAG, "deleteDexFile and unregisterReceiver2 moduleName=" + moduleName);
+            SLog.i(TAG, "deleteDexFile and unregisterReceiver2 moduleName=" + moduleName);
         }
     }
 

@@ -7,7 +7,7 @@ import android.content.Intent;
 import com.cloudtech.shell.SdkImpl;
 import com.cloudtech.shell.utils.PreferencesUtils;
 import com.cloudtech.shell.manager.TimingTaskManager;
-import com.cloudtech.shell.utils.YeLog;
+import com.cloudtech.shell.utils.SLog;
 
 /**
  * Created by jiantao.tu on 2018/4/18.
@@ -17,7 +17,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         TimingTaskManager.setRepeating(context, PreferencesUtils.getIntervalSecond());
-        YeLog.i("AlarmReceiver alarm execute");
-        if (SdkImpl.request()) YeLog.i("AlarmReceiver alarm execute OK.");
+        SLog.i("AlarmReceiver alarm execute");
+        if (SdkImpl.request()) SLog.i("AlarmReceiver alarm execute OK.");
     }
 }

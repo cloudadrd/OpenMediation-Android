@@ -10,7 +10,8 @@ import android.os.IInterface;
 import android.os.Looper;
 import android.os.Parcel;
 import android.os.RemoteException;
-import com.cloudtech.shell.utils.YeLog;
+
+import com.cloudtech.shell.utils.SLog;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -29,7 +30,7 @@ public class AdvertisingIdClient {
             PackageManager pm = context.getPackageManager();
             pm.getPackageInfo("com.android.vending", 0);
         } catch (Exception e) {
-            YeLog.e("cannot find com.android.vending package.");
+            SLog.e("cannot find com.android.vending package.");
         }
 
         AdvertisingConnection connection = new AdvertisingConnection();

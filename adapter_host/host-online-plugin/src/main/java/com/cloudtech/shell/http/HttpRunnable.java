@@ -25,23 +25,28 @@ public class HttpRunnable implements Runnable {
 
     @Override
     public void run() {
+        HttpURLConnection connection = null;
         try {
-            HttpURLConnection connection = HttpUtils.handleConnection(urlStr, 15000);
+            connection = HttpUtils.handleConnection(urlStr, 15000);
             final byte[] bytes = HttpUtils.handleSuccess(connection);
             SdkShell.handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    listener.onSuccess(bytes,urlStr);
+                    listener.onSuccess(bytes, urlStr);
                 }
             });
         } catch (final Exception e) {
-//            YeLog.e(e);
+//            SLog.e(e);
             SdkShell.handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    listener.onFailure(e.getMessage(),urlStr);
+                    listener.onFailure(e.getMessage(), urlStr);
                 }
             });
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
     }
 

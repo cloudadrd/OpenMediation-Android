@@ -15,9 +15,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
-public class YeLog {
+public class SLog {
 
-    private final static String TAG = "CT_v" + BuildConfig.VERSION_NUMBER;    //当前版本号
+    private final static String TAG = "CT_v" + BuildConfig.VERSION_NAME;    //当前版本号
 
     public static String LOG_FILE_NAME = "shellLog.log";
 
@@ -31,7 +31,7 @@ public class YeLog {
 //        return new File(cacheDirectory, fileName);
     }
 
-    private YeLog() {
+    private SLog() {
 
     }
 

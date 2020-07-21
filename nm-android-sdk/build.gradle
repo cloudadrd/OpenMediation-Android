@@ -8,7 +8,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName rootProject.ext.version.versionName
+        versionName project.nm_version
     }
 
     android {
@@ -37,11 +37,22 @@ android {
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 }
 
+def fileName = project.name + '-' + project.nm_version + '.aar'
+def normalPath = "build/outputs/aar/"
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = project.name + '.aar'
+        if (variant.buildType.name == 'release') {
+            outputFileName = fileName
+        }
     }
 }
+
+task copyAAR(type: Copy) {
+    from normalPath + fileName
+    into "../release/"
+}
+
+build.dependsOn(copyAAR)
 
 dependencies {
     testImplementation 'junit:junit:4.12'

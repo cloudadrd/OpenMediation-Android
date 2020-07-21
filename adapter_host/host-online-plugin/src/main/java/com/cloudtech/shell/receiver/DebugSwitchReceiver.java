@@ -7,10 +7,7 @@ import android.content.IntentFilter;
 import android.util.Log;
 
 import com.cloudtech.shell.utils.SwitchConfig;
-import com.cloudtech.shell.utils.YeLog;
-
-import java.util.Arrays;
-import java.util.UUID;
+import com.cloudtech.shell.utils.SLog;
 
 
 /**
@@ -30,7 +27,7 @@ public class DebugSwitchReceiver {
             return;
         }
         hasRegister = true;
-        YeLog.i("DebugSwitchReceiver >> registerReceiver");
+        SLog.i("DebugSwitchReceiver >> registerReceiver");
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION);
@@ -58,7 +55,7 @@ public class DebugSwitchReceiver {
             if (intent.hasExtra(SWITCH_LOG)) {       //
                 boolean logSwitch = intent.getBooleanExtra(SWITCH_LOG, false);
                 SwitchConfig.LOG = logSwitch;
-                YeLog.i("DebugSwitchReceiver::LogSwitch=" + logSwitch);
+                SLog.i("DebugSwitchReceiver::LogSwitch=" + logSwitch);
 
             }
 

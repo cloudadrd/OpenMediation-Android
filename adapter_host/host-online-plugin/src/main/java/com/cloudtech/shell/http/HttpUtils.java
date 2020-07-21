@@ -29,7 +29,7 @@ public class HttpUtils {
     private final static int MAX_REDIRECTS = 10;
 
     public static HttpURLConnection handleConnection(String urlStr, int timeout)
-        throws IOException, HttpRedirectException, HttpErrorException {
+            throws IOException, HttpRedirectException, HttpErrorException {
         HttpURLConnection conn;
         boolean redirected;
 
@@ -65,7 +65,7 @@ public class HttpUtils {
             }
             if (redirectCount >= MAX_REDIRECTS) {
                 throw new HttpRedirectException("Too many redirects: " +
-                    redirectCount);
+                        redirectCount);
             }
         } while (redirected);
 
@@ -73,19 +73,25 @@ public class HttpUtils {
     }
 
     public static byte[] handleSuccess(HttpURLConnection conn) throws Exception {
-        InputStream is;
-        if ("gzip".equals(conn.getContentEncoding())) {
-            is = new GZIPInputStream(conn.getInputStream());
-        } else {
-            is = conn.getInputStream();
+        InputStream is = null;
+        byte[] bytes;
+        try {
+            if ("gzip".equals(conn.getContentEncoding())) {
+                is = new GZIPInputStream(conn.getInputStream());
+            } else {
+                is = conn.getInputStream();
+            }
+            if ("gzip".equals(conn.getHeaderField("CT-Content-Encoding"))) {
+                byte[] key = EncryptionTool.key(conn.getURL().toString());
+                is = new DecodeInputStream(is, key);//解密
+                is = new GZIPInputStream(is);//解压
+            }
+            bytes = getBytes(is);
+        } finally {
+            if (is != null) {
+                is.close();
+            }
         }
-        if ("gzip".equals(conn.getHeaderField("CT-Content-Encoding"))) {
-            byte[] key = EncryptionTool.key(conn.getURL().toString());
-            is = new DecodeInputStream(is, key);//解密
-            is = new GZIPInputStream(is);//解压
-        }
-        byte[] bytes = getBytes(is);
-        is.close();
         return bytes;
     }
 

@@ -7,7 +7,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName rootProject.ext.adapterVersion.zyt
+        versionName project.adapterVersion.agsdk
         consumerProguardFiles 'proguard-rules.pro'
     }
 
@@ -19,13 +19,24 @@ android {
     }
 
 }
+
+def fileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.agsdk}.aar"
+def normalPath = "build/outputs/aar/"
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = rootProject.ext.pkg_prefix + project.name + '.aar'
+        if (variant.buildType.name == 'release') {
+            outputFileName = fileName
+        }
     }
 }
+task copyAAR(type: Copy) {
+    from normalPath + fileName
+    into "../../release/"
+}
+build.dependsOn(copyAAR)
+
 dependencies {
-    compileOnly(name: 'nm-android-sdk', ext: 'aar')
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     compileOnly(name: 'adsgreat_base_4.2.6_ag', ext: 'jar')
     compileOnly(name: 'adsgreat_imageloader_4.2.6_ag', ext: 'jar')
     compileOnly(name: 'adsgreat_video_4.2.6_ag', ext: 'jar')

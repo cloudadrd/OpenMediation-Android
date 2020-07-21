@@ -1,7 +1,7 @@
 package com.cloudtech.shell.http;
 
+import com.cloudtech.shell.utils.SLog;
 import com.cloudtech.shell.utils.ThreadPoolProxy;
-import com.cloudtech.shell.utils.YeLog;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,22 +22,24 @@ public class DownloadManager {
         ThreadPoolProxy.getInstance().execute(new Runnable() {
             @Override
             public void run() {
-                download(url,saveDir,listener);
+                download(url, saveDir, listener);
             }
         });
 
     }
 
-    public static boolean download(final String url, final File saveDir){
-        return download(url,saveDir,null);
+    public static boolean download(final String url, final File saveDir) {
+        return download(url, saveDir, null);
     }
 
     public static boolean download(final String url, final File saveDir, final DownloadListener
-        listener){
+            listener) {
         RandomAccessFile accessFile = null;
+        InputStream is = null;
+        HttpURLConnection conn = null;
         try {
-            HttpURLConnection conn = HttpUtils.handleConnection(url, timeOut);
-            InputStream is;
+            conn = HttpUtils.handleConnection(url, timeOut);
+
             if ("gzip".equals(conn.getContentEncoding())) {
                 is = new GZIPInputStream(conn.getInputStream());
             } else {
@@ -50,9 +52,9 @@ public class DownloadManager {
                 accessFile.write(buffer, 0, (int) len);
             }
         } catch (Exception e) {
-            YeLog.e(e);
+            SLog.e(e);
             if (listener != null) {
-                if (saveDir.exists())saveDir.delete();
+                if (saveDir.exists()) saveDir.delete();
                 listener.onFailure(url);
             }
             return false;
@@ -61,8 +63,18 @@ public class DownloadManager {
                 try {
                     accessFile.close();
                 } catch (IOException e) {
-                   YeLog.e(e);
+                    SLog.e(e);
                 }
+            }
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                conn.disconnect();
             }
         }
         if (listener != null) listener.onComplete(url);

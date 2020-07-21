@@ -7,7 +7,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName rootProject.ext.adapterVersion.tc056d
+        versionName project.adapterVersion.tc056d
         consumerProguardFiles 'proguard-rules.pro'
     }
 
@@ -19,14 +19,25 @@ android {
     }
 
 }
+
+def fileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.tc056d}.aar"
+def normalPath = "build/outputs/aar/"
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = rootProject.ext.pkg_prefix + project.name + '.aar'
+        if (variant.buildType.name == 'release') {
+            outputFileName = fileName
+        }
     }
 }
+task copyAAR(type: Copy) {
+    from normalPath + fileName
+    into "../../release/"
+}
+build.dependsOn(copyAAR)
+
 dependencies {
     compileOnly(name: rootProject.ext.dependencies.tc056d, ext: 'jar')
-    compileOnly(name: 'nm-android-sdk', ext: 'aar')
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 }
 
 repositories {

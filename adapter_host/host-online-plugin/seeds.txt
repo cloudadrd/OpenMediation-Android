@@ -18,7 +18,7 @@ com.tencent.shadow.dynamic.host.ImplLoader: java.lang.String[] concatenate(java.
 com.tencent.shadow.dynamic.host.DynamicRuntime: boolean loadRuntime(com.tencent.shadow.core.common.InstalledApk)
 com.tencent.shadow.dynamic.host.PpsBinder: <clinit>()
 com.tencent.shadow.dynamic.host.BinderUuidManager: void checkException(android.os.Parcel)
-com.cloudtech.shell.SdkShell: void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback)
+com.cloudtech.shell.SdkShell: void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback)
 com.tencent.shadow.core.common.Logger: void debug(java.lang.String,java.lang.Object,java.lang.Object)
 com.tencent.shadow.dynamic.host.FailedException$1: FailedException$1()
 com.tencent.shadow.dynamic.host.DynamicPluginManager: long mLastModified

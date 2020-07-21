@@ -193,7 +193,7 @@ com.cloudtech.shell.manager.LocalDexManager
 com.cloudtech.shell.entity.ModulePo
     public boolean isTurnOff()
 com.cloudtech.shell.Constants
-com.cloudtech.shell.utils.YeLog
+com.cloudtech.shell.utils.SLog
     private void <init>()
     public static varargs void dp(java.lang.String,java.lang.String[])
     public static varargs void ip(java.lang.String,java.lang.String[])
@@ -369,7 +369,7 @@ com.cloudtech.shell.entity.ModulePo
     public void setSized(int)
     public com.cloudtech.shell.entity.PluginType getPluginType()
     public void setPluginType(com.cloudtech.shell.entity.PluginType)
-com.cloudtech.shell.utils.YeLog
+com.cloudtech.shell.utils.SLog
     public static java.io.File getLogPath(android.content.Context)
     public static java.lang.String getLogTag(java.lang.String)
     public static void write(java.io.File,java.lang.String)

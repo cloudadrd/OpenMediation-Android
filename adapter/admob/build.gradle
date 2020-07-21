@@ -8,7 +8,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName rootProject.ext.adapterVersion.admob
+        versionName project.adapterVersion.admob
     }
 
     buildTypes {
@@ -21,11 +21,11 @@ android {
 }
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = rootProject.ext.pkg_prefix + project.name + '.aar'
+        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.admob}.aar"
     }
 }
 dependencies {
-    compileOnly(name: 'nm-android-sdk', ext: 'aar')
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     //Admob
     compileOnly rootProject.ext.dependencies.admob
 }

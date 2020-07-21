@@ -9,7 +9,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName rootProject.ext.adapterVersion.mintegral
+        versionName project.adapterVersion.mintegral
 
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -24,14 +24,24 @@ android {
     useLibrary 'org.apache.http.legacy'
 }
 
+def fileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.mintegral}.aar"
+def normalPath = "build/outputs/aar/"
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = rootProject.ext.pkg_prefix +  project.name + '.aar'
+        if (variant.buildType.name == 'release') {
+            outputFileName = fileName
+        }
     }
 }
 
+task copyAAR(type: Copy) {
+    from normalPath + fileName
+    into "../../release/"
+}
+build.dependsOn(copyAAR)
+
 dependencies {
-    compileOnly(name: 'nm-android-sdk', ext: 'aar')
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 
     compileOnly 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
     compileOnly 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version

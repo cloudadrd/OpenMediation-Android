@@ -66,17 +66,17 @@ public interface MediationInfo {
     String MEDIATION_NAME_9 = "TW9QdWI=";
     String MEDIATION_NAME_11 = "VGFwam95";
     String MEDIATION_NAME_12 = "Q2hhcnRib29zdA==";
-    String MEDIATION_NAME_13 = "VGlrVG9r";
-    String MEDIATION_NAME_14 = "TWludGVncmFs";
-    String MEDIATION_NAME_15 = "SXJvblNvdXJjZQ==";
-    String MEDIATION_NAME_17 = "Q2xvdWRtb2Jp";
-    String MEDIATION_NAME_18 = "SHlBZFhPcGVu";
-    String MEDIATION_NAME_19 = "VEM=";
-    String MEDIATION_NAME_20 = "U2lnbW9i";
+    String MEDIATION_NAME_13 = "VGlrVG9r";//TikTok
+    String MEDIATION_NAME_14 = "TWludGVncmFs";//Mintegral
+    String MEDIATION_NAME_15 = "SXJvblNvdXJjZQ==";//IronSource
+    String MEDIATION_NAME_17 = "Q2xvdWRtb2Jp";//Cloudmobi
+    String MEDIATION_NAME_18 = "SHlBZFhPcGVu";//HyAdXOpen
+    String MEDIATION_NAME_19 = "VEM=";//TC
+    String MEDIATION_NAME_20 = "U2lnbW9i";//Sigmob
     String MEDIATION_NAME_21 = "WllU";//ZYT
     String MEDIATION_NAME_22 = "S1M=";//KS
     String MEDIATION_NAME_23 = "QWxpb24=";//Alion
-    String MEDIATION_NAME_30 = "RnliZXI=";
+    String MEDIATION_NAME_30 = "RnliZXI=";//Fyber
     String MEDIATION_NAME_32 = "UGx1Z2luMQ==";//Plugin1 -agsdk
     String MEDIATION_NAME_33 = "UGx1Z2luMg==";//Plugin2
     String MEDIATION_NAME_34 = "UGx1Z2luMw==";//Plugin3

@@ -3,7 +3,7 @@ package com.cloudtech.shell.manager;
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.cloudtech.shell.utils.YeLog;
+import com.cloudtech.shell.utils.SLog;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -49,18 +49,18 @@ public class AssetsFileManager {
         try {
             String[] names = assetManager.list("");
             for (String name : names) {
-                YeLog.i(name);
+                SLog.i(name);
                 if (name.equals(filename.trim())) {
-//                    YeLog.i(filename + "存在");
+//                    SLog.i(filename + "存在");
                     return true;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-//            YeLog.i(filename + "不存在");
+//            SLog.i(filename + "不存在");
             return false;
         }
-//        YeLog.i(filename + "不存在");
+//        SLog.i(filename + "不存在");
         return false;
     }
 }

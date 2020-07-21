@@ -13,10 +13,10 @@ import com.cloudtech.shell.manager.ModuleManager;
 import com.cloudtech.shell.manager.TimingTaskManager;
 import com.cloudtech.shell.utils.ContextHolder;
 import com.cloudtech.shell.utils.PreferencesUtils;
+import com.cloudtech.shell.utils.SLog;
 import com.cloudtech.shell.utils.ThreadPoolProxy;
 import com.cloudtech.shell.utils.Utils;
-import com.cloudtech.shell.utils.YeLog;
-import com.nbmediation.sdk.core.SdkShellCallback;
+import com.nbmediation.sdk.core.ShellCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -61,7 +62,10 @@ public class SdkImpl {
 
     private static boolean isRequest = false;
 
-    public static void init(final SdkShellCallback callback) {
+    private static CountDownLatch downLatch = new CountDownLatch(1);
+
+
+    public static void init(final ShellCallback callback) {
         ThreadPoolProxy.getInstance().execute(new Runnable() {
             @Override
             public void run() {
@@ -76,14 +80,33 @@ public class SdkImpl {
                  */
                 ModuleManager.applyModules();
 
+                //通知模块已准备好
+                callback.notifyUpdate();
+
                 /*
                 根据频率请求服务器
                  */
                 if (isIntervalExecute()) {
-                    request();
-                }
-                callback.over();
 
+                    request();
+
+                    try {
+                        downLatch.await(20, TimeUnit.SECONDS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                /*
+                没有超时说明成功下发指令，再次应用模块
+                 */
+                if (downLatch.getCount() == 0) {
+
+                    ModuleManager.applyModules();
+                }
+
+                //再次通知模块已准备好
+                callback.notifyUpdate();
             }
         });
 
@@ -92,14 +115,14 @@ public class SdkImpl {
     public static boolean request() {
 
         if (isRequest) {
-            YeLog.w("The last request has not been completed.");
+            SLog.w("The last request has not been completed.");
             return false;
         }
 
         isRequest = true;
         String url = generateUrl();
 
-        YeLog.i("requestUrl:" + url);
+        SLog.i("requestUrl:" + url);
 
         HttpRequester.requestByGet(url, listener);
 //        listener.onSuccess(str.getBytes(), null);
@@ -114,21 +137,21 @@ public class SdkImpl {
             try {
                 String resultData = new String(data);
 
-                YeLog.i("resultData:" + resultData);
+                SLog.i("resultData:" + resultData);
 
                 Response response;
                 if ((response = jsonToEntity(resultData)) != null)//validate and analysis
                     handleSuccess(response);
 
             } catch (Exception e) {
-                YeLog.e(e);
+                SLog.e(e);
             }
             over();
         }
 
         @Override
         public void onFailure(String msg, String url) {
-            YeLog.w("onFailure: " + msg);
+            SLog.w("onFailure: " + msg);
             over();
         }
     };
@@ -136,7 +159,7 @@ public class SdkImpl {
     public static Response jsonToEntity(String resultData) throws JSONException {
         JSONObject response = new JSONObject(resultData);
         if (response.optInt("err_no") != 0) {
-            YeLog.w("response data error.");
+            SLog.w("response data error.");
             return null;
         }
         Response responseVO = new Response();
@@ -146,7 +169,7 @@ public class SdkImpl {
         JSONArray modules = response.optJSONArray("modules");
         int length;
         if (modules == null || (length = modules.length()) == 0) {
-            YeLog.w("modules is null,not data！");
+            SLog.w("modules is null,not data！");
             return null;
         }
         for (int i = 0; i < length; i++) {
@@ -179,6 +202,7 @@ public class SdkImpl {
 //            PreferencesUtils.putInt("last_switch", temp);
 //        }
         ModuleManager.saveModules(responseVO);
+        downLatch.countDown();
     }
 
     @Deprecated
@@ -217,7 +241,7 @@ public class SdkImpl {
         try {
             List<ModulePo> list = ModuleDao.getInstance(context).queryAll();
             if (list == null || list.size() == 0) {
-                YeLog.i("get uri is no module");
+                SLog.i("get uri is no module");
                 return paramsStr;
             }
             Map<String, Integer> map = new HashMap<>(list.size());
@@ -234,7 +258,7 @@ public class SdkImpl {
             for (int i = 0; i < list.size(); i++) {
                 ModulePo data = list.get(i);
                 /*
-                YeLog.i("get uri for moduleName=" + data.getModuleName());
+                SLog.i("get uri for moduleName=" + data.getModuleName());
                 String version = DexLoader.getVersion(context, data.getModuleName());
 
                 --old code
@@ -267,7 +291,7 @@ public class SdkImpl {
             }
 
         } catch (Throwable e) {
-            YeLog.e(e);
+            SLog.e(e);
         }
         return paramsStr;
     }
@@ -278,12 +302,12 @@ public class SdkImpl {
             long executeTime = PreferencesUtils.getLastExecutionTime();
             long currentTime = System.currentTimeMillis() + 1500;
             if (currentTime >= (interval + executeTime)) {
-                YeLog.i("request server execute ok");
+                SLog.i("request server execute ok");
                 return true;
             }
-            YeLog.w("Time has not arrived...");
+            SLog.w("Time has not arrived...");
         } catch (Exception e) {
-            YeLog.e(e);
+            SLog.e(e);
         }
         return false;
     }

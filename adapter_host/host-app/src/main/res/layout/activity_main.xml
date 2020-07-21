@@ -161,7 +161,6 @@
                 android:background="@drawable/btn_background"
                 android:onClick="initSdk"
                 android:text="Init SDK"
-                android:visibility="gone"
                 android:textColor="#000000"
                 android:textAllCaps="false"
                 android:textSize="20sp" />

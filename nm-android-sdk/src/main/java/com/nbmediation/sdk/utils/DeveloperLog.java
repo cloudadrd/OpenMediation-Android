@@ -14,7 +14,7 @@ import java.io.File;
  *
  */
 public class DeveloperLog {
-    private static final String TAG = "OmDev";
+    private static final String TAG = "OmDev_" + BuildConfig.VERSION_NAME;
     private static boolean debug = BuildConfig.DEBUG;
 
     public static void enableDebug(Context context, boolean enable) {

@@ -9,7 +9,7 @@ import com.cloudtech.shell.gp.GpsHelper;
 import com.cloudtech.shell.receiver.DebugSwitchReceiver;
 import com.cloudtech.shell.utils.ContextHolder;
 import com.cloudtech.shell.utils.PreferencesUtils;
-import com.nbmediation.sdk.core.SdkShellCallback;
+import com.nbmediation.sdk.core.ShellCallback;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -28,7 +28,7 @@ public class SdkShell {
         initialize(context, slot, null);
     }
 
-    public synchronized static void initialize(final Context context, final String slot, SdkShellCallback callback) {
+    public synchronized static void initialize(final Context context, final String slot, ShellCallback callback) {
         if (isInit.compareAndSet(false, true)) {
             if (handler == null) handler = new Handler(Looper.getMainLooper());
             PreferencesUtils.initPrefs(context);

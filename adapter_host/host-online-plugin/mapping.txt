@@ -5,9 +5,9 @@ com.cloudtech.shell.SdkImpl -> a.a.a.a:
     com.cloudtech.shell.http.HttpRequester$Listener listener -> b
     boolean isRequest -> a
     1:1:void <clinit>():103:103 -> <clinit>
-    1:1:void init(com.nbmediation.sdk.core.SdkShellCallback):57:57 -> a
+    1:1:void init(com.nbmediation.sdk.core.ShellCallback):57:57 -> a
     2:3:void com.cloudtech.shell.utils.ThreadPoolProxy.execute(java.lang.Runnable):61:62 -> a
-    2:3:void init(com.nbmediation.sdk.core.SdkShellCallback):57 -> a
+    2:3:void init(com.nbmediation.sdk.core.ShellCallback):57 -> a
     4:12:com.cloudtech.shell.entity.Response jsonToEntity(java.lang.String):129:137 -> a
     13:16:void com.cloudtech.shell.utils.PreferencesUtils.putIntervalSecond(int):80:83 -> a
     13:16:com.cloudtech.shell.entity.Response jsonToEntity(java.lang.String):137 -> a
@@ -112,8 +112,8 @@ com.cloudtech.shell.SdkImpl -> a.a.a.a:
     81:82:void com.cloudtech.shell.http.HttpRequester.requestByGet(java.lang.String,com.cloudtech.shell.http.HttpRequester$Listener):21 -> b
     81:82:boolean request():96 -> b
 com.cloudtech.shell.SdkImpl$1 -> a.a.a.a$a:
-    com.nbmediation.sdk.core.SdkShellCallback val$callback -> a
-    1:1:void <init>(com.nbmediation.sdk.core.SdkShellCallback):57:57 -> <init>
+    com.nbmediation.sdk.core.ShellCallback val$callback -> a
+    1:1:void <init>(com.nbmediation.sdk.core.ShellCallback):57:57 -> <init>
     1:1:void com.cloudtech.shell.manager.LocalDexManager.defInit():30:30 -> run
     1:1:void run():64 -> run
     2:18:void com.cloudtech.shell.manager.LocalDexManager.defInitManager(android.content.Context):37:53 -> run
@@ -150,15 +150,15 @@ com.cloudtech.shell.SdkShell -> com.cloudtech.shell.SdkShell:
     1:1:void <init>():19:19 -> <init>
     1:3:void close():55:57 -> close
     1:1:void initialize(android.content.Context,java.lang.String):26:26 -> initialize
-    2:3:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback):30:31 -> initialize
+    2:3:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback):30:31 -> initialize
     4:6:void com.cloudtech.shell.utils.PreferencesUtils.initPrefs(android.content.Context):35:37 -> initialize
-    4:6:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback):32 -> initialize
-    7:7:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback):33:33 -> initialize
+    4:6:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback):32 -> initialize
+    7:7:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback):33:33 -> initialize
     8:11:void com.cloudtech.shell.utils.PreferencesUtils.putSlotId(java.lang.String):67:70 -> initialize
-    8:11:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback):34 -> initialize
+    8:11:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback):34 -> initialize
     12:20:void com.cloudtech.shell.receiver.DebugSwitchReceiver.registerReceiver(android.content.Context):29:37 -> initialize
-    12:20:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback):35 -> initialize
-    21:26:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.SdkShellCallback):36:41 -> initialize
+    12:20:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback):35 -> initialize
+    21:26:void initialize(android.content.Context,java.lang.String,com.nbmediation.sdk.core.ShellCallback):36:41 -> initialize
 com.cloudtech.shell.TimingJobService -> com.cloudtech.shell.TimingJobService:
     1:1:void <init>():15:15 -> <init>
     1:3:boolean onStartJob(android.app.job.JobParameters):18:20 -> onStartJob
@@ -1072,7 +1072,7 @@ com.cloudtech.shell.utils.TimeUtils$2 -> a.a.a.j.h$b:
     1:1:void <init>():299:299 -> <init>
     1:1:java.text.SimpleDateFormat initialValue():302:302 -> initialValue
     1:1:java.lang.Object initialValue():299 -> initialValue
-com.cloudtech.shell.utils.YeLog -> a.a.a.j.i:
+com.cloudtech.shell.utils.SLog -> a.a.a.j.i:
     1:6:void d(java.lang.String):76:81 -> a
     7:12:void w(java.lang.Exception):88:93 -> a
     13:18:void e(java.lang.Throwable):121:126 -> a

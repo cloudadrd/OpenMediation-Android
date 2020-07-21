@@ -118,7 +118,7 @@ public class PreferencesUtils {
             editor.putString(key, value);
             editor.apply();
         } catch (Exception e) {
-            YeLog.w(e);
+            SLog.w(e);
         }
     }
 
@@ -132,7 +132,7 @@ public class PreferencesUtils {
             editor.putLong(key, value);
             editor.apply();
         } catch (Exception e) {
-            YeLog.w(e);
+            SLog.w(e);
         }
     }
 

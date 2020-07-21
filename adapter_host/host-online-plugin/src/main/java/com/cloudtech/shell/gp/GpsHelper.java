@@ -12,7 +12,7 @@ import com.cloudtech.shell.utils.PreferencesUtils;
 import com.cloudtech.shell.utils.Reflection;
 import com.cloudtech.shell.utils.SwitchConfig;
 import com.cloudtech.shell.utils.ThreadPoolProxy;
-import com.cloudtech.shell.utils.YeLog;
+import com.cloudtech.shell.utils.SLog;
 
 public class GpsHelper {
 
@@ -56,7 +56,7 @@ public class GpsHelper {
 
     private static void asyncFetchAdvertisingInfo(final Context context, final GpsHelperListener gpsHelperListener) {
 
-            YeLog.d("GpsHelper >> fetch GoogleAdvertisingInfo(GAID)");
+            SLog.d("GpsHelper >> fetch GoogleAdvertisingInfo(GAID)");
 
             ThreadPoolProxy.getInstance().execute(new Runnable() {
                 @Override
@@ -83,7 +83,7 @@ public class GpsHelper {
                         }
                     } catch (Exception exception) {
                         //exception.printStackTrace();
-                        YeLog.d("Unable to obtain AdvertisingIdClient.getAdvertisingIdInfo()");
+                        SLog.d("Unable to obtain AdvertisingIdClient.getAdvertisingIdInfo()");
                     }
 
                     try {

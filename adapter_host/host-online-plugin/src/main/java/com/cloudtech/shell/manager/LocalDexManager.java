@@ -10,7 +10,7 @@ import com.cloudtech.shell.entity.PluginType;
 import com.cloudtech.shell.ex.FileCurdError;
 import com.cloudtech.shell.ex.MD5ValidException;
 import com.cloudtech.shell.utils.ContextHolder;
-import com.cloudtech.shell.utils.YeLog;
+import com.cloudtech.shell.utils.SLog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,7 +50,7 @@ public class LocalDexManager {
                     , PluginType.MANAGER);
             IS_DEF_MANAGER_INIT = true;
         } catch (Throwable e) {
-            YeLog.e(e);
+            SLog.e(e);
         }
 
     }
@@ -73,7 +73,7 @@ public class LocalDexManager {
                     , PluginType.MAIN_PLUGIN);
             IS_DEF_MAIN_PLUGIN_INIT = true;
         } catch (Throwable e) {
-            YeLog.e(e);
+            SLog.e(e);
         }
 
     }
@@ -130,7 +130,7 @@ public class LocalDexManager {
                 medium = Integer.parseInt(vs[1]);
                 sized = Integer.parseInt(vs[2]);
             } catch (Exception e) {
-                YeLog.e(e);
+                SLog.e(e);
                 return;
             }
             ModulePo modulePo = new ModulePo

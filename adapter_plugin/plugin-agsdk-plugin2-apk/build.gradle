@@ -32,6 +32,8 @@ dependencies {
     //Shadow Transform后业务代码会有一部分实际引用runtime中的类
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     compileOnly "com.tencent.shadow.core:runtime:$shadow_version"
+    //add oaid
+    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
     implementation(name: 'adsgreat_base_4.2.6_ag', ext: 'jar')
     implementation(name: 'adsgreat_imageloader_4.2.6_ag', ext: 'jar')
     implementation(name: 'adsgreat_video_4.2.6_ag', ext: 'jar')
@@ -94,7 +96,7 @@ shadow {
             }
         }
 
-        archivePrefix = 'agsdk-plugin2'
+        archivePrefix = "agsdk-plugin2-${android.defaultConfig.applicationId}"
         archiveSuffix = project.AGSDK_PLUGIN
 //        loaderApkProjectPath = 'adapter_plugin/plugin-loader'
 //

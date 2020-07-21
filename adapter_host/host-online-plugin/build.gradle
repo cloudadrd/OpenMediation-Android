@@ -10,8 +10,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
-        versionName '1.1'
-        buildConfigField "String", "VERSION_NUMBER", "\"${version}\""
+        versionName project.hop_version
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
         buildConfigField("String", "managerMd5", properties.getProperty("manager.md5"))
@@ -41,20 +40,28 @@ android {
     }
 }
 
-def SDK_BASENAME = "cloudshell_1.1"
-def normalPath = "release/"
-def sourceJar = file('build/intermediates/packaged-classes/release/classes.jar')
-
-task makeAdLibJar(type: Jar, dependsOn: ['build']) {
-    def taskNames = gradle.startParameter.taskNames
-    println('makeAdLibJar taskNames -> ' + taskNames)
-    if ('makeAdLibJar' in taskNames) {
-        from zipTree(sourceJar)
-        from fileTree(dir: 'src/main', includes: ['assets/**'])
-        baseName = SDK_BASENAME
-        destinationDir = file(normalPath)
+android.libraryVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = project.name + '-' + project.hop_version + '.aar'
     }
 }
+
+def fileName = project.name + '-' + project.hop_version + '.aar'
+def normalPath = "build/outputs/aar/"
+android.libraryVariants.all { variant ->
+    variant.outputs.all {
+        if (variant.buildType.name == 'release') {
+            outputFileName = fileName
+        }
+    }
+}
+
+task copyAAR(type: Copy) {
+    from normalPath + fileName
+    into "../../release/"
+}
+
+build.dependsOn(copyAAR)
 
 dependencies {
     compileOnly 'com.android.support:appcompat-v7:28.0.0'

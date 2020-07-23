@@ -29,6 +29,7 @@ dependencies {
     compileOnly(name: 'adsgreat_base_4.2.5_ag', ext: 'jar')
     compileOnly(name: 'adsgreat_imageloader_4.2.5_ag', ext: 'jar')
     compileOnly(name: 'adsgreat_video_4.2.5_ag', ext: 'jar')
+    compileOnly 'com.github.bumptech.glide:glide:4.8.0'
 }
 
 repositories {

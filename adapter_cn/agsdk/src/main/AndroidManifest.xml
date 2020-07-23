@@ -9,6 +9,10 @@
             android:name="com.adsgreat.video.view.RewardedVideoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 
+        <!-- for adsgreat interstitial ads -->
+        <activity android:name="com.adsgreat.base.view.InterstitialActivity" />
+
+        <activity android:name="com.adsgreat.base.view.SplashAdActivity" />
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />

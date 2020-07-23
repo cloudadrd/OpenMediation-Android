@@ -82,7 +82,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
 
     @Override
     public int getMediation() {
-        return MediationInfo.MEDIATION_ID_1;
+        return MediationInfo.MEDIATION_ID_13;
     }
 
     @Override

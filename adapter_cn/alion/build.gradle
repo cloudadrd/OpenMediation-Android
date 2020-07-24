@@ -38,7 +38,32 @@ build.dependsOn(copyAAR)
 
 dependencies {
 
-    compileOnly rootProject.ext.dependencies.alion
+//    compileOnly rootProject.ext.dependencies.alion
+    compileOnly(rootProject.ext.dependencies.alion) {
+        exclude group: 'cn.vlion.inland', module: 'inlandb'
+
+        exclude group: 'cn.vlion.inland', module: 'inlandg'
+
+        exclude group: 'cn.vlion.inland', module: 'inlandt'
+        exclude group: 'cn.vlion.inland', module: 'inlandtf'
+        exclude group: 'pl.droidsonroids.gif'
+
+        exclude group: 'cn.vlion.inland', module: 'inlandk'
+
+        exclude group: 'cn.vlion.inland', module: 'inlandimb'
+        exclude group: 'com.squareup.picasso'
+
+        exclude group: 'com.tuia'
+
+        exclude group: 'cn.vlion.inland', module: 'inlandhy'
+
+        exclude group: 'cn.vlion.inland' , module: 'inlandoaid'
+
+        exclude group: 'cn.vlion.inland', module: 'inlands'
+
+        exclude group: 'com.mintegral.msdk'
+
+    }
     //add oaid
     compileOnly(name: 'msa_mdid_1.0.13', ext: 'aar')
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')

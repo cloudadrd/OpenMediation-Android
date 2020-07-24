@@ -151,14 +151,14 @@ dependencies {
     implementation project(path: ':adapter_cn:alion')
 
     //mintegral
-//    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
-//    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
-//    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
-//    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
-//    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
-//    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
-//    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
-//    implementation project(path: ':adapter:mintegral')
+    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
+    implementation project(path: ':adapter:mintegral')
 
 
 //    //AdColony

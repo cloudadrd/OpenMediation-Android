@@ -40,22 +40,13 @@ public class SdkImpl {
 //            "    \"frequency\": 60,\n" +
 //            "    \"modules\": [\n" +
 //            "        {\n" +
-//            "            \"version\": \"4.2.6\",\n" +
-//            "            \"download_url\": \"http://192.168.199.139:8080/download/agsdk-plugin2-release-4.2.6.zip\",\n" +
-//            "            \"md5\": \"025624ecb9daa78bc170505fe5b2a769\",\n" +
+//            "            \"version\": \"1.0.0\",\n" +
+//            "            \"download_url\": \"http://192.168.199.139:8080/download/vlion-plugin3-com.light.cleaner.zero-release-1.0.0.zip\",\n" +
+//            "            \"md5\": \"23728048d6697727f76d2cb5b003133d\",\n" +
 //            "            \"switch\": 1,\n" +
 //            "            \"class_name\": \"\",\n" +
 //            "            \"method_name\": \"\",\n" +
-//            "            \"module_name\": \"Plugin2\"\n" +
-//            "        },\n" +
-//            "        {\n" +
-//            "            \"version\": \"1.2.1\",\n" +
-//            "            \"download_url\": \"http://192.168.199.139:8080/download/tiktok-release-1.2.1.zip\",\n" +
-//            "            \"md5\": \"24b2c077d9b9f1688884f2bcb77bed0c\",\n" +
-//            "            \"switch\": 1,\n" +
-//            "            \"class_name\": \"\",\n" +
-//            "            \"method_name\": \"\",\n" +
-//            "            \"module_name\": \"TikTok\"\n" +
+//            "            \"module_name\": \"Plugin3\"\n" +
 //            "        }\n" +
 //            "    ]\n" +
 //            "}";

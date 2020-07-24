@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.light.cleaner.zero"
+        applicationId project.HOST_APP_APPLICATION_ID
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -73,15 +73,15 @@ dependencies {
     implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
 
     //添加Shadow
-//    debugImplementation project(':adapter_host:host-online-plugin')
-    implementation(name: "host-online-plugin-${project.hop_version}", ext: 'aar')
+    debugImplementation project(':adapter_host:host-online-plugin')
+    releaseImplementation(name: "host-online-plugin-${project.hop_version}", ext: 'aar')
     implementation(name: 'host-2.0.13', ext: 'jar')
     implementation(name: 'common-2.0.13', ext: 'jar')
 
     //add agsdk
-    implementation(name: 'adsgreat_base_4.2.6_ag', ext: 'jar')
-    implementation(name: 'adsgreat_imageloader_4.2.6_ag', ext: 'jar')
-    implementation(name: 'adsgreat_video_4.2.6_ag', ext: 'jar')
+    implementation(name: 'adsgreat_base_4.2.8_ag', ext: 'jar')
+    implementation(name: 'adsgreat_imageloader_4.2.8_ag', ext: 'jar')
+    implementation(name: 'adsgreat_video_4.2.8_ag', ext: 'jar')
     implementation project(path: ':adapter_cn:agsdk')
 
     //cloudmobi cn
@@ -144,19 +144,21 @@ dependencies {
 
         exclude group: 'cn.vlion.inland', module: 'inlands'
 
+        exclude group: 'com.mintegral.msdk'
+
     }
     implementation rootProject.ext.dependencies.glide
     implementation project(path: ':adapter_cn:alion')
 
     //mintegral
-    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
-    implementation project(path: ':adapter:mintegral')
+//    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
+//    implementation project(path: ':adapter:mintegral')
 
 
 //    //AdColony

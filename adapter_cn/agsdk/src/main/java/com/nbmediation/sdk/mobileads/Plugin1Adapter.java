@@ -8,6 +8,7 @@ import com.adsgreat.base.config.Const;
 import com.adsgreat.base.core.AGError;
 import com.adsgreat.base.core.AGVideo;
 import com.adsgreat.base.core.AdsgreatSDK;
+import com.adsgreat.base.core.AdsgreatSDKInternal;
 import com.adsgreat.video.core.AdsGreatVideo;
 import com.adsgreat.video.core.RewardedVideoAdListener;
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
@@ -15,6 +16,7 @@ import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.plugin1.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -60,6 +62,13 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             if (appKey instanceof String) {
+                Object customIdObj = dataMap.get(KeyConstants.CUSTOM_ID_KEY);
+                if (customIdObj instanceof String) {
+                    String customId = (String) customIdObj;
+                    if (!TextUtils.isEmpty(customId)) {
+                        AdsgreatSDKInternal.setUserId(customId);
+                    }
+                }
                 AdsgreatSDK.initialize(activity, (String) appKey);
                 if (callback != null) {
                     callback.onRewardedVideoInitSuccess();

@@ -20,7 +20,9 @@ import com.nbmediation.sdk.mediation.CustomBannerEvent;
 import com.nbmediation.sdk.utils.AdsUtil;
 import com.nbmediation.sdk.utils.HandlerUtil;
 import com.nbmediation.sdk.utils.PlacementUtils;
+import com.nbmediation.sdk.utils.cache.GlobalVariable;
 import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
 import com.nbmediation.sdk.utils.crash.CrashUtil;
 import com.nbmediation.sdk.utils.error.ErrorCode;
 import com.nbmediation.sdk.utils.event.EventId;
@@ -93,6 +95,9 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
             placementInfo.put("width", String.valueOf(mAdSize.getWidth()));
             placementInfo.put("height", String.valueOf(mAdSize.getHeight()));
         }
+
+        GlobalVariable.setCustomDataForMap(placementInfo);
+
         bannerEvent.loadAd(mActRef.get(), placementInfo);
         iLoadReport(instances);
     }

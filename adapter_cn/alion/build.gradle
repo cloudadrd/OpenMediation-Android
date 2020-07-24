@@ -33,6 +33,7 @@ task copyAAR(type: Copy) {
     from normalPath + fileName
     into "../../release/"
 }
+
 build.dependsOn(copyAAR)
 
 dependencies {

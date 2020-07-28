@@ -84,13 +84,8 @@ public class AdapterUtil {
     /**
      * @return the adns
      */
-    public static JSONArray getAdns() {
+    public synchronized static JSONArray getAdns() {
         JSONArray jsonArray = new JSONArray();
-        if (mAdapters == null) {
-            mAdapters = new SparseArray<>();
-        } else {
-            mAdapters.clear();
-        }
         //traverses to get adapters
         for (int i = 0; i < mAdapterPaths.size(); i++) {
             CustomAdsAdapter adapter = null;

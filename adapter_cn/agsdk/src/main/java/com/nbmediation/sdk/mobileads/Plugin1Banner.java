@@ -10,14 +10,14 @@ import com.nbmediation.sdk.utils.AdLog;
 import com.adsgreat.base.callback.EmptyAdEventListener;
 import com.adsgreat.base.enums.AdSize;
 import com.adsgreat.base.core.AGNative;
+
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-public class Plugin1Banner extends CustomBannerEvent{
+public class Plugin1Banner extends CustomBannerEvent {
 
     private static String TAG = "OM-AG-Banner:";
-    private View mBannerView;
-    private Activity mActivity;
+
     @Override
     public void loadAd(Activity activity, Map<String, String> config) {
         super.loadAd(activity, config);
@@ -27,7 +27,6 @@ public class Plugin1Banner extends CustomBannerEvent{
         if (!check(activity, config)) {
             return;
         }
-        this.mActivity = activity;
 
         String appKey = config.get("AppKey");
         String instanceKey = config.get("InstanceKey");
@@ -71,6 +70,7 @@ public class Plugin1Banner extends CustomBannerEvent{
     public void destroy(Activity activity) {
         isDestroyed = true;
     }
+
     public static class BannerListener extends EmptyAdEventListener {
 
         private WeakReference<Plugin1Banner> mReference;
@@ -90,7 +90,6 @@ public class Plugin1Banner extends CustomBannerEvent{
                 return;
             }
             AdLog.getSingleton().LogD(TAG + "onReceiveAdSucceed");
-            banner.mBannerView = agNative;
             banner.onInsReady(agNative);
         }
 

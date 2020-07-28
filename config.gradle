@@ -20,7 +20,7 @@ ext {
             'cloudmobi_cn': '1.0.0',
             'sigmob'      : '1.0.0',
             'tc056d'      : '1.0.0',
-            'alion'       : '1.0.0',
+            'alion'       : '1.0.1',
             'zyt'         : '1.0.0',
             'ks'         : '1.0.1',
             'agsdk'       : '1.0.1'
@@ -31,7 +31,7 @@ ext {
     adapterDirs = "../../libs"
 
     shadow_version = '2.0.13'
-    HOST_APP_APPLICATION_ID = "com.fuguiqw.mobi"
+    HOST_APP_APPLICATION_ID = "com.light.cleaner.zero"
     COMPILE_SDK_VERSION = 29
     MIN_SDK_VERSION = 18
     TARGET_SDK_VERSION = 28

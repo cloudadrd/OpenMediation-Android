@@ -65,12 +65,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+
+    //tencent and agsdk well be used
+    implementation rootProject.ext.dependencies.glide
     //NBMediation
 //    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     implementation project(':nm-android-sdk')
 
     //add oaid
-    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
+    implementation(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')
 
     //添加Shadow
     debugImplementation project(':adapter_host:host-online-plugin')
@@ -79,9 +82,9 @@ dependencies {
     implementation(name: 'common-2.0.13', ext: 'jar')
 
     //add agsdk
-    implementation(name: 'adsgreat_base_4.2.8_ag', ext: 'jar')
-    implementation(name: 'adsgreat_imageloader_4.2.8_ag', ext: 'jar')
-    implementation(name: 'adsgreat_video_4.2.8_ag', ext: 'jar')
+    implementation(name: "adsgreat_base_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    implementation(name: "adsgreat_imageloader_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    implementation(name: "adsgreat_video_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
     implementation project(path: ':adapter_cn:agsdk')
 
     //cloudmobi cn
@@ -97,7 +100,7 @@ dependencies {
     //tencentad cn
     implementation(name: 'GDTSDK.unionNormal.4.191.1061', ext: 'aar')
     implementation project(path: ':adapter_cn:tencentad')
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+
 
     //tiktok cn
     implementation(name: 'open_ad_sdk_2.9.5.5', ext: 'aar')
@@ -140,7 +143,7 @@ dependencies {
 
         exclude group: 'cn.vlion.inland', module: 'inlandhy'
 
-        exclude group: 'cn.vlion.inland' , module: 'inlandoaid'
+        exclude group: 'cn.vlion.inland', module: 'inlandoaid'
 
         exclude group: 'cn.vlion.inland', module: 'inlands'
 

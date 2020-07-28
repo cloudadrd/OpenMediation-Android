@@ -33,10 +33,10 @@ dependencies {
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     compileOnly "com.tencent.shadow.core:runtime:$shadow_version"
     //add oaid
-    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
-    implementation(name: 'adsgreat_base_4.2.8_ag', ext: 'jar')
-    implementation(name: 'adsgreat_imageloader_4.2.8_ag', ext: 'jar')
-    implementation(name: 'adsgreat_video_4.2.8_ag', ext: 'jar')
+    implementation(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')
+    implementation(name: "adsgreat_base_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    implementation(name: "adsgreat_imageloader_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    implementation(name: "adsgreat_video_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
     compileOnly project(':nm-android-sdk')
 }
 

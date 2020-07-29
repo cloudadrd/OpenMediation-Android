@@ -3,21 +3,23 @@ package com.nbmediation.sdk.mobileads;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.adsgreat.base.callback.EmptyAdEventListener;
 import com.adsgreat.base.callback.VideoAdLoadListener;
 import com.adsgreat.base.config.Const;
 import com.adsgreat.base.core.AGError;
+import com.adsgreat.base.core.AGNative;
 import com.adsgreat.base.core.AGVideo;
 import com.adsgreat.base.core.AdsgreatSDK;
-import com.adsgreat.base.core.AdsgreatSDKInternal;
 import com.adsgreat.video.core.AdsGreatVideo;
 import com.adsgreat.video.core.RewardedVideoAdListener;
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
+import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.plugin1.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
-import com.nbmediation.sdk.utils.constant.KeyConstants;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -29,17 +31,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class Plugin1Adapter extends CustomAdsAdapter {
 
+
     private static String TAG = "OM-Cloudmobi-Plugin1: ";
-
     private ConcurrentMap<String, AGVideo> mRvAds;
-
     private AtomicBoolean isPreload = new AtomicBoolean();
-
-
     public Plugin1Adapter() {
         mRvAds = new ConcurrentHashMap<>();
     }
-
+    private InterstitialAdCallback  loadCallback = null;
+    private AGNative agnv = null;
+    private boolean isDestroyed = false;
     @Override
     public String getMediationVersion() {
         return Const.getVersionNumber();
@@ -62,13 +63,6 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             if (appKey instanceof String) {
-                Object customIdObj = dataMap.get(KeyConstants.CUSTOM_ID_KEY);
-                if (customIdObj instanceof String) {
-                    String customId = (String) customIdObj;
-                    if (!TextUtils.isEmpty(customId)) {
-                        AdsgreatSDKInternal.setUserId(customId);
-                    }
-                }
                 AdsgreatSDK.initialize(activity, (String) appKey);
                 if (callback != null) {
                     callback.onRewardedVideoInitSuccess();
@@ -244,4 +238,108 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         };
     }
 
+    /*********************************Interstitial***********************************/
+    @Override
+    public void initInterstitialAd(Context activity, Map<String, Object> dataMap, InterstitialAdCallback callback) {
+        super.initInterstitialAd(activity, dataMap, callback);
+        Object appKey = dataMap.get("AppKey");
+        String error = check(activity);
+        if (TextUtils.isEmpty(error)) {
+            if (appKey instanceof String) {
+                AdsgreatSDK.initialize(activity, (String) appKey);
+                if (callback != null) {
+                    callback.onInterstitialAdInitSuccess();
+                }
+                return;
+            }
+        }
+        if (callback != null) {
+            callback.onInterstitialAdInitFailed(error);
+        }
+    }
+
+    @Override
+    public void loadInterstitialAd(Context activity, String adUnitId, InterstitialAdCallback callback) {
+        super.loadInterstitialAd(activity, adUnitId, callback);
+        loadCallback = callback;
+        AdsgreatSDK.preloadInterstitialAd(activity,adUnitId,new InterstitialAdListener(this));
+    }
+
+    @Override
+    public void showInterstitialAd(final Context activity, final String adUnitId, final InterstitialAdCallback callback) {
+        super.showInterstitialAd(activity, adUnitId, callback);
+        if (AdsgreatSDK.isInterstitialAvailable(agnv)) {
+            AdsgreatSDK.showInterstitialAd(agnv);
+            callback.onInterstitialAdShowSuccess();
+        }else {
+            callback.onInterstitialAdShowFailed("ad not ready.");
+        }
+    }
+
+    @Override
+    public boolean isInterstitialAdAvailable(String adUnitId) {
+        if (TextUtils.isEmpty(adUnitId)) {
+            return false;
+        }
+        return AdsgreatSDK.isInterstitialAvailable(agnv);
+    }
+//
+//    @Override
+//    public void destroy(Context activity) {
+//        isDestroyed = true;
+//    }
+
+    public static class InterstitialAdListener extends EmptyAdEventListener {
+        private InterstitialAdCallback  loadCallbackInListener = null;
+        private WeakReference<Plugin1Adapter> mReference;
+        InterstitialAdListener(Plugin1Adapter interstitial) {
+            mReference = new WeakReference<>(interstitial);
+            loadCallbackInListener = interstitial.loadCallback;
+        }
+
+        @Override
+        public void onReceiveAdSucceed(AGNative agNative) {
+            super.onReceiveAdSucceed(agNative);
+            loadCallbackInListener.onInterstitialAdLoadSuccess();
+            if (agNative != null && agNative.isLoaded()) {
+                if (null != loadCallbackInListener) {
+                    if (mReference == null || mReference.get() == null) {
+                        return;
+                    }
+                    mReference.get().agnv = agNative;
+                }
+
+            }else {
+                if (null != loadCallbackInListener) {
+                    loadCallbackInListener.onInterstitialAdLoadFailed("ad load failed.");
+                }
+            }
+
+        }
+
+        @Override
+        public void onLandPageShown(AGNative var1) {
+            super.onLandPageShown(var1);
+        }
+
+        @Override
+        public void onAdClicked(AGNative var1) {
+            loadCallbackInListener.onInterstitialAdClick();
+        }
+
+        @Override
+        public void onReceiveAdFailed(AGNative var1) {
+            super.onReceiveAdFailed(var1);
+            loadCallbackInListener.onInterstitialAdLoadFailed(var1.getErrorsMsg());
+        }
+
+
+        @Override
+        public void onAdClosed(AGNative var1) {
+            super.onAdClosed(var1);
+            loadCallbackInListener.onInterstitialAdClosed();
+        }
+    }
 }
+
+

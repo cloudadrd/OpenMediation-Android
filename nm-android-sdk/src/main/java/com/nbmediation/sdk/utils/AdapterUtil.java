@@ -118,7 +118,7 @@ public class AdapterUtil {
             }
             if (exception != null) {
                 CrashUtil.getSingleton().saveException(exception);
-                DeveloperLog.LogD("AdapterUtil getAdns : ", exception);
+                DeveloperLog.LogD("AdapterUtil getAdns : ", exception.getMessage());
             } else {
                 mAdapters.put(adapter.getAdNetworkId(), adapter);
                 AdNetwork unityAdNetwork = getAdNetWork(adapter);
@@ -166,7 +166,7 @@ public class AdapterUtil {
             }
             if (exception != null) {
                 CrashUtil.getSingleton().saveException(exception);
-                DeveloperLog.LogD("AdapterUtil createPluginAll : ", exception);
+                DeveloperLog.LogD("AdapterUtil createPluginAll : ", exception.getMessage());
             } else {
                 mAdapters.put(adapter.getAdNetworkId(), adapter);
             }

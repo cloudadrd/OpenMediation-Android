@@ -69,8 +69,8 @@ dependencies {
     //tencent and agsdk well be used
     implementation rootProject.ext.dependencies.glide
     //NBMediation
-    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-//    implementation project(':nm-android-sdk')
+//    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    implementation project(':nm-android-sdk')
 
     //add oaid
     implementation(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')

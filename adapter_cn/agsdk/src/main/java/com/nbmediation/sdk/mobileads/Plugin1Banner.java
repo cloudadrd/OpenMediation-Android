@@ -1,15 +1,18 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.adsgreat.base.core.AdsgreatSDK;
+import com.adsgreat.base.core.AdsgreatSDKInternal;
 import com.nbmediation.sdk.mediation.CustomBannerEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.utils.AdLog;
 import com.adsgreat.base.callback.EmptyAdEventListener;
 import com.adsgreat.base.enums.AdSize;
 import com.adsgreat.base.core.AGNative;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
 
 import java.lang.ref.WeakReference;
 import java.util.Map;
@@ -36,7 +39,12 @@ public class Plugin1Banner extends CustomBannerEvent {
         if (null == instanceKey || !(instanceKey instanceof String)) {
             return;
         }
-
+        String customIdObj = config.get(KeyConstants.CUSTOM_ID_KEY);
+        if (customIdObj != null) {
+            if (!TextUtils.isEmpty(customIdObj)) {
+                AdsgreatSDKInternal.setUserId(customIdObj);
+            }
+        }
         AdsgreatSDK.initialize(activity, (String) appKey);
         loadBannerAd(activity, instanceKey, config);
     }

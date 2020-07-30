@@ -1,6 +1,7 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,12 +10,14 @@ import android.widget.RelativeLayout;
 import com.adsgreat.base.callback.EmptyAdEventListener;
 import com.adsgreat.base.core.AGNative;
 import com.adsgreat.base.core.AdsgreatSDK;
+import com.adsgreat.base.core.AdsgreatSDKInternal;
 import com.adsgreat.base.core.AdvanceNative;
 import com.bumptech.glide.Glide;
 import com.nbmediation.sdk.mediation.CustomNativeEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
 
 import java.util.Map;
 
@@ -42,6 +45,12 @@ public class Plugin1Native extends CustomNativeEvent {
             return;
         }
         this.activity = activity;
+        String customIdObj = config.get(KeyConstants.CUSTOM_ID_KEY);
+        if (customIdObj != null) {
+            if (!TextUtils.isEmpty(customIdObj)) {
+                AdsgreatSDKInternal.setUserId(customIdObj);
+            }
+        }
         AdsgreatSDK.initialize(activity, appKey);
         loadNativeAd(activity, instanceKey, config);
     }

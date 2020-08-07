@@ -4,6 +4,7 @@
 package com.nbmediation.sdk.utils.model;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.nbmediation.sdk.core.runnable.LoadTimeoutRunnable;
@@ -12,6 +13,7 @@ import com.nbmediation.sdk.utils.InsExecutor;
 import com.nbmediation.sdk.utils.JsonUtil;
 import com.nbmediation.sdk.utils.PlacementUtils;
 import com.nbmediation.sdk.utils.cache.DataCache;
+import com.nbmediation.sdk.utils.cache.GlobalVariable;
 import com.nbmediation.sdk.utils.constant.KeyConstants;
 import com.nbmediation.sdk.utils.event.EventId;
 import com.nbmediation.sdk.utils.event.EventUploadManager;
@@ -135,6 +137,9 @@ public class Instance extends BaseInstance {
                 }
             }
         }
+
+        GlobalVariable.setCustomDataObjForMap(dataMap);
+
         return dataMap;
     }
 

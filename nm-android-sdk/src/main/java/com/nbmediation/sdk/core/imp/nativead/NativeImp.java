@@ -17,7 +17,9 @@ import com.nbmediation.sdk.nativead.NativeAdListener;
 import com.nbmediation.sdk.nativead.NativeAdView;
 import com.nbmediation.sdk.utils.AdsUtil;
 import com.nbmediation.sdk.utils.PlacementUtils;
+import com.nbmediation.sdk.utils.cache.GlobalVariable;
 import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
 import com.nbmediation.sdk.utils.error.ErrorCode;
 import com.nbmediation.sdk.utils.event.EventId;
 import com.nbmediation.sdk.utils.event.EventUploadManager;
@@ -68,6 +70,9 @@ public final class NativeImp extends AbstractHybridAd implements View.OnAttachSt
             AuctionUtil.instanceNotifyBidWin(mPlacement.getHbAbt(), instances);
             AuctionUtil.removeBidResponse(mBidResponses, instances);
         }
+
+        GlobalVariable.setCustomDataForMap(config);
+
         nativeEvent.loadAd(mActRef.get(), config);
         iLoadReport(instances);
     }

@@ -18,6 +18,10 @@
             android:authorities="${applicationId}.xxprovider"
             android:exported="false" />
 
+        <!-- for adsgreat interstitial ads -->
+        <activity android:name="com.adsgreat.base.view.InterstitialActivity" />
+        <activity android:name="com.adsgreat.base.view.SplashAdActivity" />
+
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

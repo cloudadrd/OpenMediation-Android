@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nbmediation.sdk.mobileads.mintegral">
+    package="com.nbmediation.sdk.mobileads.mintegral"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,7 +13,7 @@
         <activity
             android:name="com.mintegral.msdk.activity.MTGCommonActivity"
             android:configChanges="keyboard|orientation"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity

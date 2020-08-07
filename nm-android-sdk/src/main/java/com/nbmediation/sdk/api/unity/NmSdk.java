@@ -58,6 +58,9 @@ public class NmSdk {
         NmAds.setIAP(paramFloat, paramString);
     }
 
+    public static void setCustomId(String customId) {
+        NmAds.setCustomId(customId);
+    }
 
     public static void setRewardedVideoListener(final VideoListener paramVideoListener) {
         LogD("setRewardedVideoListener");

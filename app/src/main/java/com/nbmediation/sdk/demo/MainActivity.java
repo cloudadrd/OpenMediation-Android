@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initSDK() {
         NewApiUtils.printLog("start init sdk");
+        NmAds.setCustomId("test123");
         NmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {
             @Override
             public void onSuccess() {
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void setVideoListener() {

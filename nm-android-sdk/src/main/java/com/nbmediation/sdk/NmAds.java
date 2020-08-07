@@ -6,6 +6,8 @@ package com.nbmediation.sdk;
 import android.app.Activity;
 
 import com.nbmediation.sdk.core.NmManager;
+import com.nbmediation.sdk.utils.cache.GlobalVariable;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +68,15 @@ public abstract class NmAds {
      */
     public static void setIAP(float iapCount, String currency) {
         NmManager.getInstance().setIAP(iapCount, currency);
+    }
+
+    /**
+     * set customId
+     *
+     * @param customId value
+     */
+    public static void setCustomId(String customId) {
+        GlobalVariable.CUSTOM_ID = customId;
     }
 
     /**

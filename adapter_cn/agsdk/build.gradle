@@ -37,9 +37,10 @@ build.dependsOn(copyAAR)
 
 dependencies {
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-    compileOnly(name: 'adsgreat_base_4.2.6_ag', ext: 'jar')
-    compileOnly(name: 'adsgreat_imageloader_4.2.6_ag', ext: 'jar')
-    compileOnly(name: 'adsgreat_video_4.2.6_ag', ext: 'jar')
+    compileOnly(name: "adsgreat_base_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    compileOnly(name: "adsgreat_imageloader_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    compileOnly(name: "adsgreat_video_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
+    compileOnly rootProject.ext.dependencies.glide
 }
 
 repositories {

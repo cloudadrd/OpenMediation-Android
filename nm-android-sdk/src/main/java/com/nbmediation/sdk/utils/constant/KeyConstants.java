@@ -21,6 +21,11 @@ public interface KeyConstants {
     String KEY_APP_KEY = "AppKey";
 
     /**
+     * The constant CUSTOM_ID_KEY.
+     */
+    String CUSTOM_ID_KEY = "CustomId";
+
+    /**
      * The interface Request.
      */
     interface Request {

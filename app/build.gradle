@@ -216,9 +216,9 @@ dependencies {
 //    //tiktok en
 ////    compileOnly(name: 'open_ad_sdk_en', ext: 'aar')
 //
-//    //unity
-//    implementation rootProject.ext.dependencies.unity
-//    implementation project(path: ':adapter:unity')
+    //unity
+    implementation rootProject.ext.dependencies.unity
+    implementation project(path: ':adapter:unity')
 //
 //    //vungle
 //    implementation rootProject.ext.dependencies.vungle

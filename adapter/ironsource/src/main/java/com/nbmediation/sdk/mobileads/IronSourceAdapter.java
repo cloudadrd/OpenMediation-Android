@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.ironsource.mediationsdk.model.Placement;
 import com.nbmediation.sdk.mobileads.ironsource.BuildConfig;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.logger.IronSourceError;
@@ -14,6 +15,7 @@ import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.utils.AdLog;
+import com.ironsource.mediationsdk.sdk.RewardedVideoListener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -24,9 +26,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class IronSourceAdapter extends CustomAdsAdapter {
+public class IronSourceAdapter extends CustomAdsAdapter implements RewardedVideoListener{
 
-    private static final String TAG = "AdTiming-IronSource";
+    private static final String TAG = "OM-IronSource";
+    private static String SharedInstanceID = "SharedInstance";
 
     private static AtomicBoolean mDidInitInterstitial = new AtomicBoolean(false);
 
@@ -40,6 +43,84 @@ public class IronSourceAdapter extends CustomAdsAdapter {
 
     private ConcurrentMap<String, RewardedVideoCallback> mRvCallbacks;
     private ConcurrentMap<String, InterstitialAdCallback> mIsCallbacks;
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+        Log.d(TAG, String.format("IronSource Rewarded Video opened ad for instance %s",
+                SharedInstanceID));
+
+        RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+        if (callback != null) {
+            callback.onRewardedVideoAdShowSuccess();
+            callback.onRewardedVideoAdStarted();
+        }
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        Log.d(TAG, String.format("IronSource Rewarded Video closed ad for instance %s",
+                SharedInstanceID));
+
+        RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+        if (callback != null) {
+            callback.onRewardedVideoAdClosed();
+        }
+    }
+
+    @Override
+    public void onRewardedVideoAvailabilityChanged(boolean b) {
+//        if(b == false){
+//            final String message = String.format("IronSource Rewarded Video is not ready");
+//            Log.w(TAG, message);
+//
+//            RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+//            if (callback != null) {
+//                callback.onRewardedVideoAdShowFailed(message);
+//            }
+//        }else{
+//            Log.d(TAG, String.format("IronSource load success for instanceId: %s", SharedInstanceID));
+//            RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+//            if (callback != null) {
+//                callback.onRewardedVideoLoadSuccess();
+//            }
+//        }
+    }
+
+    @Override
+    public void onRewardedVideoAdStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdEnded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdRewarded(Placement placement) {
+        Log.d(TAG, String.format("IronSource Rewarded Video received reward for instance %s", SharedInstanceID));
+
+        RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+        if (callback != null) {
+            callback.onRewardedVideoAdRewarded();
+        }
+    }
+
+    @Override
+    public void onRewardedVideoAdShowFailed(IronSourceError ironSourceError) {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClicked(Placement placement) {
+        Log.d(TAG, String.format("IronSource Rewarded Video clicked for instance %s",
+                placement));
+
+        RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+        if (callback != null) {
+            callback.onRewardedVideoAdClicked();
+        }
+    }
 
     enum INSTANCE_STATE {
         START, //Initial state when instance wasn't loaded yet
@@ -90,7 +171,8 @@ public class IronSourceAdapter extends CustomAdsAdapter {
             return;
         }
         if (!mDidInitRewardedVideo.getAndSet(true)) {
-            IronSourceManager.getInstance().initIronSourceSDK((Activity) activity, mAppKey, mRvAdUnitsToInit);
+            //IronSourceManager.getInstance().initIronSourceSDK((Activity) activity, mAppKey, mRvAdUnitsToInit);
+            IronSource.init((Activity) activity, mAppKey);
         }
         if (callback != null) {
             callback.onRewardedVideoInitSuccess();
@@ -101,15 +183,23 @@ public class IronSourceAdapter extends CustomAdsAdapter {
     public void loadRewardedVideo(Context activity, String adUnitId, RewardedVideoCallback callback) {
         super.loadRewardedVideo(activity, adUnitId, callback);
         String checkError = check(activity, adUnitId);
+        SharedInstanceID = adUnitId;
+        if (callback != null) {
+            mRvCallbacks.put(SharedInstanceID, callback);
+        }
+
         if (TextUtils.isEmpty(checkError)) {
             if (isRewardedVideoAvailable(adUnitId) && callback != null) {
                 callback.onRewardedVideoLoadSuccess();
+                IronSource.setRewardedVideoListener(this);
                 return;
             }
+
             if (callback != null) {
-                mRvCallbacks.put(adUnitId, callback);
+                callback.onRewardedVideoLoadFailed(checkError);
             }
-            IronSourceManager.getInstance().loadRewardedVideo(adUnitId, new WeakReference<>(IronSourceAdapter.this));
+            //Placement placement = IronSource.getRewardedVideoPlacementInfo("DefaultRewardedVideo");
+            //IronSourceManager.getInstance().loadRewardedVideo(adUnitId, new WeakReference<>(IronSourceAdapter.this));
         } else {
             if (callback != null) {
                 callback.onRewardedVideoLoadFailed(checkError);
@@ -121,11 +211,13 @@ public class IronSourceAdapter extends CustomAdsAdapter {
     public void showRewardedVideo(Context activity, String adUnitId, RewardedVideoCallback callback) {
         super.showRewardedVideo(activity, adUnitId, callback);
         String checkError = check(activity, adUnitId);
+        SharedInstanceID = adUnitId;
         if (TextUtils.isEmpty(checkError)) {
             if (callback != null) {
-                mRvCallbacks.put(adUnitId, callback);
+                mRvCallbacks.put(SharedInstanceID, callback);
             }
-            IronSourceManager.getInstance().showRewardedVideo(adUnitId);
+//            IronSourceManager.getInstance().showRewardedVideo(adUnitId);
+            IronSource.showRewardedVideo(adUnitId);
         } else {
             if (callback != null) {
                 callback.onRewardedVideoAdShowFailed(checkError);
@@ -135,7 +227,8 @@ public class IronSourceAdapter extends CustomAdsAdapter {
 
     @Override
     public boolean isRewardedVideoAvailable(String adUnitId) {
-        return IronSourceManager.getInstance().isRewardedVideoReady(adUnitId);
+        return IronSource.isRewardedVideoAvailable();
+        //return IronSourceManager.getInstance().isRewardedVideoReady(adUnitId);
     }
 
     @Override
@@ -261,72 +354,31 @@ public class IronSourceAdapter extends CustomAdsAdapter {
      * IronSource callbacks for AdMob Mediation.
      */
 
-    void onRewardedVideoAdLoadSuccess(String instanceId) {
-        Log.d(TAG, String.format("IronSource load success for instanceId: %s", instanceId));
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoLoadSuccess();
-        }
-    }
-
-    void onRewardedVideoAdLoadFailed(String instanceId, IronSourceError ironSourceError) {
-        final String message = String.format("IronSource Rewarded Video failed to load for instance %s with Error: %s",
-                instanceId, ironSourceError.getErrorMessage());
-        Log.d(TAG, message);
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoLoadFailed(message);
-        }
-    }
-
-    void onRewardedVideoAdOpened(final String instanceId) {
-        Log.d(TAG, String.format("IronSource Rewarded Video opened ad for instance %s",
-                instanceId));
-
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoAdShowSuccess();
-            callback.onRewardedVideoAdStarted();
-        }
-    }
-
-    void onRewardedVideoAdClosed(String instanceId) {
-        Log.d(TAG, String.format("IronSource Rewarded Video closed ad for instance %s",
-                instanceId));
-
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoAdClosed();
-        }
-    }
-
-    void onRewardedVideoAdRewarded(String instanceId) {
-        Log.d(TAG, String.format("IronSource Rewarded Video received reward for instance %s", instanceId));
-
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoAdRewarded();
-        }
-    }
-
-    void onRewardedVideoAdShowFailed(final String instanceId, IronSourceError ironsourceError) {
-        final String message = String.format("IronSource Rewarded Video failed to show for instance %s with Error: %s",
-                instanceId, ironsourceError.getErrorMessage());
-        Log.w(TAG, message);
-
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoAdShowFailed(message);
-        }
-    }
-
-    void onRewardedVideoAdClicked(String instanceId) {
-        Log.d(TAG, String.format("IronSource Rewarded Video clicked for instance %s",
-                instanceId));
-
-        RewardedVideoCallback callback = mRvCallbacks.get(instanceId);
-        if (callback != null) {
-            callback.onRewardedVideoAdClicked();
-        }
-    }
+//    void onRewardedVideoAdLoadSuccess(String instanceId) {
+//
+//    }
+//
+//    void onRewardedVideoAdLoadFailed(String instanceId, IronSourceError ironSourceError) {
+//
+//    }
+//
+//    void onRewardedVideoAdOpened(final String instanceId) {
+//
+//    }
+//
+//    void onRewardedVideoAdClosed(String instanceId) {
+//
+//    }
+//
+//    void onRewardedVideoAdRewarded(String instanceId) {
+//
+//    }
+//
+//    void onRewardedVideoAdShowFailed(final String instanceId, IronSourceError ironsourceError) {
+//
+//    }
+//
+//    void onRewardedVideoAdClicked(String instanceId) {
+//
+//    }
 }

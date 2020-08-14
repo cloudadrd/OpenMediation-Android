@@ -197,9 +197,9 @@ dependencies {
 //    implementation "com.fyber.vamp:mraid-kit:${rootProject.ext.dependencies.fyber}"
 //    implementation project(path: ':adapter:fyber')
 //
-//    //ironsource
-//    implementation rootProject.ext.dependencies.ironsource
-//    implementation project(path: ':adapter:ironsource')
+    //ironsource
+    implementation rootProject.ext.dependencies.ironsource
+    implementation project(path: ':adapter:ironsource')
 //
 
 //

@@ -108,7 +108,14 @@ public class IronSourceAdapter extends CustomAdsAdapter implements RewardedVideo
 
     @Override
     public void onRewardedVideoAdShowFailed(IronSourceError ironSourceError) {
+        final String message = String.format("IronSource Rewarded Video failed to show for instance %s with Error: %s",
+                SharedInstanceID, ironSourceError.getErrorMessage());
+        Log.w(TAG, message);
 
+        RewardedVideoCallback callback = mRvCallbacks.get(SharedInstanceID);
+        if (callback != null) {
+            callback.onRewardedVideoAdShowFailed(message);
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ public class TTAdManagerHolder {
 
     private static boolean sInit;
 
-    static TTAdManager get() {
+    public static TTAdManager get() {
         if (!sInit) {
             throw new RuntimeException("TTAdSdk is not init, please check.");
         }
@@ -42,5 +42,22 @@ public class TTAdManagerHolder {
                 .allowShowPageWhenScreenLock(false)
                 .supportMultiProcess(false)
                 .build();
+    }
+
+    public static void init(Context context, String appId, String appName) {
+        if (context == null) {
+            return;
+        }
+        if (!sInit) {
+            TTAdConfig config = new TTAdConfig.Builder()
+                    .appId(appId)
+                    .useTextureView(true)
+                    .appName(appName)
+                    .allowShowPageWhenScreenLock(false)
+                    .supportMultiProcess(false)
+                    .build();
+            TTAdSdk.init(context, buildConfig(context, appId));
+            sInit = true;
+        }
     }
 }

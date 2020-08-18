@@ -25,6 +25,8 @@ import com.nbmediation.sdk.utils.model.Scene;
 import com.nbmediation.sdk.video.RewardedVideoAd;
 import com.nbmediation.sdk.video.RewardedVideoListener;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -149,6 +151,7 @@ public class NmSdk {
     }
 
     public static void showInterstitial() {
+        InterstitialAd.showAd("");
     }
 
     public static void showInterstitial(String paramString) {
@@ -435,5 +438,20 @@ public class NmSdk {
                 NmManager.getInstance().showInterstitialAd(placementId, scene);
             }
         });
+    }
+
+    public static void showSplash(Activity activity, String appID, String appName, String slotID)  {
+        try{
+            Class<?> c = Class.forName("com.nbmediation.sdk.mobileads.tiktok.TikTokSplashHelper");
+            if(c != null){
+                Method m = c.getDeclaredMethod("ShowSplash",Activity.class, String.class, String.class, String.class);
+                if(m != null){
+                    m.setAccessible(true);
+                    m.invoke(null, activity, appID, appName, slotID);
+                }
+            }
+        }catch (Throwable e){
+            Log.e("OM-Splash", e.getLocalizedMessage());
+        }
     }
 }

@@ -91,8 +91,8 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
             registerAdapter(instanceId, weakAdapter);
             IronSource.loadISDemandOnlyRewardedVideo(instanceId);
         } else {
-            ironSourceMediationAdapter.onRewardedVideoAdLoadFailed(instanceId, new IronSourceError(IronSourceError.ERROR_CODE_GENERIC,
-                    "instance already exists, couldn't load another one in the same time!"));
+            //ironSourceMediationAdapter.onRewardedVideoAdLoadFailed(instanceId, new IronSourceError(IronSourceError.ERROR_CODE_GENERIC,
+             //       "instance already exists, couldn't load another one in the same time!"));
         }
     }
 
@@ -167,7 +167,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdLoadSuccess(instanceId);
+               // ironSourceMediationAdapter.onRewardedVideoAdLoadSuccess(instanceId);
             }
         }
     }
@@ -182,7 +182,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdLoadFailed(instanceId, ironSourceError);
+                //ironSourceMediationAdapter.onRewardedVideoAdLoadFailed(instanceId, ironSourceError);
             }
         }
     }
@@ -203,7 +203,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdOpened(instanceId);
+               // ironSourceMediationAdapter.onRewardedVideoAdOpened(instanceId);
             }
         }
     }
@@ -221,7 +221,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdClosed(instanceId);
+                //ironSourceMediationAdapter.onRewardedVideoAdClosed(instanceId);
             }
         }
     }
@@ -235,7 +235,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdShowFailed(instanceId, ironSourceError);
+                //ironSourceMediationAdapter.onRewardedVideoAdShowFailed(instanceId, ironSourceError);
             }
         }
     }
@@ -249,7 +249,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdClicked(instanceId);
+                //ironSourceMediationAdapter.onRewardedVideoAdClicked(instanceId);
             }
         }
     }
@@ -263,7 +263,7 @@ class IronSourceManager implements ISDemandOnlyRewardedVideoListener, ISDemandOn
         if (weakAdapter != null) {
             IronSourceAdapter ironSourceMediationAdapter = weakAdapter.get();
             if (ironSourceMediationAdapter != null) {
-                ironSourceMediationAdapter.onRewardedVideoAdRewarded(instanceId);
+                //ironSourceMediationAdapter.onRewardedVideoAdRewarded(instanceId);
             }
         }
     }

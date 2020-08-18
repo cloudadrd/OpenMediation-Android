@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initSDK() {
+    private void initSDK()  {
+        NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
         NewApiUtils.printLog("start init sdk");
         NmAds.setCustomId("test123");
         NmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {

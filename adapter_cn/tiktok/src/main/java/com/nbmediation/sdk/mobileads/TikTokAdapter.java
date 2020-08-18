@@ -193,14 +193,12 @@ public class TikTokAdapter extends CustomAdsAdapter {
     }
 
     private void registerActivityListener(Context activity, String adUnitId) {
-        if (adUnitId.equals("945275178") || adUnitId.equals("945275027") || adUnitId.equals("945374583") || adUnitId.equals("945175055")) {
-            ((Application) activity.getApplicationContext()).unregisterActivityLifecycleCallbacks(callbacks);
-            final int rate = mRate;
+        ((Application) activity.getApplicationContext()).unregisterActivityLifecycleCallbacks(callbacks);
+        final int rate = mRate;
 
-            int random = (int) (Math.random() * 100 + 1);
-            if (random > rate) return;
-            ((Application) activity.getApplicationContext()).registerActivityLifecycleCallbacks(callbacks);
-        }
+        int random = (int) (Math.random() * 100 + 1);
+        if (random > rate) return;
+        ((Application) activity.getApplicationContext()).registerActivityLifecycleCallbacks(callbacks);
     }
 
 

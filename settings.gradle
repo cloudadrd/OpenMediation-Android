@@ -5,13 +5,13 @@ include ':adapter:applovin',
         ':adapter:adtiming',
         ':adapter:tapjoy',
         ':adapter:vungle',
-        ':adapter:tiktok',
+//        ':adapter:tiktok',
         ':adapter:ironsource',
         ':adapter:unity',
         ':adapter:facebook',
         ':adapter:mopub',
         ':adapter:fyber',
-
+        ':adapter_cn:inmobi',
         ':adapter:admob',
         ':adapter:sigmob',
         ':app',
@@ -26,8 +26,9 @@ include ':adapter_cn:hyadxopen',
         ':adapter_cn:ks',
         ':adapter_cn:agsdk'
 include ':adapter_host:host-app', ':adapter_host:host-online-plugin'
-include ':nm-android-sdk', ':adapter_plugin:plugin-main-lib',
-        ':adapter_plugin:plugin-loader', ':adapter_plugin:plugin-manager',
-        ':adapter_plugin:plugin-runtime', 'adapter_plugin:plugin-tiktok-apk',
-        'adapter_plugin:plugin-main', 'adapter_plugin:plugin-agsdk-plugin2-apk',
-        'adapter_plugin:plugin-vlion-plugin3-apk'
+include ':nm-android-sdk', ':adapter_plugin:plugin-main-lib'
+//        ':adapter_plugin:plugin-loader', ':adapter_plugin:plugin-manager',
+//        ':adapter_plugin:plugin-runtime', 'adapter_plugin:plugin-tiktok-apk',
+//        'adapter_plugin:plugin-main', 'adapter_plugin:plugin-agsdk-plugin2-apk',
+//        'adapter_plugin:plugin-vlion-plugin3-apk','adapter_plugin:plugin-tiktok-plugin4-apk'
+include ':test'

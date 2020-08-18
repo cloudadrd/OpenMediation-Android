@@ -121,6 +121,7 @@ public class Instance extends BaseInstance {
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("AppKey", getAppKey());
         dataMap.put("pid", key);
+        dataMap.put("rate", getRate());
         if (getMediationId() == MediationInfo.MEDIATION_ID_7) {
             Configurations config = DataCache.getInstance().getFromMem(KeyConstants.KEY_CONFIGURATION, Configurations.class);
             if (config != null) {

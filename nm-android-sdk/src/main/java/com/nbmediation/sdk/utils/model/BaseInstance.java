@@ -56,6 +56,8 @@ public class BaseInstance extends Frequency {
 
     protected CustomAdsAdapter mAdapter;
 
+    private int rate;
+
     public BaseInstance() {
     }
 
@@ -185,6 +187,14 @@ public class BaseInstance extends Frequency {
 
     public int getWfAbt() {
         return wfAbt;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
     @Override

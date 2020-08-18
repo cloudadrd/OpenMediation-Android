@@ -145,8 +145,10 @@ public class AlionAdapter extends CustomAdsAdapter {
                 } else {
                     VideoManager.getInstance().setVideoOrientation(Config.AD_HORIZONTAL_SCREEN_DISPLAY);
                 }
-                ADManager.getInstance().init(((Activity) activity).getApplication(), appId).setException(true).setOaid(MDIDHandler.getMdid());//对接加载聚合广告需要申请appid(加载聚合广告和新闻需要appid)
+                ADManager.getInstance().init(((Activity) activity).getApplication(), appId).setException(true).setOaid(MDIDHandler.getMdid());
+                //对接加载聚合广告需要申请appid(加载聚合广告和新闻需要appid)
 //                .setTtId(tid); //可选。向瑞狮运营申请tid
+                AdLog.getSingleton().LogD(TAG + "init over appId=" + appId);
             }
         });
 
@@ -195,7 +197,7 @@ public class AlionAdapter extends CustomAdsAdapter {
             if (mCallback != null) {
                 mCallback.onRewardedVideoLoadSuccess();
             }
-            AdLog.getSingleton().LogD(TAG + "rewardedVideo  onLoadVideo");
+            AdLog.getSingleton().LogD(TAG + "rewardedVideo  onLoadVideo adId=" + adId);
         }
 
         @Override
@@ -209,9 +211,9 @@ public class AlionAdapter extends CustomAdsAdapter {
 
         @Override
         public void onVideoPlayFailed(String adId, int code, String msg) {
-            AdLog.getSingleton().LogD(TAG + "rewardVideoAd onVideoPlayFailed");
+            AdLog.getSingleton().LogD(TAG + "rewardVideoAd onVideoPlayFailed msg=" + msg + ",adId=" + adId);
             if (mCallback != null) {
-                mCallback.onRewardedVideoAdShowFailed(TAG + "rewardedVideo play failed");
+                mCallback.onRewardedVideoAdShowFailed(TAG + "rewardedVideo play failed msg=" + msg + ",adId=" + adId);
             }
         }
 

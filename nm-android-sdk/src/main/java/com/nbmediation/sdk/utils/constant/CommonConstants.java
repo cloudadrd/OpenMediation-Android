@@ -6,7 +6,7 @@ package com.nbmediation.sdk.utils.constant;
 import com.nbmediation.sdk.BuildConfig;
 
 public interface CommonConstants {
-    String INIT_URL = "http://omapi.adsgreat.cn:19015/init";//http://om-demo-lb-1458560685.cn-north-1.elb.amazonaws.com.cn:19015/init http://192.168.1.185:19011/init
+    String INIT_URL = "http://omapi.adsgreat.cn:19015/init";//"http://omapi.adsgreat.cn:19015/init http://172.31.1.222:19011/init
 
     String CHARTSET_UTF8 = "UTF-8";
     int PLAT_FORM_ANDROID = 1;

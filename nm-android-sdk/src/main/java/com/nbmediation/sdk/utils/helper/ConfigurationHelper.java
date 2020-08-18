@@ -220,6 +220,7 @@ public class ConfigurationHelper {
             BaseInstance instance = createInstance(adType);
             int instancesId = insObject.optInt("id");
             int mediationId = insObject.optInt("m");
+            int rate = insObject.optInt("c");
             Mediation mediation = mapps.get(mediationId);
             if (mediation == null) {
                 continue;
@@ -232,6 +233,7 @@ public class ConfigurationHelper {
             String key = insObject.optString("k");
             instance.setKey(key);
             instance.setId(instancesId);
+            instance.setRate(rate);
             instance.setPlacementId(placementId);
             instance.setMediationId(mediationId);
             instance.setFrequencyCap(insObject.optInt("fc"));

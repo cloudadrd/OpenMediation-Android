@@ -23,6 +23,8 @@ public abstract class CustomAdsAdapter implements RewardedVideoApi, Interstitial
 
     protected String mAppKey;
 
+    protected Integer mRate;
+
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap
             , RewardedVideoCallback callback) {
@@ -68,7 +70,7 @@ public abstract class CustomAdsAdapter implements RewardedVideoApi, Interstitial
      */
     public abstract int getAdNetworkId();
 
-    public String getPartKey(){
+    public String getPartKey() {
         return "";
     }
 
@@ -158,7 +160,15 @@ public abstract class CustomAdsAdapter implements RewardedVideoApi, Interstitial
         if (!TextUtils.isEmpty(mAppKey)) {
             return;
         }
-        mAppKey = (String) dataMap.get("AppKey");
+        Object oKey = dataMap.get("AppKey");
+        Object oRate = dataMap.get("rate");
+        if (oKey instanceof String) {
+            mAppKey = (String) dataMap.get("AppKey");
+        }
+        if (oRate instanceof Integer) {
+            mRate = (Integer) dataMap.get("rate");
+        }
+
     }
 
     /**

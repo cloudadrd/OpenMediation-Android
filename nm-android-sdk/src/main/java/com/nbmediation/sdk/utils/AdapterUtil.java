@@ -55,6 +55,7 @@ public class AdapterUtil {
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_21, getAdapterPath(MediationInfo.MEDIATION_ID_21));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_22, getAdapterPath(MediationInfo.MEDIATION_ID_22));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_23, getAdapterPath(MediationInfo.MEDIATION_ID_23));
+        mAdapterPaths.put(MediationInfo.MEDIATION_ID_54, getAdapterPath(MediationInfo.MEDIATION_ID_54));
 
         //plugin
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_32, getAdapterPath(MediationInfo.MEDIATION_ID_32));
@@ -91,9 +92,9 @@ public class AdapterUtil {
             CustomAdsAdapter adapter = null;
             String className = mAdapterPaths.get(mAdapterPaths.keyAt(i));
             Throwable exception = null;
-//            if (mAdapterPaths.keyAt(i) == 32) {
-//                Log.i("tjt", "进来了");
-//            }
+            if (mAdapterPaths.keyAt(i) == 54) {
+                Log.i("tjt", "进来了");
+            }
             try {
                 adapter = createAdapter(CustomAdsAdapter.class, className);
             } catch (Exception e) {
@@ -298,6 +299,9 @@ public class AdapterUtil {
                 break;
             case MediationInfo.MEDIATION_ID_23:
                 path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_23)).concat(ADAPTER);
+                break;
+            case MediationInfo.MEDIATION_ID_54:
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_54)).concat(ADAPTER);
                 break;
 
             //plugin

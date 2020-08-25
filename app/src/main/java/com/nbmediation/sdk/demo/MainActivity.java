@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int WRITE_EXTERNAL_STORAGE_CODE = 102;
 
+    private static boolean splash = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSDK()  {
-        NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
+        if(splash == false){
+            splash = true;
+            NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
+        }
+
         NewApiUtils.printLog("start init sdk");
         NmAds.setCustomId("test123");
         NmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {

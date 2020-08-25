@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.version.minSdkVersion
+        targetSdkVersion rootProject.ext.version.targetSdkVersion
+        versionCode rootProject.ext.version.versionCode
+        versionName project.adapterVersion.inmobi
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+android.libraryVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.inmobi}.aar"
+    }
+}
+dependencies {
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    compileOnly(name: "InMobi-${rootProject.ext.dependencies.inmobi}", ext: 'jar')
+}
+
+repositories {
+    flatDir {
+        dirs rootProject.ext.adapterDirs
+    }
+}

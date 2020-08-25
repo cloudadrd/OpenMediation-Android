@@ -167,12 +167,10 @@ dependencies {
     implementation project(path: ':adapter:mintegral')
 
     //inmobi
-//    implementation rootProject.ext.dependencies.inmobi
-//    implementation(name: "InMobi-${rootProject.ext.dependencies.inmobi}", ext: 'jar')
-//    implementation 'com.android.support:customtabs:28.0.0'
-//    implementation 'com.squareup.picasso:picasso:2.71828'
-//    implementation project(path: ':adapter_cn:inmobi')
-//    implementation 'com.google.android.gms:play-services-location:17.0.0' //optional dependency for better targetin
+    implementation(name: "InMobi-${rootProject.ext.dependencies.inmobi}", ext: 'jar')
+    implementation 'com.android.support:customtabs:28.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation project(path: ':adapter_cn:inmobi')
 
 
 //    //AdColony

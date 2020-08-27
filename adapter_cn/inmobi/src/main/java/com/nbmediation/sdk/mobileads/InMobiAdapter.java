@@ -15,6 +15,7 @@ import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.inmobi.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
+import com.nbmediation.sdk.utils.error.ErrorCode;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,6 +51,7 @@ public class InMobiAdapter extends CustomAdsAdapter {
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
+        AdLog.getSingleton().LogE("initRewardedVideo");
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             initSdk(activity);
@@ -78,6 +80,7 @@ public class InMobiAdapter extends CustomAdsAdapter {
 
     private void loadRvAd(Context activity, String adUnitId, RewardedVideoCallback callback) {
         String error = check(activity, adUnitId);
+        AdLog.getSingleton().LogE("loadRvAd");
         if (TextUtils.isEmpty(error)) {
             InMobiInterstitial rewardedVideoAd = mTTRvAds.get(adUnitId);
             if (rewardedVideoAd == null) {
@@ -111,7 +114,7 @@ public class InMobiAdapter extends CustomAdsAdapter {
             mTTRvAds.remove(adUnitId);
         } else {
             if (callback != null) {
-                callback.onRewardedVideoAdShowFailed("TikTok RewardedVideo is not ready");
+                callback.onRewardedVideoAdShowFailed("Inmobi RewardedVideo is not ready");
             }
         }
     }
@@ -133,8 +136,9 @@ public class InMobiAdapter extends CustomAdsAdapter {
 
     private void realLoadRvAd(Context activity, final String adUnitId, final RewardedVideoCallback rvCallback) {
         interstitialAd = new
-                InMobiInterstitial(activity, Long.parseLong(adUnitId), new InnerLoadRvAdListener(rvCallback, adUnitId, mTTRvAds));
+                InMobiInterstitial(activity.getApplicationContext(), Long.parseLong(adUnitId), new InnerLoadRvAdListener(rvCallback, adUnitId, mTTRvAds));
         interstitialAd.load();
+        AdLog.getSingleton().LogE("realLoadRvAd " + adUnitId);
     }
 
 

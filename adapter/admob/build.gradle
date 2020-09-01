@@ -27,7 +27,7 @@ android.libraryVariants.all { variant ->
 dependencies {
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     //Admob
-    compileOnly rootProject.ext.dependencies.admob
+    implementation rootProject.ext.dependencies.admob
 }
 
 repositories {

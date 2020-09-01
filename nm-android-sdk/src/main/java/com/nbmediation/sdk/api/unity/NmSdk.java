@@ -410,19 +410,19 @@ public class NmSdk {
             }
 
             public void onInterstitialAdShowed(Scene paramAnonymousScene) {
-                paramInterstitialListener.onInterstitialAdShowed(paramAnonymousScene.getN());
+                paramInterstitialListener.onInterstitialAdShowed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "");
             }
 
             public void onInterstitialAdShowFailed(Scene paramAnonymousScene, Error paramAnonymousAdTimingError) {
-                paramInterstitialListener.onInterstitialAdShowFailed(paramAnonymousScene.getN(), paramAnonymousAdTimingError.toString());
+                paramInterstitialListener.onInterstitialAdShowFailed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "", paramAnonymousAdTimingError.toString());
             }
 
             public void onInterstitialAdClosed(Scene paramAnonymousScene) {
-                paramInterstitialListener.onInterstitialAdClosed(paramAnonymousScene.getN());
+                paramInterstitialListener.onInterstitialAdClosed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "");
             }
 
             public void onInterstitialAdClicked(Scene paramAnonymousScene) {
-                paramInterstitialListener.onInterstitialAdClicked(paramAnonymousScene.getN());
+                paramInterstitialListener.onInterstitialAdClicked(paramAnonymousScene != null ? paramAnonymousScene.getN() : "");
             }
         });
     }

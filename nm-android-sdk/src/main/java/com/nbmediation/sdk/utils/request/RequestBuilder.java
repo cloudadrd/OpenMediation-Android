@@ -10,6 +10,7 @@ import com.nbmediation.sdk.bid.AdTimingBidResponse;
 import com.nbmediation.sdk.utils.constant.CommonConstants;
 import com.nbmediation.sdk.utils.constant.KeyConstants;
 import com.nbmediation.sdk.utils.device.DeviceUtil;
+import com.nbmediation.sdk.utils.device.MDIDHandler;
 import com.nbmediation.sdk.utils.device.SensorManager;
 import com.nbmediation.sdk.utils.request.network.util.NetworkChecker;
 import com.nbmediation.sdk.utils.AdtUtil;
@@ -326,7 +327,8 @@ public class RequestBuilder {
         body.put(KeyConstants.RequestBody.KEY_ZO, DeviceUtil.getTimeZoneOffset());
         body.put(KeyConstants.RequestBody.KEY_SESSION, DeviceUtil.getSessionId());
         body.put(KeyConstants.RequestBody.KEY_UID, DeviceUtil.getUid());
-        body.put(KeyConstants.RequestBody.KEY_DID, DataCache.getInstance().get("AdvertisingId", String.class));
+//        body.put(KeyConstants.RequestBody.KEY_DID, DataCache.getInstance().get("AdvertisingId", String.class));
+        body.put(KeyConstants.RequestBody.KEY_DID, MDIDHandler.getMdid());
         body.put(KeyConstants.RequestBody.KEY_DTYPE, 2);
         body.put(KeyConstants.RequestBody.KEY_JB, DeviceUtil.isRoot() ? 1 : 0);
         body.put(KeyConstants.RequestBody.KEY_LANG, map.get(KeyConstants.RequestBody.KEY_LANG));

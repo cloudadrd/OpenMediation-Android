@@ -25,6 +25,7 @@ import com.nbmediation.sdk.utils.constant.CommonConstants;
 import com.nbmediation.sdk.utils.constant.KeyConstants;
 import com.nbmediation.sdk.utils.crash.CrashUtil;
 import com.nbmediation.sdk.utils.device.DeviceUtil;
+import com.nbmediation.sdk.utils.device.MDIDHandler;
 import com.nbmediation.sdk.utils.device.SensorManager;
 import com.nbmediation.sdk.utils.error.Error;
 import com.nbmediation.sdk.utils.error.ErrorBuilder;
@@ -84,6 +85,8 @@ public final class InitImp {
         mCallback = callback;
 
         initShellSdk(activity.getApplicationContext());
+
+        MDIDHandler.init(activity.getApplicationContext());
 
         AdtUtil.init(activity);
         DebugSwitchApi.registerReceiver(activity.getApplicationContext());

@@ -102,7 +102,7 @@ shadow {
 //
 //        runtimeApkProjectPath = 'adapter_plugin/plugin-runtime'
 
-        version = 4
+        version = 5
         compactVersion = [1, 2, 3]
         uuidNickName = project.AGSDK_PLUGIN
         uuid = '57457678-2A73-4C48-8837-C584C9963619'

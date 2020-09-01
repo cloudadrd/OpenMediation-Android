@@ -5,6 +5,7 @@ package com.nbmediation.sdk.mobileads;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.inmobi.ads.InMobiAdRequestStatus;
 import com.inmobi.ads.InMobiInterstitial;
@@ -27,7 +28,9 @@ public class InMobiAdapter extends CustomAdsAdapter {
 
     private ConcurrentMap<String, InMobiInterstitial> mTTRvAds;
 
-    private InMobiInterstitial interstitialAd;
+    private static InMobiInterstitial interstitialAd;
+
+    private static InnerLoadRvAdListener rvAdListener;
 
     public InMobiAdapter() {
         mTTRvAds = new ConcurrentHashMap<>();
@@ -51,8 +54,7 @@ public class InMobiAdapter extends CustomAdsAdapter {
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
-        AdLog.getSingleton().LogE("initRewardedVideo");
-        String error = check(activity);
+        final String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             initSdk(activity);
             if (callback != null) {
@@ -63,6 +65,30 @@ public class InMobiAdapter extends CustomAdsAdapter {
                 callback.onRewardedVideoInitFailed(error);
             }
         }
+        Log.e(TAG, "initRewardedVideo ,error=" + error + ",mAppKey=" + mAppKey + ",mRate=" + mRate);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    if (interstitialAd != null) {
+                        Log.e(TAG, "interstitialAd=" + interstitialAd.hashCode() + ",mAppKey=" + mAppKey + ",mRate=" + mRate);
+                    }else{
+                        Log.e(TAG, "interstitialAd=null");
+                    }
+                    if (rvAdListener != null) {
+                        Log.e(TAG, "rvAdListener=" + rvAdListener.hashCode() + ",mAppKey=" + mAppKey + ",mRate=" + mRate);
+                    }else{
+                        Log.e(TAG, "rvAdListener=null");
+                    }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }).start();
     }
 
     @Override
@@ -90,11 +116,15 @@ public class InMobiAdapter extends CustomAdsAdapter {
                     callback.onRewardedVideoLoadSuccess();
                 }
             }
+            Log.e(TAG, "loadRewardedVideo ok,adUnitId=" + adUnitId + ",mAppKey=" + mAppKey);
         } else {
             if (callback != null) {
                 callback.onRewardedVideoLoadFailed(error);
             }
+            Log.e(TAG, "loadRewardedVideo error,adUnitId=" + adUnitId + ",mAppKey=" + mAppKey);
         }
+
+
     }
 
     @Override
@@ -135,8 +165,9 @@ public class InMobiAdapter extends CustomAdsAdapter {
 
 
     private void realLoadRvAd(Context activity, final String adUnitId, final RewardedVideoCallback rvCallback) {
+        rvAdListener = new InnerLoadRvAdListener(rvCallback, adUnitId, mTTRvAds);
         interstitialAd = new
-                InMobiInterstitial(activity.getApplicationContext(), Long.parseLong(adUnitId), new InnerLoadRvAdListener(rvCallback, adUnitId, mTTRvAds));
+                InMobiInterstitial(activity, Long.parseLong(adUnitId), rvAdListener);
         interstitialAd.load();
         AdLog.getSingleton().LogE("realLoadRvAd " + adUnitId);
     }

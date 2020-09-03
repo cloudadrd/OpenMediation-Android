@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.bun.miitmdid.core.JLibrary;
 import com.bun.miitmdid.core.MdidSdkHelper;
+import com.bun.miitmdid.core.Utils;
 import com.bun.supplier.IIdentifierListener;
 import com.bun.supplier.IdSupplier;
 import com.nbmediation.sdk.utils.DeveloperLog;
@@ -25,8 +26,11 @@ public class MDIDHandler {
 
     private static final String MDID_ID_KEY = "mdid_id_key";
 
+    private static String androidId = null;
+
     public static void init(Context context) {
         try {
+            androidId = DeviceUtil.getAndroidId(context);
             JLibrary.InitEntry(context);
             int code = MdidSdkHelper.InitSdk(context, true, new IIdentifierListener() {
                 @Override
@@ -74,6 +78,11 @@ public class MDIDHandler {
     }
 
     public static String getMdid() {
-        return TextUtils.isEmpty(MDID) ? DataCache.getInstance().get(MDID_ID_KEY, String.class) : MDID;
+        String mdid = TextUtils.isEmpty(MDID) ? DataCache.getInstance().get(MDID_ID_KEY, String.class) : MDID;
+        if (TextUtils.isEmpty(mdid)) {
+            return androidId;
+        } else {
+            return mdid;
+        }
     }
 }

@@ -7,6 +7,7 @@ import com.nbmediation.sdk.mobileads.TTAdManagerHolder;
 import com.nbmediation.sdk.mobileads.tiktok.TikTokSplash;
 
 public class TikTokSplashHelper {
+
     static void ShowSplash(Activity activity, String appID, String appName, String slotID){
         TTAdManagerHolder.init(activity.getApplicationContext(), appID, appName);
         Intent intent = new Intent(activity, TikTokSplash.class);

@@ -19,8 +19,10 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.webkit.WebSettings;
 
+import com.nbmediation.sdk.utils.AdLog;
 import com.nbmediation.sdk.utils.AdtUtil;
 import com.nbmediation.sdk.utils.DeveloperLog;
 import com.nbmediation.sdk.utils.cache.DataCache;
@@ -416,11 +418,14 @@ public class DeviceUtil {
     /**
      *
      */
-    private static final String REG_EXA_IP = "^10\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)$";
+    private static final String REG_EXA_IP =
+            "^10\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)\\." +
+                    "(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)$";
     /**
      *
      */
-    private static final String REG_EXB_IP = "^172\\.(1[6-9]|2\\d|3[0-1])\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)$";
+    private static final String REG_EXB_IP = "^172\\.(1[6-9]|2\\d|3[0-1])\\.(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)\\." +
+            "(\\d{1}|[1-9]\\d|1\\d{2}|2[0-4]\\d|25\\d)$";
 
     /**
      * Gets host ip.
@@ -573,5 +578,19 @@ public class DeviceUtil {
 
         // cobines the above with UUID
         return new UUID(androidId.hashCode(), serial.hashCode()).toString();
+    }
+
+    /**
+     * 获取Android Id
+     */
+    public static String getAndroidId(Context context) {
+        String androidId = "";
+        try {
+            androidId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            //SLog.d(String.format("[msg=get AndroidId][result=success][androidId=%s]", androidId));
+        } catch (Exception e) {
+            DeveloperLog.LogE(String.format("[msg=get AndroidId][result=fail]"));
+        }
+        return androidId;
     }
 }

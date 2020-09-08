@@ -88,4 +88,8 @@ public class MDIDHandler {
             return mdid;
         }
     }
+
+    public static String getAndroidId(){
+        return androidId;
+    }
 }

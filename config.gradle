@@ -44,6 +44,6 @@ ext {
     AGSDK_PLUGIN = '4.2.8'
     ALION_PLUGIN = '1.0.1'
 
-    nm_version = "1.1.6"
+    nm_version = "1.1.7"
     hop_version = '1.0.3'
 }

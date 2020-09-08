@@ -39,8 +39,8 @@ public class MDIDHandler {
                         return;
                     }
                     String oaid = idSupplier.getOAID();
-                    if (oaid.equals("NO")) {
-                        oaid = "";
+                    if (oaid.equals("NO") || TextUtils.isEmpty(oaid)) {
+                        oaid = androidId;
                     }
 //                    String vaid = idSupplier.getVAID();
 //                    String aaid = idSupplier.getAAID();
@@ -51,7 +51,9 @@ public class MDIDHandler {
 //                    builder.append("AA=").append(aaid).append("$");
 //                    MDID = builder.toString();
                     MDID = oaid;
-                    DataCache.getInstance().set(MDID_ID_KEY, MDID);
+                    if (TextUtils.isEmpty(DataCache.getInstance().get(MDID_ID_KEY, String.class))) {
+                        DataCache.getInstance().set(MDID_ID_KEY, MDID);
+                    }
                     DeveloperLog.LogD("mdid: value=" + MDID);
                 }
             });
@@ -78,7 +80,8 @@ public class MDIDHandler {
     }
 
     public static String getMdid() {
-        String mdid = TextUtils.isEmpty(MDID) ? DataCache.getInstance().get(MDID_ID_KEY, String.class) : MDID;
+        String cache = DataCache.getInstance().get(MDID_ID_KEY, String.class);
+        String mdid = TextUtils.isEmpty(cache) ? MDID : cache;
         if (TextUtils.isEmpty(mdid)) {
             return androidId;
         } else {

@@ -110,7 +110,11 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         }
         AGVideo agVideo = mRvAds.get(adUnitId);
         if (agVideo != null) {
-            AdsGreatVideo.showRewardedVideo(agVideo, new VideoAdListenerImpl(callback));
+            if(!AdsGreatVideo.isRewardedVideoAvailable(agVideo)){
+                callback.onRewardedVideoAdShowFailed(TAG + "RewardedVideo is not ready, creative error");
+            }else{
+                AdsGreatVideo.showRewardedVideo(agVideo, new VideoAdListenerImpl(callback));
+            }
             isPreload.set(false);
             mRvAds.remove(adUnitId);
         } else {

@@ -26,8 +26,6 @@ public class MDIDHandler {
 
     private static final String MDID_ID_KEY = "mdid_id_key";
 
-    private static String androidId = null;
-
     public static void init(Context context) {
         try {
             JLibrary.InitEntry(context);
@@ -78,9 +76,5 @@ public class MDIDHandler {
 
     public static String getMdid() {
         return TextUtils.isEmpty(MDID) ? MDID : DataCache.getInstance().get(MDID_ID_KEY, String.class);
-    }
-
-    public static String getAndroidId() {
-        return androidId;
     }
 }

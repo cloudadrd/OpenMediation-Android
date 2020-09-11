@@ -35,6 +35,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.regex.Pattern;
 
+import static com.nbmediation.sdk.utils.device.MDIDHandler.getAndroidId;
+
 /**
  * RequestBuilder
  */
@@ -328,7 +330,7 @@ public class RequestBuilder {
         body.put(KeyConstants.RequestBody.KEY_SESSION, DeviceUtil.getSessionId());
         body.put(KeyConstants.RequestBody.KEY_UID, DeviceUtil.getUid());
         body.put(KeyConstants.RequestBody.KEY_MDID, MDIDHandler.getMdid());
-        body.put(KeyConstants.RequestBody.KEY_DID, MDIDHandler.getAndroidId());
+        body.put(KeyConstants.RequestBody.KEY_DID, DeviceUtil.getAndroidId(context));
         body.put(KeyConstants.RequestBody.KEY_DTYPE, 2);
         body.put(KeyConstants.RequestBody.KEY_JB, DeviceUtil.isRoot() ? 1 : 0);
         body.put(KeyConstants.RequestBody.KEY_LANG, map.get(KeyConstants.RequestBody.KEY_LANG));

@@ -51,9 +51,7 @@ public class MDIDHandler {
 //                    builder.append("AA=").append(aaid).append("$");
 //                    MDID = builder.toString();
                     MDID = oaid;
-                    if (TextUtils.isEmpty(DataCache.getInstance().get(MDID_ID_KEY, String.class))) {
-                        DataCache.getInstance().set(MDID_ID_KEY, MDID);
-                    }
+                    DataCache.getInstance().set(MDID_ID_KEY, MDID);
                     DeveloperLog.LogD("mdid: value=" + MDID);
                 }
             });
@@ -80,16 +78,10 @@ public class MDIDHandler {
     }
 
     public static String getMdid() {
-        String cache = DataCache.getInstance().get(MDID_ID_KEY, String.class);
-        String mdid = TextUtils.isEmpty(cache) ? MDID : cache;
-        if (TextUtils.isEmpty(mdid)) {
-            return androidId;
-        } else {
-            return mdid;
-        }
+        return TextUtils.isEmpty(MDID) ? MDID : DataCache.getInstance().get(MDID_ID_KEY, String.class);
     }
 
-    public static String getAndroidId(){
+    public static String getAndroidId() {
         return androidId;
     }
 }

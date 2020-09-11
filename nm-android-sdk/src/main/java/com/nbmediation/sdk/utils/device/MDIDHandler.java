@@ -30,7 +30,6 @@ public class MDIDHandler {
 
     public static void init(Context context) {
         try {
-            androidId = DeviceUtil.getAndroidId(context);
             JLibrary.InitEntry(context);
             int code = MdidSdkHelper.InitSdk(context, true, new IIdentifierListener() {
                 @Override
@@ -40,7 +39,7 @@ public class MDIDHandler {
                     }
                     String oaid = idSupplier.getOAID();
                     if (oaid.equals("NO") || TextUtils.isEmpty(oaid)) {
-                        oaid = androidId;
+                        oaid = "";
                     }
 //                    String vaid = idSupplier.getVAID();
 //                    String aaid = idSupplier.getAAID();

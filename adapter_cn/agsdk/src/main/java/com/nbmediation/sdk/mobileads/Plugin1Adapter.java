@@ -43,6 +43,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
     private InterstitialAdCallback  loadCallback = null;
     private AGNative agnv = null;
     private boolean isDestroyed = false;
+    RewardedVideoCallback mOMCallback;
     @Override
     public String getMediationVersion() {
         return Const.getVersionNumber();
@@ -61,6 +62,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
+        mOMCallback = callback;
         Object appKey = dataMap.get("AppKey");
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
@@ -110,11 +112,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         }
         AGVideo agVideo = mRvAds.get(adUnitId);
         if (agVideo != null) {
-            if(!AdsGreatVideo.isRewardedVideoAvailable(agVideo)){
-                callback.onRewardedVideoAdShowFailed(TAG + "RewardedVideo is not ready, creative error");
-            }else{
-                AdsGreatVideo.showRewardedVideo(agVideo, new VideoAdListenerImpl(callback));
-            }
+            AdsGreatVideo.showRewardedVideo(agVideo, new VideoAdListenerImpl(callback));
             isPreload.set(false);
             mRvAds.remove(adUnitId);
         } else {
@@ -220,6 +218,12 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         AGVideo video = mRvAds.get(adUnitId);
         if (video == null) return false;
 
+        if(!AdsGreatVideo.isRewardedVideoAvailable(video)){
+            AdLog.getSingleton().LogD(TAG + "onAdFailed: mp4 creative error");
+            isPreload.set(false);
+            mRvAds.remove(adUnitId);
+            mOMCallback.onRewardedVideoAdShowFailed("onAdFailed: mp4 creative error");
+        }
         return AdsGreatVideo.isRewardedVideoAvailable(video);
     }
 

@@ -35,8 +35,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.regex.Pattern;
 
-import static com.nbmediation.sdk.utils.device.MDIDHandler.getAndroidId;
-
 /**
  * RequestBuilder
  */

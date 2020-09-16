@@ -33,6 +33,7 @@ public class Plugin2Adapter extends CustomAdsAdapter {
 
     private AtomicBoolean isPreload = new AtomicBoolean();
 
+    private RewardedVideoCallback mOMCallback;
 
     public Plugin2Adapter() {
         mRvAds = new ConcurrentHashMap<>();
@@ -56,6 +57,7 @@ public class Plugin2Adapter extends CustomAdsAdapter {
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
+        mOMCallback = callback;
         Object appKey = dataMap.get("AppKey");
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
@@ -202,6 +204,13 @@ public class Plugin2Adapter extends CustomAdsAdapter {
 
         AGVideo video = mRvAds.get(adUnitId);
         if (video == null) return false;
+
+        if(!AdsGreatVideo.isRewardedVideoAvailable(video)){
+            AdLog.getSingleton().LogD(TAG + "onAdFailed: mp4 creative error");
+            isPreload.set(false);
+            mRvAds.remove(adUnitId);
+            mOMCallback.onRewardedVideoAdShowFailed("onAdFailed: mp4 creative error");
+        }
 
         return AdsGreatVideo.isRewardedVideoAvailable(video);
     }

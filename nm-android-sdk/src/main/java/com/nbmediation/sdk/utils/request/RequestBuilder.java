@@ -327,12 +327,12 @@ public class RequestBuilder {
         body.put(KeyConstants.RequestBody.KEY_ZO, DeviceUtil.getTimeZoneOffset());
         body.put(KeyConstants.RequestBody.KEY_SESSION, DeviceUtil.getSessionId());
         body.put(KeyConstants.RequestBody.KEY_UID, DeviceUtil.getUid());
-//        body.put(KeyConstants.RequestBody.KEY_DID, DataCache.getInstance().get("AdvertisingId", String.class));
-        body.put(KeyConstants.RequestBody.KEY_DID, MDIDHandler.getMdid());
+        body.put(KeyConstants.RequestBody.KEY_MDID, MDIDHandler.getMdid());
+        body.put(KeyConstants.RequestBody.KEY_DID, DeviceUtil.getAndroidId(context));
         body.put(KeyConstants.RequestBody.KEY_DTYPE, 2);
         body.put(KeyConstants.RequestBody.KEY_JB, DeviceUtil.isRoot() ? 1 : 0);
         body.put(KeyConstants.RequestBody.KEY_LANG, map.get(KeyConstants.RequestBody.KEY_LANG));
-        body.put(KeyConstants.RequestBody.KEY_LCOUNTRY, map.get(KeyConstants.RequestBody.KEY_LCOUNTRY));
+        body.put(KeyConstants.RequestBody.KEY_LCOUNTRY  , map.get(KeyConstants.RequestBody.KEY_LCOUNTRY));
         body.put(KeyConstants.RequestBody.KEY_BUNDLE, context != null ? context.getPackageName() : "");
         body.put(KeyConstants.RequestBody.KEY_MAKE, Build.MANUFACTURER);
         body.put(KeyConstants.RequestBody.KEY_BRAND, Build.BRAND);

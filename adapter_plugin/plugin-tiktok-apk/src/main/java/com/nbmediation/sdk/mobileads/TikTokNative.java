@@ -194,6 +194,11 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
             @Override
             public void onCancel() {
             }
+
+            @Override
+            public void onRefuse() {
+
+            }
         });
     }
 }

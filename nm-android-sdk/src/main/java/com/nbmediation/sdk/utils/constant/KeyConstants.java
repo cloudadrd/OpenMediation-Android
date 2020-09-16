@@ -98,6 +98,12 @@ public interface KeyConstants {
         String KEY_DID = "did";
 
         /**
+         * The constant KEY_MDID.
+         */
+        /*String    OAID, combined with dtype  BBD6E1CD-8C4B-40CB-8A62-4BBC7AFE07D6*/
+        String KEY_MDID = "mdid";
+
+        /**
          * The constant KEY_DTYPE.
          */
         /*int       device type, 1:IDFA, 2:GAID, 3:FBID, 4:HUAWEIID   1*/

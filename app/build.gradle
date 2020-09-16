@@ -106,7 +106,7 @@ dependencies {
 
 
     //tiktok cn
-    implementation(name: 'open_ad_sdk_2.9.5.5', ext: 'aar')
+    implementation(name: rootProject.ext.dependencies.tiktok_cn, ext: 'aar')
     implementation project(path: ':adapter_cn:tiktok')
 
     //sigmob

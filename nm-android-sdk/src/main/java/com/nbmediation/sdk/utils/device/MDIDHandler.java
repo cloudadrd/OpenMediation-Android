@@ -26,11 +26,8 @@ public class MDIDHandler {
 
     private static final String MDID_ID_KEY = "mdid_id_key";
 
-    private static String androidId = null;
-
     public static void init(Context context) {
         try {
-            androidId = DeviceUtil.getAndroidId(context);
             JLibrary.InitEntry(context);
             int code = MdidSdkHelper.InitSdk(context, true, new IIdentifierListener() {
                 @Override
@@ -39,7 +36,7 @@ public class MDIDHandler {
                         return;
                     }
                     String oaid = idSupplier.getOAID();
-                    if (oaid.equals("NO")) {
+                    if (oaid.equals("NO") || TextUtils.isEmpty(oaid)) {
                         oaid = "";
                     }
 //                    String vaid = idSupplier.getVAID();
@@ -78,11 +75,6 @@ public class MDIDHandler {
     }
 
     public static String getMdid() {
-        String mdid = TextUtils.isEmpty(MDID) ? DataCache.getInstance().get(MDID_ID_KEY, String.class) : MDID;
-        if (TextUtils.isEmpty(mdid)) {
-            return androidId;
-        } else {
-            return mdid;
-        }
+        return TextUtils.isEmpty(MDID) ? MDID : DataCache.getInstance().get(MDID_ID_KEY, String.class);
     }
 }

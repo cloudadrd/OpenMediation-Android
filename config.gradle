@@ -41,7 +41,7 @@ ext {
     MANAGER_PLUGIN = "1.0.2"
     MAIN_PLUGIN = "1.0.1"
     TIKTOk_PLUGIN = "1.2.1"
-    AGSDK_PLUGIN = '4.2.8'
+    AGSDK_PLUGIN = '4.2.9'
     ALION_PLUGIN = '1.0.1'
 
     nm_version = "1.1.7"

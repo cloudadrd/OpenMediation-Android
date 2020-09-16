@@ -45,7 +45,7 @@ dependencies {
     //Shadow Transform后业务代码会有一部分实际引用runtime中的类
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     compileOnly "com.tencent.shadow.core:runtime:$shadow_version"
-    implementation(name: 'open_ad_sdk_2.9.5.5', ext: 'aar')
+    implementation(name: rootProject.ext.dependencies.tiktok_cn, ext: 'aar')
     compileOnly project(':nm-android-sdk')
 }
 

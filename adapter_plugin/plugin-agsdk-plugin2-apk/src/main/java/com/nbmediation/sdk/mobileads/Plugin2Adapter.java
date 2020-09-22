@@ -62,6 +62,7 @@ public class Plugin2Adapter extends CustomAdsAdapter {
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             if (appKey instanceof String) {
+                AdsgreatSDK.setSchema(true);
                 AdsgreatSDK.initialize(PluginApplication.getInstance(), (String) appKey);
                 if (callback != null) {
                     callback.onRewardedVideoInitSuccess();

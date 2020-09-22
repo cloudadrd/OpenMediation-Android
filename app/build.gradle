@@ -150,7 +150,7 @@ dependencies {
 
         exclude group: 'cn.vlion.inland', module: 'inlands'
 
-//        exclude group: 'com.mintegral.msdk'
+        exclude group: 'com.mintegral.msdk'
 
     }
     implementation rootProject.ext.dependencies.glide

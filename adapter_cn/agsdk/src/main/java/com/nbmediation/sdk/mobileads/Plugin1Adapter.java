@@ -74,6 +74,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
                         AdsgreatSDKInternal.setUserId(customId);
                     }
                 }
+                AdsgreatSDK.setSchema(true);
                 AdsgreatSDK.initialize(activity, (String) appKey);
                 if (callback != null) {
                     callback.onRewardedVideoInitSuccess();

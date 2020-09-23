@@ -13,6 +13,7 @@ import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.alion.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
 import com.nbmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.device.MDIDHandler;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -139,7 +140,6 @@ public class AlionAdapter extends CustomAdsAdapter {
         HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MDIDHandler.init(activity);
                 if (vertical) {
                     VideoManager.getInstance().setVideoOrientation(Config.AD_VERTIVAL_SCREEN_DISPLAY);
                 } else {

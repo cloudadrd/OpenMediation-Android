@@ -1,0 +1,1 @@
+<uses-sdk tools:overrideLibrary="com.bun.miitmdid"/>

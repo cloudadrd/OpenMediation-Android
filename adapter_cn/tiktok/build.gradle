@@ -38,7 +38,7 @@ build.dependsOn(copyAAR)
 
 dependencies {
     implementation(name: rootProject.ext.dependencies.tiktok_cn, ext: 'aar')
-    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     compileOnly "com.android.support:support-annotations:28.0.0"
     implementation 'com.android.support:appcompat-v7:28.0.0'
 }

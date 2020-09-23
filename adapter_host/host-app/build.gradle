@@ -74,7 +74,7 @@ dependencies {
     debugImplementation project(':nm-android-sdk')
 
     //add oaid
-    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
+    implementation(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')
 
     //添加Shadow
     debugImplementation project(':adapter_host:host-online-plugin')

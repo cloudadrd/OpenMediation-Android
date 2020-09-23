@@ -1,8 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.nbmediation.sdk">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <application android:usesCleartextTraffic="true" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <application android:usesCleartextTraffic="true"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk tools:overrideLibrary="com.bun.miitmdid" />
 </manifest>
 

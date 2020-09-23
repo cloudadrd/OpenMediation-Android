@@ -65,7 +65,7 @@ dependencies {
 
     }
     //add oaid
-    compileOnly(name: 'msa_mdid_1.0.13', ext: 'aar')
+    compileOnly(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 }
 

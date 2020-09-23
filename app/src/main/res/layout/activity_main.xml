@@ -17,7 +17,7 @@
             android:layout_width="184dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_adtiming_logo" />
+            android:src="@drawable/ic_adtiming_logo" />
 
         <TextView
             android:layout_width="wrap_content"

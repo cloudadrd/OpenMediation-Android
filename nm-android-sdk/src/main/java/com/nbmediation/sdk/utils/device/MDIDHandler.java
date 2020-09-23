@@ -1,13 +1,12 @@
 package com.nbmediation.sdk.utils.device;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 
-import com.bun.miitmdid.core.JLibrary;
 import com.bun.miitmdid.core.MdidSdkHelper;
-import com.bun.miitmdid.core.Utils;
-import com.bun.supplier.IIdentifierListener;
-import com.bun.supplier.IdSupplier;
+import com.bun.miitmdid.interfaces.IIdentifierListener;
+import com.bun.miitmdid.interfaces.IdSupplier;
 import com.nbmediation.sdk.utils.DeveloperLog;
 import com.nbmediation.sdk.utils.cache.DataCache;
 
@@ -16,6 +15,7 @@ import static com.bun.miitmdid.core.ErrorCode.INIT_ERROR_LOAD_CONFIGFILE;
 import static com.bun.miitmdid.core.ErrorCode.INIT_ERROR_MANUFACTURER_NOSUPPORT;
 import static com.bun.miitmdid.core.ErrorCode.INIT_ERROR_RESULT_DELAY;
 import static com.bun.miitmdid.core.ErrorCode.INIT_HELPER_CALL_ERROR;
+
 
 /**
  * Created by jiantao.tu on 2020/3/23.
@@ -27,8 +27,10 @@ public class MDIDHandler {
     private static final String MDID_ID_KEY = "mdid_id_key";
 
     public static void init(Context context) {
+        if (Build.VERSION.SDK_INT < 21) {
+            return;
+        }
         try {
-            JLibrary.InitEntry(context);
             int code = MdidSdkHelper.InitSdk(context, true, new IIdentifierListener() {
                 @Override
                 public void OnSupport(boolean b, IdSupplier idSupplier) {
@@ -70,7 +72,7 @@ public class MDIDHandler {
                     break;
             }
         } catch (Throwable e) {
-            e.printStackTrace();
+            DeveloperLog.LogE("MDIDHandler", e);
         }
     }
 

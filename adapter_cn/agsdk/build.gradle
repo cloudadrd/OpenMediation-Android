@@ -34,6 +34,7 @@ task copyAAR(type: Copy) {
     into "../../release/"
 }
 build.dependsOn(copyAAR)
+build.dependsOn(copyAAR)
 
 dependencies {
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')

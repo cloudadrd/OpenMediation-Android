@@ -44,8 +44,8 @@
 -keep class com.baidu.mobad.** { *; }
 
 -keep class com.bytedance.sdk.openadsdk.** { *; }
--keep class com.androidquery.callback.** {*;}
 -keep public interface com.bytedance.sdk.openadsdk.downloadnew.** {*;}
+-keep class com.pgl.sys.ces.* {*;}
 -keep class com.ss.sys.ces.a {*;}
 -keep class com.ss.android.socialbase.** {*;}
 
@@ -82,14 +82,34 @@
 -keep class com.bun.** {*;}
 -keep class com.android.ag.**{*;}
 -keep class com.tencent.**{*;}
+
+-keep class org.chromium.** {*;}
+-keep class org.chromium.** { *; }
+-keep class aegon.chrome.** { *; }
+-keep class com.kwai.**{ *; }
 -keep class com.kwad.sdk.** { *;}
 -keep class com.ksad.download.** { *;}
--keep class com.kwai.filedownloader.** { *;}
 
 -keep class com.hytt.** { *; }
 -keep interface com.hytt.** { *; }
 
+-keep class com.mintegral.** {*; }
+-keep interface com.mintegral.** {*; }
+-keep class android.support.v4.** { *; }
+-dontwarn com.mintegral.**
+-keep class **.R$* { public static final int mintegral*; }
+-keep class com.alphab.** {*; }
+-keep interface com.alphab.** {*; }
+
+-keep class com.bird.** { *; }
+-keep class com.birdhfn.** { *; }
+-keep class com.core.**{*;}
+-keep class com.hfn0xx2.**{*;}
+-keep class com.ss.**{*;}
+
+
 -keep class cn.vlion.ad.**{*;}
+-keep class vlion.cn.** { *; }
 -keep class show.vion.cn.vlion_ad_inter.**{*;}
 #忽略警告
 -ignorewarning

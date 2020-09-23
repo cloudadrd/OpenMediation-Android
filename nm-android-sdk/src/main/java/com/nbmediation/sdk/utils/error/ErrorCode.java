@@ -136,6 +136,14 @@ public interface ErrorCode {
      */
     int CODE_SHOW_SCENE_NOT_FOUND = 352;
     String MSG_SHOW_SCENE_NOT_FOUND = "Scene not found";
+
+
+    /**
+     *
+     */
+    int CODE_SHOW_SPLASH_AD = 353;
+    String MSG_SHOW_SPLASH_AD = "Show Splash Activity Error";
+
     /**
      * internal codes 
      **/

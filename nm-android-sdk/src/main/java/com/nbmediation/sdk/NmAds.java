@@ -34,6 +34,15 @@ public abstract class NmAds {
     }
 
     /**
+     * mediation SDK Splash method
+     *
+     * @param activity required param
+     */
+    public static void showSplash(Activity activity, String appID, String appName, String slotID) {
+        NmManager.getInstance().showSplash(activity, appID, appName, slotID);
+    }
+
+    /**
      * Sets an activity that is resumed
      *
      * @param activity current resume activity

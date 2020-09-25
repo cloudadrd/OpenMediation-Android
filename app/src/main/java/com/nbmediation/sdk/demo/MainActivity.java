@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private void initSDK()  {
         if(splash == false){
             splash = true;
-            NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
+            NmAds.showSplash(this, "5040915", "光速清理", "887364502");
         }
 
         NewApiUtils.printLog("start init sdk");

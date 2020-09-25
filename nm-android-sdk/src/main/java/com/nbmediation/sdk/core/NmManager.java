@@ -5,8 +5,10 @@ package com.nbmediation.sdk.core;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.nbmediation.sdk.InitCallback;
+import com.nbmediation.sdk.api.unity.NmSdk;
 import com.nbmediation.sdk.core.imp.interstitialad.IsManager;
 import com.nbmediation.sdk.core.imp.rewardedvideo.RvManager;
 import com.nbmediation.sdk.interstitial.InterstitialAdListener;
@@ -29,6 +31,7 @@ import com.nbmediation.sdk.utils.model.Placement;
 import com.nbmediation.sdk.utils.model.Scene;
 import com.nbmediation.sdk.video.RewardedVideoListener;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -892,5 +895,20 @@ public final class NmManager implements InitCallback {
         }
         Scene s = SceneUtil.getScene(PlacementUtils.getPlacement(placementId), scene);
         AdsUtil.callActionReport(placementId, s != null ? s.getId() : 0, eventId);
+    }
+
+    public void showSplash(Activity activity, String appID, String appName, String slotID){
+        try{
+            Class<?> c = Class.forName("com.nbmediation.sdk.mobileads.tiktok.TikTokSplashHelper");
+            if(c != null){
+                Method m = c.getDeclaredMethod("ShowSplash",Activity.class, String.class, String.class, String.class);
+                if(m != null){
+                    m.setAccessible(true);
+                    m.invoke(null, activity, appID, appName, slotID);
+                }
+            }
+        }catch (Throwable e){
+            Log.e("OM-Splash", e.getLocalizedMessage());
+        }
     }
 }

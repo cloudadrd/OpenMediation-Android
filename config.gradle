@@ -32,18 +32,18 @@ ext {
     adapterDirs = "../../libs"
 
     shadow_version = '2.0.13'
-    HOST_APP_APPLICATION_ID = "com.light.cleaner.zero"
+    HOST_APP_APPLICATION_ID = "com.chick.mobi"
     COMPILE_SDK_VERSION = 29
     MIN_SDK_VERSION = 18
     TARGET_SDK_VERSION = 28
     VERSION_CODE = 2
     VERSION_NAME = "2.0.12"
     MANAGER_PLUGIN = "1.0.2"
-    MAIN_PLUGIN = "1.0.1"
+    MAIN_PLUGIN = "1.0.3"
     TIKTOk_PLUGIN = "1.2.1"
-    AGSDK_PLUGIN = '4.2.9'
+    AGSDK_PLUGIN = '4.3.3'
     ALION_PLUGIN = '1.0.1'
 
-    nm_version = "1.1.8"
-    hop_version = '1.0.3'
+    nm_version = "1.1.9"
+    hop_version = '1.1.0'
 }

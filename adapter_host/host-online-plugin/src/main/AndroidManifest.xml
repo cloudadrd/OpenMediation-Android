@@ -11,6 +11,15 @@
             android:theme="@style/troop_Transparent" />
 
         <activity
+            android:name="com.tencent.shadow.sample.runtime.PluginDefaultNoTransparentProxyActivity"
+            android:launchMode="standard"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"
+            android:hardwareAccelerated="true"
+            android:multiprocess="true"
+            android:theme="@style/troop_NoTransparent"
+            />
+
+        <activity
             android:name="com.tencent.shadow.sample.runtime.PluginSingleInstance1ProxyActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"
             android:hardwareAccelerated="true"
@@ -30,6 +39,7 @@
             android:launchMode="singleTask"
             android:multiprocess="true"
             android:theme="@style/troop_Transparent" />
+
 
         <provider
             android:name="com.tencent.shadow.core.runtime.container.PluginContainerContentProvider"

@@ -125,9 +125,10 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 20):
+Constant Pool (count = 22):
   + Integer [2132082689]
   + Integer [2132082690]
+  + Integer [2132082691]
   + Class [com/cloudtech/shell/R]
   + Class [com/cloudtech/shell/R$style]
   + Class [java/lang/Object]
@@ -144,21 +145,28 @@ Constant Pool (count = 20):
   + Utf8 [com/cloudtech/shell/R$style]
   + Utf8 [java/lang/Object]
   + Utf8 [style]
+  + Utf8 [troop_NoTransparent]
   + Utf8 [troop_Transparent]
 
-Fields (count = 2):
+Fields (count = 3):
   + Field:        PluginContainerActivity I
     Access flags: 0x9
       = public static int PluginContainerActivity
     Class member attributes (count = 1):
     + Constant value attribute:
     + Integer [2132082689]
+  + Field:        troop_NoTransparent I
+    Access flags: 0x9
+      = public static int troop_NoTransparent
+    Class member attributes (count = 1):
+    + Constant value attribute:
+    + Integer [2132082690]
   + Field:        troop_Transparent I
     Access flags: 0x9
       = public static int troop_Transparent
     Class member attributes (count = 1):
     + Constant value attribute:
-    + Integer [2132082690]
+    + Integer [2132082691]
 
 Methods (count = 1):
   - Method:       <init>()V
@@ -167,7 +175,7 @@ Methods (count = 1):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #6
+      [1] invokespecial #7
         + Methodref [java/lang/Object.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -195,7 +203,7 @@ Interfaces (count = 0):
 Constant Pool (count = 390):
   + String []
   + String [,]
-  + String [1.0.3]
+  + String [1.1.0]
   + String [The last request has not been completed.]
   + String [Time has not arrived...]
   + String [android.permission.ACCESS_NETWORK_STATE]
@@ -463,7 +471,7 @@ Constant Pool (count = 390):
   + Utf8 [(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
   + Utf8 [(Ljava/lang/Throwable;)V]
   + Utf8 [,]
-  + Utf8 [1.0.3]
+  + Utf8 [1.1.0]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
   + Utf8 [Code]
@@ -737,7 +745,7 @@ Methods (count = 10):
       [167] dup
       [168] iconst_5
       [169] ldc #3
-        + String [1.0.3]
+        + String [1.1.0]
       [171] aastore
       [172] dup
       [173] bipush 6
@@ -786,7 +794,7 @@ Methods (count = 10):
       [230] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 35):
+      + Line number table attribute (count = 36):
         [0] -> line 108
         [6] -> line 109
         [11] -> line 110
@@ -809,6 +817,7 @@ Methods (count = 10):
         [99] -> line 2056 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:53:61]
         [102] -> line 2057 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:53:61]
         [108] -> line 2058 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:53:61]
+        [119] -> line 2059 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:53:61]
         [123] -> line 2061 [com/cloudtech/shell/utils/Utils.getNetworkType(Landroid/content/Context;)I:53:61]
         [125] -> line 1220 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:213:226]
         [126] -> line 1222 [com/cloudtech/shell/SdkImpl.generateUrl()Ljava/lang/String;:213:226]
@@ -1432,10 +1441,10 @@ Methods (count = 10):
 Class file attributes (count = 2):
   + Inner classes attribute (count = 4):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/a$2]
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/a$1]
     - InnerClassesInfo:
       Access flags:  0x609 = public static interface 
@@ -1627,7 +1636,7 @@ Class file attributes (count = 3):
     + NameAndType [a (Lcom/nbmediation/sdk/core/ShellCallback;)V]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/a$1]
   + Source file attribute:
     + Utf8 [SdkImpl.java]
@@ -1800,7 +1809,7 @@ Class file attributes (count = 3):
     + Class [com/cloudtech/shell/a]
   + Inner classes attribute (count = 2):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/a$2]
     - InnerClassesInfo:
       Access flags:  0x609 = public static interface 
@@ -2903,7 +2912,7 @@ Methods (count = 12):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (15 -> 287: 296):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 63):
+      + Line number table attribute (count = 64):
         [0] -> line 80
         [5] -> line 81
         [14] -> line 82
@@ -2967,6 +2976,7 @@ Methods (count = 12):
         [295] -> line 127
         [296] -> line 125
         [301] -> line 126
+        [305] -> line 127
   + Method:       a()Ljava/util/List;
     Access flags: 0x31
       = public final synchronized java.util.List a()
@@ -3068,7 +3078,7 @@ Methods (count = 12):
       - ExceptionInfo (46 -> 63: 127):
       - ExceptionInfo (81 -> 108: 127):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 29):
+      + Line number table attribute (count = 30):
         [0] -> line 133
         [8] -> line 134
         [13] -> line 135
@@ -3097,6 +3107,7 @@ Methods (count = 12):
         [127] -> line 162
         [133] -> line 163
         [140] -> line 165
+        [144] -> line 166
         [146] -> line 167
     + Signature attribute:
       + Utf8 [()Ljava/util/List<Lcom/cloudtech/shell/b/b;>;]
@@ -3211,7 +3222,7 @@ Methods (count = 12):
       - ExceptionInfo (60 -> 77: 141):
       - ExceptionInfo (95 -> 122: 141):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 32):
+      + Line number table attribute (count = 33):
         [0] -> line 171
         [8] -> line 172
         [13] -> line 173
@@ -3243,6 +3254,7 @@ Methods (count = 12):
         [141] -> line 205
         [147] -> line 206
         [154] -> line 208
+        [158] -> line 209
         [160] -> line 210
     + Signature attribute:
       + Utf8 [()Ljava/util/List<Lcom/cloudtech/shell/b/b;>;]
@@ -3337,7 +3349,7 @@ Methods (count = 12):
       - ExceptionInfo (32 -> 49: 113):
       - ExceptionInfo (67 -> 94: 113):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 25):
+      + Line number table attribute (count = 26):
         [0] -> line 214
         [8] -> line 215
         [13] -> line 216
@@ -3362,6 +3374,7 @@ Methods (count = 12):
         [113] -> line 239
         [119] -> line 240
         [126] -> line 242
+        [130] -> line 243
         [132] -> line 244
     + Signature attribute:
       + Utf8 [()Ljava/util/List<Lcom/cloudtech/shell/b/b;>;]
@@ -3451,7 +3464,7 @@ Methods (count = 12):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (25 -> 68: 105):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 21):
+      + Line number table attribute (count = 22):
         [0] -> line 249
         [5] -> line 250
         [9] -> line 251
@@ -3472,6 +3485,7 @@ Methods (count = 12):
         [105] -> line 266
         [111] -> line 267
         [118] -> line 269
+        [122] -> line 270
         [124] -> line 271
   + Method:       a(Ljava/lang/String;)Lcom/cloudtech/shell/b/b;
     Access flags: 0x31
@@ -3555,7 +3569,7 @@ Methods (count = 12):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (24 -> 62: 99):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 21):
+      + Line number table attribute (count = 22):
         [0] -> line 275
         [5] -> line 276
         [9] -> line 277
@@ -3576,6 +3590,7 @@ Methods (count = 12):
         [99] -> line 292
         [105] -> line 293
         [112] -> line 295
+        [116] -> line 296
         [118] -> line 297
   + Method:       a(Landroid/database/Cursor;)Lcom/cloudtech/shell/b/b;
     Access flags: 0xa
@@ -3857,7 +3872,7 @@ Methods (count = 12):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (10 -> 30: 35):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 7):
+      + Line number table attribute (count = 8):
         [0] -> line 322
         [5] -> line 323
         [9] -> line 324
@@ -3865,6 +3880,7 @@ Methods (count = 12):
         [30] -> line 329
         [34] -> line 330
         [35] -> line 329
+        [40] -> line 330
 
 Class file attributes (count = 1):
   + Source file attribute:
@@ -5302,7 +5318,7 @@ Methods (count = 1):
       - ExceptionInfo (75 -> 104: 112):
       - ExceptionInfo (111 -> 113: 112):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 19):
+      + Line number table attribute (count = 20):
         [0] -> line 25
         [9] -> line 26
         [19] -> line 30
@@ -5321,6 +5337,7 @@ Methods (count = 1):
         [109] -> line 43
         [111] -> line 45
         [112] -> line 47
+        [118] -> line 48
         [120] -> line 50
 
 Class file attributes (count = 2):
@@ -5870,7 +5887,7 @@ Methods (count = 4):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (8 -> 37: 48):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 12):
+      + Line number table attribute (count = 13):
         [0] -> line 104
         [4] -> line 105
         [8] -> line 108
@@ -5882,6 +5899,7 @@ Methods (count = 4):
         [45] -> line 116
         [48] -> line 114
         [53] -> line 115
+        [57] -> line 116
         [59] -> line 117
   + Method:       isLimitAdTrackingEnabled(Z)Z
     Access flags: 0x11
@@ -5950,7 +5968,7 @@ Methods (count = 4):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (8 -> 59: 70):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 13):
+      + Line number table attribute (count = 14):
         [0] -> line 121
         [4] -> line 122
         [8] -> line 125
@@ -5963,6 +5981,7 @@ Methods (count = 4):
         [67] -> line 134
         [70] -> line 132
         [75] -> line 133
+        [79] -> line 134
         [81] -> line 135
 
 Class file attributes (count = 2):
@@ -6202,10 +6221,12 @@ Methods (count = 8):
       [32] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 3):
+      + Line number table attribute (count = 5):
         [0] -> line 33
         [9] -> line 34
         [12] -> line 36
+        [29] -> line 37
+        [32] -> line 36
     + Runtime invisible annotations attribute:
       - Annotation [Landroid/support/annotation/Keep;]:
   + Method:       a(Ljava/lang/Object;)V
@@ -6354,7 +6375,7 @@ Class file attributes (count = 2):
       + Class [com/cloudtech/shell/gp/GpsHelper]
       + Utf8 [a]
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/gp/GpsHelper$1]
     - InnerClassesInfo:
       Access flags:  0x9 = public static 
@@ -6651,7 +6672,7 @@ Class file attributes (count = 3):
     + Class [com/cloudtech/shell/gp/GpsHelper]
   + Inner classes attribute (count = 6):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/gp/GpsHelper$1]
     - InnerClassesInfo:
       Access flags:  0x0 = 
@@ -6760,7 +6781,7 @@ Class file attributes (count = 3):
     + NameAndType [run ()V]
   + Inner classes attribute (count = 3):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/gp/GpsHelper$1]
     - InnerClassesInfo:
       Access flags:  0x0 = 
@@ -6856,7 +6877,7 @@ Class file attributes (count = 3):
     + NameAndType [run ()V]
   + Inner classes attribute (count = 3):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/gp/GpsHelper$1]
     - InnerClassesInfo:
       Access flags:  0x0 = 
@@ -7383,7 +7404,7 @@ Methods (count = 11):
 Class file attributes (count = 2):
   + Inner classes attribute (count = 3):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/d/a$1]
     - InnerClassesInfo:
       Access flags:  0x9 = public static 
@@ -7492,7 +7513,7 @@ Class file attributes (count = 3):
     + Class [com/cloudtech/shell/d/a]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/d/a$1]
   + Source file attribute:
     + Utf8 [CompatSSLSocketFactory.java]
@@ -7748,7 +7769,7 @@ Methods (count = 1):
       - ExceptionInfo (195 -> 199: 202):
       + Class [java/io/IOException]
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 43):
+      + Line number table attribute (count = 44):
         [0] -> line 37
         [2] -> line 38
         [4] -> line 39
@@ -7791,6 +7812,7 @@ Methods (count = 1):
         [202] -> line 73
         [205] -> line 76
         [210] -> line 77
+        [215] -> line 79
         [217] -> line 81
 
 Class file attributes (count = 1):
@@ -8062,7 +8084,7 @@ Methods (count = 2):
       - ExceptionInfo (2 -> 34: 69):
       - ExceptionInfo (43 -> 60: 69):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 13):
+      + Line number table attribute (count = 14):
         [0] -> line 28
         [2] -> line 30
         [13] -> line 31
@@ -8075,6 +8097,7 @@ Methods (count = 2):
         [64] -> line 48
         [69] -> line 47
         [74] -> line 48
+        [78] -> line 50
         [80] -> line 51
 
 Class file attributes (count = 2):
@@ -8828,7 +8851,7 @@ Methods (count = 3):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (2 -> 99: 110):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 19):
+      + Line number table attribute (count = 20):
         [0] -> line 76
         [2] -> line 79
         [14] -> line 80
@@ -8847,6 +8870,7 @@ Methods (count = 3):
         [103] -> line 92
         [110] -> line 91
         [115] -> line 92
+        [119] -> line 94
         [121] -> line 95
   + Method:       a(Ljava/io/InputStream;)[B
     Access flags: 0xa
@@ -9128,7 +9152,7 @@ Methods (count = 3):
 Class file attributes (count = 2):
   + Inner classes attribute (count = 3):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/d/f$1]
     - InnerClassesInfo:
       Access flags:  0x9 = public static 
@@ -9210,7 +9234,7 @@ Class file attributes (count = 3):
     + Class [com/cloudtech/shell/d/f]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/d/f$1]
   + Source file attribute:
     + Utf8 [SSLUtils.java]
@@ -9538,14 +9562,14 @@ Interfaces (count = 0):
 
 Constant Pool (count = 136):
   + String []
-  + String [1.0.1]
   + String [1.0.2]
-  + String [11240e14e6102e57df2c25d12cc8f181]
+  + String [1.0.3]
+  + String [1f6d9069b3340c21c66853f5581f844c]
   + String [700]
+  + String [8a48b1b6fa4302fcea386daa37f11eb3]
   + String [\.]
-  + String [a5ea983386bff2758603db55e2880e01]
   + String [plugin-main]
-  + String [plugin-main-release-1.0.1.zip]
+  + String [plugin-main-release-1.0.3.zip]
   + String [plugin-manager]
   + String [plugin-manager-release-1.0.2.zip]
   + Class [com/cloudtech/shell/a/b]
@@ -9632,10 +9656,11 @@ Constant Pool (count = 136):
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZIIILcom/cloudtech/shell/b/c;)V]
   + Utf8 [(Ljava/lang/Throwable;)V]
   + Utf8 [([Lcom/cloudtech/shell/b/b;)V]
-  + Utf8 [1.0.1]
   + Utf8 [1.0.2]
-  + Utf8 [11240e14e6102e57df2c25d12cc8f181]
+  + Utf8 [1.0.3]
+  + Utf8 [1f6d9069b3340c21c66853f5581f844c]
   + Utf8 [700]
+  + Utf8 [8a48b1b6fa4302fcea386daa37f11eb3]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
   + Utf8 [Code]
@@ -9648,7 +9673,6 @@ Constant Pool (count = 136):
   + Utf8 [Z]
   + Utf8 [\.]
   + Utf8 [a]
-  + Utf8 [a5ea983386bff2758603db55e2880e01]
   + Utf8 [b]
   + Utf8 [c]
   + Utf8 [com/cloudtech/shell/a/b]
@@ -9668,7 +9692,7 @@ Constant Pool (count = 136):
   + Utf8 [java/lang/Throwable]
   + Utf8 [parseInt]
   + Utf8 [plugin-main]
-  + Utf8 [plugin-main-release-1.0.1.zip]
+  + Utf8 [plugin-main-release-1.0.3.zip]
   + Utf8 [plugin-manager]
   + Utf8 [plugin-manager-release-1.0.2.zip]
   + Utf8 [split]
@@ -9710,10 +9734,10 @@ Methods (count = 3):
       [33] aload_1 v1
       [34] ldc #10
         + String [plugin-manager]
-      [36] ldc #3
+      [36] ldc #2
         + String [1.0.2]
-      [38] ldc #7
-        + String [a5ea983386bff2758603db55e2880e01]
+      [38] ldc #6
+        + String [8a48b1b6fa4302fcea386daa37f11eb3]
       [40] ldc #1
         + String []
       [42] ldc #1
@@ -9739,7 +9763,7 @@ Methods (count = 3):
       [71] ifnull +12 (target=83)
       [74] aload_1 v1
       [75] ldc #9
-        + String [plugin-main-release-1.0.1.zip]
+        + String [plugin-main-release-1.0.3.zip]
       [77] invokestatic #39
         + Methodref [com/cloudtech/shell/e/a.a (Landroid/content/Context;Ljava/lang/String;)Z]
       [80] ifne +4 (target=84)
@@ -9747,16 +9771,16 @@ Methods (count = 3):
       [84] aload_1 v1
       [85] ldc #8
         + String [plugin-main]
-      [87] ldc #2
-        + String [1.0.1]
+      [87] ldc #3
+        + String [1.0.3]
       [89] ldc #4
-        + String [11240e14e6102e57df2c25d12cc8f181]
+        + String [1f6d9069b3340c21c66853f5581f844c]
       [91] ldc #1
         + String []
       [93] ldc #1
         + String []
       [95] ldc #9
-        + String [plugin-main-release-1.0.1.zip]
+        + String [plugin-main-release-1.0.3.zip]
       [97] getstatic #30
         + Fieldref [com/cloudtech/shell/b/c.b Lcom/cloudtech/shell/b/c;]
       [100] invokestatic #41
@@ -9906,7 +9930,7 @@ Methods (count = 3):
       [168] iload v10
       [170] ifeq +89 (target=259)
       [173] aload_2 v2
-      [174] ldc #6
+      [174] ldc #7
         + String [\.]
       [176] invokevirtual #50
         + Methodref [java/lang/String.split (Ljava/lang/String;)[Ljava/lang/String;]
@@ -12255,7 +12279,7 @@ Methods (count = 8):
       - ExceptionInfo (136 -> 334: 381):
       - ExceptionInfo (357 -> 382: 381):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 52):
+      + Line number table attribute (count = 53):
         [0] -> line 114
         [17] -> line 115
         [34] -> line 117
@@ -12288,6 +12312,7 @@ Methods (count = 8):
         [259] -> line 152
         [266] -> line 151
         [275] -> line 152
+        [283] -> line 153
         [285] -> line 158
         [290] -> line 159
         [300] -> line 160
@@ -12307,7 +12332,7 @@ Methods (count = 8):
         [399] -> line 175
         [404] -> line 178
         [409] -> line 179
-        [414] -> line 180
+        [414] -> line 182
   + Method:       b(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Lcom/cloudtech/shell/b/c;)Ljava/io/File;
     Access flags: 0x9
       = public static java.io.File b(android.content.Context,java.lang.String,java.lang.String,com.cloudtech.shell.b.c)
@@ -13048,7 +13073,7 @@ Methods (count = 3):
 Class file attributes (count = 2):
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/receiver/a$1]
   + Source file attribute:
     + Utf8 [DebugSwitchReceiver.java]
@@ -13187,7 +13212,7 @@ Class file attributes (count = 3):
     + Class [com/cloudtech/shell/receiver/a]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/receiver/a$1]
   + Source file attribute:
     + Utf8 [DebugSwitchReceiver.java]
@@ -15037,7 +15062,7 @@ Methods (count = 4):
 Class file attributes (count = 2):
   + Inner classes attribute (count = 3):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/shadow/InitApplication$1]
     - InnerClassesInfo:
       Access flags:  0x9 = public static 
@@ -15157,7 +15182,7 @@ Class file attributes (count = 3):
     + NameAndType [onApplicationCreate (Landroid/content/Context;Ljava/io/File;)V]
   + Inner classes attribute (count = 2):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/shadow/InitApplication$1]
     - InnerClassesInfo:
       Access flags:  0x609 = public static interface 
@@ -15855,7 +15880,7 @@ Methods (count = 19):
     Access flags: 0xa
       = private static void a(java.lang.StringBuilder,java.lang.Object,java.util.Map)
     Class member attributes (count = 2):
-    + Code attribute instructions (code length = 193, locals = 3, stack = 3):
+    + Code attribute instructions (code length = 166, locals = 3, stack = 3):
       [0] aload_1 v1
       [1] ifnonnull +11 (target=12)
       [4] aload_0 v0
@@ -15879,117 +15904,99 @@ Methods (count = 19):
       [28] aload_1 v1
       [29] instanceof #15
         + Class [[Z]
-      [32] ifeq +15 (target=47)
+      [32] ifeq +12 (target=44)
       [35] aload_0 v0
       [36] aload_1 v1
       [37] checkcast #15
         + Class [[Z]
-      [40] checkcast #15
-        + Class [[Z]
-      [43] invokestatic #42
+      [40] invokestatic #42
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[Z)V]
-      [46] return
-      [47] aload_1 v1
-      [48] instanceof #7
+      [43] return
+      [44] aload_1 v1
+      [45] instanceof #7
         + Class [[B]
-      [51] ifeq +15 (target=66)
-      [54] aload_0 v0
-      [55] aload_1 v1
-      [56] checkcast #7
+      [48] ifeq +12 (target=60)
+      [51] aload_0 v0
+      [52] aload_1 v1
+      [53] checkcast #7
         + Class [[B]
-      [59] checkcast #7
-        + Class [[B]
-      [62] invokestatic #34
+      [56] invokestatic #34
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[B)V]
-      [65] return
-      [66] aload_1 v1
-      [67] instanceof #8
+      [59] return
+      [60] aload_1 v1
+      [61] instanceof #8
         + Class [[C]
-      [70] ifeq +15 (target=85)
-      [73] aload_0 v0
-      [74] aload_1 v1
-      [75] checkcast #8
+      [64] ifeq +12 (target=76)
+      [67] aload_0 v0
+      [68] aload_1 v1
+      [69] checkcast #8
         + Class [[C]
-      [78] checkcast #8
-        + Class [[C]
-      [81] invokestatic #35
+      [72] invokestatic #35
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[C)V]
-      [84] return
-      [85] aload_1 v1
-      [86] instanceof #14
+      [75] return
+      [76] aload_1 v1
+      [77] instanceof #14
         + Class [[S]
-      [89] ifeq +15 (target=104)
-      [92] aload_0 v0
-      [93] aload_1 v1
-      [94] checkcast #14
+      [80] ifeq +12 (target=92)
+      [83] aload_0 v0
+      [84] aload_1 v1
+      [85] checkcast #14
         + Class [[S]
-      [97] checkcast #14
-        + Class [[S]
-      [100] invokestatic #41
+      [88] invokestatic #41
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[S)V]
-      [103] return
-      [104] aload_1 v1
-      [105] instanceof #11
+      [91] return
+      [92] aload_1 v1
+      [93] instanceof #11
         + Class [[I]
-      [108] ifeq +15 (target=123)
-      [111] aload_0 v0
-      [112] aload_1 v1
-      [113] checkcast #11
+      [96] ifeq +12 (target=108)
+      [99] aload_0 v0
+      [100] aload_1 v1
+      [101] checkcast #11
         + Class [[I]
-      [116] checkcast #11
-        + Class [[I]
-      [119] invokestatic #38
+      [104] invokestatic #38
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[I)V]
-      [122] return
-      [123] aload_1 v1
-      [124] instanceof #12
+      [107] return
+      [108] aload_1 v1
+      [109] instanceof #12
         + Class [[J]
-      [127] ifeq +15 (target=142)
-      [130] aload_0 v0
-      [131] aload_1 v1
-      [132] checkcast #12
+      [112] ifeq +12 (target=124)
+      [115] aload_0 v0
+      [116] aload_1 v1
+      [117] checkcast #12
         + Class [[J]
-      [135] checkcast #12
-        + Class [[J]
-      [138] invokestatic #39
+      [120] invokestatic #39
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[J)V]
-      [141] return
-      [142] aload_1 v1
-      [143] instanceof #10
+      [123] return
+      [124] aload_1 v1
+      [125] instanceof #10
         + Class [[F]
-      [146] ifeq +15 (target=161)
-      [149] aload_0 v0
-      [150] aload_1 v1
-      [151] checkcast #10
+      [128] ifeq +12 (target=140)
+      [131] aload_0 v0
+      [132] aload_1 v1
+      [133] checkcast #10
         + Class [[F]
-      [154] checkcast #10
-        + Class [[F]
-      [157] invokestatic #37
+      [136] invokestatic #37
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[F)V]
-      [160] return
-      [161] aload_1 v1
-      [162] instanceof #9
+      [139] return
+      [140] aload_1 v1
+      [141] instanceof #9
         + Class [[D]
-      [165] ifeq +15 (target=180)
-      [168] aload_0 v0
-      [169] aload_1 v1
-      [170] checkcast #9
+      [144] ifeq +12 (target=156)
+      [147] aload_0 v0
+      [148] aload_1 v1
+      [149] checkcast #9
         + Class [[D]
-      [173] checkcast #9
-        + Class [[D]
-      [176] invokestatic #36
+      [152] invokestatic #36
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[D)V]
-      [179] return
-      [180] aload_0 v0
-      [181] aload_1 v1
-      [182] checkcast #13
+      [155] return
+      [156] aload_0 v0
+      [157] aload_1 v1
+      [158] checkcast #13
         + Class [[Ljava/lang/Object;]
-      [185] checkcast #13
-        + Class [[Ljava/lang/Object;]
-      [188] aload_2 v2
-      [189] invokestatic #40
+      [161] aload_2 v2
+      [162] invokestatic #40
         + Methodref [com/cloudtech/shell/shadow/b.a (Ljava/lang/StringBuilder;[Ljava/lang/Object;Ljava/util/Map;)V]
-      [192] return
+      [165] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Line number table attribute (count = 23):
@@ -16000,22 +16007,22 @@ Methods (count = 19):
         [22] -> line 451
         [28] -> line 455
         [35] -> line 456
-        [47] -> line 457
-        [54] -> line 458
-        [66] -> line 459
-        [73] -> line 460
-        [85] -> line 461
-        [92] -> line 462
-        [104] -> line 463
-        [111] -> line 464
-        [123] -> line 465
-        [130] -> line 466
-        [142] -> line 467
-        [149] -> line 468
-        [161] -> line 469
-        [168] -> line 470
-        [180] -> line 472
-        [192] -> line 475
+        [44] -> line 457
+        [51] -> line 458
+        [60] -> line 459
+        [67] -> line 460
+        [76] -> line 461
+        [83] -> line 462
+        [92] -> line 463
+        [99] -> line 464
+        [108] -> line 465
+        [115] -> line 466
+        [124] -> line 467
+        [131] -> line 468
+        [140] -> line 469
+        [147] -> line 470
+        [156] -> line 472
+        [165] -> line 475
     + Signature attribute:
       + Utf8 [(Ljava/lang/StringBuilder;Ljava/lang/Object;Ljava/util/Map<[Ljava/lang/Object;Ljava/lang/Object;>;)V]
   + Method:       a(Ljava/lang/StringBuilder;Ljava/lang/Object;)V
@@ -17360,10 +17367,10 @@ Class file attributes (count = 2):
       Access flags:  0x1008 = static synthetic 
       + Class [com/cloudtech/shell/shadow/ShadowLoader$3]
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/shadow/ShadowLoader$2]
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/shadow/ShadowLoader$1]
   + Source file attribute:
     + Utf8 [ShadowLoader.java]
@@ -17483,7 +17490,7 @@ Class file attributes (count = 3):
     + NameAndType [loadMainPlugin (Landroid/content/Context;Lcom/cloudtech/shell/b/a;)V]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/shadow/ShadowLoader$1]
   + Source file attribute:
     + Utf8 [ShadowLoader.java]
@@ -17603,7 +17610,7 @@ Class file attributes (count = 3):
     + NameAndType [loadOtherPlugin (Landroid/content/Context;Lcom/cloudtech/shell/b/a;)V]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/shadow/ShadowLoader$2]
   + Source file attribute:
     + Utf8 [ShadowLoader.java]
@@ -20125,7 +20132,7 @@ Methods (count = 2):
       Code attribute exceptions (count = 1):
       - ExceptionInfo (15 -> 46: 53):
       Code attribute attributes (attribute count = 1):
-      + Line number table attribute (count = 9):
+      + Line number table attribute (count = 10):
         [0] -> line 42
         [9] -> line 43
         [15] -> line 46
@@ -20134,6 +20141,7 @@ Methods (count = 2):
         [46] -> line 51
         [50] -> line 52
         [53] -> line 51
+        [58] -> line 52
         [60] -> line 53
   + Method:       a([B)Ljava/lang/String;
     Access flags: 0xa
@@ -21833,7 +21841,7 @@ Constant Pool (count = 202):
 ]
   + String [ ]
   + String [,]
-  + String [CT_v1.0.3]
+  + String [CT_v1.1.0]
   + String [HH:mm:ss.SSS]
   + String [cache]
   + String [cloudmobi/]
@@ -21971,7 +21979,7 @@ Constant Pool (count = 202):
   + Utf8 [,]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
-  + Utf8 [CT_v1.0.3]
+  + Utf8 [CT_v1.1.0]
   + Utf8 [Code]
   + Utf8 [HH:mm:ss.SSS]
   + Utf8 [LineNumberTable]
@@ -22050,7 +22058,7 @@ Methods (count = 10):
       [9] aload_0 v0
       [10] ifnull +16 (target=26)
       [13] ldc #6
-        + String [CT_v1.0.3]
+        + String [CT_v1.1.0]
       [15] astore_1 v1
       [16] aload_0 v0
       [17] invokestatic #47
@@ -22083,7 +22091,7 @@ Methods (count = 10):
         + Methodref [java/lang/Boolean.booleanValue ()Z]
       [6] ifeq +16 (target=22)
       [9] ldc #6
-        + String [CT_v1.0.3]
+        + String [CT_v1.1.0]
       [11] astore_1 v1
       [12] aload_0 v0
       [13] invokestatic #47
@@ -22115,7 +22123,7 @@ Methods (count = 10):
         + Methodref [java/lang/Boolean.booleanValue ()Z]
       [6] ifeq +21 (target=27)
       [9] ldc #6
-        + String [CT_v1.0.3]
+        + String [CT_v1.1.0]
       [11] astore_1 v1
       [12] aload_0 v0
       [13] invokestatic #46
@@ -22154,7 +22162,7 @@ Methods (count = 10):
       [9] aload_0 v0
       [10] ifnull +16 (target=26)
       [13] ldc #6
-        + String [CT_v1.0.3]
+        + String [CT_v1.1.0]
       [15] astore_1 v1
       [16] aload_0 v0
       [17] invokestatic #47
@@ -22189,7 +22197,7 @@ Methods (count = 10):
       [9] aload_0 v0
       [10] ifnull +16 (target=26)
       [13] ldc #6
-        + String [CT_v1.0.3]
+        + String [CT_v1.1.0]
       [15] astore_1 v1
       [16] aload_0 v0
       [17] invokestatic #47
@@ -22222,7 +22230,7 @@ Methods (count = 10):
         + Methodref [java/lang/Boolean.booleanValue ()Z]
       [6] ifeq +21 (target=27)
       [9] ldc #6
-        + String [CT_v1.0.3]
+        + String [CT_v1.1.0]
       [11] astore_1 v1
       [12] aload_0 v0
       [13] invokestatic #46
@@ -23118,10 +23126,10 @@ Methods (count = 2):
 Class file attributes (count = 2):
   + Inner classes attribute (count = 2):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/f/l$2]
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/f/l$1]
   + Source file attribute:
     + Utf8 [TimeUtils.java]
@@ -23214,7 +23222,7 @@ Class file attributes (count = 4):
     + Class [com/cloudtech/shell/f/l]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/f/l$1]
   + Signature attribute:
     + Utf8 [Ljava/lang/ThreadLocal<Ljava/text/SimpleDateFormat;>;]
@@ -23309,7 +23317,7 @@ Class file attributes (count = 4):
     + Class [com/cloudtech/shell/f/l]
   + Inner classes attribute (count = 1):
     - InnerClassesInfo:
-      Access flags:  0x8 = static 
+      Access flags:  0x0 = 
       + Class [com/cloudtech/shell/f/l$2]
   + Signature attribute:
     + Utf8 [Ljava/lang/ThreadLocal<Ljava/text/SimpleDateFormat;>;]

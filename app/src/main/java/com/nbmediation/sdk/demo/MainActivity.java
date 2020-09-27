@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int WRITE_EXTERNAL_STORAGE_CODE = 102;
 
     private static boolean splash = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initSDK()  {
-        if(splash == false){
+    private void initSDK() {
+        if (splash == false) {
             splash = true;
             NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
         }
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         RewardedVideoAd.setAdListener(new RewardedVideoListener() {
             @Override
             public void onRewardedVideoAvailabilityChanged(boolean available) {
+                Log.e("tjt852", "onRewardedVideoAvailabilityChanged available=" + available + ",thread-name=" + Thread.currentThread().getName());
                 if (available) {
                     setRewardVideoButtonStat(true);
                 }
@@ -163,8 +165,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
 
     private void setInterstitialListener() {

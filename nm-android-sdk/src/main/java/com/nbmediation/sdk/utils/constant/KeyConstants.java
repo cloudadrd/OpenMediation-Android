@@ -100,8 +100,14 @@ public interface KeyConstants {
         /**
          * The constant KEY_MDID.
          */
-        /*String    OAID, combined with dtype  BBD6E1CD-8C4B-40CB-8A62-4BBC7AFE07D6*/
+        /*String    OAID */
         String KEY_MDID = "mdid";
+
+        /**
+         * The constant KEY_IMEI.
+         */
+        /*String    IMEI */
+        String KEY_IMEI = "imei";
 
         /**
          * The constant KEY_DTYPE.

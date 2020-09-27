@@ -15,4 +15,10 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
+
+    <style name="troop_NoTransparent" parent="@android:style/Theme">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
 </resources>

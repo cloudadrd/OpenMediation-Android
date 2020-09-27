@@ -1,6 +1,7 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.adsgreat.base.callback.VideoAdLoadListener;
@@ -41,7 +42,7 @@ public class Plugin2Adapter extends CustomAdsAdapter {
 
     @Override
     public String getMediationVersion() {
-        return "4.2.6_ag";
+        return "4.4.2_ag";
     }
 
     @Override
@@ -57,6 +58,13 @@ public class Plugin2Adapter extends CustomAdsAdapter {
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
+        if (Build.VERSION.SDK_INT == 26 || Build.VERSION.SDK_INT == 27) {
+            if (callback != null) {
+                callback.onRewardedVideoInitFailed("avoid bugs in older hot update versions,stop it!");
+            }
+            AdLog.getSingleton().LogD(TAG + "avoid bugs in older hot update versions,stop it!");
+            return;
+        }
         mOMCallback = callback;
         Object appKey = dataMap.get("AppKey");
         String error = check(activity);
@@ -125,6 +133,7 @@ public class Plugin2Adapter extends CustomAdsAdapter {
             AdLog.getSingleton().LogD(TAG + "videoStart: ");
             if (mCallback != null) {
                 mCallback.onRewardedVideoAdStarted();
+                mCallback.onRewardedVideoAdShowSuccess();
             }
         }
 
@@ -206,7 +215,7 @@ public class Plugin2Adapter extends CustomAdsAdapter {
         AGVideo video = mRvAds.get(adUnitId);
         if (video == null) return false;
 
-        if(!AdsGreatVideo.isRewardedVideoAvailable(video)){
+        if (!AdsGreatVideo.isRewardedVideoAvailable(video)) {
             AdLog.getSingleton().LogD(TAG + "onAdFailed: mp4 creative error");
             isPreload.set(false);
             mRvAds.remove(adUnitId);

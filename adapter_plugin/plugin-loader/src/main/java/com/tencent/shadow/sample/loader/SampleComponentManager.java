@@ -2,6 +2,7 @@ package com.tencent.shadow.sample.loader;
 
 import android.content.ComponentName;
 import android.content.Context;
+
 import com.tencent.shadow.core.loader.infos.ContainerProviderInfo;
 import com.tencent.shadow.core.loader.managers.ComponentManager;
 
@@ -16,6 +17,9 @@ public class SampleComponentManager extends ComponentManager {
     private static final String DEFAULT_ACTIVITY = "com.tencent.shadow.sample.runtime.PluginDefaultProxyActivity";
     private static final String SINGLE_INSTANCE_ACTIVITY = "com.tencent.shadow.sample.runtime.PluginSingleInstance1ProxyActivity";
     private static final String SINGLE_TASK_ACTIVITY = "com.tencent.shadow.sample.runtime.PluginSingleTask1ProxyActivity";
+
+    private static final String DEFAULT_NO_TRANSPARENT_ACTIVITY = "com.tencent.shadow.sample.runtime.PluginDefaultNoTransparentProxyActivity";
+
 
     private Context context;
 
@@ -32,12 +36,18 @@ public class SampleComponentManager extends ComponentManager {
      */
     @Override
     public ComponentName onBindContainerActivity(ComponentName pluginActivity) {
-        switch (pluginActivity.getClassName()) {
-            /**
-             * 这里配置对应的对应关系
-             */
+//        switch (pluginActivity.getClassName()) {
+//            /**
+//             * 这里配置对应的对应关系
+//             */
+//            case "com.adsgreat.video.view.RewardedVideoActivity":
+//                return new ComponentName(context, DEFAULT_NO_TRANSPARENT_ACTIVITY);
+//        }
+        final String className = pluginActivity.getClassName();
+        if (className.contains("nbmediation") && className.contains("EmptyActivity")) {
+            return new ComponentName(context, DEFAULT_ACTIVITY);
         }
-        return new ComponentName(context, DEFAULT_ACTIVITY);
+        return new ComponentName(context, DEFAULT_NO_TRANSPARENT_ACTIVITY);
     }
 
     /**

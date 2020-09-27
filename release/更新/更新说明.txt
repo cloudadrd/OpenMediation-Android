@@ -1,5 +1,0 @@
-manifest节点下加入此行，跟application节点同级
-<uses-sdk tools:overrideLibrary="com.bun.miitmdid"/>
-
-
-msa_mdid_1.0.13.aar替换为oaid_sdk_1.0.23.aar

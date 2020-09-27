@@ -1,0 +1,49 @@
+ext {
+    adapterVersion = [
+            'adtiming'    : '1.1.0',
+            'admob'       : '1.1.0',
+            'facebook'    : '1.1.0',
+            'unity'       : '1.1.0',
+            'vungle'      : '1.1.0',
+            'adcolony'    : '1.1.0',
+            'applovin'    : '1.1.0',
+            'mopub'       : '1.1.0',
+            'tapjoy'      : '1.1.0',
+            'chartboost'  : '1.1.0',
+            'tiktok'      : '1.0.0',
+            'mintegral'   : '1.1.0',
+            'ironsource'  : '1.0.0',
+            'fyber'       : '1.0.0',
+            'tiktok_cn'   : '1.0.2',
+            'tencentad_cn': '1.0.1',
+            'hyadxopen_cn': '1.0.0',
+            'cloudmobi_cn': '1.0.0',
+            'sigmob'      : '1.0.0',
+            'tc056d'      : '1.0.0',
+            'alion'       : '1.0.2',
+            'zyt'         : '1.0.0',
+            'ks'          : '1.0.1',
+            'agsdk'       : '1.0.2',
+            'inmobi'      : '1.0.0'
+    ]
+
+    pkg_prefix = 'nb_'
+
+    adapterDirs = "../../libs"
+
+    shadow_version = '2.0.13'
+    HOST_APP_APPLICATION_ID = "com.light.cleaner.zero"
+    COMPILE_SDK_VERSION = 29
+    MIN_SDK_VERSION = 18
+    TARGET_SDK_VERSION = 28
+    VERSION_CODE = 2
+    VERSION_NAME = "2.0.12"
+    MANAGER_PLUGIN = "1.0.2"
+    MAIN_PLUGIN = "1.0.3"
+    TIKTOk_PLUGIN = "1.2.1"
+    AGSDK_PLUGIN = '4.3.3'
+    ALION_PLUGIN = '1.0.1'
+
+    nm_version = "1.1.9"
+    hop_version = '1.1.0'
+}

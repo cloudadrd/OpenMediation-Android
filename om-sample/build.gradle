@@ -1,0 +1,132 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    apply from: "${rootProject.projectDir}/config.gradle"
+
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.1'
+        classpath 'com.kezong:fat-aar:1.2.15'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    //版本信息配置
+    version = [
+            "buildToolsVersion": "29.0.2",
+            "compileSdkVersion": 28,
+            "minSdkVersion"    : 16,
+            "targetSdkVersion" : 29,
+            "versionCode"      : 11,
+    ]
+
+    compileOptions = [
+            "sourceCompatibility": JavaVersion.VERSION_1_8,
+            "targetCompatibility": JavaVersion.VERSION_1_8
+    ]
+
+//support 包相关包的引用
+    dependencies = [
+            //fb
+            "facebook"                   : 'com.facebook.android:audience-network-sdk:5.8.0',
+            //admob
+            "admob"                      : 'com.google.android.gms:play-services-ads:19.1.0',
+            //vungle
+            "vungle"                     : 'com.vungle:publisher-sdk-android:6.5.3',
+            //AdColony
+            "adcolony"                   : 'com.adcolony:sdk:4.1.4',
+            //Applovin
+            "applovin"                   : 'com.applovin:applovin-sdk:9.12.4',
+            //MoPub
+            "mopub"                      : 'com.mopub:mopub-sdk:5.12.0@aar',
+            //TapJoy
+            "tapjoy"                     : 'com.tapjoy:tapjoy-android-sdk:12.4.2@aar',
+            //chartboost
+            "chartboost"                 : 'com.chartboost:chartboost-sdk:8.0.2',
+            //unity
+            "unity"                      : 'com.unity3d.ads:unity-ads:3.4.2',
+            //gp-base
+            "play_service_base"          : 'com.google.android.gms:play-services-base:17.2.1',
+            //gp-ads-identifier
+            "play_service_ads_identifier": 'com.google.android.gms:play-services-ads-identifier:17.0.0',
+            //multidex
+            "multidex"                   : 'com.android.support:multidex:1.0.2',
+            //Mintegral
+            "mtg_version"                : '10.2.41',
+            // IronSource
+            "ironsource"                 : 'com.ironsource.sdk:mediationsdk:6.16.0',
+
+            "adtiming"                   : 'com.adtiming:mediation-sdk:6.3.3@aar',
+            "fyber"                      : '7.5.3',
+            'tiktok'                     : 'open_ad_sdk_en',
+            'tiktok_cn'                  : 'open_ad_sdk_3.2.5.1',
+            "tc056d"                     : 'tc-056d',
+            "sigmob"                     : 'windAd-2.18.2',
+            "hyadxopen"                  : 'hyadxopensdk',
+            "tencentad"                  : 'GDTSDK.unionNormal.4.191.1061',
+            "zyt"                        : 'com.zyt:mediation-only:1.1.7',
+            "alion"                      : 'cn.vlion.inland:inlandmix:9.1',
+            'ks'                         : 'ks_adsdk-2.6.9-publish-release',
+            "glide"                      : 'com.github.bumptech.glide:glide:4.8.0',
+            'design'                     : "com.android.support:design:28.0.0",
+            "android_query"              : 'android-query-full.0.26.7',
+            'adsgreat'                   : "4.4.2_ag",
+            'msa_mdid'                   : "oaid_sdk_1.0.23",
+            'inmobi'                     : "7.4.4"
+    ]
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+        jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven {
+            url "https://adcolony.bintray.com/AdColony"
+        }
+        maven {
+            url "https://s3.amazonaws.com/moat-sdk-builds"
+        }
+        maven {
+            name "Tapjoy's maven repo"
+            url "https://tapjoy.bintray.com/maven"
+        }
+        maven {
+            url "https://dl.adtiming.com/android-sdk"
+        }
+        maven {
+            url "https://dl.bintray.com/ironsource-mobile/android-sdk"
+        }
+        maven {
+            url "https://chartboostmobile.bintray.com/Chartboost"
+        }
+        maven {
+            url "https://fyber.bintray.com/marketplace"
+        }
+
+        // mediation 仓库
+        maven { url "http://maven.mediamvp.cn/repository/maven-releases/" }
+
+        maven {
+            url "https://dl.bintray.com/sunjiangrong/maven"
+        }
+
+        maven {
+            url "http://test.vlion.cn:8081/nexus/content/repositories/inland/"
+        }
+    }
+}

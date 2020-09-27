@@ -56,7 +56,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.multidex
-    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:2.0.1'
     implementation 'com.android.support:support-v4:28.0.0'
@@ -77,7 +76,6 @@ dependencies {
 //    releaseImplementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 //    debugImplementation project(':nm-android-sdk')
     implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-
 
     //add oaid
     implementation(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')
@@ -116,10 +114,6 @@ dependencies {
     //sigmob
     implementation(name: 'windAd-2.18.2', ext: 'jar')
     implementation project(path: ':adapter:sigmob')
-
-    //tc056d
-    implementation(name: 'tc-056d', ext: 'jar')
-    implementation project(path: ':adapter_cn:tc056d')
 
     //ks
     implementation(name: rootProject.ext.dependencies.ks, ext: 'aar')
@@ -176,6 +170,14 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation project(path: ':adapter_cn:inmobi')
 
+    //ironsource
+    implementation rootProject.ext.dependencies.ironsource
+    implementation project(path: ':adapter:ironsource')
+
+    //unity
+    implementation rootProject.ext.dependencies.unity
+    implementation project(path: ':adapter:unity')
+
 
 //    //AdColony
 //    implementation rootProject.ext.dependencies.adcolony
@@ -210,10 +212,6 @@ dependencies {
 //    implementation "com.fyber.vamp:mraid-kit:${rootProject.ext.dependencies.fyber}"
 //    implementation project(path: ':adapter:fyber')
 //
-    //ironsource
-    implementation rootProject.ext.dependencies.ironsource
-    implementation project(path: ':adapter:ironsource')
-//
 
 //
 //    //mopub
@@ -229,13 +227,15 @@ dependencies {
 //    //tiktok en
 ////    compileOnly(name: 'open_ad_sdk_en', ext: 'aar')
 //
-    //unity
-    implementation rootProject.ext.dependencies.unity
-    implementation project(path: ':adapter:unity')
+
 //
 //    //vungle
 //    implementation rootProject.ext.dependencies.vungle
 //    implementation project(path: ':adapter:vungle')
+
+    //tc056d
+//    implementation(name: 'tc-056d', ext: 'jar')
+//    implementation project(path: ':adapter_cn:tc056d')
 
 }
 

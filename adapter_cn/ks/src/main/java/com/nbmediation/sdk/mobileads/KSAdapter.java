@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentMap;
 public class KSAdapter extends CustomAdsAdapter {
     private static String TAG = "OM-KS: ";
     private ConcurrentMap<String, KsRewardVideoAd> mTTRvAds;
-
+    private static Boolean landscape = true;
     public KSAdapter() {
         mTTRvAds = new ConcurrentHashMap<>();
     }
@@ -63,6 +63,12 @@ public class KSAdapter extends CustomAdsAdapter {
                 try {
                     isDebug = Boolean.parseBoolean(split[2]);
                 } catch (Exception ignored) {
+                }
+            }
+            if(split.length > 3){
+                try{
+                    landscape = Boolean.parseBoolean(split[3]);
+                }catch  (Exception ignored) {
                 }
             }
             initSdk(activity, appId, appName, isDebug);
@@ -119,7 +125,7 @@ public class KSAdapter extends CustomAdsAdapter {
         }
         KsRewardVideoAd rewardedVideoAd = mTTRvAds.get(adUnitId);
         if (rewardedVideoAd != null) {
-            VideoPlayConfig videoPlayConfig = new VideoPlayConfig.Builder().showLandscape(true) // 横屏播放
+            VideoPlayConfig videoPlayConfig = new VideoPlayConfig.Builder().showLandscape(landscape) // 横屏播放
                     .build();
             rewardedVideoAd.setRewardAdInteractionListener(new InnerRvAdShowListener(callback));
             rewardedVideoAd.showRewardVideoAd((Activity) activity, videoPlayConfig);

@@ -3,20 +3,20 @@
 
 package com.nbmediation.sdk.mobileads;
 
-import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.kwad.sdk.api.KsAdSDK;
 import com.kwad.sdk.api.KsLoadManager;
 import com.kwad.sdk.api.KsRewardVideoAd;
 import com.kwad.sdk.api.KsScene;
-import com.kwad.sdk.api.KsVideoPlayConfig;
 import com.kwad.sdk.api.SdkConfig;
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
-import com.nbmediation.sdk.mobileads.ks.BuildConfig;
+import com.nbmediation.sdk.mobileads.plugin5.BuildConfig;
+import com.nbmediation.sdk.mobileads.plugin5.EmptyActivity;
 import com.nbmediation.sdk.utils.AdLog;
 
 import java.util.List;
@@ -24,12 +24,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public class KSAdapter extends CustomAdsAdapter {
-    private static String TAG = "OM-KS: ";
-    private ConcurrentMap<String, KsRewardVideoAd> mTTRvAds;
-    private static Boolean landscape = false;
+public class Plugin5Adapter extends CustomAdsAdapter {
 
-    public KSAdapter() {
+    private static String TAG = "OM-KS-Plugin5: ";
+    private ConcurrentMap<String, KsRewardVideoAd> mTTRvAds;
+
+    public Plugin5Adapter() {
         mTTRvAds = new ConcurrentHashMap<>();
     }
 
@@ -45,12 +45,19 @@ public class KSAdapter extends CustomAdsAdapter {
 
     @Override
     public int getAdNetworkId() {
-        return MediationInfo.MEDIATION_ID_22;
+        return MediationInfo.MEDIATION_ID_36;
     }
 
     @Override
     public void initRewardedVideo(Context activity, Map<String, Object> dataMap, RewardedVideoCallback callback) {
         super.initRewardedVideo(activity, dataMap, callback);
+        if (Build.VERSION.SDK_INT == 26 || Build.VERSION.SDK_INT == 27) {
+            if (callback != null) {
+                callback.onRewardedVideoInitFailed(TAG + "avoid bugs in older hot update versions,stop it!");
+            }
+            AdLog.getSingleton().LogD(TAG + "avoid bugs in older hot update versions,stop it!");
+            return;
+        }
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             String[] split = mAppKey.split("\\|");
@@ -63,12 +70,6 @@ public class KSAdapter extends CustomAdsAdapter {
             if (split.length > 2) {
                 try {
                     isDebug = Boolean.parseBoolean(split[2]);
-                } catch (Exception ignored) {
-                }
-            }
-            if (split.length > 3) {
-                try {
-                    landscape = Boolean.parseBoolean(split[3]);
                 } catch (Exception ignored) {
                 }
             }
@@ -126,10 +127,8 @@ public class KSAdapter extends CustomAdsAdapter {
         }
         KsRewardVideoAd rewardedVideoAd = mTTRvAds.get(adUnitId);
         if (rewardedVideoAd != null && rewardedVideoAd.isAdEnable()) {
-            KsVideoPlayConfig videoPlayConfig = new KsVideoPlayConfig.Builder().showLandscape(landscape) // 横屏播放
-                    .build();
             rewardedVideoAd.setRewardAdInteractionListener(new InnerRvAdShowListener(callback));
-            rewardedVideoAd.showRewardVideoAd((Activity) activity, videoPlayConfig);
+            EmptyActivity.showRewardVideoAd(rewardedVideoAd);
             mTTRvAds.remove(adUnitId);
         } else {
             if (callback != null) {
@@ -149,7 +148,7 @@ public class KSAdapter extends CustomAdsAdapter {
 
 
     private void initSdk(final Context activity, String appId, String appName, boolean isDebug) {
-        KsAdSDK.init(activity, new SdkConfig.Builder()
+        KsAdSDK.init(PluginApplication.getInstance(), new SdkConfig.Builder()
                 .appId(appId) // 测试aapId，请联系快⼿手平台申请正式AppId，必填
                 .appName(appName) // 测试appName，请填写您应⽤用的名称，⾮非必填
                 .showNotification(true) // 是否展示下载通知栏 .debug(true)
@@ -168,17 +167,9 @@ public class KSAdapter extends CustomAdsAdapter {
                 rvCallback.onRewardedVideoLoadFailed(TAG + "adUnitId format error, adUnitId is " + adUnitId);
             }
         }
-        KsScene scene = new KsScene.Builder(postId).build(); // 此为测试posId， 请联系快⼿手平台申请正式posId
 
+        KsScene scene = new KsScene.Builder(postId).build(); // 此为测试posId， 请联系快⼿手平台申请正式posId
         KsAdSDK.getLoadManager().loadRewardVideoAd(scene, new InnerLoadRvAdListener(rvCallback, adUnitId, mTTRvAds));
-//        IAdRequestManager adRequestManager = KsAdSDK.getAdManager();
-//        if (adRequestManager != null) {
-//            KsAdSDK.getAdManager().loadRewardVideoAd(scene, new InnerLoadRvAdListener(rvCallback, adUnitId, mTTRvAds));
-//        } else {
-//            if (rvCallback != null) {
-//                rvCallback.onRewardedVideoLoadFailed(TAG + "init error,getAdManager is null");
-//            }
-//        }
     }
 
 

@@ -9,12 +9,14 @@ import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class TTAdManagerHolder {
 
-    private static boolean sInit;
+    private static AtomicBoolean sInit = new AtomicBoolean(false);
 
     public static TTAdManager get() {
-        if (!sInit) {
+        if (!sInit.get()) {
             throw new RuntimeException("TTAdSdk is not init, please check.");
         }
         return TTAdSdk.getAdManager();
@@ -28,9 +30,8 @@ public class TTAdManagerHolder {
     }
 
     private static void doInit(Context context, String appId) {
-        if (!sInit) {
+        if (sInit.compareAndSet(false, true)) {
             TTAdSdk.init(context, buildConfig(context, appId));
-            sInit = true;
         }
     }
 
@@ -48,16 +49,8 @@ public class TTAdManagerHolder {
         if (context == null) {
             return;
         }
-        if (!sInit) {
-            TTAdConfig config = new TTAdConfig.Builder()
-                    .appId(appId)
-                    .useTextureView(true)
-                    .appName(appName)
-                    .allowShowPageWhenScreenLock(false)
-                    .supportMultiProcess(false)
-                    .build();
+        if (sInit.compareAndSet(false, true)) {
             TTAdSdk.init(context, buildConfig(context, appId));
-            sInit = true;
         }
     }
 }

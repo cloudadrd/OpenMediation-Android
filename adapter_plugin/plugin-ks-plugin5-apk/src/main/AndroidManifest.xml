@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nbmediation.sdk.mobileads.plugin5">
+    <!--检测当前⽹网络状态是2G、3G、4G还是WiFi-->
+    <!--联⽹网权限-->
+    <application>
+        <activity
+            android:name=".EmptyActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@style/MyTransparent" />
+    </application>
+    <!--获取设备标识IMEI。⽤用于标识⽤用户-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!--读写存储权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--获取MAC地址，⽤用于标识⽤用户-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!--安装应⽤用权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!--定位权限，不不强制要求-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--SDK内⾃自定义的权限，与下载相关，aar中已经申请-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="${applicationId}.permission.KW_SDK_BROADCAST" />
+</manifest>

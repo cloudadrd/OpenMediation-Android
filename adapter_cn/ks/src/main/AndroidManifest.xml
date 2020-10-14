@@ -3,9 +3,7 @@
 
 
     <!--检测当前⽹网络状态是2G、3G、4G还是WiFi-->
-    <permission
-        android:name="${applicationId}.permission.KW_SDK_BROADCAST"
-        android:protectionLevel="signature" /> <!--联⽹网权限-->
+    <!--联⽹网权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!--获取设备标识IMEI。⽤用于标识⽤用户-->
     <uses-permission android:name="android.permission.INTERNET" /> <!--读写存储权限-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />

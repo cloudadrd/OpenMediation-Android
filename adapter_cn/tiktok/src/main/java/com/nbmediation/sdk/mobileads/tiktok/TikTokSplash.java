@@ -33,7 +33,7 @@ public class TikTokSplash extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 设置锁屏下可展示，此配置仅限测试调试使用，正式代码慎用
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.om_tiktok_activity_splash);
         mSplashContainer = (FrameLayout) findViewById(R.id.splash_container);
         //step2:创建TTAdNative对象
         mTTAdNative = TTAdManagerHolder.get().createAdNative(this);

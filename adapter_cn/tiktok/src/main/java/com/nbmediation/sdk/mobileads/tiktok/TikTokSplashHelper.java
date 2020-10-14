@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.nbmediation.sdk.mobileads.TTAdManagerHolder;
-import com.nbmediation.sdk.mobileads.tiktok.TikTokSplash;
 
 public class TikTokSplashHelper {
 

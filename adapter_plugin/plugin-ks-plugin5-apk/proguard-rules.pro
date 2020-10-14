@@ -19,7 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
 -keep class org.chromium.** {*;}
 -keep class org.chromium.** { *; }
 -keep class aegon.chrome.** { *; }
@@ -28,7 +27,3 @@
 -dontwarn com.kwad.**
 -dontwarn com.ksad.**
 -dontwarn aegon.chrome.**
-
--keepclasseswithmembers class * {
-    native <methods>;
-}

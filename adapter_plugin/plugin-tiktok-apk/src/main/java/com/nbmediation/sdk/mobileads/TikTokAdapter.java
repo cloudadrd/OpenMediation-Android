@@ -18,8 +18,8 @@ import com.nbmediation.sdk.mediation.CustomAdsAdapter;
 import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
-import com.nbmediation.sdk.mobileads.tiktok.BuildConfig;
-import com.nbmediation.sdk.mobileads.tiktok.EmptyActivity;
+import com.nbmediation.sdk.mobileads.plugin5.BuildConfig;
+import com.nbmediation.sdk.mobileads.plugin5.EmptyActivity;
 import com.nbmediation.sdk.utils.AdLog;
 
 import java.util.Map;

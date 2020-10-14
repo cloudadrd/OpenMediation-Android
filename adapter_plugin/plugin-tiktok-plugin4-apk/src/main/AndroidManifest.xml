@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nbmediation.sdk.mobileads.tiktok">
+    package="com.nbmediation.sdk.mobileads.plugin4">
     <!--必要权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,7 +21,7 @@
             android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
             android:authorities="${applicationId}.TTMultiProvider"
             android:exported="false" />
-        <activity android:name="com.nbmediation.sdk.mobileads.tiktok.EmptyActivity"
+        <activity android:name="com.nbmediation.sdk.mobileads.plugin5.com.nbmediation.sdk.mobileads.plugin4.EmptyActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:noHistory="true"

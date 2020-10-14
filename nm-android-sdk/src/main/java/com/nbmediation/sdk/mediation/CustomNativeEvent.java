@@ -13,14 +13,18 @@ public abstract class CustomNativeEvent extends CustomAdEvent {
 
 
     protected int[] getNativeSize(Map<String, String> config) {
-        int width = 350, height = 350;
+        int width = 640, height = 320;
         if (config != null && config.containsKey("width") && config.containsKey("height")) {
             try {
-                width = Integer.parseInt(config.get("width"));
-                height = Integer.parseInt(config.get("height"));
+                int w = Integer.parseInt(config.get("width"));
+                int h = Integer.parseInt(config.get("height"));
+                if (w != 0 && h != 0){
+                    width = w;
+                    height = h;
+                }
             } catch (Exception e) {
-                width = 350;
-                height = 350;
+                width = 640;
+                height = 320;
             }
         }
         return new int[]{width, height};

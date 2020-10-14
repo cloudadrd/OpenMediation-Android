@@ -35,10 +35,14 @@ public final class NativeImp extends AbstractHybridAd implements View.OnAttachSt
     private NativeAdListener mNativeListener;
     private NativeAdView mNativeAdView;
     private boolean isImpressed;
+    private int mWidth;
+    private int mHeight;
 
-    public NativeImp(Activity activity, String placementId, NativeAdListener listener) {
+    public NativeImp(Activity activity, String placementId, int width, int height, NativeAdListener listener) {
         super(activity, placementId);
         mNativeListener = listener;
+        mWidth = width;
+        mHeight = height;
     }
 
     @Override
@@ -72,6 +76,10 @@ public final class NativeImp extends AbstractHybridAd implements View.OnAttachSt
         }
 
         GlobalVariable.setCustomDataForMap(config);
+
+        //tws 添加广告位尺寸到config中
+        config.put("width", String.valueOf(mWidth));
+        config.put("height", String.valueOf(mHeight));
 
         nativeEvent.loadAd(mActRef.get(), config);
         iLoadReport(instances);

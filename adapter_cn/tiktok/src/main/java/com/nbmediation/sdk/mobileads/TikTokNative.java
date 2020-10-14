@@ -48,7 +48,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
         this.mActivity = activity;
         initTTSDKConfig(activity, config);
         int[] size = getNativeSize(config);
-        loadNativeAd(mInstancesKey, 640, 320);
+        loadNativeAd(mInstancesKey, size[0], size[1]);
     }
 
 
@@ -98,7 +98,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
         if (isDestroyed) {
             return;
         }
-        AdLog.getSingleton().LogD(TAG + "Banner ad load failed " + s);
+        AdLog.getSingleton().LogD(TAG + "Native ad load failed " + s);
         onInsError(s);
     }
 
@@ -114,7 +114,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
         bindDislike(mActivity, mTTAd);
         mTTAd.setExpressInteractionListener(new TikTokNative.InnerAdInteractionListener(TikTokNative.this));
         mTTAd.render();
-        AdLog.getSingleton().LogD(TAG + "Banner ad load success ");
+        AdLog.getSingleton().LogD(TAG + "Native ad load success ");
     }
 
     private static class InnerAdInteractionListener implements TTNativeExpressAd.ExpressAdInteractionListener {

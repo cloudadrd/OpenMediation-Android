@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
             nativeAd.destroy();
         }
         adContainer.removeAllViews();
-        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, new NativeAdListener() {
+        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, 375, 126, new NativeAdListener() {
             @Override
             public void onAdFailed(String msg) {
                 nativeButton.setEnabled(true);

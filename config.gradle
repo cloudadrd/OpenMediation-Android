@@ -14,7 +14,7 @@ ext {
             'mintegral'   : '1.1.0',
             'ironsource'  : '1.0.0',
             'fyber'       : '1.0.0',
-            'tiktok_cn'   : '1.0.2',
+            'tiktok_cn'   : '1.0.3',
             'tencentad_cn': '1.0.1',
             'hyadxopen_cn': '1.0.0',
             'cloudmobi_cn': '1.0.0',
@@ -44,6 +44,6 @@ ext {
     AGSDK_PLUGIN = '4.3.3'
     ALION_PLUGIN = '1.0.1'
 
-    nm_version = "1.1.9"
+    nm_version = "1.2.0"
     hop_version = '1.1.0'
 }

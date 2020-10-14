@@ -212,7 +212,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeADUnifie
             initAd(mAdData);
             AdLog.getSingleton().LogD(TAG, "Native ad load success ");
         } else {
-            String error = TAG + "Banner ad load failed: no ads";
+            String error = TAG + "Native ad load failed: no ads";
             AdLog.getSingleton().LogD(error);
             onInsError(error);
         }
@@ -255,7 +255,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeADUnifie
 
     @Override
     public void onNoAD(AdError adError) {
-        AdLog.getSingleton().LogD(TAG + "Banner ad load failed: code " + adError.getErrorCode() + " " + adError.getErrorMsg());
+        AdLog.getSingleton().LogD(TAG + "Native ad load failed: code " + adError.getErrorCode() + " " + adError.getErrorMsg());
         onInsError(adError.getErrorMsg());
     }
 

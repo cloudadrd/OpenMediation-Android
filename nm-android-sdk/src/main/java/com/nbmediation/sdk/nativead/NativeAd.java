@@ -30,7 +30,20 @@ public class NativeAd {
      * @param adListener  the ad listener
      */
     public NativeAd(Activity activity, String placementId, NativeAdListener adListener) {
-        mNative = new NativeImp(activity, placementId, adListener);
+        mNative = new NativeImp(activity, placementId, 0, 0, adListener);
+    }
+
+    /**
+     * Instantiates NativeAd
+     *
+     * @param activity    the activity
+     * @param placementId the placement id
+     * @param adListener  the ad listener
+     * @param width  the ad width
+     * @param height  the ad height
+     */
+    public NativeAd(Activity activity, String placementId, int width, int height, NativeAdListener adListener) {
+        mNative = new NativeImp(activity, placementId, width, height, adListener);
     }
 
     /**

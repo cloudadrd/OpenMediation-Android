@@ -24,7 +24,8 @@ include ':adapter_cn:hyadxopen',
         ':adapter_cn:alion',
         ':adapter_cn:zyt',
         ':adapter_cn:ks',
-        ':adapter_cn:agsdk'
+        ':adapter_cn:agsdk',
+        ':adapter_cn:baidu'
 include ':adapter_host:host-app', ':adapter_host:host-online-plugin'
 include ':nm-android-sdk', ':adapter_plugin:plugin-main-lib',
         ':adapter_plugin:plugin-loader', ':adapter_plugin:plugin-manager',

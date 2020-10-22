@@ -106,6 +106,9 @@ dependencies {
     implementation(name: 'GDTSDK.unionNormal.4.191.1061', ext: 'aar')
     implementation project(path: ':adapter_cn:tencentad')
 
+    //baidu_cn
+    compile(name:'Baidu_MobAds_SDK-release',ext:'aar')
+    implementation project(path: ':adapter_cn:baidu')
 
     //tiktok cn
     implementation(name: rootProject.ext.dependencies.tiktok_cn, ext: 'aar')

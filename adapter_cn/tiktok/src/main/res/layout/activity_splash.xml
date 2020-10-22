@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#000000"
-    tools:context="com.nbmediation.sdk.mobileads.tiktok.SplashActivity">
+    tools:context="com.nbmediation.sdk.mobileads.tiktok.TikTokSplash">
 
     <FrameLayout
         android:id="@+id/splash_container"

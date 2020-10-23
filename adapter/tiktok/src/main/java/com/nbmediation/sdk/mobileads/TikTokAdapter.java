@@ -42,7 +42,7 @@ public class TikTokAdapter extends CustomAdsAdapter {
 
     @Override
     public String getAdapterVersion() {
-        return com.nbmediation.sdk.mobileads.plugin5.BuildConfig.VERSION_NAME;
+        return com.nbmediation.sdk.mobileads.tittok.BuildConfig.VERSION_NAME;
     }
 
     @Override

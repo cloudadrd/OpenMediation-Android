@@ -14,7 +14,7 @@ ext {
             'mintegral'   : '1.1.1',
             'ironsource'  : '1.0.0',
             'fyber'       : '1.0.0',
-            'tiktok_cn'   : '1.0.3',
+            'tiktok_cn'   : '1.0.4',
             'tencentad_cn': '1.0.1',
             'hyadxopen_cn': '1.0.0',
             'cloudmobi_cn': '1.0.0',
@@ -38,13 +38,13 @@ ext {
     TARGET_SDK_VERSION = 28
     VERSION_CODE = 2
     VERSION_NAME = "2.0.12"
-    MANAGER_PLUGIN = "1.0.2"
-    MAIN_PLUGIN = "1.0.3"
+    MANAGER_PLUGIN = "1.0.3"
+    MAIN_PLUGIN = "1.0.5"
     TIKTOk_PLUGIN = "1.2.1"
     AGSDK_PLUGIN = '4.3.3'
     ALION_PLUGIN = '1.0.1'
     KS_PLUGIN = '1.0.6'
-
+    MINTGRAL_PLUGIN = '1.0.7'
     nm_version = "1.2.0"
     hop_version = '1.1.0'
 }

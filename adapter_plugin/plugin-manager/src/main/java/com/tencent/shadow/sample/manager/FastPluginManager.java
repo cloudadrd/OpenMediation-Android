@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.tencent.shadow.core.common.Logger;
 import com.tencent.shadow.core.common.LoggerFactory;
@@ -122,6 +123,7 @@ public abstract class FastPluginManager extends PluginManagerThatUseDynamicLoade
 
         Map map = mPluginLoader.getLoadedPlugin();
         if (!map.containsKey(partKey)) {
+//            Log.i("")
             mPluginLoader.loadPlugin(partKey);
         }
         Boolean isCall = (Boolean) map.get(partKey);

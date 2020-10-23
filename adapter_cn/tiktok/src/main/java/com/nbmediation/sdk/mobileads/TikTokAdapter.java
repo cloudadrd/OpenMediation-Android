@@ -178,7 +178,12 @@ public class TikTokAdapter extends CustomAdsAdapter {
         if (TextUtils.isEmpty(error)) {
             TTRewardVideoAd rewardedVideoAd = mTTRvAds.get(adUnitId);
             if (rewardedVideoAd == null) {
-                realLoadRvAd(activity, adUnitId, callback);
+                try {
+                    realLoadRvAd(activity, adUnitId, callback);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                    callback.onRewardedVideoLoadFailed(e.getMessage());
+                }
             } else {
                 if (callback != null) {
                     callback.onRewardedVideoLoadSuccess();
@@ -309,7 +314,7 @@ public class TikTokAdapter extends CustomAdsAdapter {
     }
 
     private void initSdk(final Context activity) {
-        TTAdManagerHolder.init(activity.getApplicationContext(), mAppKey);
+        TTAdManagerHolder.init(activity.getApplicationContext(), mAppKey,null);
     }
 
     private class InnerIsAdListener implements TTAdNative.FullScreenVideoAdListener {

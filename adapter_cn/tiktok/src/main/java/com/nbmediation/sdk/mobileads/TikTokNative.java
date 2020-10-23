@@ -46,7 +46,12 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
             return;
         }
         this.mActivity = activity;
-        initTTSDKConfig(activity, config);
+        try {
+            initTTSDKConfig(activity, config);
+        } catch (Throwable e) {
+            e.printStackTrace();
+            onInsError(e.getMessage());
+        }
         int[] size = getNativeSize(config);
         loadNativeAd(mInstancesKey, size[0], size[1]);
     }
@@ -63,7 +68,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
     }
 
     private void initTTSDKConfig(Activity activity, Map<String, String> config) {
-        TTAdManagerHolder.init(activity.getApplication(), config.get("AppKey"));
+        TTAdManagerHolder.init(activity.getApplication(), config.get("AppKey"), null);
         if (mTTAdNative == null) {
             mTTAdNative = TTAdManagerHolder.get().createAdNative(activity);
         }

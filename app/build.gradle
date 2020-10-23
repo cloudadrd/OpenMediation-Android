@@ -27,13 +27,14 @@ android {
 
     }
 
-//    packagingOptions {
-//        exclude 'META-INF/DEPENDENCIES'
-//        doNotStrip "*/armeabi-v7a/*.so"
-//        doNotStrip "*/x86/*.so"
-//        doNotStrip "*/arm64-v8a/*.so"
-//        doNotStrip "armeabi.so"
-//    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        doNotStrip "*/armeabi-v7a/*.so"
+        doNotStrip "*/x86/*.so"
+        doNotStrip "*/arm64-v8a/*.so"
+        doNotStrip "armeabi.so"
+    }
 
     buildTypes {
         debug {
@@ -52,7 +53,7 @@ android {
         sourceCompatibility = rootProject.ext.compileOptions.sourceCompatibility
         targetCompatibility = rootProject.ext.compileOptions.targetCompatibility
     }
-
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -83,8 +84,8 @@ dependencies {
     implementation(name: rootProject.ext.dependencies.msa_mdid, ext: 'aar')
 
     //添加Shadow
-//    debugImplementation project(':adapter_host:host-online-plugin')
-    implementation(name: "host-online-plugin-${project.hop_version}", ext: 'aar')
+    debugImplementation project(':adapter_host:host-online-plugin')
+//    implementation(name: "host-online-plugin-${project.hop_version}", ext: 'aar')
     implementation(name: 'host-2.0.13', ext: 'jar')
     implementation(name: 'common-2.0.13', ext: 'jar')
 

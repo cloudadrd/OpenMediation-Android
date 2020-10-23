@@ -31,5 +31,5 @@ include ':nm-android-sdk', ':adapter_plugin:plugin-main-lib',
         ':adapter_plugin:plugin-runtime', 'adapter_plugin:plugin-tiktok-apk',
         'adapter_plugin:plugin-main', 'adapter_plugin:plugin-agsdk-plugin2-apk',
         'adapter_plugin:plugin-vlion-plugin3-apk', 'adapter_plugin:plugin-tiktok-plugin4-apk',
-        'adapter_plugin:plugin-ks-plugin5-apk'
+        'adapter_plugin:plugin-ks-plugin5-apk', 'adapter_plugin:plugin-mintgral-plugin7-apk'
 include ':test'

@@ -36,7 +36,12 @@ public class TikTokBanner extends CustomBannerEvent implements TTAdNative.Native
             return;
         }
         this.mActivity = activity;
-        initTTSDKConfig(activity, config);
+        try {
+            initTTSDKConfig(activity, config);
+        } catch (Throwable e) {
+            e.printStackTrace();
+            onInsError(e.getMessage());
+        }
         int[] size = getBannerSize(config);
         loadBannerAd(mInstancesKey, size[0], size[1]);
     }
@@ -65,7 +70,7 @@ public class TikTokBanner extends CustomBannerEvent implements TTAdNative.Native
     }
 
     private void initTTSDKConfig(Activity activity, Map<String, String> config) {
-        TTAdManagerHolder.init(activity.getApplication(), config.get("AppKey"));
+        TTAdManagerHolder.init(activity.getApplication(), config.get("AppKey"), null);
         if (mTTAdNative == null) {
             mTTAdNative = TTAdManagerHolder.get().createAdNative(activity);
         }

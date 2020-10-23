@@ -21,7 +21,7 @@
             android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
             android:authorities="${applicationId}.TTMultiProvider"
             android:exported="false" />
-        <activity android:name="com.nbmediation.sdk.mobileads.plugin5.com.nbmediation.sdk.mobileads.plugin4.EmptyActivity"
+        <activity android:name="com.nbmediation.sdk.mobileads.plugin4.EmptyActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:noHistory="true"

@@ -9,30 +9,15 @@ import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdManager;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class TTAdManagerHolder {
 
-    private static AtomicBoolean sInit = new AtomicBoolean(false);
+    private static boolean isInit = false;
 
-    public static TTAdManager get() {
-        if (!sInit.get()) {
+    public synchronized static TTAdManager get() {
+        if (!isInit) {
             throw new RuntimeException("TTAdSdk is not init, please check.");
         }
         return TTAdSdk.getAdManager();
-    }
-
-    public static void init(Context context, String appId) {
-        if (context == null) {
-            return;
-        }
-        doInit(context, appId);
-    }
-
-    private static void doInit(Context context, String appId) {
-        if (sInit.compareAndSet(false, true)) {
-            TTAdSdk.init(context, buildConfig(context, appId));
-        }
     }
 
     private static TTAdConfig buildConfig(Context context, String appId) {
@@ -45,12 +30,13 @@ public class TTAdManagerHolder {
                 .build();
     }
 
-    public static void init(Context context, String appId, String appName) {
+    public synchronized static void init(Context context, String appId, String appName) {
         if (context == null) {
             return;
         }
-        if (sInit.compareAndSet(false, true)) {
+        if (!isInit) {
             TTAdSdk.init(context, buildConfig(context, appId));
+            isInit = true;
         }
     }
 }

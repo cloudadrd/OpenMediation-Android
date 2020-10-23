@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.nbmediation.sdk.mobileads.plugin7">
+
+    <application>
+        <activity
+            android:name="com.nbmediation.sdk.mobileads.plugin7.EmptyActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@style/MyTransparent" />
+
+    </application>
+    <!--获取设备标识IMEI。⽤用于标识⽤用户-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+</manifest>

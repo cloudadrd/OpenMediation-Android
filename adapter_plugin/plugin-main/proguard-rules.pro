@@ -46,9 +46,15 @@
 -keep class com.tencent.shadow.core.common.**{*;}
 -keep class com.tencent.shadow.core.loader.**{*;}
 -keep class com.tencent.shadow.core.runtime.**{*;}
+-keep class com.tencent.shadow.core.load_parameters.**{*;}
+-keep class com.tencent.shadow.sample.loader.**{*;}
+#需要keep在宿主AndroidManifest.xml注册的壳子activity
+-keep class com.tencent.shadow.sample.runtime.**{*;}
 
 -dontwarn  com.tencent.shadow.dynamic.host.**
 -dontwarn  com.tencent.shadow.dynamic.impl.**
 -dontwarn  com.tencent.shadow.dynamic.loader.**
 -dontwarn  com.tencent.shadow.core.common.**
 -dontwarn  com.tencent.shadow.core.loader.**
+
+

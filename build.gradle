@@ -128,5 +128,10 @@ allprojects {
         maven {
             url "http://test.vlion.cn:8081/nexus/content/repositories/inland/"
         }
+
+        maven{
+            url "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
+        }
+
     }
 }

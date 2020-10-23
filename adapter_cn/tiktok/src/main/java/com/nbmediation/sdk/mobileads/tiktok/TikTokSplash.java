@@ -28,6 +28,7 @@ public class TikTokSplash extends Activity {
     private static final int AD_TIME_OUT = 4000;
     private String mCodeId = "887364502";
     private boolean mIsExpress = false; //是否请求模板广告
+
     @SuppressWarnings("RedundantCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,13 @@ public class TikTokSplash extends Activity {
         setContentView(R.layout.om_tiktok_activity_splash);
         mSplashContainer = (FrameLayout) findViewById(R.id.splash_container);
         //step2:创建TTAdNative对象
-        mTTAdNative = TTAdManagerHolder.get().createAdNative(this);
+        try {
+            mTTAdNative = TTAdManagerHolder.get().createAdNative(this);
+        } catch (Throwable e) {
+            AdLog.getSingleton().LogD(e.getMessage(), e);
+            finish();
+            return;
+        }
         getExtraInfo();
         //在合适的时机申请权限，如read_phone_state,防止获取不了imei时候，下载类广告没有填充的问题
         //在开屏时候申请不太合适，因为该页面倒计时结束或者请求超时会跳转，在该页面申请权限，体验不好
@@ -118,13 +125,13 @@ public class TikTokSplash extends Activity {
             @Override
             @MainThread
             public void onSplashAdLoad(TTSplashAd ad) {
-                Log.d(TAG, "开屏广告请求成功");
+                AdLog.getSingleton().LogD(TAG, "开屏广告请求成功");
                 if (ad == null) {
                     return;
                 }
                 //获取SplashView
                 View view = ad.getSplashView();
-                if (view != null && mSplashContainer != null && !TikTokSplash.this.isFinishing()) {
+                if (mSplashContainer != null && !TikTokSplash.this.isFinishing()) {
                     mSplashContainer.removeAllViews();
                     //把SplashView 添加到ViewGroup中,注意开屏广告view：width >=70%屏幕宽；height >=50%屏幕高
                     mSplashContainer.addView(view);
@@ -138,19 +145,19 @@ public class TikTokSplash extends Activity {
                 ad.setSplashInteractionListener(new TTSplashAd.AdInteractionListener() {
                     @Override
                     public void onAdClicked(View view, int type) {
-                        Log.d(TAG, "onAdClicked");
+                        AdLog.getSingleton().LogD(TAG, "onAdClicked");
                         showToast("开屏广告点击");
                     }
 
                     @Override
                     public void onAdShow(View view, int type) {
-                        Log.d(TAG, "onAdShow");
+                        AdLog.getSingleton().LogD(TAG, "onAdShow");
                         showToast("开屏广告展示");
                     }
 
                     @Override
                     public void onAdSkip() {
-                        Log.d(TAG, "onAdSkip");
+                        AdLog.getSingleton().LogD(TAG, "onAdSkip");
                         showToast("开屏广告跳过");
                         goToMainActivity();
 
@@ -158,7 +165,7 @@ public class TikTokSplash extends Activity {
 
                     @Override
                     public void onAdTimeOver() {
-                        Log.d(TAG, "onAdTimeOver");
+                        AdLog.getSingleton().LogD(TAG, "onAdTimeOver");
                         showToast("开屏广告倒计时结束");
                         goToMainActivity();
                     }

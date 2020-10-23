@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-buildType='release'
+buildType='debug'
 rm adapter_host/host-online-plugin/src/main/assets/**
 cd adapter_plugin/plugin-manager
 gradle clean

@@ -137,7 +137,9 @@ public class ModuleManager {
             } else if (module.isDel()) {
 
                 SLog.i("ready to execute the delete. " + getModuleAndVersionStr(module));
-
+                //已经激活的相同版本模块不允许热删除
+                ModulePo modulePo = activeMap.get(module.getModuleName());
+                if (modulePo != null && module.getVersion().equals(modulePo.getVersion())) continue;
                 delete(module);
 
             }

@@ -1,0 +1,52 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nbmediation.sdk.mobileads.plugin6">
+
+    <!-- SDK相关权限声明 -->
+    <!-- -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- targetSdkVersion >= 26 时需要配置此权限，否则无法进行安装app的动作 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
+    <!-- 如果有视频相关的广告且使用textureView播放，请务必添加，否则黑屏 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 注意：在targetSdkVersion>=28时,在9.0设备中默认禁用http请求 -->
+    <!-- 需要设置usesCleartextTraffic="true"解除限制,否则会影响广告的请求 -->
+    <!-- 或者通过network_security_config.xml配置usesCleartextTraffic="true"解除限制 -->
+    <!-- targetSdkVersion>28时,设置requestLegacyExternalStorage="true",可以停用分区存储 -->
+    <application>
+        <!-- Necessary -->
+        <meta-data
+            android:name="BaiduMobAd_APP_ID"
+            android:value="e866cfb0" />
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <!-- 如果targetSdkVersion设置值>=24，则强烈建议添加以下provider，否则会影响app变现 -->
+        <!-- android:authorities="${packageName}.bd.provider" authorities中${packageName}部分必须替换成app自己的包名 -->
+        <!-- 原来的FileProvider在新版本中改为BdFileProvider,继承自v4的FileProvider,需要在应用内引用support-v4包 -->
+        <provider
+            android:name="com.baidu.mobads.openad.BdFileProvider"
+            android:authorities="com.nbmediation.sdk.mobileads.bd.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/bd_file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.nbmediation.sdk.mobileads.BaiduSplashActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait" />
+        <!--            android:label="@string/splash"-->
+    </application>
+
+
+</manifest>

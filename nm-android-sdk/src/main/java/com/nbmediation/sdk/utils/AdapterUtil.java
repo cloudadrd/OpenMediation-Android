@@ -27,7 +27,8 @@ public class AdapterUtil {
     /**
      * The constant MEDIATION_ADAPTER_BASE_PATH.
      */
-    protected static final String MEDIATION_ADAPTER_BASE_PATH = "com.nbmediation.sdk.mobileads.";
+    protected static final String MEDIATION_ADAPTER_BASE_PATH = CommonConstants.PKG_ADAPTER;
+
     private static final String ADAPTER = "Adapter";
     private static SparseArray<CustomAdsAdapter> mAdapters = new SparseArray<>();
     private static SparseArray<String> mAdapterPaths;
@@ -201,13 +202,12 @@ public class AdapterUtil {
     /**
      * Gets adapter path with type.
      *
-     * @param type the type
-     * @param name the name
+     * @param type        the type
+     * @param mediationId the mediationId
      * @return the adapter path with type
      */
-    public static String getAdapterPathWithType(int type, String name) {
-        return MEDIATION_ADAPTER_BASE_PATH.concat(name).concat(getAdType(type));
-    }
+    public static String getAdapterPathWithType(int type, int mediationId) {
+        return getMediationPath(mediationId).concat(getAdType(type));    }
 
     private static AdNetwork getAdNetWork(CustomAdsAdapter adapter) {
         if (adapter != null) {
@@ -235,141 +235,147 @@ public class AdapterUtil {
     }
 
     private static String getAdapterPath(int mediationType) {
+        String path = getMediationPath(mediationType).concat(ADAPTER);
+        DeveloperLog.LogD("adapter path is : " + path);
+        return path;
+    }
+
+    private static String getMediationPath(int mediationType) {
         String path = "";
         switch (mediationType) {
             case MediationInfo.MEDIATION_ID_1:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_1)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_1));
                 break;
             case MediationInfo.MEDIATION_ID_2:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_2)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_2));
                 break;
             case MediationInfo.MEDIATION_ID_3:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_3)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_3));
                 break;
             case MediationInfo.MEDIATION_ID_4:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_4)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_4));
                 break;
             case MediationInfo.MEDIATION_ID_5:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_5)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_5));
                 break;
             case MediationInfo.MEDIATION_ID_6:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_6)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_6));
                 break;
             case MediationInfo.MEDIATION_ID_7:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_7)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_7));
                 break;
             case MediationInfo.MEDIATION_ID_8:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_8)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_8));
                 break;
             case MediationInfo.MEDIATION_ID_9:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_9)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_9));
                 break;
             case MediationInfo.MEDIATION_ID_11:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_11)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_11));
                 break;
             case MediationInfo.MEDIATION_ID_12:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_12)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_12));
                 break;
             case MediationInfo.MEDIATION_ID_13:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_13)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_13));
                 break;
             case MediationInfo.MEDIATION_ID_14:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_14)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_14));
                 break;
             case MediationInfo.MEDIATION_ID_15:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_15)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_15));
                 break;
             case MediationInfo.MEDIATION_ID_17:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_17)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_17));
                 break;
             case MediationInfo.MEDIATION_ID_18:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_18)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_18));
                 break;
             case MediationInfo.MEDIATION_ID_19:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_19)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_19));
                 break;
             case MediationInfo.MEDIATION_ID_20:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_20)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_20));
                 break;
             case MediationInfo.MEDIATION_ID_21:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_21)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_21));
                 break;
             case MediationInfo.MEDIATION_ID_22:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_22)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_22));
                 break;
             case MediationInfo.MEDIATION_ID_23:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_23)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_23));
                 break;
             case MediationInfo.MEDIATION_ID_54:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_54)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_54));
                 break;
 
             //plugin
             case MediationInfo.MEDIATION_ID_32:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_32)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_32));
                 break;
             case MediationInfo.MEDIATION_ID_33:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_33)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_33));
                 break;
             case MediationInfo.MEDIATION_ID_34:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_34)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_34));
                 break;
             case MediationInfo.MEDIATION_ID_35:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_35)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_35));
                 break;
             case MediationInfo.MEDIATION_ID_36:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_36)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_36));
                 break;
             case MediationInfo.MEDIATION_ID_37:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_37)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_37));
                 break;
             case MediationInfo.MEDIATION_ID_38:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_38)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_38));
                 break;
             case MediationInfo.MEDIATION_ID_39:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_39)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_39));
                 break;
             case MediationInfo.MEDIATION_ID_40:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_40)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_40));
                 break;
             case MediationInfo.MEDIATION_ID_41:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_41)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_41));
                 break;
             case MediationInfo.MEDIATION_ID_42:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_42)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_42));
                 break;
             case MediationInfo.MEDIATION_ID_43:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_43)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_43));
                 break;
             case MediationInfo.MEDIATION_ID_44:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_44)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_44));
                 break;
             case MediationInfo.MEDIATION_ID_45:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_45)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_45));
                 break;
             case MediationInfo.MEDIATION_ID_46:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_46)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_46));
                 break;
             case MediationInfo.MEDIATION_ID_47:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_47)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_47));
                 break;
             case MediationInfo.MEDIATION_ID_48:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_48)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_48));
                 break;
             case MediationInfo.MEDIATION_ID_49:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_49)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_49));
                 break;
             case MediationInfo.MEDIATION_ID_50:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_50)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_50));
                 break;
             case MediationInfo.MEDIATION_ID_51:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_51)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_51));
                 break;
             case MediationInfo.MEDIATION_ID_52:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_52)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_52));
                 break;
             case MediationInfo.MEDIATION_ID_53:
-                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_53)).concat(ADAPTER);
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_53));
                 break;
             default:
                 break;
@@ -388,11 +394,14 @@ public class AdapterUtil {
     static String getAdType(int adIndex) {
         String adType = "";
         switch (adIndex) {
-            case 0:
+            case CommonConstants.BANNER:
                 adType = CommonConstants.ADTYPE_BANNER;
                 break;
-            case 1:
+            case CommonConstants.NATIVE:
                 adType = CommonConstants.ADTYPE_NATIVE;
+                break;
+            case CommonConstants.SPLASH:
+                adType = CommonConstants.ADTYPE_SPLASH;
                 break;
             default:
                 break;

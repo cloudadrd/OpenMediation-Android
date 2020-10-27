@@ -573,13 +573,14 @@ public class DeviceUtil {
         } catch (Exception e) {
             androidId = "";
         }
-        String serial = "";
+        String serial = "serial";
         try {
             serial = android.os.Build.class.getField("SERIAL").get(null).toString();
         } catch (Exception exception) {
+        }
+        if (TextUtils.isEmpty(serial)) {
             serial = "serial";
         }
-
         // cobines the above with UUID
         return new UUID(androidId.hashCode(), serial.hashCode()).toString();
     }

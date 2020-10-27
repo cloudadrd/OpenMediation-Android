@@ -140,12 +140,6 @@ public final class RvManager extends AbstractAdsManager implements RvManagerList
     }
 
     @Override
-    protected void callbackCappedError(Instance instance) {
-        super.callbackCappedError(instance);
-        onRewardedVideoAdCaped((RvInstance) instance);
-    }
-
-    @Override
     protected void callbackAdClosed() {
         mListenerWrapper.onRewardedVideoAdClosed(mScene);
     }
@@ -213,9 +207,4 @@ public final class RvManager extends AbstractAdsManager implements RvManagerList
         onInsClick(rvInstance);
     }
 
-    @Override
-    public void onRewardedVideoAdCaped(RvInstance rvInstance) {
-        rvInstance.setMediationState(Instance.MEDIATION_STATE.CAPPED);
-        onInsCapped(rvInstance);
-    }
 }

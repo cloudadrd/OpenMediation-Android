@@ -16,6 +16,7 @@ public interface CommonConstants {
 
     String ADTYPE_BANNER = "Banner";
     String ADTYPE_NATIVE = "Native";
+    String ADTYPE_SPLASH = "Splash";
 
     int WATERFALL_READY = 3;
     int INSTANCE_LOAD = 4;
@@ -24,12 +25,16 @@ public interface CommonConstants {
     int INSTANCE_CLICK = 7;
     String PKG_GP = "com.android.vending";
     String PKG_FB = "com.facebook.katana";
+    String PKG_SDK = "com.nbmediation.sdk";
+    String PKG_ADAPTER = "com.nbmediation.sdk.mobileads.";
+
 
     //AdType
     int BANNER = 0;
     int NATIVE = 1;
     int VIDEO = 2;
     int INTERSTITIAL = 3;
+    int SPLASH = 4;
 
     String DB_NAME = "omDB.db";
     int DB_VERSION = 1;

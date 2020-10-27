@@ -82,6 +82,7 @@ public class AdvertisingIdClient {
         private final LinkedBlockingQueue<IBinder> queue = new LinkedBlockingQueue<IBinder>(
                 1);
 
+        @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             try {
                 this.queue.put(service);
@@ -91,12 +92,14 @@ public class AdvertisingIdClient {
             }
         }
 
+        @Override
         public void onServiceDisconnected(ComponentName name) {
         }
 
         IBinder getBinder() throws InterruptedException {
-            if (this.retrieved)
+            if (this.retrieved) {
                 throw new IllegalStateException();
+            }
             this.retrieved = true;
             return this.queue.take();
         }

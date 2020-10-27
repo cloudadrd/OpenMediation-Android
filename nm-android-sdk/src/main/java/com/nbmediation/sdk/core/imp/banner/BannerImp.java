@@ -5,6 +5,7 @@ package com.nbmediation.sdk.core.imp.banner;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
         mBannerListener = listener;
         mActivity = activity;
         mLytBanner = createBannerParent(activity);
-        mRlwHandler = new HandlerUtil.HandlerHolder(null);
+        mRlwHandler = new HandlerUtil.HandlerHolder(null, Looper.getMainLooper());
     }
 
     private FrameLayout createBannerParent(Activity activity) {
@@ -70,6 +71,9 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
     @Override
     protected void loadInsOnUIThread(BaseInstance instances) throws Throwable {
         instances.reportInsLoad();
+        if (!isManualTriggered) {
+            EventUploadManager.getInstance().uploadEvent(EventId.INSTANCE_RELOAD, instances.buildReportData());
+        }
         if (!checkActRef()) {
             onInsError(instances, ErrorCode.ERROR_ACTIVITY);
             return;
@@ -85,12 +89,11 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
         }
 
         instances.setStart(System.currentTimeMillis());
-        if (instances.getBidState() == BaseInstance.BID_STATE.BID_SUCCESS) {
-            AuctionUtil.instanceNotifyBidWin(mPlacement.getHbAbt(), instances);
-            AuctionUtil.removeBidResponse(mBidResponses, instances);
+        String payload = "";
+        if (mS2sBidResponses != null && mS2sBidResponses.containsKey(instances.getId())) {
+            payload = AuctionUtil.generateStringRequestData(mS2sBidResponses.get(instances.getId()));
         }
-        Map<String, String> placementInfo = PlacementUtils.getPlacementInfo(mPlacementId, instances,
-                AuctionUtil.generateStringRequestData(mBidResponses, instances));
+        Map<String, String> placementInfo = PlacementUtils.getPlacementInfo(mPlacementId, instances, payload);
         if (mAdSize != null) {
             placementInfo.put("width", String.valueOf(mAdSize.getWidth()));
             placementInfo.put("height", String.valueOf(mAdSize.getHeight()));
@@ -115,8 +118,10 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
             mRlwHandler.removeCallbacks(mRefreshTask);
             mRlwHandler = null;
         }
-        mLytBanner.removeAllViews();
-        mLytBanner = null;
+        if (mLytBanner != null) {
+            mLytBanner.removeAllViews();
+            mLytBanner = null;
+        }
         super.destroy();
     }
 
@@ -132,7 +137,10 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
 
     @Override
     protected PlacementInfo getPlacementInfo() {
-        return new PlacementInfo(mPlacementId).getPlacementInfo(getAdType());
+        if (mAdSize == null) {
+            mAdSize = AdSize.BANNER;
+        }
+        return new PlacementInfo(mPlacementId).getBannerPlacementInfo(mAdSize.getWidth(), mAdSize.getHeight());
     }
 
     @Override
@@ -223,6 +231,8 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
             return;
         }
         insImpReport(mCurrentIns);
+        notifyInsBidWin(mCurrentIns);
+
     }
 
     @Override
@@ -260,6 +270,10 @@ public final class BannerImp extends AbstractHybridAd implements View.OnAttachSt
         @Override
         public void run() {
             mRlwHandler.postDelayed(mRefreshTask, mInterval * 1000);
+            // not in foreground, stop load AD
+            if (!NmManager.getInstance().isInForeground()) {
+                return;
+            }
             if (mLoadTs > mCallbackTs) {
                 return;
             }

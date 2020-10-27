@@ -12,6 +12,7 @@ import com.nbmediation.sdk.utils.constant.KeyConstants;
 import com.nbmediation.sdk.utils.device.DeviceUtil;
 import com.nbmediation.sdk.utils.device.MDIDHandler;
 import com.nbmediation.sdk.utils.device.SensorManager;
+import com.nbmediation.sdk.utils.model.PlacementInfo;
 import com.nbmediation.sdk.utils.request.network.util.NetworkChecker;
 import com.nbmediation.sdk.utils.AdtUtil;
 import com.nbmediation.sdk.utils.DensityUtil;
@@ -222,7 +223,7 @@ public class RequestBuilder {
                 .p(KeyConstants.Request.KEY_API_VERSION, CommonConstants.API_VERSION)
                 .p(KeyConstants.Request.KEY_PLATFORM, CommonConstants.PLAT_FORM_ANDROID)
                 .p(KeyConstants.Request.KEY_SDK_VERSION, CommonConstants.SDK_VERSION_NAME)
-                .p(KeyConstants.Request.KEY_APP_KEY, DataCache.getInstance().get(KeyConstants.KEY_APP_KEY, String.class))
+                .p(KeyConstants.Request.KEY_APP_KEY, DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_KEY, String.class))
                 .format());
     }
 
@@ -237,7 +238,7 @@ public class RequestBuilder {
                 .p(KeyConstants.Request.KEY_API_VERSION, CommonConstants.API_VERSION)
                 .p(KeyConstants.Request.KEY_PLATFORM, CommonConstants.PLAT_FORM_ANDROID)
                 .p(KeyConstants.Request.KEY_SDK_VERSION, CommonConstants.SDK_VERSION_NAME)
-                .p(KeyConstants.Request.KEY_APP_KEY, DataCache.getInstance().get(KeyConstants.KEY_APP_KEY, String.class))
+                .p(KeyConstants.Request.KEY_APP_KEY, DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_KEY, String.class))
                 .format());
     }
 
@@ -301,8 +302,8 @@ public class RequestBuilder {
     public static byte[] buildConfigRequestBody(JSONArray adapters) throws Exception {
         Context context = AdtUtil.getApplication();
         JSONObject body = getRequestBodyBaseJson();
-        body.put(KeyConstants.RequestBody.KEY_W, DensityUtil.getPhoneWidth(context));
-        body.put(KeyConstants.RequestBody.KEY_H, DensityUtil.getPhoneHeight(context));
+        //body.put(KeyConstants.RequestBody.KEY_W, DensityUtil.getPhoneWidth(context));
+        //body.put(KeyConstants.RequestBody.KEY_H, DensityUtil.getPhoneHeight(context));
         body.put(KeyConstants.RequestBody.KEY_TZ, DeviceUtil.getTimeZone());
         body.put(KeyConstants.RequestBody.KEY_LANG_NAME, DeviceUtil.getLocaleInfo().get(KeyConstants.RequestBody.KEY_LANG_NAME));
         body.put(KeyConstants.RequestBody.KEY_BUILD, Build.DISPLAY);
@@ -344,6 +345,8 @@ public class RequestBuilder {
         body.put(KeyConstants.RequestBody.KEY_CONT, NetworkChecker.getConnectType(context));
         body.put(KeyConstants.RequestBody.KEY_CARRIER, NetworkChecker.getNetworkOperator(context));
         body.put(KeyConstants.RequestBody.KEY_FM, DeviceUtil.getFm());
+        String channel = DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_CHANNEL, String.class);
+        body.put(KeyConstants.RequestBody.KEY_CHANNEL, channel);
         Map<String, Integer> battery = DeviceUtil.getBatteryInfo(context);
         if (battery == null || battery.isEmpty()) {
             body.put(KeyConstants.RequestBody.KEY_BATTERY, 0);
@@ -360,6 +363,8 @@ public class RequestBuilder {
                 body.put(KeyConstants.RequestBody.KEY_BATTERY, 0);
             }
         }
+        body.put(KeyConstants.RequestBody.KEY_W, DensityUtil.getPhoneWidth(context));
+        body.put(KeyConstants.RequestBody.KEY_H, DensityUtil.getPhoneHeight(context));
         return body;
     }
 
@@ -371,17 +376,22 @@ public class RequestBuilder {
      * @return the byte [ ]
      * @throws Exception the exception
      */
-    public static byte[] buildWfRequestBody(List<AdTimingBidResponse> responses, String... extras) throws Exception {
+    public static byte[] buildWfRequestBody(PlacementInfo info, List<AdTimingBidResponse> c2sResult, List<AdTimingBidResponse> s2sResult,
+                                            String... extras) throws Exception {
         JSONObject body = getRequestBodyBaseJson();
-        body.put(KeyConstants.RequestBody.KEY_PID, extras[0]);
-        body.put(KeyConstants.RequestBody.KEY_W, extras[1]);
-        body.put(KeyConstants.RequestBody.KEY_H, extras[2]);
-        body.put(KeyConstants.RequestBody.KEY_IAP, extras[5]);
-        body.put("act", extras[3]);
-        body.put(KeyConstants.RequestBody.KEY_IMPRTIMES, Integer.valueOf(extras[4]));
-        if (responses != null && !responses.isEmpty()) {
+        if (info.getWidth() != 0) {
+            body.put(KeyConstants.RequestBody.KEY_W, info.getWidth());
+        }
+        if (info.getHeight() != 0) {
+            body.put(KeyConstants.RequestBody.KEY_H, info.getHeight());
+        }
+        body.put(KeyConstants.RequestBody.KEY_PID, info.getId());
+        body.put(KeyConstants.RequestBody.KEY_IAP, extras[0]);
+        body.put(KeyConstants.RequestBody.KEY_IMPRTIMES, Integer.valueOf(extras[1]));
+        body.put("act", extras[2]);
+        if (c2sResult != null && !c2sResult.isEmpty()) {
             JSONArray array = new JSONArray();
-            for (AdTimingBidResponse response : responses) {
+            for (AdTimingBidResponse response : c2sResult) {
                 if (response == null) {
                     continue;
                 }
@@ -393,6 +403,21 @@ public class RequestBuilder {
             }
             body.put("bid", array);
         }
+
+        if (s2sResult != null && !s2sResult.isEmpty()) {
+            JSONArray array = new JSONArray();
+            for (AdTimingBidResponse response : s2sResult) {
+                if (response == null) {
+                    continue;
+                }
+                JSONObject object = new JSONObject();
+                JsonUtil.put(object, "iid", response.getIid());
+                JsonUtil.put(object, "token", response.getToken());
+                array.put(object);
+            }
+            body.put("bids2s", array);
+        }
+
         DeveloperLog.LogD("request wf params : " + body.toString());
         return Gzip.inGZip(body.toString().getBytes(Charset.forName(CommonConstants.CHARTSET_UTF8)));
     }
@@ -424,7 +449,7 @@ public class RequestBuilder {
      */
     public static byte[] buildEventRequestBody(ConcurrentLinkedQueue<Event> events) throws Exception {
         JSONObject body = getRequestBodyBaseJson();
-        body.put(KeyConstants.RequestBody.KEY_APPK, DataCache.getInstance().get(KeyConstants.KEY_APP_KEY, String.class));
+        body.put(KeyConstants.RequestBody.KEY_APPK, DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_KEY, String.class));
         JSONArray jsonEvents = new JSONArray();
         for (Event e : events) {
             jsonEvents.put(e.toJSONObject());
@@ -500,12 +525,12 @@ public class RequestBuilder {
         androidBody.put(KeyConstants.Android.KEY_KERNEL_QEMU, DeviceUtil.getSystemProperties(KeyConstants.Device.KEY_RO_KERNEL_QEMU));
         androidBody.put(KeyConstants.Android.KEY_HARDWARE, DeviceUtil.getSystemProperties(KeyConstants.Device.KEY_RO_HARDWARE));
 
-        JSONArray sensorArray = SensorManager.getSingleton().getSensorData();
-        androidBody.put(KeyConstants.Android.KEY_SENSOR_SIZE, sensorArray != null ? sensorArray.length() : 0);
-        androidBody.put(KeyConstants.Android.KEY_SENSORS, sensorArray);
-
-        androidBody.put(KeyConstants.Android.KEY_AS, DeviceUtil.getInstallVending(context));
-        androidBody.put(KeyConstants.Android.KEY_FB_ID, DeviceUtil.getFacebookId(context));
+//        JSONArray sensorArray = SensorManager.getSingleton().getSensorData();
+//        androidBody.put(KeyConstants.Android.KEY_SENSOR_SIZE, sensorArray != null ? sensorArray.length() : 0);
+//        androidBody.put(KeyConstants.Android.KEY_SENSORS, sensorArray);
+//
+//        androidBody.put(KeyConstants.Android.KEY_AS, DeviceUtil.getInstallVending(context));
+//        androidBody.put(KeyConstants.Android.KEY_FB_ID, DeviceUtil.getFacebookId(context));
         androidBody.put(KeyConstants.RequestBody.KEY_TDM, DeviceUtil.disk());
         return androidBody;
     }

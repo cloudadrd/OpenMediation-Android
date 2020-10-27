@@ -21,6 +21,11 @@ public interface KeyConstants {
     String KEY_APP_KEY = "AppKey";
 
     /**
+     * The constant KEY_APP_CHANNEL.
+     */
+    String KEY_APP_CHANNEL = "AppChannel";
+
+    /**
      * The constant CUSTOM_ID_KEY.
      */
     String CUSTOM_ID_KEY = "CustomId";
@@ -287,6 +292,11 @@ public interface KeyConstants {
          * The constant KEY_TYPE.
          */
         String KEY_TYPE = "type";
+
+        /**
+         * The constant KEY_CHANNEL.
+         */
+        String KEY_CHANNEL = "cnl";
     }
 
     /**

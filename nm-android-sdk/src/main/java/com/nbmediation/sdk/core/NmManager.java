@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import com.nbmediation.sdk.InitCallback;
 import com.nbmediation.sdk.core.imp.interstitialad.IsManager;
 import com.nbmediation.sdk.core.imp.rewardedvideo.RvManager;
+import com.nbmediation.sdk.core.imp.splash.SplashAdManager;
 import com.nbmediation.sdk.interstitial.InterstitialAdListener;
 import com.nbmediation.sdk.mediation.MediationInterstitialListener;
 import com.nbmediation.sdk.mediation.MediationRewardVideoListener;
@@ -60,6 +61,8 @@ public final class NmManager implements InitCallback {
     private List<AD_TYPE> mPreloadAdTypes;
     private AtomicBoolean mDidRvInit = new AtomicBoolean(false);
     private AtomicBoolean mDidIsInit = new AtomicBoolean(false);
+    private boolean mIsInForeground = true;
+
     private static ConcurrentLinkedQueue<InitCallback> mInitCallbacks = new ConcurrentLinkedQueue<>();
 
     private static final class OmHolder {
@@ -129,10 +132,11 @@ public final class NmManager implements InitCallback {
      *
      * @param activity required param
      * @param appKey   required param, current app's identifier with Om
+     * @param channel  the Channel of App Store
      * @param callback the callback
      * @param types    Optional param, Ad types for preloading; preloads all if null
      */
-    public void init(Activity activity, String appKey, InitCallback callback, AD_TYPE... types) {
+    public void init(Activity activity, String appKey, String channel, InitCallback callback, AD_TYPE... types) {
         if (InitImp.isInit()) {
             setListeners();
             if (callback != null) {
@@ -145,10 +149,10 @@ public final class NmManager implements InitCallback {
             pendingInit(callback);
         } else {
             pendingInit(callback);
-            InitImp.init(activity, appKey, this);
+            InitImp.init(activity, appKey, channel, this);
         }
 
-        //adds for use after initialization 
+        //adds for use after initialization
         if (types != null && types.length > 0) {
             mPreloadAdTypes.addAll(Arrays.asList(types));
         }
@@ -171,6 +175,7 @@ public final class NmManager implements InitCallback {
      * @param activity the activity
      */
     public void onResume(Activity activity) {
+        mIsInForeground = true;
         if (!mIsManagers.isEmpty()) {
             Set<Map.Entry<String, IsManager>> isEntrys = mIsManagers.entrySet();
             for (Map.Entry<String, IsManager> isManagerEntry : isEntrys) {
@@ -189,12 +194,18 @@ public final class NmManager implements InitCallback {
         }
     }
 
+    public boolean isInForeground() {
+        return mIsInForeground;
+    }
+
     /**
      * On pause.
      *
      * @param activity the activity
      */
     public void onPause(Activity activity) {
+        mIsInForeground = false;
+
         if (!mIsManagers.isEmpty()) {
             Set<Map.Entry<String, IsManager>> isEntrys = mIsManagers.entrySet();
             for (Map.Entry<String, IsManager> isManagerEntry : isEntrys) {
@@ -313,7 +324,7 @@ public final class NmManager implements InitCallback {
      * @param placementId the placement id
      */
     public void loadInterstitialAd(String placementId) {
-        callActionReport(EventId.CALLED_LOAD, placementId, null, CommonConstants.INTERSTITIAL);
+        AdsUtil.callActionReport(EventId.CALLED_LOAD, placementId, null, CommonConstants.INTERSTITIAL);
         IsManager isManager = getIsManager(placementId);
         if (isManager != null) {
             isManager.loadInterstitialAd();
@@ -348,13 +359,13 @@ public final class NmManager implements InitCallback {
         if (isManager != null) {
             boolean result = isManager.isInterstitialAdReady();
             if (result) {
-                callActionReport(EventId.CALLED_IS_READY_TRUE, placementId, null, CommonConstants.INTERSTITIAL);
+                AdsUtil.callActionReport(EventId.CALLED_IS_READY_TRUE, placementId, null, CommonConstants.INTERSTITIAL);
             } else {
-                callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.INTERSTITIAL);
+                AdsUtil.callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.INTERSTITIAL);
             }
             return result;
         }
-        callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.INTERSTITIAL);
+        AdsUtil.callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.INTERSTITIAL);
         return false;
     }
 
@@ -365,7 +376,7 @@ public final class NmManager implements InitCallback {
      * @param scene       scene name
      */
     public void showInterstitialAd(String placementId, String scene) {
-        callActionReport(EventId.CALLED_SHOW, placementId, scene, CommonConstants.INTERSTITIAL);
+        AdsUtil.callActionReport(EventId.CALLED_SHOW, placementId, scene, CommonConstants.INTERSTITIAL);
         IsManager isManager = getIsManager(placementId);
         if (isManager != null) {
             isManager.showInterstitialAd(scene);
@@ -450,7 +461,7 @@ public final class NmManager implements InitCallback {
      * @param placementId the placement id
      */
     public void loadRewardedVideo(String placementId) {
-        callActionReport(EventId.CALLED_LOAD, placementId, null, CommonConstants.VIDEO);
+        AdsUtil.callActionReport(EventId.CALLED_LOAD, placementId, null, CommonConstants.VIDEO);
         RvManager rvManager = getRvManager(placementId);
         if (rvManager != null) {
             rvManager.loadRewardedVideo();
@@ -485,13 +496,13 @@ public final class NmManager implements InitCallback {
         if (rvManager != null) {
             boolean result = rvManager.isRewardedVideoReady();
             if (result) {
-                callActionReport(EventId.CALLED_IS_READY_TRUE, placementId, null, CommonConstants.VIDEO);
+                AdsUtil.callActionReport(EventId.CALLED_IS_READY_TRUE, placementId, null, CommonConstants.VIDEO);
             } else {
-                callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.VIDEO);
+                AdsUtil.callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.VIDEO);
             }
             return result;
         }
-        callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.VIDEO);
+        AdsUtil.callActionReport(EventId.CALLED_IS_READY_FALSE, placementId, null, CommonConstants.VIDEO);
         return false;
     }
 
@@ -502,7 +513,7 @@ public final class NmManager implements InitCallback {
      * @param scene       scene name
      */
     public void showRewardedVideo(String placementId, String scene) {
-        callActionReport(EventId.CALLED_SHOW, placementId, scene, CommonConstants.VIDEO);
+        AdsUtil.callActionReport(EventId.CALLED_SHOW, placementId, scene, CommonConstants.VIDEO);
         RvManager rvManager = getRvManager(placementId);
         if (rvManager != null) {
             rvManager.showRewardedVideo(scene);
@@ -667,6 +678,9 @@ public final class NmManager implements InitCallback {
                             rvManager.setCurrentPlacement(placement);
                             mRvManagers.put(placementId, rvManager);
                         }
+                        break;
+                    case CommonConstants.SPLASH:
+                        SplashAdManager.getInstance().initSplashAd(placementId);
                         break;
                     default:
                         break;

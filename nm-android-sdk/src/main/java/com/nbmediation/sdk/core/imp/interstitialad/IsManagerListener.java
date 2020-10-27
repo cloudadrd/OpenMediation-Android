@@ -23,5 +23,4 @@ public interface IsManagerListener {
 
     void onInterstitialAdLoadFailed(Error error, IsInstance isInstance);
 
-    void onInterstitialAdCaped(IsInstance isInstance);
 }

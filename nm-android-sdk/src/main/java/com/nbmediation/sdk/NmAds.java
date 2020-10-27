@@ -30,7 +30,21 @@ public abstract class NmAds {
      * @param types    optional param: ad types to be preloaded; null means preload all
      */
     public static void init(Activity activity, String appKey, InitCallback callback, AD_TYPE... types) {
-        NmManager.getInstance().init(activity, appKey, callback, types);
+        init(activity, appKey, "", callback, types);
+    }
+
+
+    /**
+     * mediation SDK init method
+     *
+     * @param activity required param
+     * @param appKey   required param: current app's identifier
+     * @param callback the callback
+     * @param channel the Channel of App Store
+     * @param types    optional param: ad types to be preloaded; null means preload all
+     */
+    public static void init(Activity activity, String appKey, String channel, InitCallback callback, AD_TYPE... types) {
+        NmManager.getInstance().init(activity, appKey, channel, callback, types);
     }
 
     /**
@@ -101,12 +115,7 @@ public abstract class NmAds {
          * The Interstitial.
          */
         /*Ad type Interstitial*/
-        INTERSTITIAL("interstitial"),
-        /**
-         * The Interactive.
-         */
-        /*Ad type Interactive*/
-        INTERACTIVE("interactive");
+        INTERSTITIAL("interstitial");
 
         private String mValue;
 

@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.nbmediation.sdk.BuildConfig;
 import com.nbmediation.sdk.InitCallback;
+import com.nbmediation.sdk.bid.AdTimingAuctionManager;
 import com.nbmediation.sdk.utils.ActLifecycle;
 import com.nbmediation.sdk.utils.AdLog;
 import com.nbmediation.sdk.utils.AdapterUtil;
@@ -62,7 +63,7 @@ public final class InitImp {
      * @param appKey   the app key
      * @param callback the callback
      */
-    public static void init(final Activity activity, final String appKey, final InitCallback callback) {
+    public static void init(final Activity activity, final String appKey, String channel, final InitCallback callback) {
         //
         if (hasInit.get()) {
             return;
@@ -90,11 +91,21 @@ public final class InitImp {
 
         AdtUtil.init(activity);
         DebugSwitchApi.registerReceiver(activity.getApplicationContext());
-        SensorManager.getSingleton();
+//        SensorManager.getSingleton();
         ActLifecycle.getInstance().init(activity);
         EventUploadManager.getInstance().init(activity.getApplicationContext());
         EventUploadManager.getInstance().uploadEvent(EventId.INIT_START);
-        WorkExecutor.execute(new InitAsyncRunnable(appKey));
+        try {
+            DataCache.getInstance().init(AdtUtil.getApplication());
+            DataCache.getInstance().setMEM(KeyConstants.KEY_APP_KEY, appKey);
+            if (TextUtils.isEmpty(channel)) {
+                channel = "";
+            }
+            DataCache.getInstance().setMEM(KeyConstants.KEY_APP_CHANNEL, channel);
+        } catch (Exception ignored) {
+        }
+        WorkExecutor.execute(new InitAsyncRunnable());
+        WorkExecutor.execute(new RequestConfigRunnable(appKey));
     }
 
     private static void initShellSdk(Context context) {
@@ -120,9 +131,10 @@ public final class InitImp {
      * @param callback the callback
      */
     static void reInitSDK(Activity activity, final InitCallback callback) {
-        if (DataCache.getInstance().containsKey("AppKey")) {
-            String appKey = DataCache.getInstance().get("AppKey", String.class);
-            InitImp.init(activity, appKey, new InitCallback() {
+        if (DataCache.getInstance().containsKey(KeyConstants.KEY_APP_KEY)) {
+            String appKey = DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_KEY, String.class);
+            String appChannel = DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_CHANNEL, String.class);
+            InitImp.init(activity, appKey, appChannel, new InitCallback() {
                 @Override
                 public void onSuccess() {
                     DeveloperLog.LogD("reInitSDK success");
@@ -169,12 +181,14 @@ public final class InitImp {
      * Inits global utils
      */
     private static void initUtil() throws Exception {
-        DataCache.getInstance().init(AdtUtil.getApplication());
+//        DataCache.getInstance().init(AdtUtil.getApplication());
         DataCache.getInstance().set(DeviceUtil.preFetchDeviceInfo(AdtUtil.getApplication()));
+//        OaidHelper.initOaidServer(AdtUtil.getApplication());
     }
 
     private static void doAfterGetConfig(String appKey, Configurations config) {
         try {
+            AdTimingAuctionManager.getInstance().initBid(AdtUtil.getApplication(), config);
             if (!BuildConfig.DEBUG) {
                 DeveloperLog.enableDebug(AdtUtil.getApplication(), config.getD() == 1);
             }
@@ -224,6 +238,17 @@ public final class InitImp {
 
     private static class InitAsyncRunnable implements Runnable {
 
+        @Override
+        public void run() {
+            try {
+                initUtil();
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    private static class RequestConfigRunnable implements Runnable {
+
         private String appKey;
 
         /**
@@ -231,7 +256,7 @@ public final class InitImp {
          *
          * @param appKey the app key
          */
-        InitAsyncRunnable(String appKey) {
+        RequestConfigRunnable(String appKey) {
             this.appKey = appKey;
         }
 
@@ -239,14 +264,17 @@ public final class InitImp {
         public void run() {
             try {
                 Activity activity = ActLifecycle.getInstance().getActivity();
-                //filters banning conditions
                 Error error = SdkUtil.banRun(activity, appKey);
                 if (error != null) {
                     callbackInitErrorOnUIThread(error);
                     return;
                 }
-                initUtil();
-                DataCache.getInstance().set(KeyConstants.KEY_APP_KEY, appKey);
+//                initUtil();
+//                DataCache.getInstance().set(KeyConstants.KEY_APP_KEY, appKey);
+//                if (TextUtils.isEmpty(appChannel)) {
+//                    appChannel = "";
+//                }
+//                DataCache.getInstance().set(KeyConstants.KEY_APP_CHANNEL, appChannel);
                 requestConfig(appKey);
             } catch (Exception e) {
                 DeveloperLog.LogD("initOnAsyncThread  exception : ", e);
@@ -327,7 +355,6 @@ public final class InitImp {
                     DeveloperLog.LogD("Om init request config success");
                     DataCache.getInstance().setMEM(KeyConstants.KEY_CONFIGURATION, config);
                     callbackInitSuccessOnUIThread();
-
                     doAfterGetConfig(appKey, config);
                 } else {
                     Error error = new Error(ErrorCode.CODE_INIT_SERVER_ERROR

@@ -4,6 +4,7 @@
 package com.nbmediation.sdk.demo;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -95,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSDK() {
-        if (splash == false) {
-            splash = true;
-            NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
-        }
+//        if (splash == false) {
+//            splash = true;
+//            NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
+//        }
 
         NewApiUtils.printLog("start init sdk");
         NmAds.setCustomId("test123");
@@ -206,6 +207,10 @@ public class MainActivity extends AppCompatActivity {
     public void showInterstitial(View view) {
         InterstitialAd.showAd();
         setInterstitialButtonStat(false);
+    }
+
+    public void showSplash(View view) {
+        startActivity(new Intent(MainActivity.this, SplashAdActivity.class));
     }
 
     public void loadAndShowBanner(View view) {

@@ -24,7 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name="com.nbmediation.sdk.demo.UnityBannerActivity" >-->
+        <activity android:name=".SplashAdActivity"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"/>
+        <!--        <activity android:name="com.nbmediation.sdk.demo.UnityBannerActivity" >-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 

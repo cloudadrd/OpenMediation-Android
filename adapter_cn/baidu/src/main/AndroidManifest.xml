@@ -41,7 +41,7 @@
         </provider>
 
         <activity
-            android:name="com.nbmediation.sdk.mobileads.BaiduSplashActivity"
+            android:name="com.nbmediation.sdk.mobileads.BaiduSplash"
             android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait" />

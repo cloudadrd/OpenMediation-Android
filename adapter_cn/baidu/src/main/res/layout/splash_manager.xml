@@ -6,5 +6,5 @@
     android:orientation="vertical"
     android:id="@+id/adsRl"
     android:visibility="invisible"
-    tools:context="com.nbmediation.sdk.mobileads.BaiduSplashActivity">
+    tools:context="com.nbmediation.sdk.mobileads.BaiduSplash">
 </RelativeLayout>

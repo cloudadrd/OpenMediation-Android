@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 根据工信部的规定，不再默认申请权限，而是主动弹框由用户授权使用。
  * 如果是Android6.0以下的机器, 或者targetSDKVersion < 23，默认在安装时获得了所有权限，可以直接调用SDK
  */
-public class BaiduSplash  {//extends CustomSplashEvent
+public class BaiduSplash extends Activity {//extends CustomSplashEvent
 //    private SplashAd splashAd;
 //    private static String TAG = "OM-Baidu:";
 //    // 控制开屏广告在落地页关闭后自动关闭，并进入到媒体的应用主页

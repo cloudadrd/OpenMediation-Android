@@ -17,6 +17,7 @@ import com.nbmediation.sdk.banner.BannerAdListener;
 import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.interstitial.InterstitialAd;
 import com.nbmediation.sdk.interstitial.InterstitialAdListener;
+import com.nbmediation.sdk.splash.SplashAdActivity;
 import com.nbmediation.sdk.utils.AdLog;
 import com.nbmediation.sdk.utils.DeveloperLog;
 import com.nbmediation.sdk.utils.HandlerUtil;
@@ -137,7 +138,8 @@ public class NmSdk {
             }
 
             public void onInterstitialAdShowFailed(Scene paramAnonymousScene, Error paramAnonymousAdTimingError) {
-                paramInterstitialListener.onInterstitialAdShowFailed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "", paramAnonymousAdTimingError.toString());
+                paramInterstitialListener.onInterstitialAdShowFailed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "",
+                        paramAnonymousAdTimingError.toString());
             }
 
             public void onInterstitialAdClosed(Scene paramAnonymousScene) {
@@ -343,11 +345,11 @@ public class NmSdk {
     }
 
     //*********支持开发者管理placement加载***********//
-    public static void loadRewardedVideo(String placementId){
+    public static void loadRewardedVideo(String placementId) {
         NmManager.getInstance().loadRewardedVideo(placementId);
     }
 
-    public static void setRewardedVideoListener(String placementId, final VideoListener paramVideoListener){
+    public static void setRewardedVideoListener(String placementId, final VideoListener paramVideoListener) {
         NmManager.getInstance().setRewardedVideoListener(placementId, new RewardedVideoListener() {
             public void onRewardedVideoAvailabilityChanged(boolean paramAnonymousBoolean) {
                 paramVideoListener.onRewardedVideoAvailabilityChanged(paramAnonymousBoolean);
@@ -385,11 +387,11 @@ public class NmSdk {
         });
     }
 
-    public static boolean isRewardedVideoReady(String placementId){
+    public static boolean isRewardedVideoReady(String placementId) {
         return NmManager.getInstance().isRewardedVideoReady(placementId);
     }
 
-    public static void showRewardedVideo(final String placementId, final String scene){
+    public static void showRewardedVideo(final String placementId, final String scene) {
         HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -399,11 +401,11 @@ public class NmSdk {
     }
 
 
-    public static void loadInterstitial(String placementId){
+    public static void loadInterstitial(String placementId) {
         NmManager.getInstance().loadInterstitialAd(placementId);
     }
 
-    public static void setInterstitialListener(String placementId, final InterstitialListener paramInterstitialListener){
+    public static void setInterstitialListener(String placementId, final InterstitialListener paramInterstitialListener) {
         NmManager.getInstance().setInterstitialAdListener(placementId, new InterstitialAdListener() {
             public void onInterstitialAdAvailabilityChanged(boolean paramAnonymousBoolean) {
                 paramInterstitialListener.onInterstitialAdAvailabilityChanged(paramAnonymousBoolean);
@@ -414,7 +416,8 @@ public class NmSdk {
             }
 
             public void onInterstitialAdShowFailed(Scene paramAnonymousScene, Error paramAnonymousAdTimingError) {
-                paramInterstitialListener.onInterstitialAdShowFailed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "", paramAnonymousAdTimingError.toString());
+                paramInterstitialListener.onInterstitialAdShowFailed(paramAnonymousScene != null ? paramAnonymousScene.getN() : "",
+                        paramAnonymousAdTimingError.toString());
             }
 
             public void onInterstitialAdClosed(Scene paramAnonymousScene) {
@@ -427,11 +430,11 @@ public class NmSdk {
         });
     }
 
-    public static boolean isInterstitialReady(String placementId){
+    public static boolean isInterstitialReady(String placementId) {
         return NmManager.getInstance().isInterstitialAdReady(placementId);
     }
 
-    public static void showInterstitial(final String placementId, final String scene){
+    public static void showInterstitial(final String placementId, final String scene) {
         HandlerUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -440,13 +443,17 @@ public class NmSdk {
         });
     }
 
-    public static void showSplash(Activity activity, String appID, String appName, String slotID)  {
-        try{
+    public static void showSplash(Activity activity, long loadTimeout) {
+        SplashAdActivity.showMe(activity, loadTimeout);
+    }
+
+    public static void showSplash(Activity activity, String appID, String appName, String slotID) {
+        try {
             Class<?> c = Class.forName("com.nbmediation.sdk.mobileads.tiktok.TikTokSplashHelper");
-            Method m = c.getDeclaredMethod("ShowSplash",Activity.class, String.class, String.class, String.class);
+            Method m = c.getDeclaredMethod("ShowSplash", Activity.class, String.class, String.class, String.class);
             m.setAccessible(true);
             m.invoke(null, activity, appID, appName, slotID);
-        }catch (Throwable e){
+        } catch (Throwable e) {
             Log.e("OM-Splash", e.getLocalizedMessage());
         }
     }

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +43,7 @@ import com.nbmediation.sdk.nativead.MediaView;
 import com.nbmediation.sdk.nativead.NativeAd;
 import com.nbmediation.sdk.nativead.NativeAdListener;
 import com.nbmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.utils.HandlerUtil;
 import com.nbmediation.sdk.utils.error.Error;
 import com.nbmediation.sdk.utils.model.Scene;
 import com.nbmediation.sdk.video.RewardedVideoAd;
@@ -101,23 +104,8 @@ public class MainActivity extends AppCompatActivity {
 //            NmSdk.showSplash(this, "5040915", "光速清理", "887364502");
 //        }
 
-        NewApiUtils.printLog("start init sdk");
-        NmAds.setCustomId("test123");
-        NmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {
-            @Override
-            public void onSuccess() {
-                NewApiUtils.printLog("init success");
-                setVideoListener();
-                setInterstitialListener();
-            }
-
-            @Override
-            public void onError(Error result) {
-                NewApiUtils.printLog("init failed " + result.toString());
-
-            }
-        });
-
+        setVideoListener();
+        setInterstitialListener();
     }
 
     private void setVideoListener() {

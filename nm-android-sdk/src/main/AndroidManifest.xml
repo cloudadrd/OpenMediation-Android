@@ -2,11 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nbmediation.sdk">
 
-    <application android:usesCleartextTraffic="true" />
+    <application android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute">
+        <activity
+            android:name=".splash.SplashAdActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-sdk tools:overrideLibrary="com.bun.miitmdid" />
+
 </manifest>
 

@@ -50,7 +50,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
             @Override
             public void onError(Error result) {
                 NewApiUtils.printLog("init failed " + result.toString());
-                finish();
+                toMainPage();
             }
         });
     }
@@ -74,7 +74,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdFailed(String error) {
         Log.e("SplashAdActivity", "----------- onSplashAdFailed ----------" + error);
-        finish();
+        toMainPage();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdShowFailed(String error) {
         Log.e("SplashAdActivity", "----------- onSplashAdShowFailed ----------" + error);
-        finish();
+        toMainPage();
     }
 
     @Override
@@ -101,10 +101,13 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdDismissed() {
         Log.e("SplashAdActivity", "----------- onSplashAdDismissed ----------");
+        toMainPage();
+    }
+
+    public void toMainPage(){
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
-
     @Override
     protected void onDestroy() {
         SplashAd.setSplashAdListener(null);

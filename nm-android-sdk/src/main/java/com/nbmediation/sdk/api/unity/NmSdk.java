@@ -446,15 +446,4 @@ public class NmSdk {
     public static void showSplash(Activity activity, long loadTimeout) {
         SplashAdActivity.showMe(activity, loadTimeout);
     }
-
-    public static void showSplash(Activity activity, String appID, String appName, String slotID) {
-        try {
-            Class<?> c = Class.forName("com.nbmediation.sdk.mobileads.tiktok.TikTokSplashHelper");
-            Method m = c.getDeclaredMethod("ShowSplash", Activity.class, String.class, String.class, String.class);
-            m.setAccessible(true);
-            m.invoke(null, activity, appID, appName, slotID);
-        } catch (Throwable e) {
-            Log.e("OM-Splash", e.getLocalizedMessage());
-        }
-    }
 }

@@ -73,7 +73,7 @@ ext {
             "tc056d"                     : 'tc-056d',
             "sigmob"                     : 'windAd-2.18.2',
             "hyadxopen"                  : 'hyadxopensdk',
-            "tencentad"                  : 'GDTSDK.unionNormal.4.191.1061',
+            "tencentad"                  : 'GDTSDK.unionNormal.4.211.1081',
             "zyt"                        : 'com.zyt:mediation-only:1.1.7',
             "alion"                      : 'cn.vlion.inland:inlandmix:9.1',
             'ks'                         : 'kssdk-ad-3.3.4-publishRelease',

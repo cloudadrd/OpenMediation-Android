@@ -106,7 +106,7 @@ dependencies {
     implementation project(path: ':adapter_cn:hyadxopen')
 
     //tencentad cn
-    implementation(name: 'GDTSDK.unionNormal.4.191.1061', ext: 'aar')
+    implementation(name: rootProject.ext.dependencies.tencentad, ext: 'aar')
     implementation project(path: ':adapter_cn:tencentad')
 
 

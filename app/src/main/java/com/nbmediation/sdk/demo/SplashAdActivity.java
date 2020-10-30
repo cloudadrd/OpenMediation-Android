@@ -4,6 +4,7 @@
 package com.nbmediation.sdk.demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         });
     }
 
-    public void loadSplash(){
+    public void loadSplash() {
         SplashAd.setSplashAdListener(this);
         int width = mSplashContainer.getWidth();
         int height = mSplashContainer.getHeight();
@@ -100,6 +101,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdDismissed() {
         Log.e("SplashAdActivity", "----------- onSplashAdDismissed ----------");
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

@@ -67,6 +67,7 @@ public class Plugin1Splash extends CustomSplashEvent {
             @Override
             public void onReceiveAdFailed(AGNative result) {
                 Log.e(TAG, "onReceiveAdFailed errorMsg=" + result.getErrorsMsg());
+                onInsError(result.getErrorsMsg());
             }
 
             @Override

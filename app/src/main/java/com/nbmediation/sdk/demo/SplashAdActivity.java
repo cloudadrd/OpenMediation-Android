@@ -26,7 +26,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
             int width = mSplashContainer.getWidth();
             int height = mSplashContainer.getHeight();
             SplashAd.setSize(width, height);
-            SplashAd.setLoadTimeout(6000);
+            SplashAd.setLoadTimeout(3000);
             SplashAd.loadAd();
         });
     }

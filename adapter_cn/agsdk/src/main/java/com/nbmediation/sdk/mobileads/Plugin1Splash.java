@@ -50,7 +50,7 @@ public class Plugin1Splash extends CustomSplashEvent {
         try {
             fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
         } catch (Exception e) {
-            fetchDelay = 3;
+            fetchDelay = 3000;
         }
 
         AdsgreatSDK.initialize(activity,slotID);

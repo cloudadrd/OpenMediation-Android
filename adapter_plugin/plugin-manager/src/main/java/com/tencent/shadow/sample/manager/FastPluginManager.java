@@ -120,10 +120,8 @@ public abstract class FastPluginManager extends PluginManagerThatUseDynamicLoade
     }
 
     protected void loadPlugin(String partKey) throws RemoteException{
-
         Map map = mPluginLoader.getLoadedPlugin();
         if (!map.containsKey(partKey)) {
-//            Log.i("")
             mPluginLoader.loadPlugin(partKey);
         }
         Boolean isCall = (Boolean) map.get(partKey);

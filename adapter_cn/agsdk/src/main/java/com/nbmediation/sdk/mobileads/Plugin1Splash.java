@@ -152,6 +152,9 @@ public class Plugin1Splash extends CustomSplashEvent {
 
     @Override
     public void show(ViewGroup viewGroup) {
+        if (isDestroyed) {
+            return;
+        }
         AdsgreatSDK.showSplashAd(slotID, viewGroup);
 
     }

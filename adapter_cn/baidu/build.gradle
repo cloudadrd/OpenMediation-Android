@@ -7,7 +7,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName project.adapterVersion.tiktok_cn
+        versionName project.adapterVersion.baidu
         consumerProguardFiles 'proguard-rules.pro'
     }
 
@@ -20,7 +20,7 @@ android {
 
 }
 
-def fileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.tiktok_cn}.aar"
+def fileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.baidu}.aar"
 def normalPath = "build/outputs/aar/"
 android.libraryVariants.all { variant ->
     variant.outputs.all {
@@ -34,14 +34,12 @@ task copyAAR(type: Copy) {
     into "../../release/"
 }
 build.dependsOn(copyAAR)
-
+build.dependsOn(copyAAR)
 
 dependencies {
-    implementation(name: rootProject.ext.dependencies.tiktok_cn, ext: 'aar')
-    implementation project(path: ':nm-android-sdk')
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-    compileOnly "com.android.support:support-annotations:28.0.0"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    compileOnly rootProject.ext.dependencies.glide
+    compile(name:'Baidu_MobAds_SDK-release',ext:'aar')
 }
 
 repositories {

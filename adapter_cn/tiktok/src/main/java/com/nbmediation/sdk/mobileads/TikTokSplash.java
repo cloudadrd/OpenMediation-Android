@@ -196,6 +196,6 @@ public class TikTokSplash extends CustomSplashEvent implements TTAdNative.Splash
             return;
         }
         AdLog.getSingleton().LogD(TAG + "Splash ad onAdTimeOver");
-        onInsDismissed();
+        onInsTick(0);
     }
 }

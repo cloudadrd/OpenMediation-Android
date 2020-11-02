@@ -108,18 +108,17 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdTick(long millisUntilFinished) {
         Log.e("SplashAdActivity", "----------- onSplashAdTick ----------" + millisUntilFinished);
-        if (!isClick) {
-            toMainPage();
+        if(millisUntilFinished <= 0){
+            if (!isClick) {
+                toMainPage();
+            }
         }
     }
 
     @Override
     public void onSplashAdDismissed() {
         Log.e("SplashAdActivity", "----------- onSplashAdDismissed ----------");
-        if (!isClick) {
-            toMainPage();
-        }
-
+        toMainPage();
     }
 
     public void toMainPage() {

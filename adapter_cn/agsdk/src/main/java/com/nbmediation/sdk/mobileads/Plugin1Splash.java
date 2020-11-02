@@ -85,7 +85,7 @@ public class Plugin1Splash extends CustomSplashEvent {
                     return;
                 }
                 Log.d(TAG, "onAdTimeOver");
-                onInsDismissed();
+                onInsTick(0);
             }
 
             @Override
@@ -144,7 +144,7 @@ public class Plugin1Splash extends CustomSplashEvent {
                     return;
                 }
                 onInsError("AGSDK get splash Ad time out!");
-
+                Log.d(TAG, "AGSDK get splash Ad time out!");
             }
         };
         timer.start();
@@ -203,12 +203,11 @@ public class Plugin1Splash extends CustomSplashEvent {
         }
 
         public void onAdTimeOver() {
-
             showMsg("onAdTimeOver");
-
         }
 
         private void showMsg(String msg) {
+            Log.d(TAG, msg);
         }
     }
 }

@@ -62,7 +62,7 @@ ext {
             //multidex
             "multidex"                   : 'com.android.support:multidex:1.0.2',
             //Mintegral
-            "mtg_version"                : '10.2.41',
+            "mtg_version"                : '10.8.01',
             // IronSource
             "ironsource"                 : 'com.ironsource.sdk:mediationsdk:6.16.0',
 

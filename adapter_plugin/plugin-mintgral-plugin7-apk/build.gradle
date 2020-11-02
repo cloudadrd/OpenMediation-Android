@@ -44,13 +44,13 @@ dependencies {
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     compileOnly "com.tencent.shadow.core:runtime:$shadow_version"
 
-    implementation 'com.mintegral.msdk:videojs:10.8.01'
-    implementation 'com.mintegral.msdk:mtgjscommon:10.8.01'
-    implementation 'com.mintegral.msdk:playercommon:10.8.01'
-    implementation 'com.mintegral.msdk:reward:10.8.01'
-    implementation 'com.mintegral.msdk:videocommon:10.8.01'
-    implementation 'com.mintegral.msdk:interstitialvideo:10.8.01'
-    implementation 'com.mintegral.msdk:common:10.8.01'
+    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
 
     compileOnly project(':nm-android-sdk')
 }

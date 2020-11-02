@@ -129,33 +129,33 @@ dependencies {
 
 
     //alion
-    implementation(rootProject.ext.dependencies.alion) {
-        exclude group: 'cn.vlion.inland', module: 'inlandb'
-
-        exclude group: 'cn.vlion.inland', module: 'inlandg'
-
-        exclude group: 'cn.vlion.inland', module: 'inlandt'
-        exclude group: 'cn.vlion.inland', module: 'inlandtf'
-        exclude group: 'pl.droidsonroids.gif'
-
-        exclude group: 'cn.vlion.inland', module: 'inlandk'
-
-        exclude group: 'cn.vlion.inland', module: 'inlandimb'
-        exclude group: 'com.squareup.picasso'
-
-        exclude group: 'com.tuia'
-
-        exclude group: 'cn.vlion.inland', module: 'inlandhy'
-
-        exclude group: 'cn.vlion.inland', module: 'inlandoaid'
-
-        exclude group: 'cn.vlion.inland', module: 'inlands'
-
-        exclude group: 'com.mintegral.msdk'
-
-    }
-    implementation rootProject.ext.dependencies.glide
-    implementation project(path: ':adapter_cn:alion')
+//    implementation(rootProject.ext.dependencies.alion) {
+//        exclude group: 'cn.vlion.inland', module: 'inlandb'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlandg'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlandt'
+//        exclude group: 'cn.vlion.inland', module: 'inlandtf'
+//        exclude group: 'pl.droidsonroids.gif'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlandk'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlandimb'
+//        exclude group: 'com.squareup.picasso'
+//
+//        exclude group: 'com.tuia'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlandhy'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlandoaid'
+//
+//        exclude group: 'cn.vlion.inland', module: 'inlands'
+//
+//        exclude group: 'com.mintegral.msdk'
+//
+//    }
+//    implementation rootProject.ext.dependencies.glide
+//    implementation project(path: ':adapter_cn:alion')
 
     //mintegral
     implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version

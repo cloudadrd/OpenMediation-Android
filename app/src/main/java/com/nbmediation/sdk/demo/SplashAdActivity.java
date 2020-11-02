@@ -23,6 +23,8 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     public boolean isLoad;
 
+    private boolean isClick = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,15 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 //                if (!isLoad) finish();
 //            }
 //        }, 5300);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isClick) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
     }
 
     public void init() {
@@ -79,6 +90,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     @Override
     public void onSplashAdClicked() {
+        isClick = true;
         Log.e("SplashAdActivity", "----------- onSplashAdClicked ----------");
     }
 
@@ -96,18 +108,25 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdTick(long millisUntilFinished) {
         Log.e("SplashAdActivity", "----------- onSplashAdTick ----------" + millisUntilFinished);
+        if (!isClick) {
+            toMainPage();
+        }
     }
 
     @Override
     public void onSplashAdDismissed() {
         Log.e("SplashAdActivity", "----------- onSplashAdDismissed ----------");
-        toMainPage();
+        if (!isClick) {
+            toMainPage();
+        }
+
     }
 
-    public void toMainPage(){
+    public void toMainPage() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
+
     @Override
     protected void onDestroy() {
         SplashAd.setSplashAdListener(null);

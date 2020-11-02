@@ -36,7 +36,7 @@ public class CrashUtil implements Thread.UncaughtExceptionHandler {
     private static final String SP_NAME = "AdTimingCrashSP";
     private SharedPreferences mCrashSp;
     private Thread.UncaughtExceptionHandler mDefaultEh;
-    private boolean isNe = true;
+    private boolean isNe = false;
 
     private static class CrashUtilHolder {
         private static final CrashUtil INSTANCE = new CrashUtil();

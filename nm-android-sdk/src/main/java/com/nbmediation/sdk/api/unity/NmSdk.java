@@ -443,7 +443,12 @@ public class NmSdk {
         });
     }
 
-    public static void showSplash(Activity activity, long loadTimeout) {
-        SplashAdActivity.showMe(activity, loadTimeout);
+    public static void showSplash(Activity activity, String loadTimeout) {
+        try{
+            SplashAdActivity.showMe(activity, Long.valueOf(loadTimeout));
+        }catch(Throwable e) {
+            String errorMessage = e.getLocalizedMessage();
+            Log.e("AdtDebug", errorMessage == null ? "" : errorMessage);
+        }
     }
 }

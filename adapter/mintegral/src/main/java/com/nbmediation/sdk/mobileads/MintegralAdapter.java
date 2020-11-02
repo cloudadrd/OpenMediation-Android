@@ -69,9 +69,14 @@ public class MintegralAdapter extends CustomAdsAdapter {
         super.loadRewardedVideo(activity, adUnitId, callback);
         String error = check(activity, adUnitId);
         if (TextUtils.isEmpty(error)) {
+            String[] ids = adUnitId.split("\\|");
+            if (ids.length < 2) {
+                callback.onRewardedVideoLoadFailed("adUnitId format error.");
+                return;
+            }
             MTGRewardVideoHandler rewardVideoHandler = mRvAds.get(adUnitId);
             if (rewardVideoHandler == null) {
-                rewardVideoHandler = new MTGRewardVideoHandler(activity, adUnitId);
+                rewardVideoHandler = new MTGRewardVideoHandler(ids[0], ids[1]);
                 mRvAds.put(adUnitId, rewardVideoHandler);
             }
             if (rewardVideoHandler.isReady()) {
@@ -141,9 +146,14 @@ public class MintegralAdapter extends CustomAdsAdapter {
         super.loadInterstitialAd(activity, adUnitId, callback);
         String error = check(activity, adUnitId);
         if (TextUtils.isEmpty(error)) {
+            String[] ids = adUnitId.split("\\|");
+            if (ids.length < 2) {
+                callback.onInterstitialAdLoadFailed("adUnitId format error.");
+                return;
+            }
             MTGInterstitialVideoHandler mtgInterstitialVideoHandler = mInterstitialAds.get(adUnitId);
             if (mtgInterstitialVideoHandler == null) {
-                mtgInterstitialVideoHandler = new MTGInterstitialVideoHandler(activity, adUnitId);
+                mtgInterstitialVideoHandler = new MTGInterstitialVideoHandler(ids[0], ids[1]);
                 mInterstitialAds.put(adUnitId, mtgInterstitialVideoHandler);
             }
 
@@ -214,12 +224,12 @@ public class MintegralAdapter extends CustomAdsAdapter {
         }
 
         @Override
-        public void onLoadSuccess(String s) {
+        public void onLoadSuccess(String s, String var2) {
 
         }
 
         @Override
-        public void onVideoLoadSuccess(String s) {
+        public void onVideoLoadSuccess(String s, String var2) {
             if (mCallback != null) {
                 mCallback.onInterstitialAdLoadSuccess();
             }
@@ -254,18 +264,23 @@ public class MintegralAdapter extends CustomAdsAdapter {
         }
 
         @Override
-        public void onVideoAdClicked(String s) {
+        public void onVideoAdClicked(String s, String var2) {
             if (mCallback != null) {
                 mCallback.onInterstitialAdClick();
             }
         }
 
         @Override
-        public void onVideoComplete(String s) {
+        public void onVideoComplete(String s, String var2) {
         }
 
         @Override
-        public void onEndcardShow(String s) {
+        public void onAdCloseWithIVReward(boolean b, int i) {
+
+        }
+
+        @Override
+        public void onEndcardShow(String s, String var2) {
         }
     }
 
@@ -278,14 +293,14 @@ public class MintegralAdapter extends CustomAdsAdapter {
         }
 
         @Override
-        public void onVideoLoadSuccess(String s) {
+        public void onVideoLoadSuccess(String s, String var2) {
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoLoadSuccess();
             }
         }
 
         @Override
-        public void onLoadSuccess(String s) {
+        public void onLoadSuccess(String s, String var2) {
 
         }
 
@@ -319,21 +334,21 @@ public class MintegralAdapter extends CustomAdsAdapter {
         }
 
         @Override
-        public void onVideoAdClicked(String s) {
+        public void onVideoAdClicked(String s, String var2) {
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdClicked();
             }
         }
 
         @Override
-        public void onVideoComplete(String s) {
+        public void onVideoComplete(String s, String var2) {
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdRewarded();
             }
         }
 
         @Override
-        public void onEndcardShow(String s) {
+        public void onEndcardShow(String s, String var2) {
 
         }
     }

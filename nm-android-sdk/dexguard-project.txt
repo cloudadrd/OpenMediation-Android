@@ -34,5 +34,6 @@
 -keep class com.nbmediation.sdk.NmAds$AD_TYPE{*;}
 -keep class com.nbmediation.sdk.InitCallback{*;}
 -keep class com.nbmediation.sdk.api.**{*;}
+-keep class com.nbmediation.sdk.splash.**{*;}
 
 -keepattributes *Annotation*

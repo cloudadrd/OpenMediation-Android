@@ -52,6 +52,7 @@ public interface MediationInfo {
     int MEDIATION_ID_52 = 52;
     int MEDIATION_ID_53 = 53;
     int MEDIATION_ID_54 = 54;
+    int MEDIATION_ID_55 = 55;
 
 
 
@@ -101,6 +102,6 @@ public interface MediationInfo {
     String MEDIATION_NAME_52 = "UGx1Z2luMjE=";//Plugin21
     String MEDIATION_NAME_53 = "UGx1Z2luMjI=";//Plugin22
     String MEDIATION_NAME_54 = "SW5Nb2Jp";//inmobi
-
+    String MEDIATION_NAME_55 = "QmFpRHU=";//BaiDu
 
 }

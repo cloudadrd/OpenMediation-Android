@@ -1,6 +1,7 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,103 +36,135 @@ import java.util.concurrent.ConcurrentHashMap;
  * 根据工信部的规定，不再默认申请权限，而是主动弹框由用户授权使用。
  * 如果是Android6.0以下的机器, 或者targetSDKVersion < 23，默认在安装时获得了所有权限，可以直接调用SDK
  */
-public class BaiduSplash extends Activity {//extends CustomSplashEvent
-//    private SplashAd splashAd;
-//    private static String TAG = "OM-Baidu:";
-//    // 控制开屏广告在落地页关闭后自动关闭，并进入到媒体的应用主页
-////    private boolean mExitAfterLp;
-////    private boolean needAppLogo = true;
-//    @Override
-//    public void loadAd(Activity activity, Map<String, String> config) {
-//        if (!check(activity, config)) {
-//            return;
-//        }
-//        loadSplashAd(activity, config);
-//    }
-//
-//    @Override
-//    public int getMediation() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void destroy(Activity activity) {
-//
-//    }
-//
-//
-//    private void loadSplashAd(Activity activity, Map<String, String> config) {
-//
-//        // 1. 设置开屏广告请求参数，图片宽高单位dp 非必选
-//        final RequestParameters parameters = new RequestParameters.Builder()
-//                .setHeight(640)
-//                .setWidth(360)
-//                .build();
-//
-//        // 2. 设置开屏listener
-//        final SplashLpCloseListener listener = new SplashLpCloseListener() {
-//            @Override
-//            public void onLpClosed() {
-////                Toast.makeText(activity.this,"lp页面关闭",Toast.LENGTH_SHORT).show();
-//                // 落地页关闭后关闭广告，并跳转到应用的主页
-//            }
-//
-//            @Override
-//            public void onAdDismissed() {
-//                Log.i("RSplashManagerActivity", "onAdDismissed");
-//            }
-//
-//            @Override
-//            public void onADLoaded() {
-//                Log.i("RSplashManagerActivity", "onADLoaded");
-//            }
-//
-//            @Override
-//            public void onAdFailed(String arg0) {
-//                Log.i("RSplashManagerActivity", arg0);
-//            }
-//
-//            @Override
-//            public void onAdPresent() {
-//                Log.i("RSplashManagerActivity", "onAdPresent");
-//            }
-//
-//            @Override
-//            public void onAdClick() {
-//                Log.i("RSplashManagerActivity", "onAdClick");
-//            }
-//        };
-//         /**
-//         * 实例化开屏广告的构造函数
-//         * fetchAd：是否自动请求广告, 设置为true则自动loadAndshow，无需再主动load和show
-//         * 设置为false则仅初始化开屏广告对象，需要手动调用load请求广告，并调用show展示广告
-//         **/
-////         splashAd = new SplashAd(activity.getApplicationContext(), activity, listener, adPlaceId, true,
-////                        parameters, 4200, false);
-////         splashAd.load();
-//
-//    }
-//
-//    @Override
-//    public void show(ViewGroup container) {
-//        if (!isReady()) {
-//            onInsShowFailed("SplashAd not ready");
-//            return;
-//        }
-//        try {
-////            if (splashAd != null) {
-////]                splashAd.show();
-//            }
-//        } catch (Exception e) {
-//            onInsShowFailed("SplashAd not ready");
-//        }
-//    }
-//
-//    @Override
-//    public boolean isReady() {
-//        return false;
-//    }
-//
+public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent slotID = "2058622";
+    private SplashAd splashAd;
+    private static String TAG = "OM-Baidu:";
+    private static final String CONFIG_TIMEOUT = "Timeout";
+    private static final String CONFIG_WIDTH = "Width";
+    private static final String CONFIG_HEIGHT = "Height";
+    private  String adPlaceId;
+
+    @Override
+    public void loadAd(Activity activity, Map<String, String> config) {
+        if (!check(activity, config)) {
+            return;
+        }
+        adPlaceId = mInstancesKey;
+        loadSplashAd(activity, config);
+    }
+
+    @Override
+    public int getMediation() {
+        return 0;
+    }
+
+    @Override
+    public void destroy(Activity activity) {
+
+    }
+
+    private static int getScreenWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private static int getScreenHeight(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
+
+    private void loadSplashAd(Activity activity, Map<String, String> config) {
+       //获取内容
+        int fetchDelay;
+        try {
+            fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
+        } catch (Exception e) {
+            fetchDelay = 3000;
+        }
+        int width = 0;
+        try {
+            width = Integer.parseInt(config.get(CONFIG_WIDTH));
+        } catch (Exception ignored) {
+        }
+        if (width <= 0) {
+            width = getScreenWidth(activity);
+        }
+        int height = 0;
+        try {
+            height = Integer.parseInt(config.get(CONFIG_HEIGHT));
+        } catch (Exception ignored) {
+        }
+        if (height <= 0) {
+            height = getScreenHeight(activity);
+        }
+
+        final RequestParameters parameters = new RequestParameters.Builder()
+                .setHeight(height)
+                .setWidth(width)
+                .build();
+
+        //  设置开屏listener
+        final SplashLpCloseListener listener = new SplashLpCloseListener() {
+            @Override
+            public void onLpClosed() {
+//                Toast.makeText(activity.this,"lp页面关闭",Toast.LENGTH_SHORT).show();
+                // 落地页关闭后关闭广告，并跳转到应用的主页
+            }
+
+            @Override
+            public void onAdDismissed() {
+                Log.i("RSplashManagerActivity", "onAdDismissed");
+            }
+
+            @Override
+            public void onADLoaded() {
+                Log.i("RSplashManagerActivity", "onADLoaded");
+            }
+
+            @Override
+            public void onAdFailed(String arg0) {
+                Log.i("RSplashManagerActivity", arg0);
+            }
+
+            @Override
+            public void onAdPresent() {
+                Log.i("RSplashManagerActivity", "onAdPresent");
+            }
+
+            @Override
+            public void onAdClick() {
+                Log.i("RSplashManagerActivity", "onAdClick");
+            }
+        };
+         /**
+         * 实例化开屏广告的构造函数
+         * fetchAd：是否自动请求广告, 设置为true则自动loadAndshow，无需再主动load和show
+         * 设置为false则仅初始化开屏广告对象，需要手动调用load请求广告，并调用show展示广告
+         **/
+//         splashAd = new SplashAd(activity.getApplicationContext(), activity, listener, adPlaceId, true,
+//                        parameters, fetchDelay, false);
+//         splashAd.load();
+
+    }
+
+    @Override
+    public void show(ViewGroup container) {
+        if (!isReady()) {
+            onInsShowFailed("SplashAd not ready");
+            return;
+        }
+        try {
+            if (splashAd != null) {
+               splashAd.show();
+            }
+        } catch (Exception e) {
+            onInsShowFailed("SplashAd not ready");
+        }
+    }
+
+    @Override
+    public boolean isReady() {
+        return false;
+    }
+
 //    @Override
 //    public void onTimeout() {
 //        if (isDestroyed) {
@@ -140,8 +173,6 @@ public class BaiduSplash extends Activity {//extends CustomSplashEvent
 //        AdLog.getSingleton().LogD(TAG + "Splash ad load failed: timeout");
 //        onInsError("Splash ad load failed: timeout");
 //    }
-//
-//
 //
 //
 //    @Override

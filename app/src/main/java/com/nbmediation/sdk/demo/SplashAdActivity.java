@@ -21,8 +21,6 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     ViewGroup mSplashContainer;
 
-    public boolean isLoad;
-
     private boolean isClick = false;
 
     @Override
@@ -31,12 +29,6 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         setContentView(R.layout.activity_ad_splash);
         mSplashContainer = findViewById(R.id.splash_container);
         init();
-//        mSplashContainer.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (!isLoad) finish();
-//            }
-//        }, 5300);
     }
 
     @Override
@@ -78,7 +70,6 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdLoad() {
         Log.e("SplashAdActivity", "----------- onSplashAdLoad ----------");
-        isLoad = true;
         SplashAd.showAd(mSplashContainer);
     }
 
@@ -122,6 +113,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     }
 
     public void toMainPage() {
+        Log.e("SplashAdActivity", "----------- toMainPage ----------");
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

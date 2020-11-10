@@ -17,6 +17,7 @@ import com.kwad.sdk.api.KsScene;
 import com.kwad.sdk.api.SdkConfig;
 import com.nbmediation.sdk.mediation.CustomNativeEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
+import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
 
 import java.util.List;
@@ -47,14 +48,15 @@ public class KSNative extends CustomNativeEvent {
         //暂时获取后面加上保护
         String appkeyStr = config.get("AppKey");
         String[] split = appkeyStr.split("\\|");
-        String appID = split[0];
+//        String appID = split[0];
+        String appID ="525400018";
         String appName = split[1];
         boolean isDebug = Boolean.parseBoolean(split[2]);
         //end
         av = activity;
         initSdk(activity, appID, appName, isDebug);
         int[] size = getNativeSize(config);
-        requestAd(Long.parseLong(mInstancesKey), size[0]);
+        requestAd(Long.parseLong(mInstancesKey), size[0], size[1]);
     }
 
     private void initSdk(final Context activity, String appId, String appName, boolean isDebug) {
@@ -69,7 +71,7 @@ public class KSNative extends CustomNativeEvent {
     /**
      * 请求Feed默认模板广告数据
      */
-    private void requestAd(long posId, int width) {
+    private void requestAd(long posId, int width, int height) {
         KsScene scene = new KsScene.Builder(posId)
                 .width(width)
                 .adNum(1).build(); // 此为测试posId，请联系快手平台申请正式posId
@@ -82,7 +84,7 @@ public class KSNative extends CustomNativeEvent {
                 .loadConfigFeedAd(scene, new KsLoadManager.FeedAdListener() {
                     @Override
                     public void onError(int code, String msg) {
-                        Log.d(TAG, msg);
+                        Log.d(TAG, "error:"+msg);
                     }
                     @Override
                     public void onFeedAdLoad(List<KsFeedAd> adList) {
@@ -98,6 +100,13 @@ public class KSNative extends CustomNativeEvent {
                                 break;
                             }
                         }
+                        AdInfo mAdInfo = new AdInfo();
+                        mAdInfo.setDesc("");
+                        mAdInfo.setType(2);
+                        mAdInfo.setCallToActionText("");
+                        mAdInfo.setTitle("");
+                        mAdInfo.setTemplate(true);
+                        onInsReady(mAdInfo);
                     }
                 });
     }
@@ -122,7 +131,11 @@ public class KSNative extends CustomNativeEvent {
             }
             @Override
             public void onDislikeClicked() {
-
+                //用户选择不喜欢原因后，移除广告展示
+                if (mNativeView != null && mNativeView.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) mNativeView.getParent()).removeView(mNativeView);
+                    mNativeView = null;
+                }
             }
         });
 
@@ -132,12 +145,11 @@ public class KSNative extends CustomNativeEvent {
 
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
-        mNativeView = getAdItemView();
+        mNativeView = ksNAd.getFeedView(av.getBaseContext());
         if (null == mNativeView) return;
         if (nativeAdView.getMediaView() != null) {
             nativeAdView.getMediaView().removeAllViews();
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
-            nativeAdView.getMediaView().addView(mNativeView, lp);
+            nativeAdView.getMediaView().addView(mNativeView);
 
         }
 

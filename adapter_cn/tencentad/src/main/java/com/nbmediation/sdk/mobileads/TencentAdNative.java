@@ -1,39 +1,40 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
-import android.util.DisplayMetrics;
+import android.content.Context;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.bumptech.glide.Glide;
 import com.nbmediation.sdk.mediation.CustomNativeEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
 import com.nbmediation.sdk.utils.AdLog;
-import com.qq.e.ads.nativ.NativeADEventListener;
-import com.qq.e.ads.nativ.NativeADUnifiedListener;
-import com.qq.e.ads.nativ.NativeUnifiedAD;
-import com.qq.e.ads.nativ.NativeUnifiedADData;
-import com.qq.e.ads.nativ.widget.NativeAdContainer;
-import com.qq.e.comm.constants.AdPatternType;
+import com.qq.e.ads.nativ.ADSize;
+import com.qq.e.ads.nativ.NativeExpressADView;
+import com.qq.e.ads.nativ.NativeExpressMediaListener;
+import com.qq.e.ads.nativ.express2.AdEventListener;
+import com.qq.e.ads.nativ.express2.MediaEventListener;
+import com.qq.e.ads.nativ.express2.NativeExpressAD2;
+import com.qq.e.ads.nativ.express2.NativeExpressADData2;
+import com.qq.e.ads.nativ.express2.VideoOption2;
 import com.qq.e.comm.managers.GDTADManager;
+import com.qq.e.comm.pi.AdData;
 import com.qq.e.comm.util.AdError;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static android.widget.ListPopupWindow.MATCH_PARENT;
 
-public class TencentAdNative extends CustomNativeEvent implements NativeADUnifiedListener {
+
+public class TencentAdNative extends CustomNativeEvent implements NativeExpressAD2.AdLoadListener {
 
     private static String TAG = "OM-TencentAd: ";
 
-    private NativeUnifiedADData mAdData;
-    private NativeUnifiedAD mAdManager;
-//    private AQuery mAQuery;
-    private NativeAdView adView;
+    private NativeExpressAD2 nativeExpressAD;
+
+    private NativeExpressADData2 mNativeExpressADData2;
 
 
     private Activity activity;
@@ -49,105 +50,48 @@ public class TencentAdNative extends CustomNativeEvent implements NativeADUnifie
         if (!GDTADManager.getInstance().isInitialized()) {
             init(activity, appKey);
         }
-        resetAdViews();
-        mAdManager = new NativeUnifiedAD(activity, appKey, mInstancesKey, this);
-//        mAdManager.setVideoPlayPolicy(VideoOption.VideoPlayPolicy.AUTO); // 本次拉回的视频广告，从用户的角度看是自动播放的
-//        mAdManager.setVideoADContainerRender(VideoOption.VideoADContainerRender.SDK); // 视频播放前，用户看到的广告容器是由SDK渲染的
-        mAdManager.loadData(1);
+
+        int[] size = getNativeSize(config);
+        loadAd(activity, size[0], size[1]);
+    }
+
+    // 加载广告，设置条件
+    private void loadAd(Context context, int width, int height) {
+        nativeExpressAD = new NativeExpressAD2(context, mInstancesKey, this); // 传入Activity
+        nativeExpressAD.setAdSize(width, height); // 单位dp
+
+        // 如果您在平台上新建原生模板广告位时，选择了支持视频，那么可以进行个性化设置（可选）
+        VideoOption2.Builder builder = new VideoOption2.Builder();
+
+        /**
+         * 如果广告位支持视频广告，强烈建议在调用loadData请求广告前设置setAutoPlayPolicy，有助于提高视频广告的eCPM值 <br/>
+         * 如果广告位仅支持图文广告，则无需调用
+         */
+        builder.setAutoPlayPolicy(VideoOption2.AutoPlayPolicy.WIFI) // WIFI 环境下可以自动播放视频
+                .setAutoPlayMuted(true) // 自动播放时为静音
+                .setDetailPageMuted(false)  // 视频详情页播放时不静音
+                .setMaxVideoDuration(0) // 设置返回视频广告的最大视频时长（闭区间，可单独设置），单位:秒，默认为 0 代表无限制，合法输入为：5<=maxVideoDuration<=60. 此设置会影响广告填充，请谨慎设置
+                .setMinVideoDuration(0); // 设置返回视频广告的最小视频时长（闭区间，可单独设置），单位:秒，默认为 0 代表无限制， 此设置会影响广告填充，请谨慎设置
+        nativeExpressAD.setVideoOption2(builder.build());
+        nativeExpressAD.loadAd(1);
+        AdLog.getSingleton().LogD(TAG + "ad load mInstancesKey=" + mInstancesKey);
+        destroyAd();
+    }
+
+    /**
+     * 释放前一个 NativeExpressADData2 的资源
+     */
+    private void destroyAd() {
+        if (mNativeExpressADData2 != null) {
+            Log.d(TAG, "destroyAD");
+            mNativeExpressADData2.destroy();
+        }
     }
 
     private void init(Activity activity, String appKey) {
         GDTADManager.getInstance().initWith(activity.getApplicationContext(), appKey);
     }
 
-    @Override
-    public void registerNativeView(NativeAdView adView) {
-        if (isDestroyed || mAdData == null || activity == null) {
-            return;
-        }
-        this.adView = adView;
-        renderAdUi(adView);
-
-        // 所有广告类型，注册mDownloadButton的点击事件
-        List<View> clickableViews = new ArrayList<>();
-        if (adView.getMediaView() != null) {
-            clickableViews.add(adView.getMediaView());
-        }
-
-        if (adView.getAdIconView() != null) {
-            clickableViews.add(adView.getAdIconView());
-        }
-
-        if (adView.getTitleView() != null) {
-            clickableViews.add(adView.getTitleView());
-        }
-
-        if (adView.getDescView() != null) {
-            clickableViews.add(adView.getDescView());
-        }
-
-        if (adView.getCallToActionView() != null) {
-            clickableViews.add(adView.getCallToActionView());
-        }
-        final View hideView = new View(adView.getContext());
-        for (View view : clickableViews) {
-            if (view != null) {
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        hideView.callOnClick();
-                    }
-                });
-            }
-        }
-
-        NativeAdContainer mContainer = new NativeAdContainer(activity);
-        mContainer.addView(hideView);
-        adView.addView(mContainer);
-
-        clickableViews.clear();
-        clickableViews.add(hideView);
-
-        mAdData.bindAdToView(activity, mContainer, null, clickableViews);
-
-//        if (mAdData.getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
-//
-//        } else if (mAdData.getAdPatternType() == AdPatternType.NATIVE_2IMAGE_2TEXT ||
-//                mAdData.getAdPatternType() == AdPatternType.NATIVE_1IMAGE_2TEXT) {
-//            // 双图双文、单图双文：注册mImagePoster的点击事件
-//        } else {
-//        }
-        mAdData.setNativeAdEventListener(new NativeADEventListener() {
-            @Override
-            public void onADExposed() {
-                Log.d(TAG, "onADExposed: ");
-            }
-
-            @Override
-            public void onADClicked() {
-                if (isDestroyed) {
-                    return;
-                }
-                onInsClicked();
-                Log.d(TAG, "onADClicked: " + " clickUrl: " + mAdData.ext.get("clickUrl"));
-            }
-
-            @Override
-            public void onADError(AdError error) {
-                String msg = "onADError error code :" + error.getErrorCode()
-                        + "  error msg: " + error.getErrorMsg();
-                onInsError(msg);
-                AdLog.getSingleton().LogD(TAG + msg);
-            }
-
-            @Override
-            public void onADStatusChanged() {
-                Log.d(TAG, "onADStatusChanged: ");
-                updateAdAction(mAdData);
-            }
-        });
-        updateAdAction(mAdData);
-    }
 
     @Override
     public int getMediation() {
@@ -156,100 +100,10 @@ public class TencentAdNative extends CustomNativeEvent implements NativeADUnifie
 
     @Override
     public void destroy(Activity activity) {
-        if (mAdData != null) {
-            mAdData.destroy();
+        if (mNativeExpressADData2 != null) {
+            Log.d(TAG, "destroyAD");
+            mNativeExpressADData2.destroy();
         }
-    }
-
-    private static void updateAdAction(NativeUnifiedADData ad) {
-        if (!ad.isAppAd()) {
-            AdLog.getSingleton().LogD(TAG + "浏览");
-            return;
-        }
-        switch (ad.getAppStatus()) {
-            case 0:
-                AdLog.getSingleton().LogD(TAG + "下载");
-                break;
-            case 1:
-                AdLog.getSingleton().LogD(TAG + "启动");
-                break;
-            case 2:
-                AdLog.getSingleton().LogD(TAG + "更新");
-                break;
-            case 4:
-                AdLog.getSingleton().LogD(TAG + ad.getProgress() + "%");
-                break;
-            case 8:
-                AdLog.getSingleton().LogD(TAG + "安装");
-                break;
-            case 16:
-                AdLog.getSingleton().LogD(TAG + "下载失败，重新下载");
-                break;
-            default:
-                AdLog.getSingleton().LogD(TAG + "浏览");
-                break;
-        }
-    }
-
-
-//    @Override
-//    public void onAdFailed(String s) {
-//        onInsError(s);
-//    }
-//
-//    @Override
-//    public void onAdClicked() {
-//        onInsClicked();
-//    }
-
-    @Override
-    public void onADLoaded(List<NativeUnifiedADData> list) {
-        if (list != null && list.size() > 0) {
-            mAdData = list.get(0);
-            if (isDestroyed) {
-                return;
-            }
-            initAd(mAdData);
-            AdLog.getSingleton().LogD(TAG, "Native ad load success ");
-        } else {
-            String error = TAG + "Native ad load failed: no ads";
-            AdLog.getSingleton().LogD(error);
-            onInsError(error);
-        }
-
-    }
-
-    private void initAd(final NativeUnifiedADData ad) {
-//        if (ad.getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
-//            if (!mPreloadVideo) {
-//                return;
-//            }
-//            // 如果是视频广告，可以调用preloadVideo预加载视频素材
-//            ad.preloadVideo(new VideoPreloadListener() {
-//                @Override
-//                public void onVideoCached() {
-//                    Log.d(TAG, "onVideoCached");
-//                    // 视频素材加载完成，此时展示广告不会有进度条。
-//                    showAd(ad);
-//                }
-//
-//                @Override
-//                public void onVideoCacheFailed(int errorNo, String msg) {
-//                    Log.d(TAG, "onVideoCacheFailed : " + msg);
-//                }
-//            });
-//            return;
-//        }
-        showAd(ad);
-
-    }
-
-    private void showAd(final NativeUnifiedADData ad) {
-        mAdInfo.setDesc(ad.getDesc());
-        mAdInfo.setType(2);
-        mAdInfo.setCallToActionText(ad.getCTAText());
-        mAdInfo.setTitle(ad.getTitle());
-        onInsReady(mAdInfo);
     }
 
 
@@ -259,81 +113,116 @@ public class TencentAdNative extends CustomNativeEvent implements NativeADUnifie
         onInsError(adError.getErrorMsg());
     }
 
-    private void renderAdUi(final NativeAdView adView) {
-//        mAQuery = new AQuery(adView);
-        ImageView imageView = null;
-        if (adView.getMediaView() != null) {
-            adView.getMediaView().removeAllViews();
-            imageView = new ImageView(adView.getContext());
-            adView.getMediaView().addView(imageView);
-
-            float width = mAdData.getPictureWidth();
-            float height = mAdData.getPictureHeight();
-            DisplayMetrics displayMetrics = activity.getResources().getDisplayMetrics();
-            int viewWidth = displayMetrics.widthPixels;
-            float scale = height / width;
-            imageView.getLayoutParams().width = RelativeLayout.LayoutParams.MATCH_PARENT;
-            imageView.getLayoutParams().height = (int) (viewWidth * scale);
-
-        }
-        ImageView iconImageView = null;
-        if (adView.getAdIconView() != null) {
-            adView.getAdIconView().removeAllViews();
-            iconImageView = new ImageView(adView.getContext());
-            adView.getAdIconView().addView(iconImageView);
-            iconImageView.getLayoutParams().width = RelativeLayout.LayoutParams.MATCH_PARENT;
-            iconImageView.getLayoutParams().height = RelativeLayout.LayoutParams.MATCH_PARENT;
-
-        }
-
-        int patternType = mAdData.getAdPatternType();
-        if (patternType == AdPatternType.NATIVE_2IMAGE_2TEXT || patternType == AdPatternType.NATIVE_VIDEO) {
-//            mAQuery.id(iconImageView).image(mAdData.getIconUrl(), false, true);
-//            mAQuery.id(imageView).image(mAdData.getImgUrl(), false, true);
-//            mAQuery.id(adView.getTitleView()).text(mAdData.getTitle());
-//            mAQuery.id(adView.getDescView()).text(mAdData.getDesc());
-
-            Glide.with(activity).load(mAdData.getIconUrl()).into(iconImageView);
-            Glide.with(activity).load(mAdData.getImgUrl()).into(imageView);
-//            Glide.with(activity).load(mAdData.getIconUrl()).into(iconImageView);
-//            Glide.with(activity).load(mAdData.getIconUrl()).into(iconImageView);
-
-
-        }
+    private void insReady() {
+        mAdInfo.setDesc("");
+        mAdInfo.setType(2);
+        mAdInfo.setCallToActionText("");
+        mAdInfo.setTitle("");
+        mAdInfo.setTemplate(true);
+        onInsReady(mAdInfo);
     }
 
 
-    private void resetAdViews() {
-        if (mAdData == null || adView != null) {
+    @Override
+    public void registerNativeView(NativeAdView nativeAdView) {
+        if (mNativeExpressADData2 == null || mNativeExpressADData2.getAdView() == null) {
             return;
         }
-        int patternType = mAdData.getAdPatternType();
-        if (patternType == AdPatternType.NATIVE_2IMAGE_2TEXT || patternType == AdPatternType.NATIVE_VIDEO) {
-            if (adView.getAdIconView() != null) {
-                Glide.with(activity).clear(adView.getAdIconView());
-//                mAQuery.id(adView.getAdIconView()).clear();
-            }
-            if (adView.getMediaView() != null) {
-                Glide.with(activity).clear(adView.getMediaView());
-//                mAQuery.id(adView.getMediaView()).clear();
-            }
-            if (adView.getCallToActionView() != null) {
-                Glide.with(activity).clear(adView.getCallToActionView());
-//                mAQuery.id(adView.getCallToActionView()).clear();
-            }
-
-            if (adView.getTitleView() != null) {
-                Glide.with(activity).clear(adView.getTitleView());
-//                mAQuery.id(adView.getTitleView()).clear();
-            }
-
-            if (adView.getDescView() != null) {
-                Glide.with(activity).clear(adView.getDescView());
-//                mAQuery.id(adView.getDescView()).clear();
-            }
-
+        if (nativeAdView.getMediaView() != null) {
+            nativeAdView.getMediaView().removeAllViews();
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, MATCH_PARENT);
+            nativeAdView.getMediaView().addView(mNativeExpressADData2.getAdView(),lp);
         }
-
     }
 
+    @Override
+    public void onLoadSuccess(List<NativeExpressADData2> adDataList) {
+        Log.i(TAG, "onLoadSuccess: size " + adDataList.size());
+        // 渲染广告
+        renderAd(adDataList);
+    }
+
+    /**
+     * 渲染广告
+     *
+     * @param adDataList
+     */
+    private void renderAd(List<NativeExpressADData2> adDataList) {
+        if (adDataList.size() > 0) {
+            mNativeExpressADData2 = adDataList.get(0);
+            Log.i(TAG, "renderAd: " + "  eCPM level = " +
+                    mNativeExpressADData2.getECPMLevel() + "  Video duration: " + mNativeExpressADData2.getVideoDuration());
+            mNativeExpressADData2.setAdEventListener(new AdEventListener() {
+                @Override
+                public void onClick() {
+
+                    if (isDestroyed) {
+                        AdLog.getSingleton().LogD(TAG, "onClick: is destroyed");
+                        return;
+                    }
+                    AdLog.getSingleton().LogD(TAG, "onClick: " + mNativeExpressADData2);
+                    onInsClicked();
+                }
+
+                @Override
+                public void onExposed() {
+                    Log.i(TAG, "onExposed: " + mNativeExpressADData2);
+                }
+
+                @Override
+                public void onRenderSuccess() {
+                    if (isDestroyed) {
+                        return;
+                    }
+                    AdLog.getSingleton().LogD(TAG + "onRenderSuccess");
+                    insReady();
+                }
+
+                @Override
+                public void onRenderFail() {
+                    AdLog.getSingleton().LogD(TAG, "onRenderFail: " + mNativeExpressADData2);
+                    onInsError("onRenderFail");
+                }
+
+                @Override
+                public void onAdClosed() {
+                    mNativeExpressADData2.destroy();
+                }
+            });
+
+            mNativeExpressADData2.setMediaListener(new MediaEventListener() {
+                @Override
+                public void onVideoCache() {
+                    AdLog.getSingleton().LogD(TAG, "onVideoCache: " + mNativeExpressADData2);
+                }
+
+                @Override
+                public void onVideoStart() {
+                    AdLog.getSingleton().LogD(TAG, "onVideoStart: " + mNativeExpressADData2);
+                }
+
+                @Override
+                public void onVideoResume() {
+                    AdLog.getSingleton().LogD(TAG, "onVideoResume: " + mNativeExpressADData2);
+                }
+
+                @Override
+                public void onVideoPause() {
+                    AdLog.getSingleton().LogD(TAG, "onVideoPause: " + mNativeExpressADData2);
+                }
+
+                @Override
+                public void onVideoComplete() {
+                    AdLog.getSingleton().LogD(TAG, "onVideoComplete: " + mNativeExpressADData2);
+                }
+
+                @Override
+                public void onVideoError() {
+                    AdLog.getSingleton().LogD(TAG, "onVideoError: " + mNativeExpressADData2);
+                }
+            });
+
+            mNativeExpressADData2.render();
+        }
+    }
 }

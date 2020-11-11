@@ -17,11 +17,15 @@ import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.plugin7.BuildConfig;
+import com.nbmediation.sdk.utils.AdLog;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Plugin7Adapter extends CustomAdsAdapter {
+
+    private static String TAG = "OM-Mintegral-Plugin7: ";
+
     private boolean mDidInitSdk;
     private ConcurrentHashMap<String, MTGInterstitialVideoHandler> mInterstitialAds;
     private ConcurrentHashMap<String, MTGRewardVideoHandler> mRvAds;
@@ -59,7 +63,7 @@ public class Plugin7Adapter extends CustomAdsAdapter {
             }
         } else {
             if (callback != null) {
-                callback.onRewardedVideoInitFailed(error);
+                callback.onRewardedVideoInitFailed(TAG + error);
             }
         }
 //        Intent intent = new Intent(PluginApplication.getInstance(), MyService.class);
@@ -215,6 +219,7 @@ public class Plugin7Adapter extends CustomAdsAdapter {
             MIntegralSDK sdk = MIntegralSDKFactory.getMIntegralSDK();
             Map<String, String> map = sdk.getMTGConfigurationMap(appId, key);
             sdk.init(map, context);
+            AdLog.getSingleton().LogD(TAG + " init over");
         }
     }
 
@@ -297,6 +302,7 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onVideoLoadSuccess(String s, String s1) {
+            AdLog.getSingleton().LogD(TAG + "onVideoLoadSuccess: s=" + s + ",s1=" + s1);
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoLoadSuccess();
             }
@@ -304,11 +310,13 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onLoadSuccess(String s, String s1) {
+            AdLog.getSingleton().LogD(TAG + "onLoadSuccess: s=" + s + ", s1=" + s1);
 
         }
 
         @Override
         public void onVideoLoadFail(String s) {
+            AdLog.getSingleton().LogD(TAG + "onVideoLoadFail: s=" + s);
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoLoadFailed(s);
             }
@@ -316,6 +324,7 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onAdShow() {
+            AdLog.getSingleton().LogD(TAG + "onAdShow");
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdShowSuccess();
                 mRvCallback.onRewardedVideoAdStarted();
@@ -324,6 +333,8 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onAdClose(boolean b, String s, float v) {
+            AdLog.getSingleton().LogD(TAG + "onAdClose b=" + b + ", s=" + s + ", v=" + v);
+
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdClosed();
             }
@@ -331,6 +342,8 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onShowFail(String s) {
+            AdLog.getSingleton().LogD(TAG + "onShowFail s=" + s);
+
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdShowFailed(s);
             }
@@ -338,6 +351,8 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onVideoAdClicked(String s, String s1) {
+            AdLog.getSingleton().LogD(TAG + "onVideoAdClicked s=" + s + ", s1=" + s1);
+
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdClicked();
             }
@@ -345,6 +360,8 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onVideoComplete(String s, String s1) {
+            AdLog.getSingleton().LogD(TAG + "onVideoComplete s=" + s + ", s1=" + s1);
+
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdRewarded();
             }
@@ -352,7 +369,7 @@ public class Plugin7Adapter extends CustomAdsAdapter {
 
         @Override
         public void onEndcardShow(String s, String s1) {
-
+            AdLog.getSingleton().LogD(TAG + "onEndcardShow s=" + s + ", s1=" + s1);
         }
     }
 }

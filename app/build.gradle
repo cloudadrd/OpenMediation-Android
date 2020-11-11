@@ -60,7 +60,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies.multidex
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:support-annotations:28.0.0'
@@ -77,8 +77,8 @@ dependencies {
     implementation rootProject.ext.dependencies.glide
     //NBMediation
 //    releaseImplementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-//    debugImplementation project(':nm-android-sdk')
-    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    debugImplementation project(':nm-android-sdk')
+//    implementation(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 
 
     //add oaid
@@ -163,8 +163,13 @@ dependencies {
     implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
     implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
     implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:optimizedata:' + rootProject.ext.dependencies.mtg_version
     implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk:interactiveads:' + rootProject.ext.dependencies.mtg_version
     implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
+    // 开发者后台创建App勾选APK为YES则加上mtgdownloads依赖
+    implementation 'com.mintegral.msdk:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
+
     implementation project(path: ':adapter:mintegral')
 
     //inmobi

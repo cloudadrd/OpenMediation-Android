@@ -7,35 +7,35 @@ package com.nbmediation.sdk.mediation;
  *
  */
 public interface MediationInfo {
-    int MEDIATION_ID_1 = 1;
-    int MEDIATION_ID_2 = 2;
-    int MEDIATION_ID_3 = 3;
-    int MEDIATION_ID_4 = 4;
-    int MEDIATION_ID_5 = 5;
-    int MEDIATION_ID_6 = 6;
-    int MEDIATION_ID_7 = 7;
-    int MEDIATION_ID_8 = 8;
-    int MEDIATION_ID_9 = 9;
-    int MEDIATION_ID_11 = 11;
-    int MEDIATION_ID_12 = 12;
-    int MEDIATION_ID_13 = 13;
-    int MEDIATION_ID_14 = 14;
-    int MEDIATION_ID_15 = 15;
-    int MEDIATION_ID_17 = 17;
-    int MEDIATION_ID_18 = 18;
-    int MEDIATION_ID_19 = 19;
-    int MEDIATION_ID_20 = 20;
-    int MEDIATION_ID_21 = 21;
-    int MEDIATION_ID_22 = 22;
-    int MEDIATION_ID_23 = 23;
-    int MEDIATION_ID_30 = 30;
-    int MEDIATION_ID_32 = 32;
-    int MEDIATION_ID_33 = 33;
-    int MEDIATION_ID_34 = 34;
-    int MEDIATION_ID_35 = 35;
-    int MEDIATION_ID_36 = 36;
-    int MEDIATION_ID_37 = 37;
-    int MEDIATION_ID_38 = 38;
+    int MEDIATION_ID_1 = 1;//AdTiming
+    int MEDIATION_ID_2 = 2;//AdMob
+    int MEDIATION_ID_3 = 3;//Facebook
+    int MEDIATION_ID_4 = 4;//Unity
+    int MEDIATION_ID_5 = 5;//Vungle
+    int MEDIATION_ID_6 = 6;//TencentAd
+    int MEDIATION_ID_7 = 7;//AdColony
+    int MEDIATION_ID_8 = 8;//AppLovin
+    int MEDIATION_ID_9 = 9;//MoPub
+    int MEDIATION_ID_11 = 11;//Tapjoy
+    int MEDIATION_ID_12 = 12;//Chartboost
+    int MEDIATION_ID_13 = 13;//TikTok
+    int MEDIATION_ID_14 = 14;//Mintegral
+    int MEDIATION_ID_15 = 15;//IronSource
+    int MEDIATION_ID_17 = 17;//Cloudmobi
+    int MEDIATION_ID_18 = 18;//HyAdXOpen
+    int MEDIATION_ID_19 = 19;//TC
+    int MEDIATION_ID_20 = 20;//Sigmob
+    int MEDIATION_ID_21 = 21;//ZYT
+    int MEDIATION_ID_22 = 22;//KS
+    int MEDIATION_ID_23 = 23;//Alion
+    int MEDIATION_ID_30 = 30;//Fyber
+    int MEDIATION_ID_32 = 32;//agsdk
+    int MEDIATION_ID_33 = 33;//agsdk-plugin
+    int MEDIATION_ID_34 = 34;//alion-plugin
+    int MEDIATION_ID_35 = 35;//tiktok-plugin
+    int MEDIATION_ID_36 = 36;//ks-plugin
+    int MEDIATION_ID_37 = 37;//-暂时没用
+    int MEDIATION_ID_38 = 38;//-mintgral-plugin
     int MEDIATION_ID_39 = 39;
     int MEDIATION_ID_40 = 40;
     int MEDIATION_ID_41 = 41;
@@ -57,17 +57,17 @@ public interface MediationInfo {
 
 
 
-    String MEDIATION_NAME_1 = "QWRUaW1pbmc=";
-    String MEDIATION_NAME_2 = "QWRNb2I=";
-    String MEDIATION_NAME_3 = "RmFjZWJvb2s=";
-    String MEDIATION_NAME_4 = "VW5pdHk=";
-    String MEDIATION_NAME_5 = "VnVuZ2xl";
-    String MEDIATION_NAME_6 = "VGVuY2VudEFk";
-    String MEDIATION_NAME_7 = "QWRDb2xvbnk=";
-    String MEDIATION_NAME_8 = "QXBwTG92aW4=";
-    String MEDIATION_NAME_9 = "TW9QdWI=";
-    String MEDIATION_NAME_11 = "VGFwam95";
-    String MEDIATION_NAME_12 = "Q2hhcnRib29zdA==";
+    String MEDIATION_NAME_1 = "QWRUaW1pbmc=";//AdTiming
+    String MEDIATION_NAME_2 = "QWRNb2I=";//AdMob
+    String MEDIATION_NAME_3 = "RmFjZWJvb2s=";//Facebook
+    String MEDIATION_NAME_4 = "VW5pdHk=";//Unity
+    String MEDIATION_NAME_5 = "VnVuZ2xl";//Vungle
+    String MEDIATION_NAME_6 = "VGVuY2VudEFk";//TencentAd
+    String MEDIATION_NAME_7 = "QWRDb2xvbnk=";//AdColony
+    String MEDIATION_NAME_8 = "QXBwTG92aW4=";//AppLovin
+    String MEDIATION_NAME_9 = "TW9QdWI=";//MoPub
+    String MEDIATION_NAME_11 = "VGFwam95";//Tapjoy
+    String MEDIATION_NAME_12 = "Q2hhcnRib29zdA==";//Chartboost
     String MEDIATION_NAME_13 = "VGlrVG9r";//TikTok
     String MEDIATION_NAME_14 = "TWludGVncmFs";//Mintegral
     String MEDIATION_NAME_15 = "SXJvblNvdXJjZQ==";//IronSource
@@ -80,12 +80,12 @@ public interface MediationInfo {
     String MEDIATION_NAME_23 = "QWxpb24=";//Alion
     String MEDIATION_NAME_30 = "RnliZXI=";//Fyber
     String MEDIATION_NAME_32 = "UGx1Z2luMQ==";//Plugin1 -agsdk
-    String MEDIATION_NAME_33 = "UGx1Z2luMg==";//Plugin2
-    String MEDIATION_NAME_34 = "UGx1Z2luMw==";//Plugin3
-    String MEDIATION_NAME_35 = "UGx1Z2luNA==";//Plugin4
-    String MEDIATION_NAME_36 = "UGx1Z2luNQ==";//Plugin5
-    String MEDIATION_NAME_37 = "UGx1Z2luNg==";//Plugin6
-    String MEDIATION_NAME_38 = "UGx1Z2luNw==";//Plugin7
+    String MEDIATION_NAME_33 = "UGx1Z2luMg==";//Plugin2 -agsdk-plugin
+    String MEDIATION_NAME_34 = "UGx1Z2luMw==";//Plugin3 -alion-plugin
+    String MEDIATION_NAME_35 = "UGx1Z2luNA==";//Plugin4 -tiktok-plugin
+    String MEDIATION_NAME_36 = "UGx1Z2luNQ==";//Plugin5 -ks-plugin
+    String MEDIATION_NAME_37 = "UGx1Z2luNg==";//Plugin6 -暂时没用
+    String MEDIATION_NAME_38 = "UGx1Z2luNw==";//Plugin7 -mintgral-plugin
     String MEDIATION_NAME_39 = "UGx1Z2luOA==";//Plugin8
     String MEDIATION_NAME_40 = "UGx1Z2luOQ==";//Plugin9
     String MEDIATION_NAME_41 = "UGx1Z2luMTA=";//Plugin10

@@ -41,10 +41,10 @@ ext {
     MANAGER_PLUGIN = "1.0.3"
     MAIN_PLUGIN = "1.0.5"
     TIKTOk_PLUGIN = "1.2.1"
-    AGSDK_PLUGIN = '4.3.3'
+    AGSDK_PLUGIN = '4.3.4'
     ALION_PLUGIN = '1.0.1'
     KS_PLUGIN = '1.0.6'
-    MINTGRAL_PLUGIN = '1.0.7'
+    MINTGRAL_PLUGIN = '1.0.9'
     nm_version = "1.2.1"
     hop_version = '1.1.1'
 }

@@ -64,17 +64,17 @@
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/btn_splash"
-                android:layout_marginTop="20dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Show Splash Ad"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                android:onClick="showSplash"
-                android:background="@drawable/btn_background"/>
+<!--            <Button-->
+<!--                android:id="@+id/btn_splash"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="Show Splash Ad"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:onClick="showSplash"-->
+<!--                android:background="@drawable/btn_background"/>-->
 
             <Button
                 android:id="@+id/btn_banner"
@@ -100,29 +100,29 @@
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/btn_show_1"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btn_background"
-                android:onClick="showVideo1"
-                android:text="Show Video 1"
-                android:textAllCaps="false"
-                android:textSize="20sp" />
+<!--            <Button-->
+<!--                android:id="@+id/btn_show_1"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@drawable/btn_background"-->
+<!--                android:onClick="showVideo1"-->
+<!--                android:text="Show Video 1"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textSize="20sp" />-->
 
-            <Button
-                android:id="@+id/btn_show_2"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btn_background"
-                android:onClick="showVideo2"
-                android:text="Show Video 2"
-                android:textAllCaps="false"
-                android:textSize="20sp" />
+<!--            <Button-->
+<!--                android:id="@+id/btn_show_2"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@drawable/btn_background"-->
+<!--                android:onClick="showVideo2"-->
+<!--                android:text="Show Video 2"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textSize="20sp" />-->
 
             <LinearLayout
                 android:id="@+id/ad_container"

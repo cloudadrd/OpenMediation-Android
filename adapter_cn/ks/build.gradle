@@ -36,7 +36,7 @@ task copyAAR(type: Copy) {
 build.dependsOn(copyAAR)
 
 dependencies {
-    implementation 'org.jetbrains:annotations-java5:15.0'
+//    implementation 'org.jetbrains:annotations-java5:15.0'
     compileOnly(name: rootProject.ext.dependencies.ks, ext: 'aar')
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 }

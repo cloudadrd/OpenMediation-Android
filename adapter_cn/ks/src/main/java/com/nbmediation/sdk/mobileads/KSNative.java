@@ -177,6 +177,9 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void destroy(Activity activity) {
         destroyAd();
+        if (av != null) {
+            av = null;
+        }
     }
 
     private void destroyAd() {
@@ -189,9 +192,6 @@ public class KSNative extends CustomNativeEvent {
             ksNAd.setAdInteractionListener(null);
             ksNAd.setVideoPlayConfig(null);
             ksNAd = null;
-        }
-        if (av != null) {
-            av = null;
         }
     }
 

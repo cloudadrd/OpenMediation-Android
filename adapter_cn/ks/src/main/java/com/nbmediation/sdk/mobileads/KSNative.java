@@ -154,7 +154,10 @@ public class KSNative extends CustomNativeEvent {
                 destroyAd();
             }
         });
-        return ksNAd.getFeedView(av.getBaseContext());
+        if(av != null)
+            return ksNAd.getFeedView(av.getBaseContext());
+        else
+            return null;
     }
 
 

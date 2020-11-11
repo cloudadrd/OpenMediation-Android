@@ -117,6 +117,7 @@ public class KSNative extends CustomNativeEvent {
                         AdInfo mAdInfo = new AdInfo();
                         mAdInfo.setDesc("");
                         mAdInfo.setType(2);
+                        mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_22);
                         mAdInfo.setCallToActionText("");
                         mAdInfo.setTitle("");
                         mAdInfo.setTemplate(true);

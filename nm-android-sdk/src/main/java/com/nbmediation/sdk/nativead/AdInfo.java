@@ -14,6 +14,16 @@ public class AdInfo {
     private double starRating;
     private int type;
 
+    public int getAdNetWorkId() {
+        return adNetWorkId;
+    }
+
+    public void setAdNetWorkId(int adNetWorkId) {
+        this.adNetWorkId = adNetWorkId;
+    }
+
+    private int adNetWorkId;
+
     public String getTitle() {
         return title;
     }

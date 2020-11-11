@@ -6,6 +6,7 @@ package com.nbmediation.sdk.demo;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +15,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +41,7 @@ import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.demo.utils.NewApiUtils;
 import com.nbmediation.sdk.interstitial.InterstitialAd;
 import com.nbmediation.sdk.interstitial.InterstitialAdListener;
+import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.AdIconView;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.MediaView;
@@ -303,6 +308,13 @@ public class MainActivity extends AppCompatActivity {
                 nativeAdView.setCallToActionView(btn);
                 nativeAdView.setMediaView(mediaView);
 
+                //腾讯的NativeView模板顶层View会自动撑满MediaView宽度,但它的实际布局没有撑满MediaView，这样会导致他
+                // 的View向左偏移不能居中，如果MediaView宽度为wrap_content它依然会撑满屏幕的最大宽度，除非MediaView
+                // 以上布局对宽度加以限制。在此遇到腾讯的广告做下特殊处理
+                if (info.getAdNetWorkId() == MediationInfo.MEDIATION_ID_6) {
+                    nativeAdView.getMediaView().setLayoutParams(new RelativeLayout.LayoutParams(dp2px(360), ViewGroup.LayoutParams.WRAP_CONTENT));
+                }
+
                 nativeAd.registerNativeAdView(nativeAdView);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -356,6 +368,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "没准备好，稍后再试", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public static int dp2px(int dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, Resources.getSystem().getDisplayMetrics());
     }
 
 }

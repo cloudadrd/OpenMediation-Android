@@ -87,7 +87,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
 
     @Override
     public int getMediation() {
-        return MediationInfo.MEDIATION_ID_1;
+        return MediationInfo.MEDIATION_ID_13;
     }
 
     @Override
@@ -171,6 +171,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
             banner.mNativeView = view;
             banner.mAdInfo.setDesc("");
             banner.mAdInfo.setType(2);
+            banner.mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_13);
             banner.mAdInfo.setCallToActionText("");
             banner.mAdInfo.setTitle("");
             banner.mAdInfo.setTemplate(true);

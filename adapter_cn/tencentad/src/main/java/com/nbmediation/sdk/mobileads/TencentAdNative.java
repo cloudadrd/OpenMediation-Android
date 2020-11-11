@@ -113,6 +113,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
     private void insReady() {
         mAdInfo.setDesc("");
         mAdInfo.setType(2);
+        mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_6);
         mAdInfo.setCallToActionText("");
         mAdInfo.setTitle("");
         mAdInfo.setTemplate(true);

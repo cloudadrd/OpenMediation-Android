@@ -79,7 +79,7 @@ public class TikTokNative extends CustomNativeEvent implements TTAdNative.Native
         if (mNativeView == null) return;
         if (adView.getMediaView() != null) {
             adView.getMediaView().removeAllViews();
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, MATCH_PARENT);
             adView.getMediaView().addView(mNativeView, lp);
 
         }

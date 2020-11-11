@@ -69,7 +69,7 @@ ext {
             "adtiming"                   : 'com.adtiming:mediation-sdk:6.3.3@aar',
             "fyber"                      : '7.5.3',
             'tiktok'                     : 'open_ad_sdk_en',
-            'tiktok_cn'                  : 'open_ad_sdk_3.2.5.1',
+            'tiktok_cn'                  : 'open_ad_sdk_3.3.0.1',
             "tc056d"                     : 'tc-056d',
             "sigmob"                     : 'windAd-2.18.2',
             "hyadxopen"                  : 'hyadxopensdk',

@@ -14,15 +14,15 @@ ext {
             'mintegral'   : '1.1.2',
             'ironsource'  : '1.0.0',
             'fyber'       : '1.0.0',
-            'tiktok_cn'   : '1.0.4',
-            'tencentad_cn': '1.0.3',
+            'tiktok_cn'   : '1.0.5',
+            'tencentad_cn': '1.0.4',
             'hyadxopen_cn': '1.0.0',
             'cloudmobi_cn': '1.0.0',
             'sigmob'      : '1.0.0',
             'tc056d'      : '1.0.0',
             'alion'       : '1.0.2',
             'zyt'         : '1.0.0',
-            'ks'          : '1.0.3',
+            'ks'          : '1.0.4',
             'agsdk'       : '1.0.4',
             'inmobi'      : '1.0.0'
     ]

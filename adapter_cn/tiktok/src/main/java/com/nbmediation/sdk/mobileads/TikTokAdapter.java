@@ -39,6 +39,7 @@ import static com.nbmediation.sdk.utils.Dips.dpTopx;
 
 
 public class TikTokAdapter extends CustomAdsAdapter {
+
     private static String TAG = "OM-TikTok: ";
     private TTAdNative mTTAdNative;
     private ConcurrentMap<String, TTRewardVideoAd> mTTRvAds;
@@ -314,7 +315,7 @@ public class TikTokAdapter extends CustomAdsAdapter {
     }
 
     private void initSdk(final Context activity) {
-        TTAdManagerHolder.init(activity.getApplicationContext(), mAppKey,null);
+        TTAdManagerHolder.init(activity.getApplicationContext(), mAppKey, null);
     }
 
     private class InnerIsAdListener implements TTAdNative.FullScreenVideoAdListener {
@@ -518,10 +519,11 @@ public class TikTokAdapter extends CustomAdsAdapter {
             }
         }
 
+
         @Override
-        public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName) {
+        public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName, int i1, String s1) {
             AdLog.getSingleton().LogD(TAG + "verify:" + rewardVerify + " amount:" + rewardAmount +
-                    " name:" + rewardName);
+                    " name:" + rewardName + ",i1:" + i1 + ",s1=" + s1);
         }
 
         @Override

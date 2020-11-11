@@ -66,6 +66,7 @@ public class KSNative extends CustomNativeEvent {
         }
         av = activity;
         initSdk(activity, appID, appName, isDebug);
+        destroyAd();
         requestAd(Long.parseLong(mInstancesKey));
     }
 
@@ -89,11 +90,18 @@ public class KSNative extends CustomNativeEvent {
                     @Override
                     public void onError(int code, String msg) {
                         AdLog.getSingleton().LogD(TAG, "error:" + msg);
+                        if (isDestroyed) {
+                            return;
+                        }
+                        onInsError("error:" + msg);
                     }
 
                     @Override
                     public void onFeedAdLoad(List<KsFeedAd> adList) {
                         AdLog.getSingleton().LogD(TAG, "onFeedAdLoad");
+                        if (isDestroyed) {
+                            return;
+                        }
                         if (adList == null) return;
                         for (KsFeedAd ksFeedAd : adList) {
                             if (ksFeedAd != null) {
@@ -127,6 +135,9 @@ public class KSNative extends CustomNativeEvent {
         ksNAd.setAdInteractionListener(new KsFeedAd.AdInteractionListener() {
             @Override
             public void onAdClicked() {
+                if (isDestroyed) {
+                    return;
+                }
                 onInsClicked();
             }
 
@@ -137,6 +148,9 @@ public class KSNative extends CustomNativeEvent {
 
             @Override
             public void onDislikeClicked() {
+                if (isDestroyed) {
+                    return;
+                }
                 destroyAd();
             }
         });

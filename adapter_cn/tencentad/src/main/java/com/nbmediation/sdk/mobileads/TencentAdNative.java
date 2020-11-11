@@ -36,13 +36,9 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
 
     private NativeExpressADData2 mNativeExpressADData2;
 
-
-    private Activity activity;
-
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
         super.loadAd(activity, config);
-        this.activity = activity;
         if (!check(activity, config)) {
             return;
         }
@@ -86,6 +82,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
             Log.d(TAG, "destroyAD");
             mNativeExpressADData2.destroy();
         }
+        nativeExpressAD = null;
     }
 
     private void init(Activity activity, String appKey) {
@@ -104,6 +101,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
             Log.d(TAG, "destroyAD");
             mNativeExpressADData2.destroy();
         }
+        nativeExpressAD = null;
     }
 
 
@@ -131,7 +129,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
         if (nativeAdView.getMediaView() != null) {
             nativeAdView.getMediaView().removeAllViews();
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, MATCH_PARENT);
-            nativeAdView.getMediaView().addView(mNativeExpressADData2.getAdView(),lp);
+            nativeAdView.getMediaView().addView(mNativeExpressADData2.getAdView(), lp);
         }
     }
 
@@ -148,81 +146,82 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
      * @param adDataList
      */
     private void renderAd(List<NativeExpressADData2> adDataList) {
-        if (adDataList.size() > 0) {
-            mNativeExpressADData2 = adDataList.get(0);
-            Log.i(TAG, "renderAd: " + "  eCPM level = " +
-                    mNativeExpressADData2.getECPMLevel() + "  Video duration: " + mNativeExpressADData2.getVideoDuration());
-            mNativeExpressADData2.setAdEventListener(new AdEventListener() {
-                @Override
-                public void onClick() {
-
-                    if (isDestroyed) {
-                        AdLog.getSingleton().LogD(TAG, "onClick: is destroyed");
-                        return;
-                    }
-                    AdLog.getSingleton().LogD(TAG, "onClick: " + mNativeExpressADData2);
-                    onInsClicked();
-                }
-
-                @Override
-                public void onExposed() {
-                    Log.i(TAG, "onExposed: " + mNativeExpressADData2);
-                }
-
-                @Override
-                public void onRenderSuccess() {
-                    if (isDestroyed) {
-                        return;
-                    }
-                    AdLog.getSingleton().LogD(TAG + "onRenderSuccess");
-                    insReady();
-                }
-
-                @Override
-                public void onRenderFail() {
-                    AdLog.getSingleton().LogD(TAG, "onRenderFail: " + mNativeExpressADData2);
-                    onInsError("onRenderFail");
-                }
-
-                @Override
-                public void onAdClosed() {
-                    mNativeExpressADData2.destroy();
-                }
-            });
-
-            mNativeExpressADData2.setMediaListener(new MediaEventListener() {
-                @Override
-                public void onVideoCache() {
-                    AdLog.getSingleton().LogD(TAG, "onVideoCache: " + mNativeExpressADData2);
-                }
-
-                @Override
-                public void onVideoStart() {
-                    AdLog.getSingleton().LogD(TAG, "onVideoStart: " + mNativeExpressADData2);
-                }
-
-                @Override
-                public void onVideoResume() {
-                    AdLog.getSingleton().LogD(TAG, "onVideoResume: " + mNativeExpressADData2);
-                }
-
-                @Override
-                public void onVideoPause() {
-                    AdLog.getSingleton().LogD(TAG, "onVideoPause: " + mNativeExpressADData2);
-                }
-
-                @Override
-                public void onVideoComplete() {
-                    AdLog.getSingleton().LogD(TAG, "onVideoComplete: " + mNativeExpressADData2);
-                }
-
-                @Override
-                public void onVideoError() {
-                    AdLog.getSingleton().LogD(TAG, "onVideoError: " + mNativeExpressADData2);
-                }
-            });
-
-            mNativeExpressADData2.render();
+        if (adDataList == null || adDataList.size() == 0) {
+            return;
         }
+        mNativeExpressADData2 = adDataList.get(0);
+        Log.i(TAG, "renderAd: " + "  eCPM level = " +
+                mNativeExpressADData2.getECPMLevel() + "  Video duration: " + mNativeExpressADData2.getVideoDuration());
+        mNativeExpressADData2.setAdEventListener(new AdEventListener() {
+            @Override
+            public void onClick() {
+
+                if (isDestroyed) {
+                    AdLog.getSingleton().LogD(TAG, "onClick: is destroyed");
+                    return;
+                }
+                AdLog.getSingleton().LogD(TAG, "onClick: " + mNativeExpressADData2);
+                onInsClicked();
+            }
+
+            @Override
+            public void onExposed() {
+                Log.i(TAG, "onExposed: " + mNativeExpressADData2);
+            }
+
+            @Override
+            public void onRenderSuccess() {
+                if (isDestroyed) {
+                    return;
+                }
+                AdLog.getSingleton().LogD(TAG + "onRenderSuccess");
+                insReady();
+            }
+
+            @Override
+            public void onRenderFail() {
+                AdLog.getSingleton().LogD(TAG, "onRenderFail: " + mNativeExpressADData2);
+                onInsError("onRenderFail");
+            }
+
+            @Override
+            public void onAdClosed() {
+                mNativeExpressADData2.destroy();
+            }
+        });
+
+        mNativeExpressADData2.setMediaListener(new MediaEventListener() {
+            @Override
+            public void onVideoCache() {
+                AdLog.getSingleton().LogD(TAG, "onVideoCache: " + mNativeExpressADData2);
+            }
+
+            @Override
+            public void onVideoStart() {
+                AdLog.getSingleton().LogD(TAG, "onVideoStart: " + mNativeExpressADData2);
+            }
+
+            @Override
+            public void onVideoResume() {
+                AdLog.getSingleton().LogD(TAG, "onVideoResume: " + mNativeExpressADData2);
+            }
+
+            @Override
+            public void onVideoPause() {
+                AdLog.getSingleton().LogD(TAG, "onVideoPause: " + mNativeExpressADData2);
+            }
+
+            @Override
+            public void onVideoComplete() {
+                AdLog.getSingleton().LogD(TAG, "onVideoComplete: " + mNativeExpressADData2);
+            }
+
+            @Override
+            public void onVideoError() {
+                AdLog.getSingleton().LogD(TAG, "onVideoError: " + mNativeExpressADData2);
+            }
+        });
+
+        mNativeExpressADData2.render();
     }
 }

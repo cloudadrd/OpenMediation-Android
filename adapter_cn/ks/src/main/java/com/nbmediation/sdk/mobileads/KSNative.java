@@ -2,7 +2,6 @@ package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,19 +15,23 @@ import com.nbmediation.sdk.mediation.CustomNativeEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.utils.AdLog;
+
 import java.util.List;
 import java.util.Map;
 
 public class KSNative extends CustomNativeEvent {
+
     private static String TAG = "OM-KSNative: ";
-    private KsFeedAd  ksNAd;
+    private KsFeedAd ksNAd;
     private View mNativeView;
-    private Activity  av;
+    private Activity av;
+
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
         super.loadAd(activity, config);
         String e = "loadAd传入的参数错误.";
-        Log.d(TAG, "getLoadManager check");
+        AdLog.getSingleton().LogD(TAG, "getLoadManager check");
         if (!check(activity, config)) {
             return;
         }
@@ -37,14 +40,17 @@ public class KSNative extends CustomNativeEvent {
             return;
         }
 
-        String appkeyStr = config.get("AppKey");
-        String appID = null;
+        String appKeyStr = config.get("AppKey");
+        String appID;
         String appName = null;
         boolean isDebug = false;
-        String[] split = appkeyStr.split("\\|");
+        String[] split = new String[0];
+        if (appKeyStr != null) {
+            split = appKeyStr.split("\\|");
+        }
         if (split.length > 0) {
             appID = split[0];
-        }else {
+        } else {
             onInsError("not input AppID.");
             return;
         }
@@ -71,6 +77,7 @@ public class KSNative extends CustomNativeEvent {
                 .debug(isDebug) // 是否开启sdk 调试⽇日志 可选
                 .build());
     }
+
     /**
      * 请求Feed默认模板广告数据
      */
@@ -81,12 +88,13 @@ public class KSNative extends CustomNativeEvent {
                 .loadConfigFeedAd(scene, new KsLoadManager.FeedAdListener() {
                     @Override
                     public void onError(int code, String msg) {
-                        Log.d(TAG, "error:"+msg);
+                        AdLog.getSingleton().LogD(TAG, "error:" + msg);
                     }
+
                     @Override
                     public void onFeedAdLoad(List<KsFeedAd> adList) {
-                        Log.d(TAG, "onFeedAdLoad");
-                        int k = 0;
+                        AdLog.getSingleton().LogD(TAG, "onFeedAdLoad");
+                        if (adList == null) return;
                         for (KsFeedAd ksFeedAd : adList) {
                             if (ksFeedAd != null) {
                                 ksNAd = ksFeedAd;
@@ -124,15 +132,12 @@ public class KSNative extends CustomNativeEvent {
 
             @Override
             public void onAdShow() {
-                Log.d(TAG, "onAdShow: ");
+                AdLog.getSingleton().LogD(TAG, "onAdShow: ");
             }
+
             @Override
             public void onDislikeClicked() {
-                //用户选择不喜欢原因后，移除广告展示
-                if (mNativeView != null && mNativeView.getParent() instanceof ViewGroup) {
-                    ((ViewGroup) mNativeView.getParent()).removeView(mNativeView);
-                    mNativeView = null;
-                }
+                destroyAd();
             }
         });
         return ksNAd.getFeedView(av.getBaseContext());
@@ -157,10 +162,23 @@ public class KSNative extends CustomNativeEvent {
 
     @Override
     public void destroy(Activity activity) {
-         if (ksNAd != null) {
-             ksNAd = null;
-         }
+        destroyAd();
+    }
 
+    private void destroyAd() {
+        //用户选择不喜欢原因后，移除广告展示
+        if (mNativeView != null && mNativeView.getParent() instanceof ViewGroup) {
+            ((ViewGroup) mNativeView.getParent()).removeView(mNativeView);
+            mNativeView = null;
+        }
+        if (ksNAd != null) {
+            ksNAd.setAdInteractionListener(null);
+            ksNAd.setVideoPlayConfig(null);
+            ksNAd = null;
+        }
+        if (av != null) {
+            av = null;
+        }
     }
 
 

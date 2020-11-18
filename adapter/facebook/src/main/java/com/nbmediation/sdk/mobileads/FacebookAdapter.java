@@ -3,6 +3,7 @@
 
 package com.nbmediation.sdk.mobileads;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -12,14 +13,13 @@ import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
 import com.facebook.ads.BuildConfig;
 import com.facebook.ads.InterstitialAd;
-import com.facebook.ads.InterstitialAdListener;
+import com.facebook.ads.InterstitialAdExtendedListener;
 import com.facebook.ads.RewardedVideoAd;
-import com.facebook.ads.RewardedVideoAdListener;
+import com.facebook.ads.RewardedVideoAdExtendedListener;
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
 import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
-import com.nbmediation.sdk.utils.HandlerUtil;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,7 +52,7 @@ public class FacebookAdapter extends CustomAdsAdapter {
 
     @Override
     public String getAdapterVersion() {
-        return com.nbmediation.sdk.mobileads.facebook.BuildConfig.VERSION_NAME;
+        return BuildConfig.VERSION_NAME;
     }
 
     @Override
@@ -246,19 +246,12 @@ public class FacebookAdapter extends CustomAdsAdapter {
     private void initSdk(final Context activity) {
         AdSettings.setIntegrationErrorMode(AdSettings.IntegrationErrorMode.INTEGRATION_ERROR_CALLBACK_MODE);
         if (mDidCallInit.compareAndSet(false, true)) {
-            if (AudienceNetworkAds.isInAdsProcess(activity.getApplicationContext())) {
-                // According to Xabi from facebook (29/4/19) - the meaning of isInAdsProcess==true is that
-                // another process has already initialized Facebook's SDK and in this case there's no need to init it again.
-                // Without this check an error will appear in the log.
-                mDidInitSuccess = true;
-                return;
-            }
 
             AudienceNetworkAds.buildInitSettings(activity.getApplicationContext())
                     .withInitListener(new AudienceNetworkAds.InitListener() {
                         @Override
                         public void onInitialized(final AudienceNetworkAds.InitResult result) {
-                            HandlerUtil.runOnUiThread(new Runnable() {
+                            ((Activity) activity).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     if (result.isSuccess()) {
@@ -287,12 +280,14 @@ public class FacebookAdapter extends CustomAdsAdapter {
         }
     }
 
-    private class FbRvListener implements RewardedVideoAdListener {
+    private static class FbRvListener implements RewardedVideoAdExtendedListener {
 
         private RewardedVideoCallback rvCallback;
+        private AtomicBoolean mDidRvCloseCallbacked;
 
         FbRvListener(RewardedVideoCallback callback) {
             rvCallback = callback;
+            mDidRvCloseCallbacked = new AtomicBoolean(false);
         }
 
         @Override
@@ -326,6 +321,7 @@ public class FacebookAdapter extends CustomAdsAdapter {
 
         @Override
         public void onLoggingImpression(Ad ad) {
+            mDidRvCloseCallbacked.set(false);
             if (rvCallback != null) {
                 rvCallback.onRewardedVideoAdShowSuccess();
                 rvCallback.onRewardedVideoAdStarted();
@@ -334,13 +330,22 @@ public class FacebookAdapter extends CustomAdsAdapter {
 
         @Override
         public void onRewardedVideoClosed() {
-            if (rvCallback != null) {
+            if (rvCallback != null && !mDidRvCloseCallbacked.get()) {
+                mDidRvCloseCallbacked.set(true);
+                rvCallback.onRewardedVideoAdClosed();
+            }
+        }
+
+        @Override
+        public void onRewardedVideoActivityDestroyed() {
+            if (rvCallback != null && !mDidRvCloseCallbacked.get()) {
+                mDidRvCloseCallbacked.set(true);
                 rvCallback.onRewardedVideoAdClosed();
             }
         }
     }
 
-    private class FbIsAdListener implements InterstitialAdListener {
+    private static class FbIsAdListener implements InterstitialAdExtendedListener {
 
         private InterstitialAdCallback isCallback;
 
@@ -386,6 +391,28 @@ public class FacebookAdapter extends CustomAdsAdapter {
             if (isCallback != null) {
                 isCallback.onInterstitialAdShowSuccess();
             }
+        }
+
+        @Override
+        public void onInterstitialActivityDestroyed() {
+            if (isCallback != null) {
+                isCallback.onInterstitialAdClosed();
+            }
+        }
+
+        @Override
+        public void onRewardedAdCompleted() {
+
+        }
+
+        @Override
+        public void onRewardedAdServerSucceeded() {
+
+        }
+
+        @Override
+        public void onRewardedAdServerFailed() {
+
         }
     }
 }

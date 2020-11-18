@@ -11,18 +11,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nbmediation.sdk.mediation.CustomNativeEvent;
-import com.nbmediation.sdk.mediation.MediationInfo;
-import com.nbmediation.sdk.nativead.AdIconView;
-import com.nbmediation.sdk.nativead.MediaView;
-import com.nbmediation.sdk.nativead.NativeAdView;
-import com.nbmediation.sdk.utils.AdLog;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.nbmediation.sdk.mediation.CustomNativeEvent;
+import com.nbmediation.sdk.mediation.MediationInfo;
+import com.nbmediation.sdk.nativead.AdIconView;
+import com.nbmediation.sdk.nativead.MediaView;
+import com.nbmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.utils.AdLog;
 
 import java.util.Map;
 
@@ -35,7 +35,7 @@ public class AdMobNative extends CustomNativeEvent {
     private AdIconView mAdIconView;
 
     @Override
-    public void loadAd(Activity activity, Map<String, String> config){
+    public void loadAd(Activity activity, Map<String, String> config) {
         super.loadAd(activity, config);
 
         if (!check(activity, config)) {

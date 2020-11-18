@@ -6,6 +6,8 @@ package com.nbmediation.sdk.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -23,12 +25,22 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     private boolean isClick = false;
 
+    private boolean isLoad = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_splash);
         mSplashContainer = findViewById(R.id.splash_container);
         init();
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!isLoad) {
+                    toMainPage();
+                }
+            }
+        }, 3000);
     }
 
     @Override
@@ -69,6 +81,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     @Override
     public void onSplashAdLoad() {
+        isLoad = true;
         Log.e("SplashAdActivity", "----------- onSplashAdLoad ----------");
         SplashAd.showAd(mSplashContainer);
     }
@@ -99,7 +112,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdTick(long millisUntilFinished) {
         Log.e("SplashAdActivity", "----------- onSplashAdTick ----------" + millisUntilFinished);
-        if(millisUntilFinished <= 0){
+        if (millisUntilFinished <= 0) {
             if (!isClick) {
                 toMainPage();
             }

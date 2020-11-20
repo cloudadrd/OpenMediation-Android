@@ -1,0 +1,2 @@
+-keep public class com.smaato.sdk.** { *; }
+-keep public interface com.smaato.sdk.** { *; }

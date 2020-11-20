@@ -3,8 +3,9 @@ package com.nbmediation.sdk.mobileads.plugin4;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.bytedance.sdk.openadsdk.TTRewardVideoAd;

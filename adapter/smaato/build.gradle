@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.version.minSdkVersion
+        targetSdkVersion rootProject.ext.version.targetSdkVersion
+        versionCode rootProject.ext.version.versionCode
+        versionName project.adapterVersion.admob
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+android.libraryVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.admob}.aar"
+    }
+}
+dependencies {
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+
+    implementation 'com.smaato.android.sdk:smaato-sdk:21.5.4'
+    //banner
+    implementation 'com.smaato.android.sdk:smaato-sdk-banner:21.5.4'
+    //interstitial
+    implementation 'com.smaato.android.sdk:smaato-sdk-interstitial:21.5.4'
+    //Native
+    implementation 'com.smaato.android.sdk:smaato-sdk-native:21.5.4'
+}
+
+repositories {
+    flatDir {
+        dirs rootProject.ext.adapterDirs
+    }
+}

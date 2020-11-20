@@ -7,6 +7,9 @@ buildscript {
         google()
         jcenter()
         maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+        maven {
+            url "https://s3.amazonaws.com/smaato-sdk-releases/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.4'
@@ -130,6 +133,10 @@ allprojects {
 
         maven{
             url "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
+        }
+
+        maven {
+            url "https://s3.amazonaws.com/smaato-sdk-releases/"
         }
 
     }

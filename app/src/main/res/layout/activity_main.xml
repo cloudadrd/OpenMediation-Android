@@ -99,7 +99,17 @@
                 android:text="Load And Show Native Ad"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
-
+            <Button
+                android:id="@+id/btn_dialog_spalsh"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_background"
+                android:onClick="showDialogSplash"
+                android:text="dialogSplash"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
 <!--            <Button-->
 <!--                android:id="@+id/btn_show_1"-->
 <!--                android:layout_width="300dp"-->

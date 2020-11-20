@@ -9,16 +9,12 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +26,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.nbmediation.sdk.InitCallback;
-import com.nbmediation.sdk.NmAds;
 import com.nbmediation.sdk.api.unity.NmSdk;
 import com.nbmediation.sdk.banner.AdSize;
 import com.nbmediation.sdk.banner.BannerAd;
@@ -48,7 +41,6 @@ import com.nbmediation.sdk.nativead.MediaView;
 import com.nbmediation.sdk.nativead.NativeAd;
 import com.nbmediation.sdk.nativead.NativeAdListener;
 import com.nbmediation.sdk.nativead.NativeAdView;
-import com.nbmediation.sdk.utils.HandlerUtil;
 import com.nbmediation.sdk.utils.error.Error;
 import com.nbmediation.sdk.utils.model.Scene;
 import com.nbmediation.sdk.video.RewardedVideoAd;
@@ -373,6 +365,10 @@ public class MainActivity extends AppCompatActivity {
     public static int dp2px(int dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, Resources.getSystem().getDisplayMetrics());
+    }
+
+    public void showDialogSplash(View view) {
+        startActivity(new Intent(this, SplashDialogActivity.class));
     }
 
 }

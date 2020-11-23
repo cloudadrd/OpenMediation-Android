@@ -39,22 +39,23 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation project(':adapter_plugin:plugin-main-lib')
     //Shadow Transform后业务代码会有一部分实际引用runtime中的类
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     compileOnly "com.tencent.shadow.core:runtime:$shadow_version"
 
-    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:optimizedata:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:interactiveads:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
-    // 开发者后台创建App勾选APK为YES则加上mtgdownloads依赖
-    implementation 'com.mintegral.msdk:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:optimizedata:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:interactiveads:' + rootProject.ext.dependencies.mtg_version
+//    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
+//    // 开发者后台创建App勾选APK为YES则加上mtgdownloads依赖
+//    implementation 'com.mintegral.msdk:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
 
     compileOnly project(':nm-android-sdk')
 }

@@ -25,6 +25,8 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     private boolean isLoad = false;
 
+    public static boolean isSdkInit = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         NmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {
             @Override
             public void onSuccess() {
+                isSdkInit = true;
                 NewApiUtils.printLog("init success");
                 Log.i("time_log", "init end time=" + System.currentTimeMillis());
                 loadSplash();
@@ -108,7 +111,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdTick(long millisUntilFinished) {
         Log.e("SplashAdActivity", "----------- onSplashAdTick ----------" + millisUntilFinished);
-        if(millisUntilFinished <= 0){
+        if (millisUntilFinished <= 0) {
             if (!isClick) {
                 toMainPage();
             }

@@ -4,6 +4,8 @@
 package com.nbmediation.sdk.demo;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,10 +27,12 @@ public class SplashDialogActivity extends AppCompatActivity implements SplashAdL
 
     private static final String TAG = "SplashDialogActivity";
 
-
     private boolean isClick = false;
 
     private boolean isLoad = false;
+
+    private boolean isShowing = false;
+
 
     private Dialog dialog;
 
@@ -49,7 +53,7 @@ public class SplashDialogActivity extends AppCompatActivity implements SplashAdL
     }
 
     public void splashShow(View view) {
-        if (!isLoad) {
+        if (isShowing || !isLoad || !SplashAdActivity.isSdkInit) {
             Log.e(TAG, "not load ok.");
             return;
         }
@@ -58,17 +62,21 @@ public class SplashDialogActivity extends AppCompatActivity implements SplashAdL
         }
         dialog = new Dialog(this, R.style.Dialog);
         dialog.show();
+        isLoad = false;
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        View viewDialog = LayoutInflater.from(this).inflate(R.layout.activity_ad_splash, null);
+        View viewDialog = LayoutInflater.from(this).inflate(R.layout.dialog_ad_splash, null);
         ViewGroup mSplashContainer = viewDialog.findViewById(R.id.splash_container);
-        android.view.WindowManager.LayoutParams p = this.getWindow().getAttributes();
+        android.view.WindowManager.LayoutParams p = dialog.getWindow().getAttributes();
         p.width = WindowManager.LayoutParams.MATCH_PARENT;
-        p.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        p.height = WindowManager.LayoutParams.MATCH_PARENT;
         p.gravity = Gravity.CENTER;
-        p.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        p.flags =
+                WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         p.dimAmount = 0.0f;
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setContentView(viewDialog);
         SplashAd.showAd(mSplashContainer);
 
@@ -76,6 +84,10 @@ public class SplashDialogActivity extends AppCompatActivity implements SplashAdL
 
 
     public void loadSplash() {
+        if (!SplashAdActivity.isSdkInit) {
+            Toast.makeText(this, "sdk not init!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Log.i("time_log", "loadSplash start time=" + System.currentTimeMillis());
         SplashAd.setSplashAdListener(this);
         int width = getWindow().getWindowManager().getDefaultDisplay().getWidth();
@@ -107,12 +119,14 @@ public class SplashDialogActivity extends AppCompatActivity implements SplashAdL
 
     @Override
     public void onSplashAdShowed() {
+        isShowing = true;
         Log.e(TAG, "----------- onSplashAdShowed ----------");
 
     }
 
     @Override
     public void onSplashAdShowFailed(String error) {
+        isShowing = false;
         Log.e(TAG, "----------- onSplashAdShowFailed ----------" + error);
         dialogDismiss();
     }
@@ -124,11 +138,13 @@ public class SplashDialogActivity extends AppCompatActivity implements SplashAdL
             if (!isClick) {
                 dialogDismiss();
             }
+            isShowing = false;
         }
     }
 
     @Override
     public void onSplashAdDismissed() {
+        isShowing = false;
         Log.e(TAG, "----------- onSplashAdDismissed ----------");
         dialogDismiss();
     }

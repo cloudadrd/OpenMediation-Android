@@ -44,7 +44,7 @@ ext {
     AGSDK_PLUGIN = '4.3.4'
     ALION_PLUGIN = '1.0.1'
     KS_PLUGIN = '1.0.6'
-    MINTGRAL_PLUGIN = '1.1.1'
+    MINTGRAL_PLUGIN = '1.1.2'
     nm_version = "1.2.2"
     hop_version = '1.1.0'
 }

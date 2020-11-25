@@ -1,8 +1,8 @@
 ext {
     adapterVersion = [
             'adtiming'    : '1.1.0',
-            'admob'       : '1.1.0',
-            'facebook'    : '1.1.0',
+            'admob'       : '1.1.1',
+            'facebook'    : '1.1.1',
             'unity'       : '1.1.0',
             'vungle'      : '1.1.0',
             'adcolony'    : '1.1.0',
@@ -24,7 +24,8 @@ ext {
             'zyt'         : '1.0.0',
             'ks'          : '1.0.4',
             'agsdk'       : '1.0.4',
-            'inmobi'      : '1.0.0'
+            'inmobi'      : '1.0.0',
+            'smaato'      : '1.0.0'
     ]
 
     pkg_prefix = 'nb_'
@@ -45,6 +46,6 @@ ext {
     ALION_PLUGIN = '1.0.1'
     KS_PLUGIN = '1.0.6'
     MINTGRAL_PLUGIN = '1.0.9'
-    nm_version = "1.2.2"
+    nm_version = "1.2.3"
     hop_version = '1.1.0'
 }

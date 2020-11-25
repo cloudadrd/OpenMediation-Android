@@ -31,6 +31,7 @@ echo  "include ':adapter:applovin',
         ':adapter_cn:inmobi',
         ':adapter:admob',
         ':adapter:sigmob',
+        ':adapter:smaato',
         ':app',
         ':adapter_cn:tiktok',
         ':adapter_cn:tencentad'

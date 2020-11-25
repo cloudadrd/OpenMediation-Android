@@ -113,6 +113,7 @@ public class Plugin1Native extends CustomNativeEvent {
 
     @Override
     public void destroy(Activity activity) {
+        this.activity = null;
         isDestroyed = true;
     }
 

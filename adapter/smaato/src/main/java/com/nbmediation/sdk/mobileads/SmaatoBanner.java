@@ -50,9 +50,8 @@ public class SmaatoBanner extends CustomBannerEvent {
             @Override
             // banner ad successfully loaded
             public void onAdLoaded(@NonNull BannerView bannerView) {
-                if (!isDestroyed) {
-                    onInsReady(mBannerView);
-                }
+                AdLog.getSingleton().LogD(TAG + "onAdLoaded isDestroyed=" + isDestroyed);
+
             }
 
             @Override
@@ -61,6 +60,8 @@ public class SmaatoBanner extends CustomBannerEvent {
                 if (!isDestroyed) {
                     onInsError(TAG + "onAdFailedToLoad banner ad failed to load");
                 }
+                AdLog.getSingleton().LogD(TAG + "onAdFailedToLoad bannerError=" + bannerError);
+
             }
 
             @Override
@@ -75,6 +76,7 @@ public class SmaatoBanner extends CustomBannerEvent {
                 if (!isDestroyed) {
                     onInsClicked();
                 }
+                AdLog.getSingleton().LogD(TAG + "onAdClicked");
             }
 
             @Override
@@ -83,8 +85,11 @@ public class SmaatoBanner extends CustomBannerEvent {
                 if (!isDestroyed) {
                     onInsError(TAG + "onAdTTLExpired banner ad Time to Live expire");
                 }
+                AdLog.getSingleton().LogD(TAG + "onAdTTLExpired banner ad Time to Live expire");
+
             }
         });
+        onInsReady(mBannerView);
         mBannerView.loadAd(mInstancesKey, mAdSize);
     }
 

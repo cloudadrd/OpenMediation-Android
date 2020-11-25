@@ -368,4 +368,17 @@ public class MainActivity extends AppCompatActivity {
                 dpVal, Resources.getSystem().getDisplayMetrics());
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (adContainer != null) {
+            adContainer.removeAllViews();
+        }
+        if (bannerAd != null) {
+            bannerAd.destroy();
+        }
+        if (nativeAd != null) {
+            nativeAd.destroy();
+        }
+    }
 }

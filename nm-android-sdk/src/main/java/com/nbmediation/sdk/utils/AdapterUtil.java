@@ -58,6 +58,7 @@ public class AdapterUtil {
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_23, getAdapterPath(MediationInfo.MEDIATION_ID_23));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_54, getAdapterPath(MediationInfo.MEDIATION_ID_54));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_55, getAdapterPath(MediationInfo.MEDIATION_ID_55));
+        mAdapterPaths.put(MediationInfo.MEDIATION_ID_56, getAdapterPath(MediationInfo.MEDIATION_ID_56));
         //plugin
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_32, getAdapterPath(MediationInfo.MEDIATION_ID_32));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_33, getAdapterPath(MediationInfo.MEDIATION_ID_33));
@@ -380,10 +381,12 @@ public class AdapterUtil {
             case MediationInfo.MEDIATION_ID_55:
                 path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_55));
                 break;
+            case MediationInfo.MEDIATION_ID_56:
+                path = MEDIATION_ADAPTER_BASE_PATH.concat(getAdapterName(MediationInfo.MEDIATION_NAME_56));
+                break;
             default:
                 break;
         }
-        DeveloperLog.LogD("adapter path is : " + path);
         return path;
     }
 

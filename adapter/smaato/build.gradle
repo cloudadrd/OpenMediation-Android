@@ -8,7 +8,7 @@ android {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName project.adapterVersion.admob
+        versionName project.adapterVersion.smaato
     }
 
     buildTypes {
@@ -21,7 +21,7 @@ android {
 }
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.admob}.aar"
+        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.smaato}.aar"
     }
 }
 dependencies {
@@ -34,6 +34,9 @@ dependencies {
     implementation 'com.smaato.android.sdk:smaato-sdk-interstitial:21.5.4'
     //Native
     implementation 'com.smaato.android.sdk:smaato-sdk-native:21.5.4'
+
+    compileOnly rootProject.ext.dependencies.glide
+
 }
 
 repositories {

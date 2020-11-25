@@ -34,59 +34,66 @@ public class FacebookNative extends CustomNativeEvent implements NativeAdListene
     private AdOptionsView adOptionsView;
     private MediaView mediaView;
     private AdIconView adIconView;
+    private com.facebook.ads.MediaView mFbMediaView;
+    private com.facebook.ads.MediaView mFbIconView;
 
     @Override
     public void registerNativeView(NativeAdView adView) {
-        NativeAdLayout fbNativeAdLayout = new NativeAdLayout(adView.getContext());
-        List<View> views = new ArrayList<>();
-        if (adView.getMediaView() != null) {
-            mediaView = adView.getMediaView();
-            views.add(mediaView);
+        if (isDestroyed || nativeAd == null) {
+            return;
         }
+        try {
+            NativeAdLayout fbNativeAdLayout = new NativeAdLayout(adView.getContext());
+            List<View> views = new ArrayList<>();
+            if (adView.getMediaView() != null) {
+                mediaView = adView.getMediaView();
+                views.add(mediaView);
+            }
 
-        if (adView.getAdIconView() != null) {
-            adIconView = adView.getAdIconView();
-            views.add(adIconView);
-        }
+            if (adView.getAdIconView() != null) {
+                adIconView = adView.getAdIconView();
+                views.add(adIconView);
+            }
 
-        if (adView.getTitleView() != null) {
-            views.add(adView.getTitleView());
-        }
+            if (adView.getTitleView() != null) {
+                views.add(adView.getTitleView());
+            }
 
-        if (adView.getDescView() != null) {
-            views.add(adView.getDescView());
-        }
+            if (adView.getDescView() != null) {
+                views.add(adView.getDescView());
+            }
 
-        if (adView.getCallToActionView() != null) {
-            views.add(adView.getCallToActionView());
-        }
+            if (adView.getCallToActionView() != null) {
+                views.add(adView.getCallToActionView());
+            }
 
-        if (adOptionsView == null) {
-            adOptionsView = new AdOptionsView(adView.getContext(), nativeAd, fbNativeAdLayout);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            adView.addView(adOptionsView, layoutParams);
-        }
+            if (adOptionsView == null) {
+                adOptionsView = new AdOptionsView(adView.getContext(), nativeAd, fbNativeAdLayout);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                adView.addView(adOptionsView, layoutParams);
+            }
 
-        com.facebook.ads.MediaView fb_mediaView = null;
-        if (mediaView != null) {
-            mediaView.removeAllViews();
-            fb_mediaView = new com.facebook.ads.MediaView(adView.getContext());
-            mediaView.addView(fb_mediaView);
-        }
-        com.facebook.ads.MediaView fbAdIconView = null;
-        if (adIconView != null) {
-            adIconView.removeAllViews();
-            fbAdIconView = new com.facebook.ads.MediaView(adView.getContext());
-            adIconView.addView(fbAdIconView);
-        }
-        //pay attention to the order of fb_mediaView and adIconView here
-        this.nativeAd.registerViewForInteraction(fbNativeAdLayout, fb_mediaView, fbAdIconView, views);
+            if (mediaView != null) {
+                mediaView.removeAllViews();
+                mFbMediaView = new com.facebook.ads.MediaView(adView.getContext());
+                mediaView.addView(mFbMediaView);
+            }
+            if (adIconView != null) {
+                adIconView.removeAllViews();
+                mFbIconView = new com.facebook.ads.MediaView(adView.getContext());
+                adIconView.addView(mFbIconView);
+            }
+            //pay attention to the order of fb_mediaView and adIconView here
+            this.nativeAd.registerViewForInteraction(fbNativeAdLayout, mFbMediaView, mFbIconView, views);
 
-        if (adOptionsView != null) {
-            adOptionsView.bringToFront();
+            if (adOptionsView != null) {
+                adOptionsView.bringToFront();
+            }
+        } catch (Throwable e) {
+            // ignore
         }
     }
 
@@ -113,7 +120,14 @@ public class FacebookNative extends CustomNativeEvent implements NativeAdListene
 
     @Override
     public void destroy(Activity activity) {
+        if (mFbMediaView != null) {
+            mFbMediaView.destroy();
+        }
+        if (mFbIconView != null) {
+            mFbIconView.destroy();
+        }
         if (nativeAd != null) {
+            nativeAd.unregisterView();
             nativeAd.destroy();
             nativeAd = null;
         }
@@ -145,7 +159,7 @@ public class FacebookNative extends CustomNativeEvent implements NativeAdListene
         mAdInfo.setTitle(nativeAd.getAdHeadline());
 
         onInsReady(mAdInfo);
-        AdLog.getSingleton().LogD("Om-Facebook", "Facebook Native ad load success ");
+        AdLog.getSingleton().LogD("OM-Facebook", "Facebook Native ad load success ");
     }
 
     @Override
@@ -164,13 +178,6 @@ public class FacebookNative extends CustomNativeEvent implements NativeAdListene
     private void initSdk(Activity activity) {
         AdSettings.setIntegrationErrorMode(AdSettings.IntegrationErrorMode.INTEGRATION_ERROR_CALLBACK_MODE);
         if (mDidCallInit.compareAndSet(false, true)) {
-            if (AudienceNetworkAds.isInAdsProcess(activity.getApplicationContext())) {
-                // According to Xabi from facebook (29/4/19) - the meaning of isInAdsProcess==true is that
-                // another process has already initialized Facebook's SDK and in this case there's no need to init it again.
-                // Without this check an error will appear in the log.
-                return;
-            }
-
             AudienceNetworkAds.buildInitSettings(activity.getApplicationContext())
                     .withInitListener(new AudienceNetworkAds.InitListener() {
                         @Override

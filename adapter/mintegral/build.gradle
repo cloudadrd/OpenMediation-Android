@@ -43,17 +43,16 @@ build.dependsOn(copyAAR)
 dependencies {
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
 
-    compileOnly 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:optimizedata:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:interactiveads:' + rootProject.ext.dependencies.mtg_version
-    compileOnly 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
-    // 开发者后台创建App勾选APK为YES则加上mtgdownloads依赖
-    compileOnly 'com.mintegral.msdk:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:videojs:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:playercommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:reward:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:videocommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:chinacommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:interstitial:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:interactiveads:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
 }
 
 repositories {

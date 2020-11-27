@@ -44,17 +44,16 @@ dependencies {
     //如果不以compileOnly方式依赖，会导致其他Transform或者Proguard找不到这些类
     compileOnly "com.tencent.shadow.core:runtime:$shadow_version"
 
-    implementation 'com.mintegral.msdk:videojs:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:playercommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:reward:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:videocommon:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:optimizedata:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:interactiveads:' + rootProject.ext.dependencies.mtg_version
-    implementation 'com.mintegral.msdk:common:' + rootProject.ext.dependencies.mtg_version
-    // 开发者后台创建App勾选APK为YES则加上mtgdownloads依赖
-    implementation 'com.mintegral.msdk:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:videojs:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:playercommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:reward:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:videocommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:chinacommon:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:interstitial:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:interactiveads:' + rootProject.ext.dependencies.mtg_version
+    implementation 'com.mintegral.msdk.china.support:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
 
     compileOnly project(':nm-android-sdk')
 }

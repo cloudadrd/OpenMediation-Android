@@ -1,7 +1,7 @@
 ext {
     adapterVersion = [
             'adtiming'    : '1.1.0',
-            'admob'       : '1.1.1',
+            'admob'       : '1.1.2',
             'facebook'    : '1.1.1',
             'unity'       : '1.1.0',
             'vungle'      : '1.1.0',

@@ -3,13 +3,14 @@
 
 package com.nbmediation.sdk.demo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.ViewGroup;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.nbmediation.sdk.InitCallback;
 import com.nbmediation.sdk.NmAds;
@@ -19,7 +20,7 @@ import com.nbmediation.sdk.splash.SplashAdListener;
 import com.nbmediation.sdk.utils.error.Error;
 
 
-public class SplashAdActivity extends Activity implements SplashAdListener {
+public class SplashAdActivity extends AppCompatActivity implements SplashAdListener {
 
     ViewGroup mSplashContainer;
 
@@ -34,14 +35,11 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         Log.i("time_log", "Splash onCreate into time=" + System.currentTimeMillis());
         mSplashContainer = findViewById(R.id.splash_container);
         init();
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!isLoad) {
-                    toMainPage();
-                }
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (!isLoad) {
+                toMainPage();
             }
-        }, 6000);
+        }, 3000);
     }
 
     @Override
@@ -79,7 +77,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         int width = mSplashContainer.getWidth();
         int height = mSplashContainer.getHeight();
         SplashAd.setSize(width, height);
-        SplashAd.setLoadTimeout(6000);
+        SplashAd.setLoadTimeout(3000);
         SplashAd.loadAd();
     }
 

@@ -39,6 +39,7 @@ dependencies {
 //    implementation 'org.jetbrains:annotations-java5:15.0'
     compileOnly(name: rootProject.ext.dependencies.ks, ext: 'aar')
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    compileOnly 'com.android.support:appcompat-v7:28.0.0'
 }
 
 repositories {

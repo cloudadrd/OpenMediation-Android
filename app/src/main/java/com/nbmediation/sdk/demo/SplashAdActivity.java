@@ -41,7 +41,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
                     toMainPage();
                 }
             }
-        }, 3000);
+        }, 6000);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         int width = mSplashContainer.getWidth();
         int height = mSplashContainer.getHeight();
         SplashAd.setSize(width, height);
-        SplashAd.setLoadTimeout(3000);
+        SplashAd.setLoadTimeout(6000);
         SplashAd.loadAd();
     }
 
@@ -133,7 +133,8 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     public void toMainPage() {
         Log.e("SplashAdActivity", "----------- toMainPage ----------");
         startActivity(new Intent(this, MainActivity.class));
-        finish();
+        new Handler(Looper.getMainLooper()).postDelayed(this::finish,1000);
+
     }
 
     @Override

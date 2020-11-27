@@ -43,7 +43,7 @@ ext {
             //fb
             "facebook"                   : 'com.facebook.android:audience-network-sdk:5.8.0',
             //admob
-            "admob"                      : 'com.google.android.gms:play-services-ads:19.1.0',
+            "admob"                      : 'com.google.android.gms:play-services-ads:19.4.0',
             //vungle
             "vungle"                     : 'com.vungle:publisher-sdk-android:6.5.3',
             //AdColony

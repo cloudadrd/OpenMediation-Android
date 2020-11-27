@@ -66,6 +66,7 @@ public class KSNative extends CustomNativeEvent {
         }
         av = activity;
         initSdk(activity, appID, appName, isDebug);
+        destroyAd();
         requestAd(Long.parseLong(mInstancesKey));
     }
 
@@ -89,11 +90,18 @@ public class KSNative extends CustomNativeEvent {
                     @Override
                     public void onError(int code, String msg) {
                         AdLog.getSingleton().LogD(TAG, "error:" + msg);
+                        if (isDestroyed) {
+                            return;
+                        }
+                        onInsError("error:" + msg);
                     }
 
                     @Override
                     public void onFeedAdLoad(List<KsFeedAd> adList) {
                         AdLog.getSingleton().LogD(TAG, "onFeedAdLoad");
+                        if (isDestroyed) {
+                            return;
+                        }
                         if (adList == null) return;
                         for (KsFeedAd ksFeedAd : adList) {
                             if (ksFeedAd != null) {
@@ -109,6 +117,7 @@ public class KSNative extends CustomNativeEvent {
                         AdInfo mAdInfo = new AdInfo();
                         mAdInfo.setDesc("");
                         mAdInfo.setType(2);
+                        mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_22);
                         mAdInfo.setCallToActionText("");
                         mAdInfo.setTitle("");
                         mAdInfo.setTemplate(true);
@@ -127,6 +136,9 @@ public class KSNative extends CustomNativeEvent {
         ksNAd.setAdInteractionListener(new KsFeedAd.AdInteractionListener() {
             @Override
             public void onAdClicked() {
+                if (isDestroyed) {
+                    return;
+                }
                 onInsClicked();
             }
 
@@ -137,10 +149,16 @@ public class KSNative extends CustomNativeEvent {
 
             @Override
             public void onDislikeClicked() {
+                if (isDestroyed) {
+                    return;
+                }
                 destroyAd();
             }
         });
-        return ksNAd.getFeedView(av.getBaseContext());
+        if(av != null)
+            return ksNAd.getFeedView(av.getBaseContext());
+        else
+            return null;
     }
 
 
@@ -163,6 +181,9 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void destroy(Activity activity) {
         destroyAd();
+        if (av != null) {
+            av = null;
+        }
     }
 
     private void destroyAd() {
@@ -175,9 +196,6 @@ public class KSNative extends CustomNativeEvent {
             ksNAd.setAdInteractionListener(null);
             ksNAd.setVideoPlayConfig(null);
             ksNAd = null;
-        }
-        if (av != null) {
-            av = null;
         }
     }
 

@@ -82,7 +82,6 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
             Log.d(TAG, "destroyAD");
             mNativeExpressADData2.destroy();
         }
-        nativeExpressAD = null;
     }
 
     private void init(Activity activity, String appKey) {
@@ -114,6 +113,7 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
     private void insReady() {
         mAdInfo.setDesc("");
         mAdInfo.setType(2);
+        mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_6);
         mAdInfo.setCallToActionText("");
         mAdInfo.setTitle("");
         mAdInfo.setTemplate(true);
@@ -128,8 +128,9 @@ public class TencentAdNative extends CustomNativeEvent implements NativeExpressA
         }
         if (nativeAdView.getMediaView() != null) {
             nativeAdView.getMediaView().removeAllViews();
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, MATCH_PARENT);
-            nativeAdView.getMediaView().addView(mNativeExpressADData2.getAdView(), lp);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mNativeExpressADData2.getAdView().setLayoutParams(lp);
+            nativeAdView.getMediaView().addView(mNativeExpressADData2.getAdView());
         }
     }
 

@@ -6,6 +6,7 @@ package com.nbmediation.sdk.mobileads;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.mintegral.msdk.MIntegralConstans;
 import com.mintegral.msdk.MIntegralSDK;
 import com.mintegral.msdk.interstitialvideo.out.InterstitialVideoListener;
 import com.mintegral.msdk.interstitialvideo.out.MTGInterstitialVideoHandler;
@@ -217,6 +218,7 @@ public class Plugin7Adapter extends CustomAdsAdapter {
             String appId = tmp[0];
             String key = tmp[1];
             MIntegralSDK sdk = MIntegralSDKFactory.getMIntegralSDK();
+            MIntegralConstans.DEBUG = true;
             Map<String, String> map = sdk.getMTGConfigurationMap(appId, key);
             sdk.init(map, context);
             AdLog.getSingleton().LogD(TAG + " init over");

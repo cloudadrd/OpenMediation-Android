@@ -6,15 +6,15 @@ package com.nbmediation.sdk.demo;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +26,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.nbmediation.sdk.InitCallback;
-import com.nbmediation.sdk.NmAds;
 import com.nbmediation.sdk.api.unity.NmSdk;
 import com.nbmediation.sdk.banner.AdSize;
 import com.nbmediation.sdk.banner.BannerAd;
@@ -37,13 +34,13 @@ import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.demo.utils.NewApiUtils;
 import com.nbmediation.sdk.interstitial.InterstitialAd;
 import com.nbmediation.sdk.interstitial.InterstitialAdListener;
+import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.AdIconView;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.MediaView;
 import com.nbmediation.sdk.nativead.NativeAd;
 import com.nbmediation.sdk.nativead.NativeAdListener;
 import com.nbmediation.sdk.nativead.NativeAdView;
-import com.nbmediation.sdk.utils.HandlerUtil;
 import com.nbmediation.sdk.utils.error.Error;
 import com.nbmediation.sdk.utils.model.Scene;
 import com.nbmediation.sdk.video.RewardedVideoAd;
@@ -251,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
             nativeAd.destroy();
         }
         adContainer.removeAllViews();
-        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, 360, 126, new NativeAdListener() {
+        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, 360, 275, new NativeAdListener() {
             @Override
             public void onAdFailed(String msg) {
                 nativeButton.setEnabled(true);
@@ -302,6 +299,13 @@ public class MainActivity extends AppCompatActivity {
                 nativeAdView.setAdIconView(adIconView);
                 nativeAdView.setCallToActionView(btn);
                 nativeAdView.setMediaView(mediaView);
+
+                //腾讯的NativeView模板顶层View会自动撑满MediaView宽度,但它的实际布局没有撑满MediaView，这样会导致他
+                // 的View向左偏移不能居中，如果MediaView宽度为wrap_content它依然会撑满屏幕的最大宽度，除非MediaView
+                // 以上布局对宽度加以限制。在此遇到腾讯的广告做下特殊处理
+                if (info.getAdNetWorkId() == MediationInfo.MEDIATION_ID_6) {
+                    nativeAdView.getMediaView().setLayoutParams(new RelativeLayout.LayoutParams(dp2px(360), ViewGroup.LayoutParams.WRAP_CONTENT));
+                }
 
                 nativeAd.registerNativeAdView(nativeAdView);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
@@ -356,6 +360,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "没准备好，稍后再试", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public static int dp2px(int dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, Resources.getSystem().getDisplayMetrics());
+    }
+
+    public void showDialogSplash(View view) {
+        startActivity(new Intent(this, SplashDialogActivity.class));
     }
 
 }

@@ -62,24 +62,23 @@ ext {
             //multidex
             "multidex"                   : 'com.android.support:multidex:1.0.2',
             //Mintegral
-            "mtg_version"                : '10.8.01',
+            "mtg_version"                : '10.9.02',
             // IronSource
             "ironsource"                 : 'com.ironsource.sdk:mediationsdk:6.16.0',
 
             "adtiming"                   : 'com.adtiming:mediation-sdk:6.3.3@aar',
             "fyber"                      : '7.5.3',
             'tiktok'                     : 'open_ad_sdk_en',
-            'tiktok_cn'                  : 'open_ad_sdk_3.2.5.1',
+            'tiktok_cn'                  : 'open_ad_sdk_3.3.0.1',
             "tc056d"                     : 'tc-056d',
             "sigmob"                     : 'windAd-2.18.2',
             "hyadxopen"                  : 'hyadxopensdk',
             "tencentad"                  : 'GDTSDK.tbsNoPlugin.4.291.1161',
             "zyt"                        : 'com.zyt:mediation-only:1.1.7',
             "alion"                      : 'cn.vlion.inland:inlandmix:9.1',
-            'ks'                         : 'kssdk-ad-3.3.4.2-publishRelease',
+            'ks'                         : 'kssdk-ad-3.3.5.1-publishRelease',
             "glide"                      : 'com.github.bumptech.glide:glide:4.8.0',
             'design'                     : "com.android.support:design:28.0.0",
-            "android_query"              : 'android-query-full.0.26.7',
             'adsgreat'                   : "4.4.5_ag",
             'msa_mdid'                   : "oaid_sdk_1.0.23",
             'inmobi'                     : "7.4.4"
@@ -130,7 +129,7 @@ allprojects {
         }
 
         maven{
-            url "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
+            url "https://dl.bintray.com/mintegral-official/Andorid_ad_SDK_for_china_support"
         }
 
     }

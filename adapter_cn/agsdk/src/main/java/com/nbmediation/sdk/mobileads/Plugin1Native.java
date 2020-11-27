@@ -91,6 +91,8 @@ public class Plugin1Native extends CustomNativeEvent {
             info.setDesc(mNative.getDesc());
             info.setTitle(mNative.getTitle());
             info.setType(mNative.getOfferType());
+            mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_32);
+
             onInsReady(info);
         }
 

@@ -23,10 +23,16 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     private boolean isClick = false;
 
+    private boolean isLoad = false;
+
+    public static boolean isSdkInit = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_splash);
+        Log.i("time_log", "Splash onCreate into time=" + System.currentTimeMillis());
         mSplashContainer = findViewById(R.id.splash_container);
         init();
     }
@@ -41,12 +47,15 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     }
 
     public void init() {
+        Log.i("time_log", "init start time=" + System.currentTimeMillis());
         NewApiUtils.printLog("start init sdk");
         NmAds.setCustomId("test123");
         NmAds.init(this, NewApiUtils.APPKEY, new InitCallback() {
             @Override
             public void onSuccess() {
+                isSdkInit = true;
                 NewApiUtils.printLog("init success");
+                Log.i("time_log", "init end time=" + System.currentTimeMillis());
                 loadSplash();
             }
 
@@ -59,6 +68,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     }
 
     public void loadSplash() {
+        Log.i("time_log", "loadSplash start time=" + System.currentTimeMillis());
         SplashAd.setSplashAdListener(this);
         int width = mSplashContainer.getWidth();
         int height = mSplashContainer.getHeight();
@@ -69,6 +79,8 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
 
     @Override
     public void onSplashAdLoad() {
+        isLoad = true;
+        Log.i("time_log", "loadSplash success time=" + System.currentTimeMillis());
         Log.e("SplashAdActivity", "----------- onSplashAdLoad ----------");
         SplashAd.showAd(mSplashContainer);
     }
@@ -99,7 +111,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
     @Override
     public void onSplashAdTick(long millisUntilFinished) {
         Log.e("SplashAdActivity", "----------- onSplashAdTick ----------" + millisUntilFinished);
-        if(millisUntilFinished <= 0){
+        if (millisUntilFinished <= 0) {
             if (!isClick) {
                 toMainPage();
             }

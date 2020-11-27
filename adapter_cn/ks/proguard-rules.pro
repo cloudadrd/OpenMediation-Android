@@ -24,9 +24,12 @@
 -keep class org.chromium.** { *; }
 -keep class aegon.chrome.** { *; }
 -keep class com.kwai.**{ *; }
+-keep class com.yxcorp.**{ *; }
 -dontwarn com.kwai.**
 -dontwarn com.kwad.**
 -dontwarn com.ksad.**
+-dontwarn com.yxcorp.**
+
 -dontwarn aegon.chrome.**
 
 -keepclasseswithmembers class * {

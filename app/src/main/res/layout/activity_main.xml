@@ -13,17 +13,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="184dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_adtiming_logo" />
+<!--        <ImageView-->
+<!--            android:layout_width="184dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/ic_adtiming_logo" />-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="AdTiming SDK Demo"
+            android:text="NewBee SDK Demo"
             android:textColor="#000000"
             android:textSize="30sp" />
 
@@ -64,17 +64,17 @@
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 
-<!--            <Button-->
-<!--                android:id="@+id/btn_splash"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:text="Show Splash Ad"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:onClick="showSplash"-->
-<!--                android:background="@drawable/btn_background"/>-->
+            <Button
+                android:id="@+id/btn_splash"
+                android:layout_marginTop="20dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Show Splash Ad"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:onClick="showSplash"
+                android:background="@drawable/btn_background"/>
 
             <Button
                 android:id="@+id/btn_banner"
@@ -99,7 +99,17 @@
                 android:text="Load And Show Native Ad"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
-
+            <Button
+                android:id="@+id/btn_dialog_spalsh"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_background"
+                android:onClick="showDialogSplash"
+                android:text="dialogSplash"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
 <!--            <Button-->
 <!--                android:id="@+id/btn_show_1"-->
 <!--                android:layout_width="300dp"-->

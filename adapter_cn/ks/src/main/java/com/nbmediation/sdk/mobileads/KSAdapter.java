@@ -5,20 +5,27 @@ package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.kwad.sdk.api.KsAdSDK;
+import com.kwad.sdk.api.KsFullScreenVideoAd;
 import com.kwad.sdk.api.KsLoadManager;
 import com.kwad.sdk.api.KsRewardVideoAd;
 import com.kwad.sdk.api.KsScene;
 import com.kwad.sdk.api.KsVideoPlayConfig;
 import com.kwad.sdk.api.SdkConfig;
+import com.kwad.sdk.api.KsFullScreenVideoAd;
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
+import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.ks.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
 
+
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,6 +35,9 @@ public class KSAdapter extends CustomAdsAdapter {
     private static String TAG = "OM-KS: ";
     private ConcurrentMap<String, KsRewardVideoAd> mTTRvAds;
     private static Boolean landscape = false;
+    private KsFullScreenVideoAd mFullScreenVideoAd;
+    private Activity ksinitInterstitialAdActivity;
+    private InterstitialAdCallback ksinitInterstitialAdCallback;
 
     public KSAdapter() {
         mTTRvAds = new ConcurrentHashMap<>();
@@ -277,4 +287,127 @@ public class KSAdapter extends CustomAdsAdapter {
         }
     }
 
+
+    /*********************************Interstitial***********************************/
+    @Override
+    public void initInterstitialAd(Context activity, Map<String, Object> dataMap, InterstitialAdCallback callback) {
+        super.initInterstitialAd(activity, dataMap, callback);
+        Object appKey = dataMap.get("AppKey");
+        String error = check(activity);
+        if (TextUtils.isEmpty(error)) {
+            String[] split = mAppKey.split("\\|");
+            String appId = split[0];
+            String appName = null;
+            boolean isDebug = false;
+            if (split.length > 1) {
+                appName = split[1];
+            }
+            if (split.length > 2) {
+                try {
+                    isDebug = Boolean.parseBoolean(split[2]);
+                } catch (Exception ignored) {
+                }
+            }
+            if (split.length > 3) {
+                try {
+                    landscape = Boolean.parseBoolean(split[3]);
+                } catch (Exception ignored) {
+                }
+            }
+            initSdk(activity, appId, appName, isDebug);
+
+            ksinitInterstitialAdCallback = callback;
+            ksinitInterstitialAdActivity = (Activity) activity;
+            if (callback != null) {
+                callback.onInterstitialAdInitSuccess();
+            }
+        } else {
+            if (callback != null) {
+                callback.onInterstitialAdLoadFailed(error);
+            }
+        }
+    }
+
+    @Override
+    public void loadInterstitialAd(Context activity, String adUnitId, InterstitialAdCallback callback) {
+        KsScene scene = new KsScene.Builder(Long.parseLong(adUnitId)).build(); // 此为测试posId，请联系快手平台申请正式posId
+        KsLoadManager loadManager = KsAdSDK.getLoadManager();
+        if (null != loadManager) {
+            loadManager.loadFullScreenVideoAd(scene, new KsLoadManager.FullScreenVideoAdListener() {
+                @Override
+                public void onError(int code, String msg) {
+                    if (null != ksinitInterstitialAdCallback) {
+                        ksinitInterstitialAdCallback.onInterstitialAdLoadFailed(msg);
+                    }
+                }
+
+                @Override
+                public void onFullScreenVideoAdLoad(@Nullable List<KsFullScreenVideoAd> adList) {
+                    if (null != ksinitInterstitialAdCallback) {
+                        ksinitInterstitialAdCallback.onInterstitialAdLoadSuccess();
+                    }
+
+                    if (adList != null && adList.size() > 0) {
+                        mFullScreenVideoAd = adList.get(0);
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public void showInterstitialAd(final Context activity, final String adUnitId, final InterstitialAdCallback callback) {
+        super.showInterstitialAd(activity, adUnitId, callback);
+        showFullScreenVideoAd(null);
+
+    }
+
+    @Override
+    public boolean isInterstitialAdAvailable(String adUnitId) {
+        if (TextUtils.isEmpty(adUnitId)) {
+            return false;
+        }
+        return true;
+    }
+
+    private void showFullScreenVideoAd(KsVideoPlayConfig videoPlayConfig) {
+        if (mFullScreenVideoAd != null && mFullScreenVideoAd.isAdEnable()) {
+            mFullScreenVideoAd
+                    .setFullScreenVideoAdInteractionListener(new KsFullScreenVideoAd.FullScreenVideoAdInteractionListener() {
+                        @Override
+                        public void onAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onPageDismiss() {
+
+                        }
+
+                        @Override
+                        public void onVideoPlayError(int code, int extra) {
+
+                        }
+
+                        @Override
+                        public void onVideoPlayEnd() {
+
+                        }
+
+                        @Override
+                        public void onVideoPlayStart() {
+
+                        }
+
+                        @Override
+                        public void onSkippedVideo() {
+
+
+                        }
+                    });
+            mFullScreenVideoAd.showFullScreenVideoAd(ksinitInterstitialAdActivity, videoPlayConfig);
+        } else {
+
+        }
+    }
 }

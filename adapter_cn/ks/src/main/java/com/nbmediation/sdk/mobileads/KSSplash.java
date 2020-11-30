@@ -1,6 +1,7 @@
 package com.nbmediation.sdk.mobileads;
 import android.app.Activity;
 
+import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.kwad.sdk.api.KsAdSDK;
 import com.kwad.sdk.api.KsLoadManager.SplashScreenAdListener;
 import com.kwad.sdk.api.KsScene;
 import com.kwad.sdk.api.KsSplashScreenAd;
+import com.kwad.sdk.api.SdkConfig;
 import com.nbmediation.sdk.mediation.CustomSplashEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.utils.AdLog;
@@ -40,17 +42,53 @@ public class KSSplash extends CustomSplashEvent {
             return;
         }
 
+        String e = "loadAd传入的参数错误.";
+        AdLog.getSingleton().LogD(TAG, "getLoadManager check");
         if (!check(activity, config)) {
             return;
         }
-
-        try {
-            fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
-        } catch (Exception e) {
-            fetchDelay = 3000;
+        if (activity == null || activity.isFinishing()) {
+            onInsError("activity is null");
+            return;
         }
-        splashPreload(activity, config);
+
+        String appKeyStr = config.get("AppKey");
+        String appID;
+        String appName = null;
+        boolean isDebug = false;
+        String[] split = new String[0];
+        if (appKeyStr != null) {
+            split = appKeyStr.split("\\|");
+        }
+        if (split.length > 0) {
+            appID = split[0];
+        } else {
+            onInsError("not input AppID.");
+            return;
+        }
+        if (split.length > 1) {
+            appName = split[1];
+        }
+
+        if (split.length > 2) {
+            try {
+                isDebug = Boolean.parseBoolean(split[2]);
+            } catch (Exception ignored) {
+            }
+        }
+        initSdk(activity, appID, appName, isDebug);
         actv = activity;
+        splashPreload(activity, config);
+
+    }
+
+    private void initSdk(final Context activity, String appId, String appName, boolean isDebug) {
+        KsAdSDK.init(activity, new SdkConfig.Builder()
+                .appId(appId) // aapId，必填
+                .appName(appName) //appName，非必填
+                .showNotification(true) // 是否展示下载通知栏 .debug(true)
+                .debug(isDebug) // 是否开启sdk 调试⽇日志 可选
+                .build());
     }
 
     @Override

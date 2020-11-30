@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/layout/smaato_sdk_interstitial_activity.xml",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/57e302b2bf16ea362bf9a5e39b595c97/jetified-smaato-sdk-interstitial-21.5.4/res/layout/smaato_sdk_interstitial_activity.xml"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/layout/smaato_sdk_video_player_view.xml",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/8ea0b829762df89d9cb8f7669d723e9d/jetified-module-video-21.5.4/res/layout/smaato_sdk_video_player_view.xml"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/layout/smaato_sdk_richmedia_layout_closable.xml",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/446b6277b75d57238eff8b1c1e0c958f/jetified-module-richmedia-21.5.4/res/layout/smaato_sdk_richmedia_layout_closable.xml"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/layout/smaato_sdk_rewarded_ads_activity.xml",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/2c282892328c0d2d81a4811a1187ce6f/jetified-smaato-sdk-rewarded-ads-21.5.4/res/layout/smaato_sdk_rewarded_ads_activity.xml"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/layout/smaato_sdk_core_activity_internal_browser.xml",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/layout/smaato_sdk_core_activity_internal_browser.xml"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/layout/smaato_sdk_video_vast_video_player_view.xml",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/8ea0b829762df89d9cb8f7669d723e9d/jetified-module-video-21.5.4/res/layout/smaato_sdk_video_vast_video_player_view.xml"
+    }
+]

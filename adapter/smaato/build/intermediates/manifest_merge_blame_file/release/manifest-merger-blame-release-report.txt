@@ -1,0 +1,35 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.nbmediation.sdk.mobileads.smaato"
+5    android:versionCode="11"
+6    android:versionName="1.0.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="16"
+9-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml
+10        android:targetSdkVersion="29" />
+10-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml
+11
+12    <uses-feature android:name="android.hardware.location.network" />
+12-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:4:5-70
+12-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:4:19-67
+13
+14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+14-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:5:5-81
+14-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:5:22-78
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:7:5-67
+15-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:7:22-64
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:8:5-79
+16-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:8:22-76
+17
+18    <application
+18-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:10:5-12:42
+19        android:usesCleartextTraffic="true"
+19-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:11:9-44
+20        tools:ignore="UnusedAttribute" />
+20-->/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/src/main/AndroidManifest.xml:12:9-39
+21
+22</manifest>

@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_back_disabled.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_back_disabled.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_lock.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_lock.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_open_in_browser.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_open_in_browser.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_video_skip.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/8ea0b829762df89d9cb8f7669d723e9d/jetified-module-video-21.5.4/res/drawable-hdpi-v4/smaato_sdk_video_skip.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_watermark.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_watermark.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_circle_close.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_circle_close.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_background.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_background.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_native_ic_privacy.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/d9d49336f41547ecde65697fa8c230a8/jetified-smaato-sdk-native-21.5.4/res/drawable-hdpi-v4/smaato_sdk_native_ic_privacy.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_video_muted.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/8ea0b829762df89d9cb8f7669d723e9d/jetified-module-video-21.5.4/res/drawable-hdpi-v4/smaato_sdk_video_muted.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_video_unmuted.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/8ea0b829762df89d9cb8f7669d723e9d/jetified-module-video-21.5.4/res/drawable-hdpi-v4/smaato_sdk_video_unmuted.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_forward_disabled.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_forward_disabled.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_forward.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_forward.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_back.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_back.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_refresh.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_refresh.png"
+    },
+    {
+        "merged": "/Users/tujiantao/develop/git/OpenMediation-Android/adapter/smaato/build/intermediates/res/merged/release/drawable-hdpi-v4/smaato_sdk_core_close.png",
+        "source": "/Users/tujiantao/.gradle/caches/transforms-2/files-2.1/20c885567c0ad8519c67509fda4f5510/jetified-module-core-21.5.4/res/drawable-hdpi-v4/smaato_sdk_core_close.png"
+    }
+]

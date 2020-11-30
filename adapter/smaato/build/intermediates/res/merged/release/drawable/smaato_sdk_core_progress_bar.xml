@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2019 Smaato Inc.
+  ~ Licensed under the Smaato SDK License Agreement
+  ~ https://www.smaato.com/sdk-license-agreement/
+  -->
+
+<layer-list>
+    <item>
+        <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+            android:fromDegrees="0"
+            android:toDegrees="720">
+            <shape
+                android:innerRadiusRatio="2.5"
+                android:shape="ring"
+                android:thickness="4dp"
+                android:useLevel="true">
+                <gradient
+                    android:centerColor="#1E6ECC"
+                    android:endColor="#519EF8"
+                    android:startColor="#3E5F84"
+                    android:useLevel="false" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

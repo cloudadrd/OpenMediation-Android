@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2019 Smaato Inc.
+  ~ Licensed under the Smaato SDK License Agreement
+  ~ https://www.smaato.com/sdk-license-agreement/
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bottom line -->
+    <item>
+        <shape>
+            <solid android:color="@color/smaato_sdk_core_ui_ctrl_grey" />
+        </shape>
+    </item>
+    <!-- Fill color-->
+    <item android:top="1dp">
+        <shape>
+            <solid android:color="@color/smaato_sdk_core_ui_ctrl_almost_white" />
+        </shape>
+    </item>
+</layer-list>

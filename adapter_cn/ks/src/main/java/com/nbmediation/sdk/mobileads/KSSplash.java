@@ -43,12 +43,13 @@ public class KSSplash extends CustomSplashEvent {
         if (!check(activity, config)) {
             return;
         }
+
         try {
             fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
         } catch (Exception e) {
             fetchDelay = 3000;
         }
-        splashPreload(activity,config);
+        splashPreload(activity, config);
         actv = activity;
     }
 
@@ -69,86 +70,14 @@ public class KSSplash extends CustomSplashEvent {
         if (isDestroyed) {
             return;
         }
-        isTimerOut = false;
         try {
             fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
         } catch (Exception e) {
             fetchDelay = 3000;
         }
-
+        isTimerOut = false;
         KsScene scene = new KsScene.Builder(Long.parseLong(mInstancesKey)).build(); // 此为测试posId，请联系快手平台申请正式posId
-        KsAdSDK.getLoadManager().loadSplashScreenAd(scene, new SplashScreenAdListener() {
-            @Override
-            public void onError(int code, String msg) {
-                AdLog.getSingleton().LogD("开屏广告请求失败" + code + msg);
-                onInsError("开屏广告请求失败" + code + msg);
-
-            }
-
-            @Override
-            public void onSplashScreenAdLoad(@NonNull KsSplashScreenAd splashScreenAd) {
-                if (isDestroyed) {
-                    return;
-                }
-
-                Log.d(TAG, "Splash Ad Loaded.");
-                isSplashReaday = true;
-                if (!isTimerOut) {
-                    onInsReady(null);
-                }
-
-                 fragment =
-                        splashScreenAd.getFragment(new KsSplashScreenAd.SplashScreenAdInteractionListener() {
-                            @Override
-                            public void onAdClicked() {
-
-                                if (isDestroyed) {
-                                    return;
-                                }
-                                Log.d(TAG, "onAdClicked");
-                                onInsClicked();
-                            }
-
-                            @Override
-                            public void onAdShowError(int code, String extra) {
-                                if (isDestroyed) {
-                                    return;
-                                }
-                                Log.d(TAG, "onAdShowError");
-                            }
-
-                            @Override
-                            public void onAdShowEnd() {
-                                if (isDestroyed) {
-                                    return;
-                                }
-                                Log.d(TAG, "onAdShowEnd");
-                                onInsTick(0);
-
-                            }
-
-                            @Override
-                            public void onAdShowStart()
-                            {
-                                if (isDestroyed) {
-                                    return;
-                                }
-                                isSplashReaday = false;
-                                Log.d(TAG, "onAdShowStart");
-                                onInsShowSuccess();
-                            }
-
-                            @Override
-                            public void onSkippedAd() {
-                                if (isDestroyed) {
-                                    return;
-                                }
-                                Log.d(TAG, "onSkippedAd");
-                                onInsDismissed();
-                            }
-                        });
-            }
-        });
+        KsAdSDK.getLoadManager().loadSplashScreenAd(scene, createLoadListener());
 
         timer = new CountDownTimer(fetchDelay, 1000) {
             @Override
@@ -177,15 +106,95 @@ public class KSSplash extends CustomSplashEvent {
     }
 
 
+    private SplashScreenAdListener createLoadListener() {
+        return new SplashScreenAdListener() {
+            @Override
+            public void onError(int code, String msg) {
+                AdLog.getSingleton().LogD("开屏广告请求失败" + code + msg);
+                onInsError("开屏广告请求失败" + code + msg);
+
+            }
+
+            @Override
+            public void onSplashScreenAdLoad(@NonNull KsSplashScreenAd splashScreenAd) {
+                if (isDestroyed) {
+                    return;
+                }
+
+                Log.d(TAG, "Splash Ad Loaded.");
+                isSplashReaday = true;
+                fragment = splashScreenAd.getFragment(createInteractionListener());
+                if (!isTimerOut) {
+                    onInsReady(null);
+                }
+            }
+        };
+    }
+
+
+    private KsSplashScreenAd.SplashScreenAdInteractionListener createInteractionListener() {
+        return new KsSplashScreenAd.SplashScreenAdInteractionListener() {
+            @Override
+            public void onAdClicked() {
+
+                if (isDestroyed) {
+                    return;
+                }
+                Log.d(TAG, "onAdClicked");
+                onInsClicked();
+            }
+
+            @Override
+            public void onAdShowError(int code, String extra) {
+                isSplashReaday = false;
+                if (isDestroyed) {
+                    return;
+                }
+
+                Log.d(TAG, "onAdShowError");
+            }
+
+            @Override
+            public void onAdShowEnd() {
+                isSplashReaday = false;
+                if (isDestroyed) {
+                    return;
+                }
+                Log.d(TAG, "onAdShowEnd");
+                onInsTick(0);
+
+            }
+
+            @Override
+            public void onAdShowStart() {
+                if (isDestroyed) {
+                    return;
+                }
+                Log.d(TAG, "onAdShowStart");
+                onInsShowSuccess();
+            }
+
+            @Override
+            public void onSkippedAd() {
+                isSplashReaday = false;
+                if (isDestroyed) {
+                    return;
+                }
+                Log.d(TAG, "onSkippedAd");
+                onInsDismissed();
+            }
+        };
+    }
+
     @Override
     public void show(ViewGroup viewGroup) {
-        if (isDestroyed) {
+        if (isDestroyed || fragment == null) {
             return;
         }
 
         //可能会有坑,需要开传入的active是AppCompatActivity,viewGroup在layout里有id
-        if(actv instanceof AppCompatActivity){
-            ((AppCompatActivity)actv).getSupportFragmentManager().beginTransaction()
+        if (actv instanceof AppCompatActivity) {
+            ((AppCompatActivity) actv).getSupportFragmentManager().beginTransaction()
                     .replace(viewGroup.getId(), fragment)
                     .commitAllowingStateLoss();
         }
@@ -194,7 +203,7 @@ public class KSSplash extends CustomSplashEvent {
 
     @Override
     public boolean isReady() {
-        return  !isDestroyed && isSplashReaday;
+        return !isDestroyed && isSplashReaday;
     }
 
 

@@ -6,6 +6,7 @@ package com.nbmediation.sdk.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -17,7 +18,7 @@ import com.nbmediation.sdk.splash.SplashAdListener;
 import com.nbmediation.sdk.utils.error.Error;
 
 
-public class SplashAdActivity extends Activity implements SplashAdListener {
+public class SplashAdActivity extends AppCompatActivity implements SplashAdListener {
 
     ViewGroup mSplashContainer;
 
@@ -73,7 +74,7 @@ public class SplashAdActivity extends Activity implements SplashAdListener {
         int width = mSplashContainer.getWidth();
         int height = mSplashContainer.getHeight();
         SplashAd.setSize(width, height);
-        SplashAd.setLoadTimeout(3000);
+        SplashAd.setLoadTimeout(6000);
         SplashAd.loadAd();
     }
 

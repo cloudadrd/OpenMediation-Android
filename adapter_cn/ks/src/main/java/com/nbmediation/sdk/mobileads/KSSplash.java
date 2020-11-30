@@ -69,6 +69,7 @@ public class KSSplash extends CustomSplashEvent {
         if (isDestroyed) {
             return;
         }
+        isTimerOut = false;
         try {
             fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
         } catch (Exception e) {
@@ -132,6 +133,7 @@ public class KSSplash extends CustomSplashEvent {
                                 if (isDestroyed) {
                                     return;
                                 }
+                                isSplashReaday = false;
                                 Log.d(TAG, "onAdShowStart");
                                 onInsShowSuccess();
                             }

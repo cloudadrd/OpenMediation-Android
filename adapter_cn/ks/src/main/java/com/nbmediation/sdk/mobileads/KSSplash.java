@@ -36,10 +36,18 @@ public class KSSplash extends CustomSplashEvent {
     private Fragment fragment;
 
     public void loadAd(Activity activity, Map<String, String> config) {
+        if (isDestroyed) {
+            return;
+        }
+
         if (!check(activity, config)) {
             return;
         }
-        slotID= mInstancesKey;
+        try {
+            fetchDelay = Integer.parseInt(config.get(CONFIG_TIMEOUT));
+        } catch (Exception e) {
+            fetchDelay = 3000;
+        }
         splashPreload(activity,config);
         actv = activity;
     }
@@ -67,7 +75,7 @@ public class KSSplash extends CustomSplashEvent {
             fetchDelay = 3000;
         }
 
-        KsScene scene = new KsScene.Builder(4000000042L).build(); // 此为测试posId，请联系快手平台申请正式posId
+        KsScene scene = new KsScene.Builder(Long.parseLong(mInstancesKey)).build(); // 此为测试posId，请联系快手平台申请正式posId
         KsAdSDK.getLoadManager().loadSplashScreenAd(scene, new SplashScreenAdListener() {
             @Override
             public void onError(int code, String msg) {
@@ -78,35 +86,63 @@ public class KSSplash extends CustomSplashEvent {
 
             @Override
             public void onSplashScreenAdLoad(@NonNull KsSplashScreenAd splashScreenAd) {
-                AdLog.getSingleton().LogD("开始数据返回成功");
-                onInsReady(null);
+                if (isDestroyed) {
+                    return;
+                }
+
+                Log.d(TAG, "Splash Ad Loaded.");
+                isSplashReaday = true;
+                if (!isTimerOut) {
+                    onInsReady(null);
+                }
 
                  fragment =
                         splashScreenAd.getFragment(new KsSplashScreenAd.SplashScreenAdInteractionListener() {
                             @Override
                             public void onAdClicked() {
-                                AdLog.getSingleton().LogD("开屏广告点击");
-                                //onAdClick 会吊起h5或者应用商店。 不直接跳转，等返回后再跳转。
+
+                                if (isDestroyed) {
+                                    return;
+                                }
+                                Log.d(TAG, "onAdClicked");
+                                onInsClicked();
                             }
 
                             @Override
                             public void onAdShowError(int code, String extra) {
-                                AdLog.getSingleton().LogD("开屏广告显示错误 " + code + " extra " + extra);
+                                if (isDestroyed) {
+                                    return;
+                                }
+                                Log.d(TAG, "onAdShowError");
                             }
 
                             @Override
                             public void onAdShowEnd() {
-                                AdLog.getSingleton().LogD("开屏广告显示结束");
+                                if (isDestroyed) {
+                                    return;
+                                }
+                                Log.d(TAG, "onAdShowEnd");
+                                onInsTick(0);
+
                             }
 
                             @Override
-                            public void onAdShowStart() {
-                                AdLog.getSingleton().LogD("开屏广告显示开始");
+                            public void onAdShowStart()
+                            {
+                                if (isDestroyed) {
+                                    return;
+                                }
+                                Log.d(TAG, "onAdShowStart");
+                                onInsShowSuccess();
                             }
 
                             @Override
                             public void onSkippedAd() {
-                                AdLog.getSingleton().LogD("用户跳过开屏广告");
+                                if (isDestroyed) {
+                                    return;
+                                }
+                                Log.d(TAG, "onSkippedAd");
+                                onInsDismissed();
                             }
                         });
             }

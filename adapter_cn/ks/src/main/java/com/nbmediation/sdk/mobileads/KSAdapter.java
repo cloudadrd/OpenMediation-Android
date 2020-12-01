@@ -423,7 +423,7 @@ public class KSAdapter extends CustomAdsAdapter {
                     });
             mFullScreenVideoAd.showFullScreenVideoAd(ksinitInterstitialAdActivity, videoPlayConfig);
         } else {
-
+            AdLog.getSingleton().LogD(TAG ,"full screen ad show failed.");
         }
     }
 }

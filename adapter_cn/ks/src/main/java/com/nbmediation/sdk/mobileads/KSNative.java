@@ -33,9 +33,12 @@ public class KSNative extends CustomNativeEvent {
         String e = "loadAd传入的参数错误.";
         AdLog.getSingleton().LogD(TAG, "getLoadManager check");
         if (!check(activity, config)) {
+            AdLog.getSingleton().LogD(TAG,"check(activity, config) error.");
+            onInsError("check(activity, config) error.");
             return;
         }
         if (activity == null || activity.isFinishing()) {
+            AdLog.getSingleton().LogD(TAG,"activity is null.");
             onInsError("activity is null");
             return;
         }
@@ -51,6 +54,7 @@ public class KSNative extends CustomNativeEvent {
         if (split.length > 0) {
             appID = split[0];
         } else {
+            AdLog.getSingleton().LogD(TAG,"not input AppID.");
             onInsError("not input AppID.");
             return;
         }
@@ -139,6 +143,7 @@ public class KSNative extends CustomNativeEvent {
                 if (isDestroyed) {
                     return;
                 }
+                AdLog.getSingleton().LogD(TAG, "onAdClicked");
                 onInsClicked();
             }
 
@@ -152,6 +157,7 @@ public class KSNative extends CustomNativeEvent {
                 if (isDestroyed) {
                     return;
                 }
+                AdLog.getSingleton().LogD(TAG, "onDislikeClicked");
                 destroyAd();
             }
         });
@@ -164,6 +170,7 @@ public class KSNative extends CustomNativeEvent {
 
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
+        AdLog.getSingleton().LogD(TAG, "registerNativeView");
         mNativeView = getAdView();
         if (null == mNativeView) return;
         if (nativeAdView.getMediaView() != null) {
@@ -188,6 +195,7 @@ public class KSNative extends CustomNativeEvent {
 
     private void destroyAd() {
         //用户选择不喜欢原因后，移除广告展示
+        AdLog.getSingleton().LogD(TAG, "destroyAd.");
         if (mNativeView != null && mNativeView.getParent() instanceof ViewGroup) {
             ((ViewGroup) mNativeView.getParent()).removeView(mNativeView);
             mNativeView = null;

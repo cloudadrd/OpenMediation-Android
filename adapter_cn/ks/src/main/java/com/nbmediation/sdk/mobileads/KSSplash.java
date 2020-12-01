@@ -45,9 +45,12 @@ public class KSSplash extends CustomSplashEvent {
         String e = "loadAd传入的参数错误.";
         AdLog.getSingleton().LogD(TAG, "getLoadManager check");
         if (!check(activity, config)) {
+            AdLog.getSingleton().LogD(TAG,"check(activity, config) error.");
+            onInsError("check(activity, config) error.");
             return;
         }
         if (activity == null || activity.isFinishing()) {
+            AdLog.getSingleton().LogD(TAG,"activity is null.");
             onInsError("activity is null");
             return;
         }
@@ -63,6 +66,7 @@ public class KSSplash extends CustomSplashEvent {
         if (split.length > 0) {
             appID = split[0];
         } else {
+            AdLog.getSingleton().LogD(TAG,"not input AppID.");
             onInsError("not input AppID.");
             return;
         }
@@ -136,8 +140,8 @@ public class KSSplash extends CustomSplashEvent {
                 if (isDestroyed) {
                     return;
                 }
-                onInsError("AGSDK get splash Ad time out!");
-                Log.d(TAG, "AGSDK get splash Ad time out!");
+                onInsError("KSSDK get splash Ad time out!");
+                AdLog.getSingleton().LogD(TAG,"KSSDK get splash Ad time out!");
             }
         };
         timer.start();
@@ -148,7 +152,7 @@ public class KSSplash extends CustomSplashEvent {
         return new SplashScreenAdListener() {
             @Override
             public void onError(int code, String msg) {
-                AdLog.getSingleton().LogD("开屏广告请求失败" + code + msg);
+                AdLog.getSingleton().LogD(TAG,"Splash Ad onError");
                 onInsError("开屏广告请求失败" + code + msg);
 
             }
@@ -159,7 +163,7 @@ public class KSSplash extends CustomSplashEvent {
                     return;
                 }
 
-                Log.d(TAG, "Splash Ad Loaded.");
+                AdLog.getSingleton().LogD(TAG,"Splash Ad Loaded");
                 isSplashReaday = true;
                 fragment = splashScreenAd.getFragment(createInteractionListener());
                 if (!isTimerOut) {
@@ -178,7 +182,7 @@ public class KSSplash extends CustomSplashEvent {
                 if (isDestroyed) {
                     return;
                 }
-                Log.d(TAG, "onAdClicked");
+                AdLog.getSingleton().LogD(TAG,"onAdClicked");
                 onInsClicked();
             }
 
@@ -188,8 +192,7 @@ public class KSSplash extends CustomSplashEvent {
                 if (isDestroyed) {
                     return;
                 }
-
-                Log.d(TAG, "onAdShowError");
+                AdLog.getSingleton().LogD(TAG,"onAdShowError");
             }
 
             @Override
@@ -198,7 +201,7 @@ public class KSSplash extends CustomSplashEvent {
                 if (isDestroyed) {
                     return;
                 }
-                Log.d(TAG, "onAdShowEnd");
+                AdLog.getSingleton().LogD(TAG,"onAdShowEnd");
                 onInsTick(0);
 
             }
@@ -208,7 +211,7 @@ public class KSSplash extends CustomSplashEvent {
                 if (isDestroyed) {
                     return;
                 }
-                Log.d(TAG, "onAdShowStart");
+                AdLog.getSingleton().LogD(TAG,"onAdShowStart");
                 onInsShowSuccess();
             }
 
@@ -218,7 +221,7 @@ public class KSSplash extends CustomSplashEvent {
                 if (isDestroyed) {
                     return;
                 }
-                Log.d(TAG, "onSkippedAd");
+                AdLog.getSingleton().LogD(TAG,"onSkippedAd");
                 onInsDismissed();
             }
         };
@@ -226,6 +229,7 @@ public class KSSplash extends CustomSplashEvent {
 
     @Override
     public void show(ViewGroup viewGroup) {
+        AdLog.getSingleton().LogD(TAG,"show");
         if (isDestroyed || fragment == null) {
             return;
         }

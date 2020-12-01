@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class KSSplash extends CustomSplashEvent {
     private static final String CONFIG_TIMEOUT = "Timeout";
-    private final static String TAG = "KSSplashAd";
+    private final static String TAG = "OM-KSSplashAd";
     private static String slotID;
     private static boolean isSplashReaday;
     private CountDownTimer timer;
@@ -231,6 +231,7 @@ public class KSSplash extends CustomSplashEvent {
     public void show(ViewGroup viewGroup) {
         AdLog.getSingleton().LogD(TAG,"show");
         if (isDestroyed || fragment == null) {
+            onInsShowFailed("fragment null show failed!");
             return;
         }
 
@@ -239,6 +240,8 @@ public class KSSplash extends CustomSplashEvent {
             ((AppCompatActivity) actv).getSupportFragmentManager().beginTransaction()
                     .replace(viewGroup.getId(), fragment)
                     .commitAllowingStateLoss();
+        }else{
+            onInsShowFailed("not AppCompatActivity show failed!");
         }
 
     }

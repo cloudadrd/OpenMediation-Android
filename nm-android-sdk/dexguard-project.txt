@@ -35,5 +35,5 @@
 -keep class com.nbmediation.sdk.InitCallback{*;}
 -keep class com.nbmediation.sdk.api.**{*;}
 -keep class com.nbmediation.sdk.splash.**{*;}
-
+-keepattributes Signature      #保持泛型
 -keepattributes *Annotation*

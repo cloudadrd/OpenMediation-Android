@@ -35,7 +35,7 @@
 #-keep class com.nbmediation.sdk.nativead.**{*;}
 
 -dontwarn androidx.**
-
+-keepattributes Signature      #保持泛型
  #R
  -keepclassmembers class **.R$* {
      public static <fields>;

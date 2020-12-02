@@ -24,7 +24,8 @@ ext {
             'zyt'         : '1.0.0',
             'ks'          : '1.0.5',
             'agsdk'       : '1.0.4',
-            'inmobi'      : '1.0.0'
+            'inmobi'      : '1.0.0',
+            'baidu'       : '1.0.0'
     ]
 
     pkg_prefix = 'nb_'

@@ -81,6 +81,8 @@ public class AdapterUtil {
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_51, getAdapterPath(MediationInfo.MEDIATION_ID_51));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_52, getAdapterPath(MediationInfo.MEDIATION_ID_52));
         mAdapterPaths.put(MediationInfo.MEDIATION_ID_53, getAdapterPath(MediationInfo.MEDIATION_ID_53));
+        mAdapterPaths.put(MediationInfo.MEDIATION_ID_52, getAdapterPath(MediationInfo.MEDIATION_ID_54));
+        mAdapterPaths.put(MediationInfo.MEDIATION_ID_53, getAdapterPath(MediationInfo.MEDIATION_ID_55));
     }
 
     /**

@@ -135,7 +135,6 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             @Override
             public void onAdPresent() {
                 Log.i(TAG, "onAdPresent");
-                isReady = false;
                 onInsShowSuccess();
             }
 
@@ -178,6 +177,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
                     return;
                 }
                 onInsError("Baidu get splash Ad time out!");
+                splashAd = null;
                 AdLog.getSingleton().LogD(TAG,"Baidu get splash Ad time out!");
             }
         };
@@ -195,6 +195,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             if (splashAd != null) {
                 Log.i(TAG, "show");
                splashAd.show();
+               isReady = false;
             }
         } catch (Exception e) {
             Log.i(TAG, "SplashAd not ready");

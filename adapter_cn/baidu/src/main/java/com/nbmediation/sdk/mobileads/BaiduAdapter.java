@@ -296,7 +296,7 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
 
     @Override
     public boolean isRewardedVideoAvailable(String adUnitId) {
-        if (TextUtils.isEmpty(adUnitId) || mRewardVideoAd == null) {
+        if (TextUtils.isEmpty(adUnitId)) {
             return false;
         }
         return  mRewardVideoAd != null && mRewardVideoAd.isReady();

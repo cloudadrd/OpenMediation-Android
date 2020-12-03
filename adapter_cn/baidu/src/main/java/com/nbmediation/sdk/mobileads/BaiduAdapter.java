@@ -53,7 +53,6 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
         super.initInterstitialAd(activity, dataMap, callback);
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
-            initSdk(activity);
             mCallback = callback;
             if (callback != null) {
                 callback.onInterstitialAdInitSuccess();
@@ -63,10 +62,6 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
                 callback.onInterstitialAdInitFailed(error);
             }
         }
-    }
-
-    private void initSdk(final Context activity) {
-
     }
 
     @Override
@@ -85,7 +80,8 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
     private void loadInterstitial(Context activity, String adUnitId, InterstitialAdCallback callback) {
         String error = check(activity, adUnitId);
         if (TextUtils.isEmpty(error)) {
-            mInterAd = new InterstitialAd(activity, AdSize.InterstitialForVideoBeforePlay, adUnitId);
+            mInterAd = new InterstitialAd(activity, adUnitId);
+            mInterAd.setListener(this);
             mInterAd.loadAd();
             mCallback = callback;
         } else {
@@ -136,7 +132,7 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
     public void onAdFailed(String arg0) {
         AdLog.getSingleton().LogD(TAG + "loadInterstitialAd onError " + arg0);
         if (mCallback != null) {
-            mCallback.onInterstitialAdLoadFailed("TikTok loadInterstitialAd ad load failed : " + arg0);
+            mCallback.onInterstitialAdLoadFailed("Baidu loadInterstitialAd ad load failed : " + arg0);
         }
     }
 
@@ -150,7 +146,7 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
 
     @Override
     public void onAdReady() {
-        AdLog.getSingleton().LogD(TAG + "loadInterstitialAd onFullScreenVideoAdLoad");
+        AdLog.getSingleton().LogD(TAG + "loadInterstitialAd AdLoaded");
         if (mCallback != null) {
             mCallback.onInterstitialAdLoadSuccess();
         }

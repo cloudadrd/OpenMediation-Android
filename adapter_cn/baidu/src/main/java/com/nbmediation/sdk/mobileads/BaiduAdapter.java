@@ -23,14 +23,14 @@ import com.nbmediation.sdk.utils.constant.KeyConstants;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdListener,RewardVideoAd.RewardVideoAdListener{
+public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdListener{
 
     private InterstitialAd mInterAd;            // 插屏广告实例，支持单例模式
     private InterstitialAdCallback mCallback;
     private static String TAG = "Baidu-Interstitial: ";
     private static String TAGR = "Baidu-RewardedVideo: ";
     private RewardedVideoCallback mRVCallback;
-    private AtomicBoolean isPreload = new AtomicBoolean();
+    private AtomicBoolean isPreload = new AtomicBoolean(false);
     public RewardVideoAd mRewardVideoAd;
 
     @Override
@@ -190,16 +190,78 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
         AdLog.getSingleton().LogD(TAGR + "loadRvAd");
         String error = check(activity, adUnitId);
         if (TextUtils.isEmpty(error)) {
-            if (!isPreload.compareAndSet(false, true)) {
+            if (isPreload.compareAndSet(false, true)) {
+                mRewardVideoAd = new RewardVideoAd(activity, adUnitId, new RewardVideoAd.RewardVideoAdListener()
+                {
+                    @Override
+                    public void onAdShow() {
+                        if (mRVCallback != null) {
+                            AdLog.getSingleton().LogD(TAGR + "onAdShow");
+                            mRVCallback.onRewardedVideoAdShowSuccess();
+                            AdLog.getSingleton().LogD(TAGR + "onAdStarted");
+                            mRVCallback.onRewardedVideoAdStarted();
+                        }
+                    }
+
+                    @Override
+                    public void onAdClick() {
+                        if (mRVCallback != null) {
+                            AdLog.getSingleton().LogD(TAGR + "onAdClick");
+                            mRVCallback.onRewardedVideoAdClicked();
+                        }
+
+                    }
+
+                    @Override
+                    public void onAdClose(float v) {
+                        if (mRVCallback != null) {
+                            AdLog.getSingleton().LogD(TAGR + "onAdClick");
+                            mRVCallback.onRewardedVideoAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onVideoDownloadSuccess() {
+                        AdLog.getSingleton().LogD(TAGR + "onVideoDownloadSuccess");
+                        if (mRVCallback != null) {
+                            mRVCallback.onRewardedVideoLoadSuccess();
+                        }
+                    }
+
+                    @Override
+                    public void onVideoDownloadFailed() {
+                        isPreload.set(false);
+                        AdLog.getSingleton().LogD(TAGR + "onVideoDownloadFailed");
+                        if (mRVCallback != null) {
+                            mRVCallback.onRewardedVideoLoadFailed("get RewardedVideo error.");
+                        }
+                    }
+
+                    @Override
+                    public void playCompletion() {
+                        AdLog.getSingleton().LogD(TAGR + "playCompletion");
+                        if (mRVCallback != null) {
+                            mRVCallback.onRewardedVideoAdEnded();
+                        }
+                    }
+
+                    @Override
+                    public void onAdFailed(String arg0) {
+                        isPreload.set(false);
+                        AdLog.getSingleton().LogD(TAGR + "RewardedVideoonAdFailed onError " + arg0);
+                        if (mRVCallback != null) {
+                            mRVCallback.onRewardedVideoLoadFailed("get RewardedVideo error.");
+                        }
+                    }
+                }, true);
+                if (null != mRewardVideoAd){
+                    mRewardVideoAd.load();
+                }
+            }else {
                 AdLog.getSingleton().LogD(TAGR + "ad loading, no need to load repeatedly");
                 callback.onRewardedVideoLoadFailed(TAGR + "ad loading, no need to load repeatedly");
-                return;
             }
 
-            mRewardVideoAd = new RewardVideoAd(activity, adUnitId, BaiduAdapter.this, true);
-            if (null != mRewardVideoAd){
-                mRewardVideoAd.load();
-            }
         } else {
             if (callback != null) {
                 AdLog.getSingleton().LogD(TAGR + "null !=  TextUtils.isEmpty(error)");
@@ -232,7 +294,6 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
         }
     }
 
-
     @Override
     public boolean isRewardedVideoAvailable(String adUnitId) {
         if (TextUtils.isEmpty(adUnitId)) {
@@ -241,60 +302,4 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
         return  mRewardVideoAd != null && mRewardVideoAd.isReady();
 
     }
-
-    @Override
-    public void onAdShow() {
-        if (mRVCallback != null) {
-            AdLog.getSingleton().LogD(TAGR + "onAdShow");
-            mRVCallback.onRewardedVideoAdShowSuccess();
-            AdLog.getSingleton().LogD(TAGR + "onAdStarted");
-            mRVCallback.onRewardedVideoAdStarted();
-        }
-    }
-
-    @Override
-    public void onAdClick() {
-        if (mRVCallback != null) {
-            AdLog.getSingleton().LogD(TAGR + "onAdClick");
-            mRVCallback.onRewardedVideoAdClicked();
-        }
-
-    }
-
-    @Override
-    public void onAdClose(float v) {
-        if (mRVCallback != null) {
-            AdLog.getSingleton().LogD(TAGR + "onAdClick");
-            mRVCallback.onRewardedVideoAdClosed();
-        }
-    }
-
-
-
-    @Override
-    public void onVideoDownloadSuccess() {
-        AdLog.getSingleton().LogD(TAGR + "onVideoDownloadSuccess");
-        if (mRVCallback != null) {
-            mRVCallback.onRewardedVideoLoadSuccess();
-        }
-    }
-
-    @Override
-    public void onVideoDownloadFailed() {
-        AdLog.getSingleton().LogD(TAGR + "onVideoDownloadFailed");
-        if (mRVCallback != null) {
-            mRVCallback.onRewardedVideoLoadFailed("get RewardedVideo error.");
-        }
-    }
-
-    @Override
-    public void playCompletion() {
-        AdLog.getSingleton().LogD(TAGR + "playCompletion");
-        if (mRVCallback != null) {
-            mRVCallback.onRewardedVideoAdEnded();
-        }
-    }
-
-
-
 }

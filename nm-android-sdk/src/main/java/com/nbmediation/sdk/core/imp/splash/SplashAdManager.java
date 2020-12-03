@@ -17,13 +17,14 @@ import com.nbmediation.sdk.utils.constant.CommonConstants;
 import com.nbmediation.sdk.utils.event.EventId;
 import com.nbmediation.sdk.utils.model.Placement;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class SplashAdManager {
 
     private ConcurrentMap<String, SplashAdImp> mSplashAds;
-
+    public WeakReference<ViewGroup> mViewGroup;
     public void setSize(int width, int height) {
         setSize("", width, height);
     }
@@ -80,6 +81,7 @@ public class SplashAdManager {
         if (splashAdImp == null) {
             return;
         }
+        splashAdImp.setViewGroup(mViewGroup);
         splashAdImp.loadAd(NmManager.LOAD_TYPE.MANUAL);
     }
 
@@ -139,5 +141,9 @@ public class SplashAdManager {
             placementId = placement.getId();
         }
         return mSplashAds.get(placementId);
+    }
+
+    public void setViewGroup(ViewGroup viewGroup){
+        mViewGroup = new WeakReference<>(viewGroup);
     }
 }

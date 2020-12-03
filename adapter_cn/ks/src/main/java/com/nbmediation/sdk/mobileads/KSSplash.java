@@ -137,7 +137,7 @@ public class KSSplash extends CustomSplashEvent {
                 if (timer != null) {
                     timer.cancel();
                 }
-                if (isDestroyed) {
+                if (isDestroyed || isSplashReaday) {
                     return;
                 }
                 onInsError("KSSDK get splash Ad time out!");
@@ -203,7 +203,7 @@ public class KSSplash extends CustomSplashEvent {
                 }
                 AdLog.getSingleton().LogD(TAG,"onAdShowEnd");
                 onInsTick(0);
-
+                onInsDismissed();
             }
 
             @Override
@@ -240,6 +240,7 @@ public class KSSplash extends CustomSplashEvent {
             ((AppCompatActivity) actv).getSupportFragmentManager().beginTransaction()
                     .replace(viewGroup.getId(), fragment)
                     .commitAllowingStateLoss();
+            fragment=null;
         }else{
             onInsShowFailed("not AppCompatActivity show failed!");
         }

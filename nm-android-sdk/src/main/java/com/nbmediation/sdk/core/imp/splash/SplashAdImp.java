@@ -19,7 +19,9 @@ import com.nbmediation.sdk.utils.event.EventId;
 import com.nbmediation.sdk.utils.event.EventUploadManager;
 import com.nbmediation.sdk.utils.model.BaseInstance;
 import com.nbmediation.sdk.utils.model.PlacementInfo;
+import com.nbmediation.sdk.mediation.MediationInfo;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 
 public class SplashAdImp extends AbstractHybridAd {
@@ -29,6 +31,8 @@ public class SplashAdImp extends AbstractHybridAd {
     private long mLoadTimeout;
 
     private int mWidth, mHeight;
+
+    public WeakReference<ViewGroup> mViewGroup;
 
     SplashAdImp(Activity activity, String placementId) {
         super(activity, placementId);
@@ -69,7 +73,13 @@ public class SplashAdImp extends AbstractHybridAd {
         placementInfo.put("Timeout", String.valueOf(mLoadTimeout));
         placementInfo.put("Width", String.valueOf(mWidth));
         placementInfo.put("Height", String.valueOf(mHeight));
-        splashEvent.loadAd(mActRef.get(), placementInfo);
+
+        if(instances.getMediationId() == MediationInfo.MEDIATION_ID_55) {
+            splashEvent.loadAd(mActRef.get(), placementInfo, mViewGroup);
+        }else {
+            splashEvent.loadAd(mActRef.get(), placementInfo);
+        }
+
         iLoadReport(instances);
     }
 
@@ -207,5 +217,9 @@ public class SplashAdImp extends AbstractHybridAd {
     void setSize(int width, int height) {
         this.mWidth = width;
         this.mHeight = height;
+    }
+
+    public void setViewGroup(WeakReference<ViewGroup> viewGroup){
+        mViewGroup = viewGroup;
     }
 }

@@ -14,6 +14,10 @@ public class SplashAd {
         SplashAdManager.getInstance().setLoadTimeout(timeout);
     }
 
+    public static void setViewGroup(ViewGroup viewGroup) {
+        SplashAdManager.getInstance().setViewGroup(viewGroup);
+    }
+
     public static void loadAd() {
         SplashAdManager.getInstance().load();
     }

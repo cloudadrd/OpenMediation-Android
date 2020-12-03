@@ -22,8 +22,8 @@ ext {
             'tc056d'      : '1.0.0',
             'alion'       : '1.0.2',
             'zyt'         : '1.0.0',
-            'ks'          : '1.0.5',
-            'agsdk'       : '1.0.4',
+            'ks'          : '1.0.6',
+            'agsdk'       : '1.0.5',
             'inmobi'      : '1.0.0',
             'baidu'       : '1.0.0'
     ]
@@ -46,6 +46,6 @@ ext {
     ALION_PLUGIN = '1.0.1'
     KS_PLUGIN = '1.0.6'
     MINTGRAL_PLUGIN = '1.1.2'
-    nm_version = "1.2.2"
+    nm_version = "1.2.3"
     hop_version = '1.1.0'
 }

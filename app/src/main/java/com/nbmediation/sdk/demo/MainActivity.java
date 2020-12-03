@@ -371,4 +371,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SplashDialogActivity.class));
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (adContainer != null) {
+            adContainer.removeAllViews();
+        }
+        if (bannerAd != null) {
+            bannerAd.destroy();
+        }
+        if (nativeAd != null) {
+            nativeAd.destroy();
+        }
+    }
 }

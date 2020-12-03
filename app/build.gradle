@@ -185,7 +185,7 @@ dependencies {
     implementation rootProject.ext.dependencies.unity
     implementation project(path: ':adapter:unity')
 
-    //sigmob
+    //baidu
     implementation(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
     implementation project(path: ':adapter_cn:baidu')
 

@@ -1,9 +1,11 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -19,13 +21,14 @@ import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
 import com.nbmediation.sdk.utils.constant.KeyConstants;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 
 public class Plugin1Native extends CustomNativeEvent {
 
     private AdvanceNative mNative;
-    private Activity activity;
-    private static String TAG = "OM-AG-Native:";
+    private Context context;
+    private final static String TAG = "OM-AG-Native:";
 
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
@@ -44,7 +47,7 @@ public class Plugin1Native extends CustomNativeEvent {
         if (null == instanceKey) {
             return;
         }
-        this.activity = activity;
+        this.context = activity.getApplicationContext();
         String customIdObj = config.get(KeyConstants.CUSTOM_ID_KEY);
         if (customIdObj != null) {
             if (!TextUtils.isEmpty(customIdObj)) {
@@ -56,7 +59,7 @@ public class Plugin1Native extends CustomNativeEvent {
     }
 
     public void registerNativeView(NativeAdView adView) {
-        if (isDestroyed || activity == null) {
+        if (isDestroyed || context == null) {
             return;
         }
 
@@ -111,39 +114,46 @@ public class Plugin1Native extends CustomNativeEvent {
         }
     }
 
-    @Override
-    public void destroy(Activity activity) {
-        isDestroyed = true;
-    }
 
     private void renderAdUi(final NativeAdView adView) {
         if (mNative == null) {
             onInsError(TAG + " renderAdUi fail..");
             return;
         }
-        ImageView imageView = null;
+        ImageView imageView;
         if (adView.getMediaView() != null) {
             adView.getMediaView().removeAllViews();
             imageView = new ImageView(adView.getContext());
             adView.getMediaView().addView(imageView);
 
-            DisplayMetrics displayMetrics = activity.getResources().getDisplayMetrics();
+            DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
             int viewWidth = displayMetrics.widthPixels;
             float scale = 1.0f / 1.9f;
             imageView.getLayoutParams().width = RelativeLayout.LayoutParams.MATCH_PARENT;
             imageView.getLayoutParams().height = (int) (viewWidth * scale);
+            Glide.with(context).load(mNative.getImageUrl()).into(imageView);
 
         }
-        ImageView iconImageView = null;
+        ImageView iconImageView;
         if (adView.getAdIconView() != null) {
             adView.getAdIconView().removeAllViews();
             iconImageView = new ImageView(adView.getContext());
             adView.getAdIconView().addView(iconImageView);
             iconImageView.getLayoutParams().width = RelativeLayout.LayoutParams.MATCH_PARENT;
             iconImageView.getLayoutParams().height = RelativeLayout.LayoutParams.MATCH_PARENT;
+            Glide.with(context).load(mNative.getIconUrl()).into(iconImageView);
         }
 
-        Glide.with(activity).load(mNative.getIconUrl()).into(iconImageView);
-        Glide.with(activity).load(mNative.getImageUrl()).into(imageView);
+
+    }
+
+    @Override
+    public void destroy(Activity activity) {
+        isDestroyed = true;
+        if (mNative != null && mNative.getParent() instanceof ViewGroup) {
+            ((ViewGroup) mNative.getParent()).removeView(mNative);
+        }
+        mNative = null;
+        context = null;
     }
 }

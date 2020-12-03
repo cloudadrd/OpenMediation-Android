@@ -5,7 +5,9 @@ package com.nbmediation.sdk.mediation;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.view.ViewGroup;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 
 public abstract class CustomAdEvent {
@@ -17,6 +19,10 @@ public abstract class CustomAdEvent {
     protected String mInsId;
 
     public void loadAd(Activity activity, Map<String, String> config) {
+        isDestroyed = false;
+    }
+
+    public void loadAd(Activity activity, Map<String, String> config, WeakReference<ViewGroup> viewGroup) {
         isDestroyed = false;
     }
 

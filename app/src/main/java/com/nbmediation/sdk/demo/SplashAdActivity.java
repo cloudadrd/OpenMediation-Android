@@ -75,6 +75,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashAdListe
         int height = mSplashContainer.getHeight();
         SplashAd.setSize(width, height);
         SplashAd.setLoadTimeout(6000);
+        SplashAd.setViewGroup(mSplashContainer);
         SplashAd.loadAd();
     }
 

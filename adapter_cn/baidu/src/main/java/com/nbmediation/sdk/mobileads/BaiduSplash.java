@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,11 @@ import com.baidu.mobads.AdSettings;
 import com.baidu.mobads.BitmapDisplayMode;
 import com.baidu.mobads.SplashAd;
 import com.baidu.mobads.SplashLpCloseListener;
+import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mobileads.plugin6.R;
 import com.nbmediation.sdk.utils.AdLog;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,29 +41,28 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent slotID = "2058622";
     private SplashAd splashAd;
-    private static String TAG = "OM-Baidu:";
+    private static String TAG = "OM-Baidu-Splash:";
     private static final String CONFIG_TIMEOUT = "Timeout";
     private static final String CONFIG_WIDTH = "Width";
     private static final String CONFIG_HEIGHT = "Height";
-    private  String adPlaceId;
+    private String adPlaceId;
+    private WeakReference<ViewGroup> mViewGroup;
+    private Boolean isReady;
+    private CountDownTimer timer;
+    private boolean isTimerOut;
 
-    @Override
-    public void loadAd(Activity activity, Map<String, String> config) {
-        if (!check(activity, config)) {
+    public void loadAd(Activity activity, Map<String, String> config, WeakReference<ViewGroup> viewGroup) {
+        if (!check(activity, config) || isDestroyed) {
             return;
         }
+        mViewGroup = viewGroup;
         adPlaceId = mInstancesKey;
         loadSplashAd(activity, config);
     }
 
     @Override
     public int getMediation() {
-        return 0;
-    }
-
-    @Override
-    public void destroy(Activity activity) {
-
+        return MediationInfo.MEDIATION_ID_55;
     }
 
     private static int getScreenWidth(Context context) {
@@ -105,33 +107,42 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
         final SplashLpCloseListener listener = new SplashLpCloseListener() {
             @Override
             public void onLpClosed() {
-//                Toast.makeText(activity.this,"lp页面关闭",Toast.LENGTH_SHORT).show();
                 // 落地页关闭后关闭广告，并跳转到应用的主页
             }
 
             @Override
             public void onAdDismissed() {
-                Log.i("RSplashManagerActivity", "onAdDismissed");
+                Log.i(TAG, "onAdDismissed");
+                onInsDismissed();
             }
 
             @Override
             public void onADLoaded() {
-                Log.i("RSplashManagerActivity", "onADLoaded");
+                Log.i(TAG, "onADLoaded");
+                if(!isTimerOut){
+                    isReady = true;
+                    onInsReady(null);
+                }
             }
 
             @Override
             public void onAdFailed(String arg0) {
-                Log.i("RSplashManagerActivity", arg0);
+                isReady = false;
+                Log.i(TAG, arg0);
+                onInsError("Baidu Splash ad load failed " + arg0);
             }
 
             @Override
             public void onAdPresent() {
-                Log.i("RSplashManagerActivity", "onAdPresent");
+                Log.i(TAG, "onAdPresent");
+                isReady = false;
+                onInsShowSuccess();
             }
 
             @Override
             public void onAdClick() {
-                Log.i("RSplashManagerActivity", "onAdClick");
+                Log.i(TAG, "onAdClick");
+                onInsClicked();
             }
         };
          /**
@@ -139,44 +150,72 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
          * fetchAd：是否自动请求广告, 设置为true则自动loadAndshow，无需再主动load和show
          * 设置为false则仅初始化开屏广告对象，需要手动调用load请求广告，并调用show展示广告
          **/
-//         splashAd = new SplashAd(activity.getApplicationContext(), activity, listener, adPlaceId, true,
-//                        parameters, fetchDelay, false);
-//         splashAd.load();
+         splashAd = new SplashAd(activity, mViewGroup.get(), listener, adPlaceId, true,
+                        parameters, fetchDelay, false);
+         splashAd.load();
 
+        isReady = false;
+        isTimerOut = false;
+        timer = new CountDownTimer(fetchDelay, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if (isReady) {
+                    if (timer != null) {
+                        timer.cancel();
+                        timer = null;
+                    }
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                isTimerOut = true;
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                }
+                if (isDestroyed || isReady) {
+                    return;
+                }
+                onInsError("Baidu get splash Ad time out!");
+                AdLog.getSingleton().LogD(TAG,"Baidu get splash Ad time out!");
+            }
+        };
+        timer.start();
     }
 
     @Override
     public void show(ViewGroup container) {
         if (!isReady()) {
+            Log.i(TAG, "SplashAd not ready");
             onInsShowFailed("SplashAd not ready");
             return;
         }
         try {
             if (splashAd != null) {
+                Log.i(TAG, "show");
                splashAd.show();
             }
         } catch (Exception e) {
+            Log.i(TAG, "SplashAd not ready");
             onInsShowFailed("SplashAd not ready");
         }
     }
 
     @Override
     public boolean isReady() {
-        return false;
+        if(splashAd == null || isDestroyed)
+            return false;
+        return isReady;
     }
 
-//    @Override
-//    public void onTimeout() {
-//        if (isDestroyed) {
-//            return;
-//        }
-//        AdLog.getSingleton().LogD(TAG + "Splash ad load failed: timeout");
-//        onInsError("Splash ad load failed: timeout");
-//    }
-//
-//
-//    @Override
-//    protected void onDestroy() {
-//
-//    }
+@Override
+    public void destroy(Activity activity) {
+        mViewGroup = null;
+        isDestroyed = true;
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
 }
+

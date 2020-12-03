@@ -151,7 +151,7 @@ public class Plugin1Splash extends CustomSplashEvent {
                 if (timer != null) {
                     timer.cancel();
                 }
-                if (isDestroyed) {
+                if (isDestroyed || isSplashReady) {
                     return;
                 }
                 onInsError(TAG + "get splash Ad time out!");

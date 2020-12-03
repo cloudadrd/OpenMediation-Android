@@ -205,8 +205,8 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
 
                     @Override
                     public void onAdClick() {
+                        AdLog.getSingleton().LogD(TAGR + "onAdClick");
                         if (mRVCallback != null) {
-                            AdLog.getSingleton().LogD(TAGR + "onAdClick");
                             mRVCallback.onRewardedVideoAdClicked();
                         }
 
@@ -214,8 +214,8 @@ public class BaiduAdapter extends CustomAdsAdapter implements InterstitialAdList
 
                     @Override
                     public void onAdClose(float v) {
+                        AdLog.getSingleton().LogD(TAGR + "onAdClose");
                         if (mRVCallback != null) {
-                            AdLog.getSingleton().LogD(TAGR + "onAdClick");
                             mRVCallback.onRewardedVideoAdClosed();
                         }
                     }

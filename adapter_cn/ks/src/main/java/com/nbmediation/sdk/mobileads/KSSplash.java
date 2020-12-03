@@ -242,7 +242,7 @@ public class KSSplash extends CustomSplashEvent {
 
     @Override
     public boolean isReady() {
-        return !isDestroyed && isSplashReady;
+        return !isDestroyed && isSplashReady && fragment != null;
     }
 
 

@@ -193,6 +193,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
         }
         try {
             if (splashAd != null) {
+                Log.i(TAG, "show");
                splashAd.show();
             }
         } catch (Exception e) {

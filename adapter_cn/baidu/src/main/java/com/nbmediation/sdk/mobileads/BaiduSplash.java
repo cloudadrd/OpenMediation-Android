@@ -51,9 +51,8 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
     private CountDownTimer timer;
     private boolean isTimerOut;
 
-//    @Override
     public void loadAd(Activity activity, Map<String, String> config, WeakReference<ViewGroup> viewGroup) {
-        if (!check(activity, config)) {
+        if (!check(activity, config) || isDestroyed) {
             return;
         }
         mViewGroup = viewGroup;
@@ -109,7 +108,6 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             @Override
             public void onLpClosed() {
                 // 落地页关闭后关闭广告，并跳转到应用的主页
-                onInsDismissed();
             }
 
             @Override
@@ -164,6 +162,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
                 if (isReady) {
                     if (timer != null) {
                         timer.cancel();
+                        timer = null;
                     }
                 }
             }
@@ -173,6 +172,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
                 isTimerOut = true;
                 if (timer != null) {
                     timer.cancel();
+                    timer = null;
                 }
                 if (isDestroyed || isReady) {
                     return;
@@ -203,25 +203,18 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
 
     @Override
     public boolean isReady() {
-        if(splashAd == null)
+        if(splashAd == null || isDestroyed)
             return false;
         return isReady;
     }
 
-//    @Override
-//    public void onTimeout() {
-//        if (isDestroyed) {
-//            return;
-//        }
-//        AdLog.getSingleton().LogD(TAG + "Splash ad load failed: timeout");
-//        onInsError("Splash ad load failed: timeout");
-//    }
-//
-//
 @Override
     public void destroy(Activity activity) {
         mViewGroup = null;
         isDestroyed = true;
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 }
 

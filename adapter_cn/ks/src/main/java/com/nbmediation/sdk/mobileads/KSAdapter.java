@@ -15,17 +15,14 @@ import com.kwad.sdk.api.KsRewardVideoAd;
 import com.kwad.sdk.api.KsScene;
 import com.kwad.sdk.api.KsVideoPlayConfig;
 import com.kwad.sdk.api.SdkConfig;
-import com.kwad.sdk.api.KsFullScreenVideoAd;
 import com.nbmediation.sdk.mediation.CustomAdsAdapter;
 import com.nbmediation.sdk.mediation.InterstitialAdCallback;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.mediation.RewardedVideoCallback;
 import com.nbmediation.sdk.mobileads.ks.BuildConfig;
 import com.nbmediation.sdk.utils.AdLog;
-import com.nbmediation.sdk.utils.constant.KeyConstants;
 
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,9 +33,8 @@ public class KSAdapter extends CustomAdsAdapter {
     private ConcurrentMap<String, KsRewardVideoAd> mTTRvAds;
     private static Boolean landscape = false;
     private KsFullScreenVideoAd mFullScreenVideoAd;
-    private Activity ksinitInterstitialAdActivity;
-    private InterstitialAdCallback ksinitInterstitialAdCallback;
-    private boolean ksinitInterstitialAdReaday;
+    private InterstitialAdCallback ksInitInterstitialAdCallback;
+    private boolean ksInitInterstitialAdReady;
 
     public KSAdapter() {
         mTTRvAds = new ConcurrentHashMap<>();
@@ -293,7 +289,6 @@ public class KSAdapter extends CustomAdsAdapter {
     @Override
     public void initInterstitialAd(Context activity, Map<String, Object> dataMap, InterstitialAdCallback callback) {
         super.initInterstitialAd(activity, dataMap, callback);
-        Object appKey = dataMap.get("AppKey");
         String error = check(activity);
         if (TextUtils.isEmpty(error)) {
             String[] split = mAppKey.split("\\|");
@@ -317,17 +312,16 @@ public class KSAdapter extends CustomAdsAdapter {
             }
             initSdk(activity, appId, appName, isDebug);
 
-            ksinitInterstitialAdCallback = callback;
-            ksinitInterstitialAdActivity = (Activity) activity;
+            ksInitInterstitialAdCallback = callback;
             if (callback != null) {
                 callback.onInterstitialAdInitSuccess();
             }
-            AdLog.getSingleton().LogD(TAG ,"onInterstitialAdInitSuccess");
+            AdLog.getSingleton().LogD(TAG, "onInterstitialAdInitSuccess");
         } else {
             if (callback != null) {
                 callback.onInterstitialAdLoadFailed(error);
             }
-            AdLog.getSingleton().LogD(TAG ,"onInterstitialAdLoadFailed");
+            AdLog.getSingleton().LogD(TAG, "onInterstitialAdLoadFailed");
         }
     }
 
@@ -335,37 +329,35 @@ public class KSAdapter extends CustomAdsAdapter {
     public void loadInterstitialAd(Context activity, String adUnitId, InterstitialAdCallback callback) {
         KsScene scene = new KsScene.Builder(Long.parseLong(adUnitId)).build(); // 此为测试posId，请联系快手平台申请正式posId
         KsLoadManager loadManager = KsAdSDK.getLoadManager();
-        if (null != loadManager) {
-            loadManager.loadFullScreenVideoAd(scene, new KsLoadManager.FullScreenVideoAdListener() {
-                @Override
-                public void onError(int code, String msg) {
-                    AdLog.getSingleton().LogD(TAG ,"onError");
-                    if (null != ksinitInterstitialAdCallback) {
-                        ksinitInterstitialAdCallback.onInterstitialAdLoadFailed(msg);
-                    }
+        loadManager.loadFullScreenVideoAd(scene, new KsLoadManager.FullScreenVideoAdListener() {
+            @Override
+            public void onError(int code, String msg) {
+                AdLog.getSingleton().LogD(TAG, "onError");
+                if (null != ksInitInterstitialAdCallback) {
+                    ksInitInterstitialAdCallback.onInterstitialAdLoadFailed(msg);
+                }
+            }
+
+            @Override
+            public void onFullScreenVideoAdLoad(@Nullable List<KsFullScreenVideoAd> adList) {
+                AdLog.getSingleton().LogD(TAG, "onFullScreenVideoAdLoad");
+                if (null != ksInitInterstitialAdCallback) {
+                    ksInitInterstitialAdCallback.onInterstitialAdLoadSuccess();
                 }
 
-                @Override
-                public void onFullScreenVideoAdLoad(@Nullable List<KsFullScreenVideoAd> adList) {
-                    AdLog.getSingleton().LogD(TAG ,"onFullScreenVideoAdLoad");
-                    if (null != ksinitInterstitialAdCallback) {
-                        ksinitInterstitialAdCallback.onInterstitialAdLoadSuccess();
-                    }
-
-                    if (adList != null && adList.size() > 0) {
-                        ksinitInterstitialAdReaday = true;
-                        mFullScreenVideoAd = adList.get(0);
-                    }
+                if (adList != null && adList.size() > 0) {
+                    ksInitInterstitialAdReady = true;
+                    mFullScreenVideoAd = adList.get(0);
                 }
-            });
-        }
+            }
+        });
     }
 
     @Override
     public void showInterstitialAd(final Context activity, final String adUnitId, final InterstitialAdCallback callback) {
         super.showInterstitialAd(activity, adUnitId, callback);
-        showFullScreenVideoAd(null);
-        AdLog.getSingleton().LogD(TAG ,"showInterstitialAd");
+        showFullScreenVideoAd(activity, null);
+        AdLog.getSingleton().LogD(TAG, "showInterstitialAd");
 
     }
 
@@ -374,56 +366,56 @@ public class KSAdapter extends CustomAdsAdapter {
         if (TextUtils.isEmpty(adUnitId)) {
             return false;
         }
-        if (!ksinitInterstitialAdReaday){
+        if (!ksInitInterstitialAdReady) {
             return false;
         }
         return true;
     }
 
-    private void showFullScreenVideoAd(KsVideoPlayConfig videoPlayConfig) {
+    private void showFullScreenVideoAd(Context activity, KsVideoPlayConfig videoPlayConfig) {
         if (mFullScreenVideoAd != null && mFullScreenVideoAd.isAdEnable()) {
             mFullScreenVideoAd
                     .setFullScreenVideoAdInteractionListener(new KsFullScreenVideoAd.FullScreenVideoAdInteractionListener() {
                         @Override
                         public void onAdClicked() {
-                            ksinitInterstitialAdCallback.onInterstitialAdClick();
-                            AdLog.getSingleton().LogD(TAG ,"onAdClicked");
+                            ksInitInterstitialAdCallback.onInterstitialAdClick();
+                            AdLog.getSingleton().LogD(TAG, "onAdClicked");
                         }
 
                         @Override
                         public void onPageDismiss() {
-                            ksinitInterstitialAdCallback.onInterstitialAdClosed();
-                            AdLog.getSingleton().LogD(TAG ,"onPageDismiss");
+                            ksInitInterstitialAdCallback.onInterstitialAdClosed();
+                            AdLog.getSingleton().LogD(TAG, "onPageDismiss");
                         }
 
                         @Override
                         public void onVideoPlayError(int code, int extra) {
-                            ksinitInterstitialAdCallback.onInterstitialAdShowFailed("error code:"+ code);
-                            AdLog.getSingleton().LogD(TAG ,"onVideoPlayError");
+                            ksInitInterstitialAdCallback.onInterstitialAdShowFailed("error code:" + code);
+                            AdLog.getSingleton().LogD(TAG, "onVideoPlayError");
                         }
 
                         @Override
                         public void onVideoPlayEnd() {
-                            AdLog.getSingleton().LogD(TAG ,"onVideoPlayEnd");
+                            AdLog.getSingleton().LogD(TAG, "onVideoPlayEnd");
                         }
 
                         @Override
                         public void onVideoPlayStart() {
-                            ksinitInterstitialAdReaday = false;
-                            ksinitInterstitialAdCallback.onInterstitialAdShowSuccess();
-                            AdLog.getSingleton().LogD(TAG ,"onVideoPlayStart");
+                            ksInitInterstitialAdReady = false;
+                            ksInitInterstitialAdCallback.onInterstitialAdShowSuccess();
+                            AdLog.getSingleton().LogD(TAG, "onVideoPlayStart");
                         }
 
                         @Override
                         public void onSkippedVideo() {
-                            AdLog.getSingleton().LogD(TAG ,"onSkippedVideo");
+                            AdLog.getSingleton().LogD(TAG, "onSkippedVideo");
 
 
                         }
                     });
-            mFullScreenVideoAd.showFullScreenVideoAd(ksinitInterstitialAdActivity, videoPlayConfig);
+            mFullScreenVideoAd.showFullScreenVideoAd((Activity) activity, videoPlayConfig);
         } else {
-            AdLog.getSingleton().LogD(TAG ,"full screen ad show failed.");
+            AdLog.getSingleton().LogD(TAG, "full screen ad show failed.");
         }
     }
 }

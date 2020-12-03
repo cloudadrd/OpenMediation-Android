@@ -41,7 +41,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent slotID = "2058622";
     private SplashAd splashAd;
-    private static String TAG = "OM-Baidu:";
+    private static String TAG = "OM-Baidu-Splash:";
     private static final String CONFIG_TIMEOUT = "Timeout";
     private static final String CONFIG_WIDTH = "Width";
     private static final String CONFIG_HEIGHT = "Height";

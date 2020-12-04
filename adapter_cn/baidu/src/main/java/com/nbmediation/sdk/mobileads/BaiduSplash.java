@@ -50,7 +50,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
     private Boolean isSplashReady;
     private CountDownTimer timer;
     private boolean isTimerOut;
-
+    private boolean isShowing;
     public void loadAd(Activity activity, Map<String, String> config, WeakReference<ViewGroup> viewGroup) {
         if (!check(activity, config) || isDestroyed) {
             return;
@@ -118,6 +118,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
                 Log.i(TAG, "onAdDismissed");
                 onInsDismissed();
                 isSplashReady = false;
+                isShowing = false;
             }
 
             @Override
@@ -132,6 +133,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             @Override
             public void onAdFailed(String arg0) {
                 isSplashReady = false;
+                isShowing = false;
                 Log.i(TAG, arg0);
                 onInsError("Baidu Splash ad load failed " + arg0);
             }
@@ -159,6 +161,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
 
         isSplashReady = false;
         isTimerOut = false;
+        isShowing = false;
         timer = new CountDownTimer(fetchDelay, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -190,7 +193,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
 
     @Override
     public void show(ViewGroup container) {
-        if (!isReady()) {
+        if (!isReady() || isShowing) {
             Log.i(TAG, "SplashAd not ready");
             onInsShowFailed("SplashAd not ready");
             return;
@@ -199,6 +202,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             if (splashAd != null) {
                 Log.i(TAG, "show");
                splashAd.show();
+                isShowing = true;
             }
         } catch (Exception e) {
             Log.i(TAG, "SplashAd not ready");

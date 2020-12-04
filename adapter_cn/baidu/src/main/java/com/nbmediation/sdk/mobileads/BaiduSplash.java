@@ -47,7 +47,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
     private static final String CONFIG_HEIGHT = "Height";
     private String adPlaceId;
     private WeakReference<ViewGroup> mViewGroup;
-    private Boolean isReady;
+    private Boolean isSplashReady;
     private CountDownTimer timer;
     private boolean isTimerOut;
 
@@ -55,6 +55,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
         if (!check(activity, config) || isDestroyed) {
             return;
         }
+
         mViewGroup = viewGroup;
         adPlaceId = mInstancesKey;
         loadSplashAd(activity, config);
@@ -116,21 +117,21 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             public void onAdDismissed() {
                 Log.i(TAG, "onAdDismissed");
                 onInsDismissed();
-                isReady = false;
+                isSplashReady = false;
             }
 
             @Override
             public void onADLoaded() {
                 if(!isTimerOut){
                     Log.i(TAG, "onADLoaded");
-                    isReady = true;
+                    isSplashReady = true;
                     onInsReady(null);
                 }
             }
 
             @Override
             public void onAdFailed(String arg0) {
-                isReady = false;
+                isSplashReady = false;
                 Log.i(TAG, arg0);
                 onInsError("Baidu Splash ad load failed " + arg0);
             }
@@ -156,12 +157,12 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
                         parameters, fetchDelay, false);
          splashAd.load();
 
-        isReady = false;
+        isSplashReady = false;
         isTimerOut = false;
         timer = new CountDownTimer(fetchDelay, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if (isReady) {
+                if (isSplashReady) {
                     if (timer != null) {
                         timer.cancel();
                         timer = null;
@@ -176,7 +177,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
                     timer.cancel();
                     timer = null;
                 }
-                if (isDestroyed || isReady) {
+                if (isDestroyed || isSplashReady) {
                     return;
                 }
                 onInsError("Baidu get splash Ad time out!");
@@ -209,7 +210,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
     public boolean isReady() {
         if(splashAd == null || isDestroyed)
             return false;
-        return isReady;
+        return isSplashReady;
     }
 
 @Override

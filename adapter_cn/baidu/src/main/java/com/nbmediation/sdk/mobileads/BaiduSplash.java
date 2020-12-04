@@ -108,19 +108,21 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             @Override
             public void onLpClosed() {
                 // 落地页关闭后关闭广告，并跳转到应用的主页
-                onInsDismissed();
+//                onInsDismissed();
+//                Log.i(TAG, "onLpClosed");
             }
 
             @Override
             public void onAdDismissed() {
                 Log.i(TAG, "onAdDismissed");
                 onInsDismissed();
+                isReady = false;
             }
 
             @Override
             public void onADLoaded() {
-                Log.i(TAG, "onADLoaded");
                 if(!isTimerOut){
+                    Log.i(TAG, "onADLoaded");
                     isReady = true;
                     onInsReady(null);
                 }
@@ -196,7 +198,6 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             if (splashAd != null) {
                 Log.i(TAG, "show");
                splashAd.show();
-               isReady = false;
             }
         } catch (Exception e) {
             Log.i(TAG, "SplashAd not ready");

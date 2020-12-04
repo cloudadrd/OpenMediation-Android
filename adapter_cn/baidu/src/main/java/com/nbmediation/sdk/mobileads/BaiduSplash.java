@@ -108,6 +108,7 @@ public class BaiduSplash extends CustomSplashEvent {//extends CustomSplashEvent 
             @Override
             public void onLpClosed() {
                 // 落地页关闭后关闭广告，并跳转到应用的主页
+                onInsDismissed();
             }
 
             @Override

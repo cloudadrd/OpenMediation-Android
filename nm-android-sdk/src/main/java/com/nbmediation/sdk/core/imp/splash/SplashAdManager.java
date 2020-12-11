@@ -61,7 +61,7 @@ public class SplashAdManager {
     }
 
     public boolean isEmpty(){
-        return mSplashAds.size() == 0;
+        return mSplashAds==null || mSplashAds.size() == 0;
     }
 
     public void setLoadTimeout(long timeout) {

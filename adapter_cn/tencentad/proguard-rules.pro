@@ -25,4 +25,30 @@
 # 如果接入了Bugly，需要添加如下配置
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
--keep class com.bun.miitmdid.core.** {*;}
+
+-keep class MTT.ThirdAppInfoNew {
+    *;
+}
+-dontwarn dalvik.**
+-dontwarn com.tencent.smtt.**
+-keep class yaq.gdtadv{
+    *;
+}
+-keep class com.qq.e.** {
+    *;
+}
+-keep class com.tencent.** {
+    *;
+}
+-keep class cn.mmachina.JniClient {
+    *;
+}
+-keep class c.t.m.li.tsa.** {
+    *;
+}
+
+-keep class c.t.maploc.** {
+    *;
+}
+
+-dontwarn c.t.maploc.**

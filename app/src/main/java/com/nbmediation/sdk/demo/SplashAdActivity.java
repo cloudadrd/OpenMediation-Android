@@ -6,6 +6,8 @@ package com.nbmediation.sdk.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -36,6 +38,11 @@ public class SplashAdActivity extends AppCompatActivity implements SplashAdListe
         Log.i("time_log", "Splash onCreate into time=" + System.currentTimeMillis());
         mSplashContainer = findViewById(R.id.splash_container);
         init();
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (!isLoad) {
+                toMainPage();
+            }
+        }, 5000);
     }
 
     @Override

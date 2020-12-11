@@ -19,7 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.bytedance.sdk.openadsdk.** { *; }
+-dontwarn com.bytedance.**
+#保护内部类
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+
+-keep class com.bytedance.sdk.openadsdk.** {*;}
 -keep public interface com.bytedance.sdk.openadsdk.downloadnew.** {*;}
 -keep class com.pgl.sys.ces.* {*;}
 -keep class com.bun.miitmdid.core.** {*;}

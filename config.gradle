@@ -25,7 +25,7 @@ ext {
             'ks'          : '1.0.6',
             'agsdk'       : '1.0.5',
             'inmobi'      : '1.0.0',
-            'baidu'       : '1.0.1'
+            'baidu'       : '1.0.2'
     ]
 
     pkg_prefix = 'nb_'

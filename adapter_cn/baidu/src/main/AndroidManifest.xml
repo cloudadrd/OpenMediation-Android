@@ -32,7 +32,7 @@
         <!-- 原来的FileProvider在新版本中改为BdFileProvider,继承自v4的FileProvider,需要在应用内引用support-v4包 -->
         <provider
             android:name="com.baidu.mobads.openad.BdFileProvider"
-            android:authorities="com.nbmediation.sdk.mobileads.bd.provider"
+            android:authorities="${applicationId}.bd.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -40,12 +40,6 @@
                 android:resource="@xml/bd_file_paths" />
         </provider>
 
-        <activity
-            android:name="com.nbmediation.sdk.mobileads.BaiduSplash"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
-        <!--            android:label="@string/splash"-->
         <activity
             android:name="com.baidu.mobads.AppActivity"
             android:configChanges="screenSize|keyboard|keyboardHidden|orientation"

@@ -61,6 +61,8 @@ public class SplashAdManager {
     }
 
     public boolean isEmpty(){
+        if(mSplashAds == null)
+            return true;
         return mSplashAds.size() == 0;
     }
 

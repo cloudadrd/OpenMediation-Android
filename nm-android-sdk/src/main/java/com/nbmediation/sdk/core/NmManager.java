@@ -42,6 +42,8 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.nbmediation.sdk.NmAds.AD_TYPE;
+import android.os.Handler;
+import android.os.Looper;
 
 /**
  * The type Nm manager.
@@ -538,7 +540,21 @@ public final class NmManager implements InitCallback {
         initManagerWithDefaultPlacementId();
         setListeners();
         checkHasLoadWhileInInitProgress();
-        preloadAdWithAdType();
+
+        if(SplashAdManager.getInstance().isEmpty()){
+            preloadAdWithAdType();
+        }else{
+            SplashAdManager.getInstance().load();
+
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    preloadAdWithAdType();
+                }
+            }, 5000);
+        }
+
+
         if (mInitCallbacks != null) {
             for (InitCallback callback : mInitCallbacks) {
                 if (callback == null) {

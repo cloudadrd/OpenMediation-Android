@@ -77,12 +77,14 @@ public class Plugin1Adapter extends CustomAdsAdapter {
                 AdsgreatSDK.setSchema(true);
                 AdsgreatSDK.initialize(activity, (String) appKey);
                 if (callback != null) {
+                    AdLog.getSingleton().LogD(TAG, "onRewardedVideoInitSuccess");
                     callback.onRewardedVideoInitSuccess();
                 }
                 return;
             }
         }
         if (callback != null) {
+            AdLog.getSingleton().LogD(TAG, "onRewardedVideoInitFailed");
             callback.onRewardedVideoInitFailed(error);
         }
 
@@ -91,6 +93,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
     @Override
     public void loadRewardedVideo(Context activity, String adUnitId, RewardedVideoCallback callback) {
         super.loadRewardedVideo(activity, adUnitId, callback);
+        AdLog.getSingleton().LogD(TAG, "loadRewardedVideo");
         loadRvAd(activity, adUnitId, callback);
 
     }
@@ -98,12 +101,14 @@ public class Plugin1Adapter extends CustomAdsAdapter {
     @Override
     public void loadRewardedVideo(Context activity, String adUnitId, Map<String, Object> extras, RewardedVideoCallback callback) {
         super.loadRewardedVideo(activity, adUnitId, extras, callback);
+        AdLog.getSingleton().LogD(TAG, "loadRewardedVideo");
         loadRvAd(activity, adUnitId, callback);
     }
 
     @Override
     public void showRewardedVideo(Context activity, String adUnitId, RewardedVideoCallback callback) {
         super.showRewardedVideo(activity, adUnitId, callback);
+        AdLog.getSingleton().LogD(TAG, "showRewardedVideo");
         String error = check(activity, adUnitId);
         if (!TextUtils.isEmpty(error)) {
             if (callback != null) {
@@ -184,6 +189,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
     }
 
     private void loadRvAd(Context activity, String adUnitId, RewardedVideoCallback callback) {
+        AdLog.getSingleton().LogD(TAG, "loadRvAd");
         String error = check(activity, adUnitId);
         if (TextUtils.isEmpty(error)) {
             if (!isPreload.compareAndSet(false, true)) {
@@ -195,11 +201,13 @@ public class Plugin1Adapter extends CustomAdsAdapter {
                 realLoadRvAd(activity, adUnitId, callback);
             } else {
                 if (callback != null) {
+                    AdLog.getSingleton().LogD(TAG, "onRewardedVideoLoadSuccess");
                     callback.onRewardedVideoLoadSuccess();
                 }
             }
         } else {
             if (callback != null) {
+                AdLog.getSingleton().LogD(TAG, "onRewardedVideoLoadFailed");
                 callback.onRewardedVideoLoadFailed(error);
             }
         }
@@ -207,6 +215,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
 
     private void realLoadRvAd(Context activity, final String adUnitId, RewardedVideoCallback callback) {
         VideoAdLoadListener videoAdLoadListener = create(adUnitId, callback);
+        AdLog.getSingleton().LogD(TAG, "realLoadRvAd");
         AdsGreatVideo.preloadRewardedVideo(activity, adUnitId, videoAdLoadListener);
     }
 
@@ -273,12 +282,14 @@ public class Plugin1Adapter extends CustomAdsAdapter {
                 }
                 AdsgreatSDK.initialize(activity, (String) appKey);
                 if (callback != null) {
+                    AdLog.getSingleton().LogD(TAG, "onInterstitialAdInitSuccess");
                     callback.onInterstitialAdInitSuccess();
                 }
                 return;
             }
         }
         if (callback != null) {
+            AdLog.getSingleton().LogD(TAG, "onInterstitialAdInitFailed");
             callback.onInterstitialAdInitFailed(error);
         }
     }
@@ -287,6 +298,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
     public void loadInterstitialAd(Context activity, String adUnitId, InterstitialAdCallback callback) {
         super.loadInterstitialAd(activity, adUnitId, callback);
         loadCallback = callback;
+        AdLog.getSingleton().LogD(TAG, "loadInterstitialAd");
         AdsgreatSDK.preloadInterstitialAd(activity,adUnitId,new InterstitialAdListener(this));
     }
 
@@ -295,8 +307,10 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         super.showInterstitialAd(activity, adUnitId, callback);
         if (AdsgreatSDK.isInterstitialAvailable(agnv)) {
             AdsgreatSDK.showInterstitialAd(agnv);
+            AdLog.getSingleton().LogD(TAG, "onInterstitialAdShowSuccess");
             callback.onInterstitialAdShowSuccess();
         }else {
+            AdLog.getSingleton().LogD(TAG, "onInterstitialAdShowFailed ad not ready");
             callback.onInterstitialAdShowFailed("ad not ready.");
         }
     }
@@ -326,6 +340,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         public void onReceiveAdSucceed(AGNative agNative) {
             super.onReceiveAdSucceed(agNative);
             loadCallbackInListener.onInterstitialAdLoadSuccess();
+            AdLog.getSingleton().LogD(TAG, "onReceiveAdSucceed");
             if (agNative != null && agNative.isLoaded()) {
                 if (null != loadCallbackInListener) {
                     if (mReference == null || mReference.get() == null) {
@@ -335,6 +350,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
                 }
 
             }else {
+                AdLog.getSingleton().LogD(TAG, "onInterstitialAdLoadFailed back agNative error");
                 if (null != loadCallbackInListener) {
                     loadCallbackInListener.onInterstitialAdLoadFailed("ad load failed.");
                 }
@@ -345,16 +361,19 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         @Override
         public void onLandPageShown(AGNative var1) {
             super.onLandPageShown(var1);
+            AdLog.getSingleton().LogD(TAG, "onLandPageShown");
         }
 
         @Override
         public void onAdClicked(AGNative var1) {
             loadCallbackInListener.onInterstitialAdClick();
+            AdLog.getSingleton().LogD(TAG, "onAdClicked");
         }
 
         @Override
         public void onReceiveAdFailed(AGNative var1) {
             super.onReceiveAdFailed(var1);
+            AdLog.getSingleton().LogD(TAG, "onReceiveAdFailed");
             loadCallbackInListener.onInterstitialAdLoadFailed(var1.getErrorsMsg());
         }
 
@@ -362,6 +381,7 @@ public class Plugin1Adapter extends CustomAdsAdapter {
         @Override
         public void onAdClosed(AGNative var1) {
             super.onAdClosed(var1);
+            AdLog.getSingleton().LogD(TAG, "onAdClosed");
             loadCallbackInListener.onInterstitialAdClosed();
         }
     }

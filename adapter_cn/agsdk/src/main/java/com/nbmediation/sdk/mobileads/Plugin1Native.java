@@ -19,6 +19,7 @@ import com.nbmediation.sdk.mediation.CustomNativeEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.utils.AdLog;
 import com.nbmediation.sdk.utils.constant.KeyConstants;
 
 import java.lang.ref.WeakReference;
@@ -34,17 +35,21 @@ public class Plugin1Native extends CustomNativeEvent {
     public void loadAd(final Activity activity, Map<String, String> config) {
         super.loadAd(activity, config);
         if (activity == null || activity.isFinishing()) {
+            AdLog.getSingleton().LogD(TAG + "activity null");
             return;
         }
         if (!check(activity, config)) {
+            AdLog.getSingleton().LogD(TAG + "check(activity, config) error.");
             return;
         }
         String appKey = config.get("AppKey");
         String instanceKey = config.get("InstanceKey");
         if (null == appKey) {
+            AdLog.getSingleton().LogD(TAG + "appKey null.");
             return;
         }
         if (null == instanceKey) {
+            AdLog.getSingleton().LogD(TAG + "instanceKey null.");
             return;
         }
         this.context = activity.getApplicationContext();
@@ -60,6 +65,7 @@ public class Plugin1Native extends CustomNativeEvent {
 
     public void registerNativeView(NativeAdView adView) {
         if (isDestroyed || context == null) {
+            AdLog.getSingleton().LogD(TAG + "registerNativeView  context null or isDestroyed.");
             return;
         }
 
@@ -86,8 +92,11 @@ public class Plugin1Native extends CustomNativeEvent {
         @Override
         public void onReceiveAdSucceed(AGNative agNative) {
             if (!(agNative instanceof AdvanceNative)) {
+                AdLog.getSingleton().LogD(TAG + "onReceiveAdSucceed agNative error.");
                 return;
             }
+            AdLog.getSingleton().LogD(TAG + "onReceiveAdSucceed.");
+
             mNative = (AdvanceNative) agNative;
             AdInfo info = new AdInfo();
             info.setCallToActionText(mNative.getButtonStr());
@@ -101,6 +110,7 @@ public class Plugin1Native extends CustomNativeEvent {
 
         @Override
         public void onReceiveAdFailed(AGNative agNative) {
+            AdLog.getSingleton().LogD(TAG + "onReceiveAdFailed.");
             String msg = null;
             if (agNative != null) {
                 msg = agNative.getErrorsMsg();
@@ -110,13 +120,17 @@ public class Plugin1Native extends CustomNativeEvent {
 
         @Override
         public void onAdClicked(AGNative agNative) {
+
+            AdLog.getSingleton().LogD(TAG + "onAdClicked.");
             onInsClicked();
         }
     }
 
 
     private void renderAdUi(final NativeAdView adView) {
+        AdLog.getSingleton().LogD(TAG + "renderAdUi in...");
         if (mNative == null) {
+            AdLog.getSingleton().LogD(TAG + "renderAdUi fail...");
             onInsError(TAG + " renderAdUi fail..");
             return;
         }
@@ -149,6 +163,7 @@ public class Plugin1Native extends CustomNativeEvent {
 
     @Override
     public void destroy(Activity activity) {
+        AdLog.getSingleton().LogD(TAG + "destroy");
         isDestroyed = true;
         if (mNative != null && mNative.getParent() instanceof ViewGroup) {
             ((ViewGroup) mNative.getParent()).removeView(mNative);

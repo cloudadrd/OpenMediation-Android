@@ -27,6 +27,7 @@ public class Plugin1Splash extends CustomSplashEvent {
 
     public void loadAd(Activity activity, Map<String, String> config) {
         if (!check(activity, config)) {
+            AdLog.getSingleton().LogD(TAG, "check(activity, config) error");
             return;
         }
         slotID = mInstancesKey;
@@ -47,6 +48,7 @@ public class Plugin1Splash extends CustomSplashEvent {
     }
 
     public void splashPreload(Activity activity, Map<String, String> config) {
+        AdLog.getSingleton().LogD(TAG, "splashPreload");
         if (isDestroyed) {
             return;
         }
@@ -75,7 +77,7 @@ public class Plugin1Splash extends CustomSplashEvent {
 
             @Override
             public void onReceiveAdVoSucceed(AdsVO adsVO) {
-
+                AdLog.getSingleton().LogD(TAG, "onReceiveAdVoSucceed");
             }
 
             @Override
@@ -166,6 +168,8 @@ public class Plugin1Splash extends CustomSplashEvent {
         if (isDestroyed) {
             return;
         }
+        AdLog.getSingleton().LogD(TAG, "show");
+
         AdsgreatSDK.showSplashAd(slotID, viewGroup);
 
     }

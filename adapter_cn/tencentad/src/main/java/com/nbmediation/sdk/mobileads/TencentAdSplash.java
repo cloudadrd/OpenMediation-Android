@@ -4,12 +4,15 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.view.ViewGroup;
 
 import com.nbmediation.sdk.mediation.CustomSplashEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.utils.AdLog;
+import com.nbmediation.sdk.utils.HandlerUtil;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
 import com.qq.e.comm.managers.GDTADManager;
@@ -23,6 +26,12 @@ public class TencentAdSplash extends CustomSplashEvent implements SplashADListen
     private SplashAD mSplashAD;
 
     private long mExpireTimestamp;
+
+    private boolean isDismissed = false;
+
+    private boolean isClicked = false;
+
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     @Override
     public void loadAd(Activity activity, Map<String, String> config) {
@@ -82,8 +91,10 @@ public class TencentAdSplash extends CustomSplashEvent implements SplashADListen
         if (isDestroyed) {
             return;
         }
+        isDismissed = true;
         mExpireTimestamp = 0;
         AdLog.getSingleton().LogD(TAG + "Splash ad onADDismissed");
+        mainHandler.removeCallbacks(timeOutRunnable);
         onInsDismissed();
     }
 
@@ -97,12 +108,25 @@ public class TencentAdSplash extends CustomSplashEvent implements SplashADListen
         onInsError(adError.getErrorMsg());
     }
 
+    Runnable timeOutRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (!isDismissed && !isClicked) {
+                AdLog.getSingleton().LogD(TAG + "Splash ad timeout,ready dismiss...");
+                onADDismissed();
+            }
+        }
+    };
+
     @Override
     public void onADPresent() {
         if (isDestroyed) {
             return;
         }
         AdLog.getSingleton().LogD(TAG + "Splash ad onADPresent");
+        isDismissed = false;
+        isClicked = false;
+        mainHandler.postDelayed(timeOutRunnable, 6000);
         onInsShowSuccess();
     }
 
@@ -111,6 +135,7 @@ public class TencentAdSplash extends CustomSplashEvent implements SplashADListen
         if (isDestroyed) {
             return;
         }
+        isClicked = true;
         AdLog.getSingleton().LogD(TAG + "Splash ad onADClicked");
         onInsClicked();
     }

@@ -30,11 +30,6 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs rootProject.ext.adapterDirs
-    }
-}
 
 dependencies {
     implementation project(':adapter_plugin:plugin-main-lib')
@@ -77,7 +72,11 @@ dependencies {
 
 }
 
-
+repositories {
+    flatDir {
+        dirs rootProject.ext.adapterDirs
+    }
+}
 
 //这段buildscript配置的dependencies是为了apply plugin: 'com.tencent.shadow.plugin'能找到实现
 buildscript {

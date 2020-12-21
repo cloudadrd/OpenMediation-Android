@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
-
+    buildToolsVersion rootProject.ext.version.buildToolsVersion
     defaultConfig {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
@@ -39,7 +39,7 @@ build.dependsOn(copyAAR)
 dependencies {
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     compileOnly rootProject.ext.dependencies.glide
-    compile(name:'Baidu_MobAds_SDK-release',ext:'aar')
+    compileOnly(name:'Baidu_MobAds_SDK-release',ext:'aar')
 }
 
 repositories {

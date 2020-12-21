@@ -263,6 +263,8 @@ public class MainActivity extends AppCompatActivity {
                 TextView title = adView.findViewById(R.id.ad_title);
                 if (!TextUtils.isEmpty(info.getTitle())) {
                     title.setText(info.getTitle());
+                }else{
+                    title.setVisibility(View.GONE);
                 }
 
 

@@ -343,6 +343,7 @@ public class MintegralAdapter extends CustomAdsAdapter {
         @Override
         public void onVideoComplete(String s, String var2) {
             if (mRvCallback != null) {
+                mRvCallback.onRewardedVideoAdEnded();
                 mRvCallback.onRewardedVideoAdRewarded();
             }
         }

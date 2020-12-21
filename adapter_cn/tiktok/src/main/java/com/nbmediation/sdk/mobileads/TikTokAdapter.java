@@ -506,7 +506,6 @@ public class TikTokAdapter extends CustomAdsAdapter {
         public void onVideoComplete() {
             AdLog.getSingleton().LogD(TAG + "rewardVideoAd complete");
             if (callback != null) {
-                callback.onRewardedVideoAdRewarded();
                 callback.onRewardedVideoAdEnded();
             }
         }
@@ -524,6 +523,9 @@ public class TikTokAdapter extends CustomAdsAdapter {
         public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName, int i1, String s1) {
             AdLog.getSingleton().LogD(TAG + "verify:" + rewardVerify + " amount:" + rewardAmount +
                     " name:" + rewardName + ",i1:" + i1 + ",s1=" + s1);
+            if (callback != null) {
+                callback.onRewardedVideoAdRewarded();
+            }
         }
 
         @Override

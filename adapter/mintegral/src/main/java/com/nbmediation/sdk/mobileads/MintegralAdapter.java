@@ -5,6 +5,7 @@ package com.nbmediation.sdk.mobileads;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.mintegral.msdk.MIntegralSDK;
 import com.mintegral.msdk.interstitialvideo.out.InterstitialVideoListener;
@@ -342,6 +343,7 @@ public class MintegralAdapter extends CustomAdsAdapter {
 
         @Override
         public void onVideoComplete(String s, String var2) {
+            Log.d("MVMVMVMVM:", "onVideoComplete: ");
             if (mRvCallback != null) {
                 mRvCallback.onRewardedVideoAdEnded();
                 mRvCallback.onRewardedVideoAdRewarded();

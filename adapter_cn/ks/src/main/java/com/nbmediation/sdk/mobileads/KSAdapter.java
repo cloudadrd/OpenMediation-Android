@@ -278,6 +278,7 @@ public class KSAdapter extends CustomAdsAdapter {
 
         @Override
         public void onRewardVerify() {
+            AdLog.getSingleton().LogD(TAG + "rewardVideoAd onRewardVerify");
             if (callback != null) {
                 callback.onRewardedVideoAdRewarded();
             }

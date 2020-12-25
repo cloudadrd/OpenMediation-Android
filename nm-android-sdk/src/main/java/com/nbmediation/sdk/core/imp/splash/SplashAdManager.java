@@ -80,6 +80,15 @@ public class SplashAdManager {
         this.load("");
     }
 
+    public void autoload() {
+        SplashAdImp splashAdImp = getSplashAd("");
+        if (splashAdImp == null) {
+            return;
+        }
+        splashAdImp.setViewGroup(mViewGroup);
+        splashAdImp.loadAd(NmManager.LOAD_TYPE.INIT);
+    }
+
     public void load(String placementId) {
         SplashAdImp splashAdImp = getSplashAd(placementId);
         if (splashAdImp == null) {

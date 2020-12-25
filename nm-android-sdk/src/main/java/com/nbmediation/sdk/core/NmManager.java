@@ -544,7 +544,7 @@ public final class NmManager implements InitCallback {
         if(SplashAdManager.getInstance().isEmpty()){
             preloadAdWithAdType();
         }else{
-            SplashAdManager.getInstance().load();
+            SplashAdManager.getInstance().autoload();
 
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override

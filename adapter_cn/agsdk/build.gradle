@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
-
+    buildToolsVersion rootProject.ext.version.buildToolsVersion
     defaultConfig {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
@@ -37,7 +37,7 @@ build.dependsOn(copyAAR)
 build.dependsOn(copyAAR)
 
 dependencies {
-    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    compileOnly (name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     compileOnly(name: "adsgreat_base_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
     compileOnly(name: "adsgreat_imageloader_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
     compileOnly(name: "adsgreat_video_${rootProject.ext.dependencies.adsgreat}", ext: 'jar')
@@ -46,6 +46,6 @@ dependencies {
 
 repositories {
     flatDir {
-        dirs rootProject.ext.adapterDirs
+        dirs "../../libs"
     }
 }

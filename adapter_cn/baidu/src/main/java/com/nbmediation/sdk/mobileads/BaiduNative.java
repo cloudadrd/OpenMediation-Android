@@ -125,7 +125,7 @@ public class BaiduNative extends CustomNativeEvent {
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
 
-        if ( null != nativeAd) {
+        if ( null == nativeAd) {
             AdLog.getSingleton().LogD(TAG, "registerNativeView error: nativeAd is null.");
             onInsError("registerNativeView error: nativeAd is null.");
             return;

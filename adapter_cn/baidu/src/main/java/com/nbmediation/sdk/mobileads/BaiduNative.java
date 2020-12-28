@@ -24,10 +24,10 @@ import java.util.Map;
 
 public class BaiduNative extends CustomNativeEvent {
 
-    private static final String FEED_SMART_OPT_AD_PLACE_ID = "7355507";//"6481012"; // 信息流智能优选
+//    private static final String FEED_SMART_OPT_AD_PLACE_ID = "7355507";//"6481012"; // 信息流智能优选
     private static String TAG = "OM-BaiduNative: ";
     private BaiduNativeManager mBaiduNativeManager;
-    private View mNativeView;
+//    private View mNativeView;
     private  NativeResponse nativeAd;
     private WeakReference<Activity> mRefAct;
 
@@ -125,10 +125,16 @@ public class BaiduNative extends CustomNativeEvent {
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
 
+        if ( null != nativeAd) {
+            AdLog.getSingleton().LogD(TAG, "registerNativeView error: nativeAd is null.");
+            onInsError("registerNativeView error: nativeAd is null.");
+            return;
+        }
+
         if (nativeAdView.getMediaView() != null) {
             nativeAdView.getMediaView().removeAllViews();
 
-            if (null != mRefAct.get() && null != nativeAd){
+            if (null != mRefAct.get()){
                 FeedNativeView newAdView = new FeedNativeView(mRefAct.get());
                 NativeResponse ad = nativeAd;
                 newAdView.setAdData((XAdNativeResponse) ad);
@@ -145,6 +151,7 @@ public class BaiduNative extends CustomNativeEvent {
                     }
                 });
             }
+
             final View adView = nativeAdView.getMediaView();
             nativeAd.registerViewForInteraction(adView, new NativeResponse.AdInteractionListener() {
                 @Override

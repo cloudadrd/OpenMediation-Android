@@ -1,0 +1,10 @@
+include ':adapter:mintegral',
+        ':adapter:sigmob',
+        ':app',
+rootProject.name = 'om-sample'
+include ':adapter_cn:cloudmobi',
+        ':adapter_cn:tiktok',
+        ':adapter_cn:baidu',
+        ':adapter_cn:tencentad',
+        ':adapter_cn:ks',
+        ':adapter_cn:agsdk'

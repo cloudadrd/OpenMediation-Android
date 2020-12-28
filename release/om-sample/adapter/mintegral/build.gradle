@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
+    buildToolsVersion rootProject.ext.version.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.version.minSdkVersion
+        targetSdkVersion rootProject.ext.version.targetSdkVersion
+        versionCode rootProject.ext.version.versionCode
+        versionName project.adapterVersion.mintegral
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    useLibrary 'org.apache.http.legacy'
+}
+
+def fileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.mintegral}.aar"
+def normalPath = "build/outputs/aar/"
+android.libraryVariants.all { variant ->
+    variant.outputs.all {
+        if (variant.buildType.name == 'release') {
+            outputFileName = fileName
+        }
+    }
+}
+
+task copyAAR(type: Copy) {
+    from normalPath + fileName
+    into "../../release/"
+}
+build.dependsOn(copyAAR)
+
+dependencies {
+    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+
+
+    compileOnly 'com.mintegral.msdk.china.support:videojs:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:mtgjscommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:playercommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:reward:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:videocommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:chinacommon:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:interstitialvideo:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:interstitial:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:interactiveads:' + rootProject.ext.dependencies.mtg_version
+    compileOnly 'com.mintegral.msdk.china.support:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
+
+}
+
+repositories {
+    flatDir {
+        dirs rootProject.ext.adapterDirs
+    }
+}

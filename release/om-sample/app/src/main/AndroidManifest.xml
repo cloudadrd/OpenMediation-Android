@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.nbmediation.sdk.demo">
+
+    <uses-sdk tools:overrideLibrary="com.bun.miitmdid"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_adtiming"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_adtiming"
+        android:networkSecurityConfig="@null"
+        tools:replace="android:networkSecurityConfig"
+        android:name=".App"
+        android:supportsRtl="true"
+        tools:ignore="HardcodedDebugMode"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="com.nbmediation.sdk.demo.MainActivity">
+        </activity>
+        <activity android:name=".SplashAdActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SplashDialogActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8244307161105625~9398130412" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application>
+
+</manifest>

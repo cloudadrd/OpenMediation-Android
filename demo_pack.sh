@@ -11,7 +11,7 @@ mkdir om-sample
 cp -r app libs adapter adapter_cn build.gradle config.gradle gradle.properties om-sample
 
 rm -r om-sample/adapter/{adcolony,admob,adtiming,fyber,applovin,chartboost,facebook,fyber,ironsource,mopub,tapjoy,tiktok,unity,vungle}
-rm -r om-sample/adapter_cn/{alion,tc056d,hyadxopoen,inmobi,zyt}
+rm -r om-sample/adapter_cn/{alion,tc056d,hyadxopen,inmobi,zyt}
 
 find om-sample -type d -name "build" -exec rm -rf {} \;
 find om-sample -type f -name "*.iml" -exec rm -rf {} \;

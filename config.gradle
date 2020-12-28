@@ -25,7 +25,7 @@ ext {
             'ks'          : '1.0.7',
             'agsdk'       : '1.0.5',
             'inmobi'      : '1.0.0',
-            'baidu'       : '1.0.2'
+            'baidu'       : '1.0.3'
     ]
 
     pkg_prefix = 'nb_'
@@ -48,6 +48,6 @@ ext {
     ALION_PLUGIN = '1.0.1'
     KS_PLUGIN = '1.0.6'
     MINTGRAL_PLUGIN = '1.1.2'
-    nm_version = "1.2.6"
+    nm_version = "1.2.6.1"
     hop_version = '1.1.0'
 }

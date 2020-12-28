@@ -3,6 +3,8 @@
 
 package com.nbmediation.sdk.mediation;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,8 +75,10 @@ public final class CallbackManager {
     public synchronized void onInsClosed(String placementId, String instanceKey, String instanceId) {
         Callback callback = getCallback(placementId);
         if (callback != null) {
+//            Log.e("tjtsplash","CallbackManager onInsClosed 1 instanceKey=" + instanceKey + ",instanceId=" + instanceId+",placementId="+placementId);
             callback.onInsClosed(instanceKey, instanceId);
         }
+
     }
 
     /**

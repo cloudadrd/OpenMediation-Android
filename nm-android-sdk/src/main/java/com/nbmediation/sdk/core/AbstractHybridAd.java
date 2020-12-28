@@ -5,6 +5,7 @@ package com.nbmediation.sdk.core;
 
 import android.app.Activity;
 import android.os.Looper;
+import android.util.Log;
 
 import com.nbmediation.sdk.bid.AdTimingBidResponse;
 import com.nbmediation.sdk.bid.AuctionUtil;
@@ -266,14 +267,15 @@ public abstract class AbstractHybridAd extends AbstractAd {
     @Override
     protected synchronized void onInsClosed(String instanceKey, String instanceId) {
         super.onInsClosed(instanceKey, instanceId);
+//        Log.e("tjtsplash", "AbstractHybridAd onInsClosed 2 instanceKey=" + instanceKey + ",instanceId=" + instanceId);
         BaseInstance instance = InsUtil.getInsById(mTotalIns, instanceId);
         if (instance == null) {
             return;
         }
+//        Log.e("tjtsplash", "AbstractHybridAd onInsClosed 3 instanceKey=" + instanceKey + ",instanceId=" + instanceId);
         instance.onInsClose(null);
         callbackAdCloseOnUiThread();
     }
-
 
 
     /**

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rm -rf release/*
+#rm -rf release/*
 
 gradle clean
 

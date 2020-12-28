@@ -10,36 +10,23 @@ mkdir om-sample
 
 cp -r app libs adapter adapter_cn build.gradle config.gradle gradle.properties om-sample
 
+rm -r om-sample/adapter/{adcolony,admob,adtiming,fyber,applovin,chartboost,facebook,fyber,ironsource,mopub,tapjoy,tiktok,unity,vungle}
+rm -r om-sample/adapter_cn/{alion,tc056d,hyadxopoen,inmobi,zyt}
 
 find om-sample -type d -name "build" -exec rm -rf {} \;
 find om-sample -type f -name "*.iml" -exec rm -rf {} \;
 
+
+
 touch om-sample/settings.gradle
-echo  "include ':adapter:applovin',
-        ':adapter:chartboost',
-        ':adapter:adcolony',
-        ':adapter:mintegral',
-        ':adapter:adtiming',
-        ':adapter:tapjoy',
-        ':adapter:vungle',
-//        ':adapter:tiktok',
-        ':adapter:ironsource',
-        ':adapter:unity',
-        ':adapter:facebook',
-        ':adapter:mopub',
-        ':adapter:fyber',
-        ':adapter_cn:inmobi',
-        ':adapter:admob',
+echo  "include ':adapter:mintegral',
         ':adapter:sigmob',
         ':app',
-        ':adapter_cn:tiktok',
-        ':adapter_cn:tencentad'
 rootProject.name = 'om-sample'
-include ':adapter_cn:hyadxopen',
-        ':adapter_cn:cloudmobi',
-        ':adapter_cn:tc056d',
-        ':adapter_cn:alion',
-        ':adapter_cn:zyt',
+include ':adapter_cn:cloudmobi',
+        ':adapter_cn:tiktok',
+        ':adapter_cn:baidu',
+        ':adapter_cn:tencentad',
         ':adapter_cn:ks',
         ':adapter_cn:agsdk'" > om-sample/settings.gradle
 zip -r om-sample.zip om-sample

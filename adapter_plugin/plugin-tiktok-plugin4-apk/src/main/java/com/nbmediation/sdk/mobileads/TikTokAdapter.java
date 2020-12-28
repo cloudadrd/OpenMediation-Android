@@ -425,8 +425,9 @@ public class TikTokAdapter extends CustomAdsAdapter {
             }
         }
 
+
         @Override
-        public void onRewardVerify(boolean rewardVerify, int rewardAmount, String rewardName) {
+        public void onRewardVerify(boolean rewardVerify, int rewardAmount, String s, int i1, String rewardName) {
             AdLog.getSingleton().LogD(TAG + "verify:" + rewardVerify + " amount:" + rewardAmount +
                     " name:" + rewardName);
         }

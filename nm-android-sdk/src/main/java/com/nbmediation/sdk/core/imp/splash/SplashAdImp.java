@@ -2,6 +2,7 @@ package com.nbmediation.sdk.core.imp.splash;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.nbmediation.sdk.bid.AuctionUtil;
@@ -188,6 +189,8 @@ public class SplashAdImp extends AbstractHybridAd {
         if (mAdListener != null) {
             EventUploadManager.getInstance().uploadEvent(EventId.CALLBACK_DISMISS_SCREEN,
                     PlacementUtils.placementEventParams(mPlacementId));
+//            Log.e("tjtsplash","SplashAdImp onInsClosed 6 placementId="+mPlacementId);
+
             mAdListener.onSplashAdDismissed();
         }
     }
@@ -195,9 +198,14 @@ public class SplashAdImp extends AbstractHybridAd {
     @Override
     protected synchronized void onInsClosed(String instanceKey, String instanceId) {
         super.onInsClosed(instanceKey, instanceId);
+//        Log.e("tjtsplash","SplashAdImp onInsClosed 4 instanceKey=" + instanceKey + ",instanceId=" + instanceId+",placementId="+mPlacementId);
+
         if (mCurrentIns != null) {
             destroyAdEvent(mCurrentIns);
             AdManager.getInstance().removeInsAdEvent(mCurrentIns);
+//            Log.e("tjtsplash","SplashAdImp onInsClosed 5 instanceKey=" + instanceKey + ",instanceId=" + instanceId+",placementId="+mPlacementId);
+        }else{
+//            Log.e("tjtsplash","mCurrentIns is null");
         }
         cleanAfterCloseOrFailed();
     }

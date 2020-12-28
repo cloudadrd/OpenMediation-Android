@@ -1,6 +1,7 @@
 package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 
 import com.nbmediation.sdk.mediation.CustomNativeEvent;
@@ -24,11 +25,11 @@ import java.util.Map;
 
 public class BaiduNative extends CustomNativeEvent {
 
-//    private static final String FEED_SMART_OPT_AD_PLACE_ID = "7355507";//"6481012"; // 信息流智能优选
+    //    private static final String FEED_SMART_OPT_AD_PLACE_ID = "7355507";//"6481012"; // 信息流智能优选
     private static String TAG = "OM-BaiduNative: ";
     private BaiduNativeManager mBaiduNativeManager;
-//    private View mNativeView;
-    private  NativeResponse nativeAd;
+    //    private View mNativeView;
+    private NativeResponse nativeAd;
     private WeakReference<Activity> mRefAct;
 
     @Override
@@ -36,12 +37,12 @@ public class BaiduNative extends CustomNativeEvent {
         super.loadAd(activity, config);
         AdLog.getSingleton().LogD(TAG, "getLoadManager check");
         if (!check(activity, config)) {
-            AdLog.getSingleton().LogD(TAG,"check(activity, config) error.");
+            AdLog.getSingleton().LogD(TAG, "check(activity, config) error.");
             onInsError("check(activity, config) error.");
             return;
         }
         if (activity == null || activity.isFinishing()) {
-            AdLog.getSingleton().LogD(TAG,"activity is null.");
+            AdLog.getSingleton().LogD(TAG, "activity is null.");
             onInsError("activity is null");
             return;
         }
@@ -49,15 +50,15 @@ public class BaiduNative extends CustomNativeEvent {
 
         String appKeyStr = config.get("AppKey");
         if (null == appKeyStr || appKeyStr.isEmpty()) {
-            AdLog.getSingleton().LogD(TAG , "appKeyStr is null!");
+            AdLog.getSingleton().LogD(TAG, "appKeyStr is null!");
             onInsError("appKeyStr is null");
             return;
         }
 
         RewardVideoAd.setAppSid(appKeyStr);
-        AdLog.getSingleton().LogD(TAG ,"setAppsID " + appKeyStr);
-        if(mBaiduNativeManager==null){
-            AdLog.getSingleton().LogD(TAG ,"insk = "+ mInstancesKey);
+        AdLog.getSingleton().LogD(TAG, "setAppsID " + appKeyStr);
+        if (mBaiduNativeManager == null) {
+            AdLog.getSingleton().LogD(TAG, "insk = " + mInstancesKey);
             mBaiduNativeManager = new BaiduNativeManager(activity.getApplicationContext(), mInstancesKey);//mInstancesKey
         }
         requestAd(Long.parseLong(mInstancesKey));
@@ -74,7 +75,7 @@ public class BaiduNative extends CustomNativeEvent {
         mBaiduNativeManager.loadFeedAd(requestParameters, new BaiduNativeManager.NativeLoadListener() {
             @Override
             public void onNativeLoad(List<NativeResponse> nativeResponses) {
-                AdLog.getSingleton().LogD(TAG , "onNativeLoad");
+                AdLog.getSingleton().LogD(TAG, "onNativeLoad");
 
                 if (nativeResponses != null && nativeResponses.size() > 0) {
                     nativeAd = nativeResponses.get(0);
@@ -93,29 +94,29 @@ public class BaiduNative extends CustomNativeEvent {
 
             @Override
             public void onLoadFail(String message, String errorCode) {
-                AdLog.getSingleton().LogD(TAG , "onLoadFail reason:" + message + "errorCode:" + errorCode );
+                AdLog.getSingleton().LogD(TAG, "onLoadFail reason:" + message + "errorCode:" + errorCode);
             }
 
             @Override
             public void onNativeFail(NativeErrorCode errorCode) {
                 // 建议使用onLoadFail回调获取详细的请求失败的原因
-                AdLog.getSingleton().LogD(TAG , "onNativeFail reason:"+ errorCode.name());
+                AdLog.getSingleton().LogD(TAG, "onNativeFail reason:" + errorCode.name());
                 onInsError("error:" + errorCode.name());
             }
 
             @Override
             public void onVideoDownloadSuccess() {
-                AdLog.getSingleton().LogD(TAG , "onVideoDownloadSuccess");
+                AdLog.getSingleton().LogD(TAG, "onVideoDownloadSuccess");
             }
 
             @Override
             public void onVideoDownloadFailed() {
-                AdLog.getSingleton().LogD(TAG , "onVideoDownloadFailed");
+                AdLog.getSingleton().LogD(TAG, "onVideoDownloadFailed");
             }
 
             @Override
             public void onLpClosed() {
-                AdLog.getSingleton().LogD(TAG , "onLpClosed");
+                AdLog.getSingleton().LogD(TAG, "onLpClosed");
             }
         });
     }
@@ -124,45 +125,43 @@ public class BaiduNative extends CustomNativeEvent {
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
-
-        if ( null == nativeAd) {
-            AdLog.getSingleton().LogD(TAG, "registerNativeView error: nativeAd is null.");
-            onInsError("registerNativeView error: nativeAd is null.");
+        Context context = mRefAct.get() == null ? nativeAdView.getContext() : mRefAct.get();
+        if (null == nativeAd || context == null) {
+            AdLog.getSingleton().LogD(TAG, "registerNativeView error: nativeAd and context is null.");
+            onInsError("registerNativeView error: nativeAd and context is null.");
             return;
         }
 
         if (nativeAdView.getMediaView() != null) {
             nativeAdView.getMediaView().removeAllViews();
 
-            if (null != mRefAct.get()){
-                FeedNativeView newAdView = new FeedNativeView(mRefAct.get());
-                NativeResponse ad = nativeAd;
-                newAdView.setAdData((XAdNativeResponse) ad);
-                StyleParams params = new StyleParams.Builder()
-                        .build();
-                newAdView.changeViewLayoutParams(params);
-                nativeAdView.getMediaView().addView(newAdView);
+            FeedNativeView newAdView = new FeedNativeView(context);
+            NativeResponse ad = nativeAd;
+            newAdView.setAdData((XAdNativeResponse) ad);
+            StyleParams params = new StyleParams.Builder()
+                    .build();
+            newAdView.changeViewLayoutParams(params);
+            nativeAdView.getMediaView().addView(newAdView);
 
-                nativeAdView.getMediaView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        AdLog.getSingleton().LogD(TAG, "handleClick");
-                        nativeAd.handleClick(view);
-                    }
-                });
-            }
+            nativeAdView.getMediaView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AdLog.getSingleton().LogD(TAG, "handleClick");
+                    nativeAd.handleClick(view);
+                }
+            });
 
             final View adView = nativeAdView.getMediaView();
             nativeAd.registerViewForInteraction(adView, new NativeResponse.AdInteractionListener() {
                 @Override
                 public void onAdClick() {
-                    AdLog.getSingleton().LogD(TAG , "onAdClick");
+                    AdLog.getSingleton().LogD(TAG, "onAdClick");
                     onInsClicked();
                 }
 
                 @Override
                 public void onADExposed() {
-                    AdLog.getSingleton().LogD(TAG , "onADExposed");
+                    AdLog.getSingleton().LogD(TAG, "onADExposed");
                     if (null != nativeAd) {
                         nativeAd.recordImpression(adView);
                     }
@@ -170,24 +169,24 @@ public class BaiduNative extends CustomNativeEvent {
 
                 @Override
                 public void onADStatusChanged() {
-                    AdLog.getSingleton().LogD(TAG , "onADStatusChanged");
+                    AdLog.getSingleton().LogD(TAG, "onADStatusChanged");
                 }
             });
 
             nativeAd.setAdPrivacyListener(new NativeResponse.AdPrivacyListener() {
                 @Override
                 public void onADPermissionShow() {
-                    AdLog.getSingleton().LogD(TAG , "onADPermissionShow");
+                    AdLog.getSingleton().LogD(TAG, "onADPermissionShow");
                 }
 
                 @Override
                 public void onADPermissionClose() {
-                    AdLog.getSingleton().LogD(TAG , "onADPermissionClose");
+                    AdLog.getSingleton().LogD(TAG, "onADPermissionClose");
                 }
 
                 @Override
                 public void onADPrivacyClose() {
-                    AdLog.getSingleton().LogD(TAG , "onADPrivacyClose");
+                    AdLog.getSingleton().LogD(TAG, "onADPrivacyClose");
                 }
             });
         }
@@ -202,9 +201,10 @@ public class BaiduNative extends CustomNativeEvent {
     @Override
     public void destroy(Activity activity) {
         if (mRefAct != null) {
+            mRefAct.clear();
             mRefAct = null;
         }
-        if (null != nativeAd){
+        if (null != nativeAd) {
             nativeAd = null;
         }
     }

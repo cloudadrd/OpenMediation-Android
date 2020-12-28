@@ -121,16 +121,15 @@ dependencies {
     implementation 'com.mintegral.msdk.china.support:interstitial:' + rootProject.ext.dependencies.mtg_version
     implementation 'com.mintegral.msdk.china.support:interactiveads:' + rootProject.ext.dependencies.mtg_version
     implementation 'com.mintegral.msdk.china.support:mtgdownloads:' + rootProject.ext.dependencies.mtg_version
-
     implementation project(path: ':adapter:mintegral')
 
     //baidu
     implementation(name: 'Baidu_MobAds_SDK-release', ext: 'aar')
     implementation project(path: ':adapter_cn:baidu')
 
-    //zyt
-    implementation rootProject.ext.dependencies.zyt
-    implementation project(path: ':adapter_cn:zyt')
+    //sigmob
+    implementation(name: 'windAd-2.18.2', ext: 'jar')
+    implementation project(path: ':adapter:sigmob')
 
     //cloudmobi cn
     implementation(name: 'suib_base_4.2.7_sucn', ext: 'jar')
@@ -138,19 +137,19 @@ dependencies {
     implementation(name: 'suib_video_4.2.7_sucn', ext: 'jar')
     implementation project(path: ':adapter_cn:cloudmobi')
 
-    //hyadxopen cn
-    implementation(name: 'hyadxopensdk', ext: 'aar')
-    implementation project(path: ':adapter_cn:hyadxopen')
+//    //zyt
+//    implementation rootProject.ext.dependencies.zyt
+//    implementation project(path: ':adapter_cn:zyt')
 
-    //sigmob
-    implementation(name: 'windAd-2.18.2', ext: 'jar')
-    implementation project(path: ':adapter:sigmob')
+//    //hyadxopen cn
+//    implementation(name: 'hyadxopensdk', ext: 'aar')
+//    implementation project(path: ':adapter_cn:hyadxopen')
 
-    //inmobi
-    implementation(name: "InMobi-${rootProject.ext.dependencies.inmobi}", ext: 'jar')
-    implementation 'com.android.support:customtabs:28.0.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation project(path: ':adapter_cn:inmobi')
+//    //inmobi
+//    implementation(name: "InMobi-${rootProject.ext.dependencies.inmobi}", ext: 'jar')
+//    implementation 'com.android.support:customtabs:28.0.0'
+//    implementation 'com.squareup.picasso:picasso:2.71828'
+//    implementation project(path: ':adapter_cn:inmobi')
 
 
     //alion

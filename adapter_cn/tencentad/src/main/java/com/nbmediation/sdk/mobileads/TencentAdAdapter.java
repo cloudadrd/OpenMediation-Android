@@ -26,6 +26,7 @@ import com.nbmediation.sdk.utils.AdLog;
 import com.qq.e.ads.PortraitADActivity;
 import com.qq.e.ads.interstitial2.UnifiedInterstitialAD;
 import com.qq.e.ads.interstitial2.UnifiedInterstitialADListener;
+import com.qq.e.ads.interstitial2.UnifiedInterstitialMediaListener;
 import com.qq.e.ads.rewardvideo.RewardVideoAD;
 import com.qq.e.ads.rewardvideo.RewardVideoADListener;
 import com.qq.e.comm.managers.status.SDKStatus;
@@ -313,7 +314,7 @@ public class TencentAdAdapter extends CustomAdsAdapter {
             }
             UnifiedInterstitialAD ad = mIsAds.get(adUnitId);
             if (ad != null) {
-                ad.show((Activity) activity);
+                ad.showFullScreenAD((Activity) activity);
             }
             mIsAds.remove(adUnitId);
         } else {
@@ -337,9 +338,9 @@ public class TencentAdAdapter extends CustomAdsAdapter {
         }
 
         InnerIsAdListener listener = new InnerIsAdListener(adUnitId);
-        UnifiedInterstitialAD ad = new UnifiedInterstitialAD((Activity) activity, mAppKey, adUnitId, listener);
+        UnifiedInterstitialAD ad = new UnifiedInterstitialAD((Activity) activity, adUnitId, listener);
         listener.setAdView(ad);
-        ad.loadAD();
+        ad.loadFullScreenAD();
     }
 
     private void realLoadRvAd(Context activity, final String adUnitId, final RewardedVideoCallback callback) {
@@ -369,8 +370,19 @@ public class TencentAdAdapter extends CustomAdsAdapter {
         public void onADReceive() {
             AdLog.getSingleton().LogD(TAG + "InterstitialAd onADReceive : " + mAdUnitId);
             if (mAd != null) {
+                if (null == mIsAds){
+                    mIsAds = new ConcurrentHashMap<>();
+                }
+
                 mIsAds.put(mAdUnitId, mAd);
+                InnerMediaIsAdListener listener = new InnerMediaIsAdListener(mAdUnitId);
+                mAd.setMediaListener(listener);
             }
+        }
+
+        @Override
+        public void onVideoCached() {
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoCached : " + mAdUnitId);
             InterstitialAdCallback callback = mIsCallbacks.get(mAdUnitId);
             if (callback != null) {
                 callback.onInterstitialAdLoadSuccess();
@@ -378,31 +390,26 @@ public class TencentAdAdapter extends CustomAdsAdapter {
         }
 
         @Override
-        public void onVideoCached() {
-
-        }
-
-        @Override
         public void onNoAD(AdError adError) {
-            AdLog.getSingleton().LogE(TAG + "RewardedVideo  onError: " + adError.getErrorCode() + ", " + adError.getErrorMsg());
+            AdLog.getSingleton().LogE(TAG + "InterstitialAd  onError: " + adError.getErrorCode() + ", " + adError.getErrorMsg());
             InterstitialAdCallback callback = mIsCallbacks.get(mAdUnitId);
             if (callback != null) {
-                callback.onInterstitialAdLoadFailed(TAG + "RewardedVideo load failed : " + adError.getErrorCode() + ", " + adError.getErrorMsg());
+                callback.onInterstitialAdLoadFailed(TAG + "InterstitialAd load failed : " + adError.getErrorCode() + ", " + adError.getErrorMsg());
             }
         }
 
         @Override
         public void onADOpened() {
             AdLog.getSingleton().LogD(TAG + "InterstitialAd show onDisplay : " + mAdUnitId);
-            InterstitialAdCallback callback = mIsCallbacks.get(mAdUnitId);
-            if (callback != null) {
-                callback.onInterstitialAdShowSuccess();
-            }
+//            InterstitialAdCallback callback = mIsCallbacks.get(mAdUnitId);
+//            if (callback != null) {
+//                callback.onInterstitialAdShowSuccess();
+//            }
         }
 
         @Override
         public void onADExposure() {
-
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onADExposure : " + mAdUnitId);
         }
 
         @Override
@@ -416,7 +423,7 @@ public class TencentAdAdapter extends CustomAdsAdapter {
 
         @Override
         public void onADLeftApplication() {
-
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onADLeftApplication : " + mAdUnitId);
         }
 
         @Override
@@ -428,6 +435,73 @@ public class TencentAdAdapter extends CustomAdsAdapter {
             }
         }
     }
+
+    private class InnerMediaIsAdListener implements UnifiedInterstitialMediaListener {
+        private String mMediaAdUnitId;
+
+        InnerMediaIsAdListener(String adUnitId) {
+            this.mMediaAdUnitId = adUnitId;
+        }
+        @Override
+        public void onVideoInit() {
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoInit : " + mMediaAdUnitId);
+        }
+
+        @Override
+        public void onVideoLoading(){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoLoading : " + mMediaAdUnitId);
+        }
+
+        @Override
+        public void onVideoReady(long var1){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoReady : " + mMediaAdUnitId);
+        }
+
+        @Override
+        public void onVideoStart(){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoStart : " + mMediaAdUnitId);
+            InterstitialAdCallback callback = mIsCallbacks.get(mMediaAdUnitId);
+            if (callback != null) {
+                callback.onInterstitialAdShowSuccess();
+            }
+        }
+
+        @Override
+        public void onVideoPause(){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoPause : " + mMediaAdUnitId);
+
+        }
+
+        @Override
+        public void onVideoComplete(){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoComplete : " + mMediaAdUnitId);
+        }
+
+        @Override
+        public void onVideoError(AdError var1){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoError : " + mMediaAdUnitId);
+            InterstitialAdCallback callback = mIsCallbacks.get(mMediaAdUnitId);
+            if (callback != null) {
+                String errMsg = "video play failed.";
+                if (null != var1) {
+                    errMsg = var1.getErrorMsg();
+                }
+                callback.onInterstitialAdShowFailed(errMsg);
+            }
+
+        }
+
+        @Override
+        public void onVideoPageOpen(){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoPageOpen : " + mMediaAdUnitId);
+        }
+
+        @Override
+        public void onVideoPageClose(){
+            AdLog.getSingleton().LogD(TAG + "InterstitialAd onVideoPageClose : " + mMediaAdUnitId);
+        }
+    }
+
 
     private class InnerRvAdListener implements RewardVideoADListener {
 

@@ -348,7 +348,7 @@ public class TencentAdAdapter extends CustomAdsAdapter {
             mRvCallbacks.put(adUnitId, callback);
         }
         InnerRvAdListener listener = new InnerRvAdListener(adUnitId);
-        RewardVideoAD rewardVideoAD = new RewardVideoAD(activity, mAppKey, adUnitId, listener);
+        RewardVideoAD rewardVideoAD = new RewardVideoAD(activity, adUnitId, listener);
         listener.setAdView(rewardVideoAD);
         rewardVideoAD.loadAD();
     }

@@ -28,12 +28,9 @@ public class MainActivity extends AppCompatActivity {
         config.setUriConfig(UriConfig.DEFAULT);
         config.setEnablePlay(true);
         AppLog.setEnableLog(true);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AppLog.init(MainActivity.this, config);
-            }
-        }).start();
+
+        AppLog.init(MainActivity.this, config);
+
 
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

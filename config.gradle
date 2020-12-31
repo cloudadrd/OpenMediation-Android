@@ -18,7 +18,7 @@ ext {
             'tencentad_cn': '1.0.7',
             'hyadxopen_cn': '1.0.0',
             'cloudmobi_cn': '1.0.0',
-            'sigmob'      : '1.0.0',
+            'sigmob'      : '1.0.1',
             'tc056d'      : '1.0.0',
             'alion'       : '1.0.2',
             'zyt'         : '1.0.0',

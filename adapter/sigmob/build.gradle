@@ -39,7 +39,7 @@ build.dependsOn(copyAAR)
 
 dependencies {
     compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-    compileOnly(name: rootProject.ext.dependencies.sigmob, ext: 'jar')
+    compileOnly(name: rootProject.ext.dependencies.sigmob, ext: 'aar')
 }
 
 repositories {

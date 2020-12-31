@@ -71,7 +71,7 @@ ext {
             'tiktok'                     : 'open_ad_sdk_en',
             'tiktok_cn'                  : 'open_ad_sdk_3.3.0.1',
             "tc056d"                     : 'tc-056d',
-            "sigmob"                     : 'windAd-2.18.2',
+            "sigmob"                     : 'windAd-2.24.0',
             "hyadxopen"                  : 'hyadxopensdk',
             "tencentad"                  : 'GDTSDK.unionNormal.4.310.1180',
             "zyt"                        : 'com.zyt:mediation-only:1.1.7',

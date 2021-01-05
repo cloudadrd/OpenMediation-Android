@@ -82,8 +82,8 @@ public class KSNative extends CustomNativeEvent {
 
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");
-        if (mSplit.length > 1 && mSplit[1].equalsIgnoreCase("draw")){
-            requestDrawAd(Long.parseLong(mSplit[0]));
+        if (mSplit.length > 1 && mSplit[0].equalsIgnoreCase("draw")){
+            requestDrawAd(Long.parseLong(mSplit[1]));
         }else {
             requestAd(Long.parseLong(mInstancesKey));
         }

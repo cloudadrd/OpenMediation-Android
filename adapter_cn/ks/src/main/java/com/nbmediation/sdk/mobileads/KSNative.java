@@ -2,6 +2,7 @@ package com.nbmediation.sdk.mobileads;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,12 +12,17 @@ import com.kwad.sdk.api.KsFeedAd;
 import com.kwad.sdk.api.KsLoadManager;
 import com.kwad.sdk.api.KsScene;
 import com.kwad.sdk.api.SdkConfig;
+import com.kwad.sdk.api.KsDrawAd;
+
+
+
 import com.nbmediation.sdk.mediation.CustomNativeEvent;
 import com.nbmediation.sdk.mediation.MediationInfo;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.NativeAdView;
 import com.nbmediation.sdk.utils.AdLog;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +31,9 @@ public class KSNative extends CustomNativeEvent {
     private static String TAG = "OM-KSNative: ";
     private KsFeedAd ksNAd;
     private View mNativeView;
-    private Activity av;
+    private WeakReference<Activity> av;
+    private KsDrawAd ksDrawAd;
+    private Boolean isDrawAd;
 
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
@@ -68,10 +76,17 @@ public class KSNative extends CustomNativeEvent {
             } catch (Exception ignored) {
             }
         }
-        av = activity;
+        av = new WeakReference<>(activity);
         initSdk(activity, appID, appName, isDebug);
         destroyAd();
-        requestAd(Long.parseLong(mInstancesKey));
+
+        String[] mSplit = new String[0];
+        mSplit = mInstancesKey.split("\\|");
+        if (mSplit.length > 1 && mSplit[1].equalsIgnoreCase("draw")){
+            requestDrawAd(Long.parseLong(mSplit[0]));
+        }else {
+            requestAd(Long.parseLong(mInstancesKey));
+        }
     }
 
     private void initSdk(final Context activity, String appId, String appName, boolean isDebug) {
@@ -161,23 +176,76 @@ public class KSNative extends CustomNativeEvent {
                 destroyAd();
             }
         });
-        if(av != null)
-            return ksNAd.getFeedView(av.getBaseContext());
-        else
+        if(av != null){
+            Activity act = av.get();
+            return ksNAd.getFeedView(act.getBaseContext());
+        } else {
             return null;
+        }
     }
 
+    private View getDrawAdView() {
+        if (null == ksDrawAd){
+            return null;
+        }
+        ksDrawAd.setAdInteractionListener(new KsDrawAd.AdInteractionListener() {
+            @Override
+            public void onAdClicked() {
+                onAdClicked();
+                AdLog.getSingleton().LogD(TAG, "drawAd onAdClicked: ");
+            }
+
+            @Override
+            public void onAdShow() {
+                AdLog.getSingleton().LogD(TAG, "drawAd onAdShow: ");
+            }
+
+            @Override
+            public void onVideoPlayStart() {
+                AdLog.getSingleton().LogD(TAG, "drawAd onVideoPlayStart: ");
+            }
+
+            @Override
+            public void onVideoPlayPause() {
+                AdLog.getSingleton().LogD(TAG, "drawAd onVideoPlayPause: ");
+            }
+
+            @Override
+            public void onVideoPlayResume() {
+                AdLog.getSingleton().LogD(TAG, "drawAd onVideoPlayResume: ");
+            }
+
+            @Override
+            public void onVideoPlayEnd() {
+                AdLog.getSingleton().LogD(TAG, "drawAd onVideoPlayEnd: ");
+            }
+
+            @Override
+            public void onVideoPlayError() {
+            }
+        });
+
+        if(av != null){
+            Activity act = av.get();
+            return ksDrawAd.getDrawView(act.getBaseContext());
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
-        mNativeView = getAdView();
+        if (isDrawAd) {
+            mNativeView = getDrawAdView();
+        }else {
+            mNativeView = getAdView();
+        }
         if (null == mNativeView) return;
         if (nativeAdView.getMediaView() != null) {
             nativeAdView.getMediaView().removeAllViews();
             nativeAdView.getMediaView().addView(mNativeView);
         }
-
     }
 
     @Override
@@ -205,7 +273,42 @@ public class KSNative extends CustomNativeEvent {
             ksNAd.setVideoPlayConfig(null);
             ksNAd = null;
         }
+
+        if (ksDrawAd != null) {
+            ksDrawAd.setAdInteractionListener(null);
+            ksDrawAd = null;
+        }
     }
 
+//Draw Ad
+    private void requestDrawAd(long posId) {
+        KsScene scene = new KsScene.Builder(posId).adNum(1).build();
+        KsAdSDK.getLoadManager().loadDrawAd(scene, new KsLoadManager.DrawAdListener() {
+            @Override
+            public void onError(int code, String msg) {
+                AdLog.getSingleton().LogD(TAG, msg);
+                onInsError(msg);
+            }
+
+            @Override
+            public void onDrawAdLoad(@Nullable List<KsDrawAd> adList) {
+                if (adList == null || adList.isEmpty()) {
+                    AdLog.getSingleton().LogD(TAG, "DrawAd adList is Empty");
+                    onInsError("DrawAd adList is Empty.");
+                    return;
+                }
+                ksDrawAd = adList.get(0);
+
+                AdInfo mAdInfo = new AdInfo();
+                mAdInfo.setDesc("");
+                mAdInfo.setType(2);
+                mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_22);
+                mAdInfo.setCallToActionText("");
+                mAdInfo.setTitle("");
+                mAdInfo.setTemplate(true);
+                onInsReady(mAdInfo);
+            }
+        });
+    }
 
 }

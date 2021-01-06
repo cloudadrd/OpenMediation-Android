@@ -83,6 +83,7 @@ public class KSNative extends CustomNativeEvent {
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");
         if (mSplit.length > 1 && mSplit[0].equalsIgnoreCase("draw")){
+            isDrawAd = true;
             requestDrawAd(Long.parseLong(mSplit[1]));
         }else {
             requestAd(Long.parseLong(mInstancesKey));
@@ -191,7 +192,7 @@ public class KSNative extends CustomNativeEvent {
         ksDrawAd.setAdInteractionListener(new KsDrawAd.AdInteractionListener() {
             @Override
             public void onAdClicked() {
-                onAdClicked();
+                onInsClicked();
                 AdLog.getSingleton().LogD(TAG, "drawAd onAdClicked: ");
             }
 
@@ -278,6 +279,8 @@ public class KSNative extends CustomNativeEvent {
             ksDrawAd.setAdInteractionListener(null);
             ksDrawAd = null;
         }
+
+        isDrawAd = false;
     }
 
 //Draw Ad

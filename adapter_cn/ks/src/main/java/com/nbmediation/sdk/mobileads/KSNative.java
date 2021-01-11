@@ -45,6 +45,7 @@ public class KSNative extends CustomNativeEvent {
     private KSNativeType currentAdType;
     private KsContentPage mKsContentPage;
     private KSCDrawActivity ksCDAct;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
@@ -88,20 +89,20 @@ public class KSNative extends CustomNativeEvent {
             }
         }
         av = new WeakReference<>(activity);
-        initSdk(activity, appID, appName, isDebug);
+        initSdk(activity, "90009", appName, isDebug);
         destroyAd();
 
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");
         if (mSplit.length > 1 ){
-            if (mSplit[0].equalsIgnoreCase("draw")){
+            if (mSplit[0].equalsIgnoreCase("cdraw")){
                 AdLog.getSingleton().LogD(TAG,"Native Ad type is draw!");
                 currentAdType = KSNativeType.KS_NATIVE_TYPE_DRAW;
                 requestDrawAd(Long.parseLong(mSplit[1]));
-            }else if(mSplit[0].equalsIgnoreCase("cdraw")){
+            }else if(mSplit[0].equalsIgnoreCase("draw")){
                 AdLog.getSingleton().LogD(TAG,"Native Ad type is cdraw!");
-
                 currentAdType = KSNativeType.KS_NATIVE_TYPE_CDRAW;
+                requestContentDrawAd(90009005);
             }else {
                 AdLog.getSingleton().LogD(TAG,"Native Ad type is invalid!");
                 onInsError("Native Ad type is invalid!");
@@ -266,11 +267,17 @@ public class KSNative extends CustomNativeEvent {
         }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
             mNativeView = getAdView();
         }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
-            if (null == mNativeView ||null == mKsContentPage) return;
+            if (null == mKsContentPage)
+                return;
             if (nativeAdView.getMediaView() != null) {
+//                int k= nativeAdView.getMediaView().getId();
                 ksCDAct = new KSCDrawActivity();
-                FragmentTransaction fragmentTransaction = ksCDAct.getFragmentT();
-                fragmentTransaction.add(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment());
+                fragmentTransaction = ksCDAct.getFragmentT();
+//                Fragment a = mKsContentPage.getFragment();
+                fragmentTransaction.replace(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment());
+//                fragmentTransaction.show(mKsContentPage.getFragment());
+                fragmentTransaction.commit();
+                return;
             }
         }else{
             AdLog.getSingleton().LogD(TAG, "currentAdType is error.");

@@ -1,8 +1,14 @@
 package com.nbmediation.sdk.mobileads;
 
+import com.nbmediation.sdk.mobileads.KSNativeType;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +19,8 @@ import com.kwad.sdk.api.KsLoadManager;
 import com.kwad.sdk.api.KsScene;
 import com.kwad.sdk.api.SdkConfig;
 import com.kwad.sdk.api.KsDrawAd;
+import com.kwad.sdk.api.KsContentPage;
+import com.kwad.sdk.api.KsContentPage.ContentItem;
 
 
 
@@ -34,6 +42,10 @@ public class KSNative extends CustomNativeEvent {
     private WeakReference<Activity> av;
     private KsDrawAd ksDrawAd;
     private Boolean isDrawAd;
+    private KSNativeType currentAdType;
+    private KsContentPage mKsContentPage;
+    private KSCDrawActivity ksCDAct;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
@@ -77,15 +89,28 @@ public class KSNative extends CustomNativeEvent {
             }
         }
         av = new WeakReference<>(activity);
-        initSdk(activity, appID, appName, isDebug);
+        initSdk(activity, "90009", appName, isDebug);
         destroyAd();
 
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");
-        if (mSplit.length > 1 && mSplit[0].equalsIgnoreCase("draw")){
-            isDrawAd = true;
-            requestDrawAd(Long.parseLong(mSplit[1]));
+        if (mSplit.length > 1 ){
+            if (mSplit[0].equalsIgnoreCase("cdraw")){
+                AdLog.getSingleton().LogD(TAG,"Native Ad type is draw!");
+                currentAdType = KSNativeType.KS_NATIVE_TYPE_DRAW;
+                requestDrawAd(Long.parseLong(mSplit[1]));
+            }else if(mSplit[0].equalsIgnoreCase("draw")){
+                AdLog.getSingleton().LogD(TAG,"Native Ad type is cdraw!");
+                currentAdType = KSNativeType.KS_NATIVE_TYPE_CDRAW;
+                requestContentDrawAd(90009005);
+            }else {
+                AdLog.getSingleton().LogD(TAG,"Native Ad type is invalid!");
+                onInsError("Native Ad type is invalid!");
+                return;
+            }
         }else {
+            AdLog.getSingleton().LogD(TAG,"Normal native Ad");
+            currentAdType = KSNativeType.KS_NATIVE_TYPE_NORMAL;
             requestAd(Long.parseLong(mInstancesKey));
         }
     }
@@ -237,10 +262,25 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
-        if (isDrawAd) {
+        if (currentAdType == KSNativeType.KS_NATIVE_TYPE_DRAW) {
             mNativeView = getDrawAdView();
-        }else {
+        }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
             mNativeView = getAdView();
+        }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
+            if (null == mKsContentPage)
+                return;
+            if (nativeAdView.getMediaView() != null) {
+//                int k= nativeAdView.getMediaView().getId();
+                ksCDAct = new KSCDrawActivity();
+                fragmentTransaction = ksCDAct.getFragmentT();
+//                Fragment a = mKsContentPage.getFragment();
+                fragmentTransaction.replace(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment());
+//                fragmentTransaction.show(mKsContentPage.getFragment());
+                fragmentTransaction.commit();
+                return;
+            }
+        }else{
+            AdLog.getSingleton().LogD(TAG, "currentAdType is error.");
         }
         if (null == mNativeView) return;
         if (nativeAdView.getMediaView() != null) {
@@ -313,5 +353,82 @@ public class KSNative extends CustomNativeEvent {
             }
         });
     }
+//Draw Ad
+    private void requestContentDrawAd(long posId) {
+        KsScene adScene = new KsScene.Builder(posId).build();
+        mKsContentPage = KsAdSDK.getLoadManager().loadContentPage(adScene);
+        initListener();
+
+        AdInfo mAdInfo = new AdInfo();
+        mAdInfo.setDesc("");
+        mAdInfo.setType(2);
+        mAdInfo.setAdNetWorkId(MediationInfo.MEDIATION_ID_22);
+        mAdInfo.setCallToActionText("");
+        mAdInfo.setTitle("");
+        mAdInfo.setTemplate(true);
+        onInsReady(mAdInfo);
+    }
+
+    private void initListener() {
+        // 接口回调在主线程，误做耗时操作
+        mKsContentPage.setPageListener(new KsContentPage.PageListener() {
+            @Override
+            public void onPageEnter(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "页面Enter");
+            }
+
+            @Override
+            public void onPageResume(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "页面Resume");
+            }
+
+            @Override
+            public void onPagePause(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "页面Pause");
+            }
+
+            @Override
+            public void onPageLeave(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "页面Leave");
+            }
+
+        });
+
+        // 接口回调在主线程，误做耗时操作
+        mKsContentPage.setVideoListener(new KsContentPage.VideoListener() {
+            @Override
+            public void onVideoPlayStart(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "视频PlayStart");
+            }
+
+            @Override
+            public void onVideoPlayPaused(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "视频PlayPaused");
+            }
+
+            @Override
+            public void onVideoPlayResume(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "视频PlayResume");
+            }
+
+            @Override
+            public void onVideoPlayCompleted(ContentItem item) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "视频PlayCompleted");
+            }
+
+            @Override
+            public void onVideoPlayError(ContentItem item, int what, int extra) {
+                AdLog.getSingleton().LogD("ContentPage", "position: " + item.position + "视频PlayError");
+            }
+        });
+    }
+
+    public class KSCDrawActivity extends FragmentActivity {
+
+        public FragmentTransaction getFragmentT() {
+           return getSupportFragmentManager().beginTransaction();
+        }
+    }
+
 
 }

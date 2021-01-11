@@ -53,12 +53,12 @@ public class NativeVideoActivity extends AppCompatActivity {
             @Override
             public void onAdFailed(String msg) {
                 Toast.makeText(NativeVideoActivity.this,"get ad failed!",Toast.LENGTH_LONG).show();
-                Const.HANDLER.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                    }
-                },3000);
+//                Const.HANDLER.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+////                        finish();
+//                    }
+//                },3000);
 
             }
 

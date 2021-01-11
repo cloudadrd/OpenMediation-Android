@@ -95,14 +95,14 @@ public class KSNative extends CustomNativeEvent {
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");
         if (mSplit.length > 1 ){
-            if (mSplit[0].equalsIgnoreCase("cdraw")){
+            if (mSplit[0].equalsIgnoreCase("draw")){
                 AdLog.getSingleton().LogD(TAG,"Native Ad type is draw!");
                 currentAdType = KSNativeType.KS_NATIVE_TYPE_DRAW;
                 requestDrawAd(Long.parseLong(mSplit[1]));
-            }else if(mSplit[0].equalsIgnoreCase("draw")){
+            }else if(mSplit[0].equalsIgnoreCase("cdraw")){
                 AdLog.getSingleton().LogD(TAG,"Native Ad type is cdraw!");
                 currentAdType = KSNativeType.KS_NATIVE_TYPE_CDRAW;
-                requestContentDrawAd(90009005);
+                requestContentDrawAd(Long.parseLong(mSplit[1]));
             }else {
                 AdLog.getSingleton().LogD(TAG,"Native Ad type is invalid!");
                 onInsError("Native Ad type is invalid!");
@@ -262,23 +262,23 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
-        if (currentAdType == KSNativeType.KS_NATIVE_TYPE_DRAW) {
-            mNativeView = getDrawAdView();
-        }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
-            mNativeView = getAdView();
-        }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
-            if (null == mKsContentPage)
-                return;
-            if (nativeAdView.getMediaView() != null) {
+            if (currentAdType == KSNativeType.KS_NATIVE_TYPE_DRAW) {
+                mNativeView = getDrawAdView();
+            }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
+                mNativeView = getAdView();
+            }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
+                if (null == mKsContentPage)
+                    return;
+                if (nativeAdView.getMediaView() != null) {
 //                int k= nativeAdView.getMediaView().getId();
-                ksCDAct = new KSCDrawActivity();
-                fragmentTransaction = ksCDAct.getFragmentT();
+                    ksCDAct = new KSCDrawActivity();
+                    fragmentTransaction = ksCDAct.getFragmentT();
 //                Fragment a = mKsContentPage.getFragment();
-                fragmentTransaction.replace(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment());
+                    fragmentTransaction.add(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment());
 //                fragmentTransaction.show(mKsContentPage.getFragment());
-                fragmentTransaction.commit();
-                return;
-            }
+//                    fragmentTransaction.commit();
+                    return;
+                }
         }else{
             AdLog.getSingleton().LogD(TAG, "currentAdType is error.");
         }

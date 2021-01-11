@@ -46,7 +46,7 @@ public class KSNative extends CustomNativeEvent {
     private KSNativeType currentAdType;
     private KsContentPage mKsContentPage;
     private FragmentTransaction fragmentTransaction;
-    private AppCompatActivity atc;
+    private WeakReference<AppCompatActivity> act;
 
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
@@ -90,8 +90,8 @@ public class KSNative extends CustomNativeEvent {
             }
         }
         av = new WeakReference<>(activity);
-        atc = (AppCompatActivity)activity;
-        initSdk(activity, "90009", appName, isDebug);
+        act = new WeakReference<>((AppCompatActivity) activity);
+        initSdk(activity, "90009", "测试demo", true);
         destroyAd();
 
         String[] mSplit = new String[0];
@@ -269,10 +269,11 @@ public class KSNative extends CustomNativeEvent {
             }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
                 mNativeView = getAdView();
             }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
-                if (null == mKsContentPage)
-                    return;
-                if (nativeAdView.getMediaView() != null) {
-                    fragmentTransaction = atc.getSupportFragmentManager().beginTransaction();
+                if (null == mKsContentPage) return;
+                AppCompatActivity activity = act.get();
+                if (null == activity) return;
+                if (nativeAdView.getMediaView() != null ) {
+                    fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.add(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment()).commit();
                     return;
                 }
@@ -368,6 +369,7 @@ public class KSNative extends CustomNativeEvent {
 
     private void initListener() {
         // 接口回调在主线程，误做耗时操作
+        if (null == mKsContentPage) return;
         mKsContentPage.setPageListener(new KsContentPage.PageListener() {
             @Override
             public void onPageEnter(ContentItem item) {

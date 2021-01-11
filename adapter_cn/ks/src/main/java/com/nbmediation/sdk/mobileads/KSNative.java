@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +45,8 @@ public class KSNative extends CustomNativeEvent {
     private Boolean isDrawAd;
     private KSNativeType currentAdType;
     private KsContentPage mKsContentPage;
-    private KSCDrawActivity ksCDAct;
     private FragmentTransaction fragmentTransaction;
+    private AppCompatActivity atc;
 
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
@@ -89,6 +90,7 @@ public class KSNative extends CustomNativeEvent {
             }
         }
         av = new WeakReference<>(activity);
+        atc = (AppCompatActivity)activity;
         initSdk(activity, "90009", appName, isDebug);
         destroyAd();
 
@@ -270,13 +272,8 @@ public class KSNative extends CustomNativeEvent {
                 if (null == mKsContentPage)
                     return;
                 if (nativeAdView.getMediaView() != null) {
-//                int k= nativeAdView.getMediaView().getId();
-                    ksCDAct = new KSCDrawActivity();
-                    fragmentTransaction = ksCDAct.getFragmentT();
-//                Fragment a = mKsContentPage.getFragment();
-                    fragmentTransaction.add(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment());
-//                fragmentTransaction.show(mKsContentPage.getFragment());
-//                    fragmentTransaction.commit();
+                    fragmentTransaction = atc.getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.add(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment()).commit();
                     return;
                 }
         }else{
@@ -422,13 +419,4 @@ public class KSNative extends CustomNativeEvent {
             }
         });
     }
-
-    public class KSCDrawActivity extends FragmentActivity {
-
-        public FragmentTransaction getFragmentT() {
-           return getSupportFragmentManager().beginTransaction();
-        }
-    }
-
-
 }

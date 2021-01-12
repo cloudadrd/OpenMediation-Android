@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Button interstitialButton;
     private Button bannerButton;
     private Button nativeButton;
-    private Button nativeVideoButton;
+    private Button drawButton;
 
 
     private LinearLayout adContainer;
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         bannerButton = findViewById(R.id.btn_banner);
         nativeButton = findViewById(R.id.btn_native);
         adContainer = findViewById(R.id.ad_container);
-        nativeVideoButton = findViewById(R.id.btn_native_video);
+        drawButton = findViewById(R.id.btn_draw);
         initSDK();
         if (RewardedVideoAd.isReady()) {
             setRewardVideoButtonStat(true);
@@ -329,13 +329,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void loadAndShowNativeVideo(View view) {
-        nativeVideoButton.setEnabled(false);
-        nativeVideoButton.setText("Native Video Ad Loading...");
-        Intent intent = new Intent(MainActivity.this, NativeVideoActivity.class);
+    public void loadDrawAd(View view) {
+        drawButton.setEnabled(false);
+        drawButton.setText("Draw Ad Loading...");
+        Intent intent = new Intent(MainActivity.this, DrawActivity.class);
         startActivity(intent);
-        nativeVideoButton.setEnabled(true);
-        nativeVideoButton.setText("Load And Show Native Video Ad");
+        drawButton.setEnabled(true);
+        drawButton.setText("LoadShowDrawAd");
     }
 
     private void setRewardVideoButtonStat(boolean isEnable) {

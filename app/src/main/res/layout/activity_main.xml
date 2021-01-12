@@ -112,14 +112,14 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_native_video"
+                android:id="@+id/btn_draw"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/btn_background"
-                android:onClick="loadAndShowNativeVideo"
-                android:text="LoadShowNativeVideo"
+                android:onClick="loadDrawAd"
+                android:text="LoadShowDrawAd"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 <!--            <Button-->

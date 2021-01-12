@@ -7,17 +7,12 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
+
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.adsgreat.base.config.Const;
 import com.nbmediation.sdk.demo.utils.NewApiUtils;
-import com.nbmediation.sdk.mediation.MediationInfo;
-import com.nbmediation.sdk.nativead.AdIconView;
 import com.nbmediation.sdk.nativead.AdInfo;
 import com.nbmediation.sdk.nativead.MediaView;
 import com.nbmediation.sdk.nativead.NativeAd;
@@ -26,7 +21,7 @@ import com.nbmediation.sdk.nativead.NativeAdView;
 import android.widget.Toast;
 
 
-public class NativeVideoActivity extends AppCompatActivity {
+public class DrawActivity extends AppCompatActivity {
     private NativeAd nativeAd;
     private View adView;
     private NativeAdView nativeAdView;
@@ -36,7 +31,7 @@ public class NativeVideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_native_video);
+        setContentView(R.layout.activity_draw);
         adContainer = findViewById(R.id.ad_container);
         getNativeVideo();
     }
@@ -45,12 +40,12 @@ public class NativeVideoActivity extends AppCompatActivity {
         if (nativeAd != null) {
             nativeAd.destroy();
         }
-        Toast.makeText(NativeVideoActivity.this,"ad is loading...",Toast.LENGTH_LONG).show();
+        Toast.makeText(DrawActivity.this,"ad is loading...",Toast.LENGTH_LONG).show();
 
-        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, 360, 275, new NativeAdListener() {
+        nativeAd = new NativeAd(this, NewApiUtils.P_NATIVE, new NativeAdListener() {
             @Override
             public void onAdFailed(String msg) {
-                Toast.makeText(NativeVideoActivity.this,"get ad failed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(DrawActivity.this,"get ad failed!",Toast.LENGTH_LONG).show();
                 Const.HANDLER.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -63,9 +58,9 @@ public class NativeVideoActivity extends AppCompatActivity {
             @Override
             public void onAdReady(AdInfo info) {
                 adContainer.removeAllViews();
-                adView = LayoutInflater.from(NativeVideoActivity.this).inflate(R.layout.native_ad_layout, null);
+                adView = LayoutInflater.from(DrawActivity.this).inflate(R.layout.native_ad_layout, null);
                 MediaView mediaView = adView.findViewById(R.id.ad_media);
-                nativeAdView = new NativeAdView(NativeVideoActivity.this);
+                nativeAdView = new NativeAdView(DrawActivity.this);
                 nativeAdView.addView(adView);
                 nativeAdView.setMediaView(mediaView);
                 nativeAd.registerNativeAdView(nativeAdView);

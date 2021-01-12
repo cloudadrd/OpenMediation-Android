@@ -42,7 +42,6 @@ public class KSNative extends CustomNativeEvent {
     private View mNativeView;
     private WeakReference<Activity> av;
     private KsDrawAd ksDrawAd;
-    private Boolean isDrawAd;
     private KSNativeType currentAdType;
     private KsContentPage mKsContentPage;
     private FragmentTransaction fragmentTransaction;
@@ -51,6 +50,7 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void loadAd(final Activity activity, Map<String, String> config) {
         super.loadAd(activity, config);
+        destroyAd();
         String e = "loadAd传入的参数错误.";
         AdLog.getSingleton().LogD(TAG, "getLoadManager check");
         if (!check(activity, config)) {
@@ -91,8 +91,7 @@ public class KSNative extends CustomNativeEvent {
         }
         av = new WeakReference<>(activity);
         act = new WeakReference<>((AppCompatActivity) activity);
-        initSdk(activity, "90009", "测试demo", true);
-        destroyAd();
+        initSdk(activity, appID, appName, true);
 
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");
@@ -264,19 +263,19 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void registerNativeView(NativeAdView nativeAdView) {
         AdLog.getSingleton().LogD(TAG, "registerNativeView");
-            if (currentAdType == KSNativeType.KS_NATIVE_TYPE_DRAW) {
-                mNativeView = getDrawAdView();
-            }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
-                mNativeView = getAdView();
-            }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
-                if (null == mKsContentPage) return;
-                AppCompatActivity activity = act.get();
-                if (null == activity) return;
-                if (nativeAdView.getMediaView() != null ) {
-                    fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.add(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment()).commit();
-                    return;
-                }
+        if (currentAdType == KSNativeType.KS_NATIVE_TYPE_DRAW) {
+            mNativeView = getDrawAdView();
+        }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_NORMAL){
+            mNativeView = getAdView();
+        }else if(currentAdType == KSNativeType.KS_NATIVE_TYPE_CDRAW){
+            if (null == mKsContentPage) return;
+            AppCompatActivity activity = act.get();
+            if (null == activity) return;
+            if (nativeAdView.getMediaView() != null ) {
+                fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(nativeAdView.getMediaView().getId(),mKsContentPage.getFragment()).commit();
+                return;
+            }
         }else{
             AdLog.getSingleton().LogD(TAG, "currentAdType is error.");
         }
@@ -295,9 +294,6 @@ public class KSNative extends CustomNativeEvent {
     @Override
     public void destroy(Activity activity) {
         destroyAd();
-        if (av != null) {
-            av = null;
-        }
     }
 
     private void destroyAd() {
@@ -318,7 +314,20 @@ public class KSNative extends CustomNativeEvent {
             ksDrawAd = null;
         }
 
-        isDrawAd = false;
+        if (av != null) {
+            av = null;
+        }
+
+        if (null != mKsContentPage) {
+            mKsContentPage = null;
+        }
+
+        if (null != fragmentTransaction ) {
+            fragmentTransaction = null;
+        }
+        if (null != act) {
+            act = null;
+        }
     }
 
 //Draw Ad
@@ -355,8 +364,11 @@ public class KSNative extends CustomNativeEvent {
     private void requestContentDrawAd(long posId) {
         KsScene adScene = new KsScene.Builder(posId).build();
         mKsContentPage = KsAdSDK.getLoadManager().loadContentPage(adScene);
-        initListener();
+        if (null == mKsContentPage) {
+            onInsError("mKsContentPage is null");
+        }
 
+        initListener();
         AdInfo mAdInfo = new AdInfo();
         mAdInfo.setDesc("");
         mAdInfo.setType(2);

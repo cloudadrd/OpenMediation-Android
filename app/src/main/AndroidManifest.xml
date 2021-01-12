@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode"
         tools:replace="android:networkSecurityConfig">
-        <activity android:name=".NativeVideoActivity"
+        <activity android:name=".DrawActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".MainActivity"
             android:launchMode="singleTask"></activity>

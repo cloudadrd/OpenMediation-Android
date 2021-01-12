@@ -30,6 +30,8 @@ public class SplashAdActivity extends AppCompatActivity implements SplashAdListe
 
     public static boolean isSdkInit = false;
 
+    private boolean isToMain = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashAdListe
         mSplashContainer = findViewById(R.id.splash_container);
         init();
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (!isLoad) {
+            if (!isLoad && !isToMain) {
                 toMainPage();
             }
         }, 5000);
@@ -134,6 +136,7 @@ public class SplashAdActivity extends AppCompatActivity implements SplashAdListe
     }
 
     public void toMainPage() {
+        isToMain = true;
         Log.e("SplashAdActivity", "----------- toMainPage ----------");
         startActivity(new Intent(this, MainActivity.class));
         finish();

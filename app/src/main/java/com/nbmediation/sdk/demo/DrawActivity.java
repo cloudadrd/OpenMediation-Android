@@ -49,7 +49,7 @@ public class DrawActivity extends AppCompatActivity {
                 Const.HANDLER.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-//                        finish();
+                        finish();
                     }
                 },3000);
 

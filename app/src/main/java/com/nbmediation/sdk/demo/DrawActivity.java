@@ -57,15 +57,23 @@ public class DrawActivity extends AppCompatActivity {
 
             @Override
             public void onAdReady(AdInfo info) {
+                //UI布局结构可修改
+                //demo: adContainer -> nativeAdView -> adView -> mediaview -> ks content draw
                 adContainer.removeAllViews();
+
+                //添加native_ad_layout布局的adview，native_ad_layout布局里写好mediaview
                 adView = LayoutInflater.from(DrawActivity.this).inflate(R.layout.native_ad_layout, null);
-                MediaView mediaView = adView.findViewById(R.id.ad_media);
                 nativeAdView = new NativeAdView(DrawActivity.this);
                 nativeAdView.addView(adView);
+
+                //检索mediaview，并设置接收ks content draw
+                MediaView mediaView = adView.findViewById(R.id.ad_media);
                 nativeAdView.setMediaView(mediaView);
                 nativeAd.registerNativeAdView(nativeAdView);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+                //添加nativeAdView到adContainer
                 adContainer.addView(nativeAdView, layoutParams);
             }
 

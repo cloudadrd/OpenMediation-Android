@@ -91,7 +91,7 @@ public class KSNative extends CustomNativeEvent {
         }
         av = new WeakReference<>(activity);
         act = new WeakReference<>((AppCompatActivity) activity);
-        initSdk(activity, appID, appName, true);
+        initSdk(activity, appID, appName, isDebug);
 
         String[] mSplit = new String[0];
         mSplit = mInstancesKey.split("\\|");

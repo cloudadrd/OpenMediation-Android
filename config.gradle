@@ -1,53 +1,26 @@
 ext {
     adapterVersion = [
-            'adtiming'    : '1.1.0',
-            'admob'       : '1.1.0',
-            'facebook'    : '1.1.0',
-            'unity'       : '1.1.0',
-            'vungle'      : '1.1.0',
-            'adcolony'    : '1.1.0',
-            'applovin'    : '1.1.0',
-            'mopub'       : '1.1.0',
-            'tapjoy'      : '1.1.0',
-            'chartboost'  : '1.1.0',
-            'tiktok'      : '1.0.1',
-            'mintegral'   : '1.1.3',
-            'ironsource'  : '1.0.0',
-            'fyber'       : '1.0.0',
-            'tiktok_cn'   : '1.0.8',
-            'tencentad_cn': '1.0.7',
-            'hyadxopen_cn': '1.0.0',
-            'cloudmobi_cn': '1.0.0',
-            'sigmob'      : '1.0.1',
-            'tc056d'      : '1.0.0',
-            'alion'       : '1.0.2',
-            'zyt'         : '1.0.0',
-            'ks'          : '1.0.9',
-            'agsdk'       : '1.0.5',
-            'inmobi'      : '1.0.0',
-            'baidu'       : '1.0.3'
+            'adtiming'    : '2.0.1',
+            'admob'       : '2.1.0',
+            'facebook'    : '2.1.0',
+            'unity'       : '2.0.1',
+            'vungle'      : '2.1.1',
+            'adcolony'    : '2.1.0',
+            'applovin'    : '2.1.0',
+            'mopub'       : '2.1.0',
+            'tapjoy'      : '2.0.0',
+            'chartboost'  : '2.1.0',
+            'helium'      : '2.1.1',
+            'tiktok'      : '2.1.0',
+            'mintegral'   : '2.1.2',
+            'ironsource'  : '2.1.0',
+            'fyber'       : '2.0.0',
+            'ogury'       : '1.0.0',
+            'pubnative'   : '1.3.0',
+            'tiktok_cn'   : '2.1.1',
+            'tencentad_cn': '2.1.0',
+            'mintegral_cn': '2.1.2',
+            'sigmob_cn'   : '1.1.0',
+            'ksad_cn'     : '1.0.0',
     ]
-
-    pkg_prefix = 'nb_'
-
-    adapterDirs = "../../libs"
-
-    shadow_version = '2.0.13'
-
-    HOST_APP_APPLICATION_ID = "com.light.cleaner.zero"//"com.chengyu.mobi"  //com.light.cleaner.zero
-    COMPILE_SDK_VERSION = 29
-
-    MIN_SDK_VERSION = 18
-    TARGET_SDK_VERSION = 28
-    VERSION_CODE = 2
-    VERSION_NAME = "2.0.12"
-    MANAGER_PLUGIN = "1.0.3"
-    MAIN_PLUGIN = "1.0.5"
-    TIKTOk_PLUGIN = "1.2.1"
-    AGSDK_PLUGIN = '4.3.4'
-    ALION_PLUGIN = '1.0.1'
-    KS_PLUGIN = '1.0.6'
-    MINTGRAL_PLUGIN = '1.1.2'
-    nm_version = "1.2.6.1"
-    hop_version = '1.1.0'
 }

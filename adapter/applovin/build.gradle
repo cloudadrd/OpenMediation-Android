@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
-    buildToolsVersion rootProject.ext.version.buildToolsVersion
+
 
     defaultConfig {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName project.adapterVersion.applovin
+        versionName rootProject.ext.adapterVersion.applovin
     }
 
     buildTypes {
@@ -22,16 +22,11 @@ android {
 }
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.applovin}.aar"
+        outputFileName = project.name + '.aar'
     }
 }
 dependencies {
-    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
-    compileOnly rootProject.ext.dependencies.applovin
-}
-
-repositories {
-    flatDir {
-        dirs rootProject.ext.adapterDirs
-    }
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':om-android-sdk')
+    implementation rootProject.ext.dependencies.applovin
 }

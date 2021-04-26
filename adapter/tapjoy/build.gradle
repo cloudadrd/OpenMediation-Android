@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
-    buildToolsVersion rootProject.ext.version.buildToolsVersion
+
 
     defaultConfig {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName project.adapterVersion.tapjoy
+        versionName rootProject.ext.adapterVersion.tapjoy
     }
 
     buildTypes {
@@ -22,17 +22,11 @@ android {
 }
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.tapjoy}.aar"
+        outputFileName = project.name + '.aar'
     }
 }
 dependencies {
-    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
     //TapJoy
-    compileOnly rootProject.ext.dependencies.tapjoy
-}
-
-repositories {
-    flatDir {
-        dirs rootProject.ext.adapterDirs
-    }
+    implementation rootProject.ext.dependencies.tapjoy
+    implementation project(':om-android-sdk')
 }

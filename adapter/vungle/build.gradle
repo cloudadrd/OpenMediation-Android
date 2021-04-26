@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
-    buildToolsVersion rootProject.ext.version.buildToolsVersion
+
 
     defaultConfig {
         minSdkVersion rootProject.ext.version.minSdkVersion
         targetSdkVersion rootProject.ext.version.targetSdkVersion
         versionCode rootProject.ext.version.versionCode
-        versionName project.adapterVersion.vungle
+        versionName rootProject.ext.adapterVersion.vungle
     }
 
     buildTypes {
@@ -20,20 +20,15 @@ android {
 }
 android.libraryVariants.all { variant ->
     variant.outputs.all {
-        outputFileName = "${project.pkg_prefix}${project.name}_${project.adapterVersion.vungle}.aar"
+        outputFileName = project.name + '.aar'
     }
 }
 dependencies {
     configurations.all {
         resolutionStrategy.force 'com.android.support:support-core-utils:28.0.0'
     }
-    compileOnly(name: "nm-android-sdk-${project.nm_version}", ext: 'aar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //vungle
-    compileOnly(rootProject.ext.dependencies.vungle)
-}
-
-repositories {
-    flatDir {
-        dirs rootProject.ext.adapterDirs
-    }
+    implementation(rootProject.ext.dependencies.vungle)
+    implementation project(':om-android-sdk')
 }

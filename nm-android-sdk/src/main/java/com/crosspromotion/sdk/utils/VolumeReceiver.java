@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 
-import com.openmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.DeveloperLog;
 
 public class VolumeReceiver extends BroadcastReceiver {
 

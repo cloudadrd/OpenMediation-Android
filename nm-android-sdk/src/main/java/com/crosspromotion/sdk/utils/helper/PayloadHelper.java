@@ -2,22 +2,22 @@ package com.crosspromotion.sdk.utils.helper;
 
 import android.text.TextUtils;
 
-import com.openmediation.sdk.utils.AdtUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.Gzip;
-import com.openmediation.sdk.utils.WorkExecutor;
-import com.openmediation.sdk.utils.cache.DataCache;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.constant.KeyConstants;
-import com.openmediation.sdk.utils.crash.CrashUtil;
-import com.openmediation.sdk.utils.model.Configurations;
-import com.openmediation.sdk.utils.model.PlacementInfo;
-import com.openmediation.sdk.utils.request.HeaderUtils;
-import com.openmediation.sdk.utils.request.RequestBuilder;
-import com.openmediation.sdk.utils.request.network.AdRequest;
-import com.openmediation.sdk.utils.request.network.ByteRequestBody;
-import com.openmediation.sdk.utils.request.network.Headers;
-import com.openmediation.sdk.utils.request.network.Request;
+import com.nbmediation.sdk.utils.AdtUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.Gzip;
+import com.nbmediation.sdk.utils.WorkExecutor;
+import com.nbmediation.sdk.utils.cache.DataCache;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.model.Configurations;
+import com.nbmediation.sdk.utils.model.PlacementInfo;
+import com.nbmediation.sdk.utils.request.HeaderUtils;
+import com.nbmediation.sdk.utils.request.RequestBuilder;
+import com.nbmediation.sdk.utils.request.network.AdRequest;
+import com.nbmediation.sdk.utils.request.network.ByteRequestBody;
+import com.nbmediation.sdk.utils.request.network.Headers;
+import com.nbmediation.sdk.utils.request.network.Request;
 
 import org.json.JSONObject;
 

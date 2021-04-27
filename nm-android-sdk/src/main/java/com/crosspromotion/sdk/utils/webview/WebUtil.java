@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 
-import com.openmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.DeveloperLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;

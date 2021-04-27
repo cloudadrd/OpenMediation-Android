@@ -5,17 +5,17 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.openmediation.sdk.utils.AFManager;
-import com.openmediation.sdk.utils.AdtUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.JsonUtil;
-import com.openmediation.sdk.utils.OaidHelper;
-import com.openmediation.sdk.utils.cache.DataCache;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.constant.KeyConstants;
-import com.openmediation.sdk.utils.device.AdvertisingIdClient;
-import com.openmediation.sdk.utils.device.DeviceUtil;
-import com.openmediation.sdk.utils.helper.IapHelper;
+import com.nbmediation.sdk.utils.AFManager;
+import com.nbmediation.sdk.utils.AdtUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.JsonUtil;
+import com.nbmediation.sdk.utils.OaidHelper;
+import com.nbmediation.sdk.utils.cache.DataCache;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
+import com.nbmediation.sdk.utils.device.AdvertisingIdClient;
+import com.nbmediation.sdk.utils.device.DeviceUtil;
+import com.nbmediation.sdk.utils.helper.IapHelper;
 
 import org.json.JSONObject;
 

@@ -27,5 +27,5 @@ android.libraryVariants.all { variant ->
 }
 dependencies {
     implementation rootProject.ext.dependencies.pubnative
-    implementation project(':om-android-sdk')
+    implementation project(':nm-android-sdk')
 }

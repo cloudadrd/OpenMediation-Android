@@ -36,6 +36,6 @@ public static final *** NULL;
 public static final ** CREATOR;
 }
 -keep class com.google.android.gms.ads.identifier.** { *; }
--keep class com.openmediation.sdk.mediation.** { *; }
--keep class com.openmediation.sdk.mobileads.** { *; }
+-keep class com.nbmediation.sdk.mediation.** { *; }
+-keep class com.nbmediation.sdk.mobileads.** { *; }
 -dontwarn com.tapjoy.**

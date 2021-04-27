@@ -28,7 +28,7 @@ android.libraryVariants.all { variant ->
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':om-android-sdk')
+    implementation project(':nm-android-sdk')
     implementation 'com.mintegral.msdk.china:videojs:' + rootProject.ext.dependencies.mtg_china_version
     implementation 'com.mintegral.msdk.china:mtgjscommon:' + rootProject.ext.dependencies.mtg_china_version
     implementation 'com.mintegral.msdk.china:playercommon:' + rootProject.ext.dependencies.mtg_china_version

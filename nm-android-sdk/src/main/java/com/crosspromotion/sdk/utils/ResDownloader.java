@@ -6,14 +6,14 @@ package com.crosspromotion.sdk.utils;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.openmediation.sdk.utils.AdtUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.IOUtil;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.request.HeaderUtils;
-import com.openmediation.sdk.utils.request.network.AdRequest;
-import com.openmediation.sdk.utils.request.network.Headers;
-import com.openmediation.sdk.utils.request.network.Response;
+import com.nbmediation.sdk.utils.AdtUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.IOUtil;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.request.HeaderUtils;
+import com.nbmediation.sdk.utils.request.network.AdRequest;
+import com.nbmediation.sdk.utils.request.network.Headers;
+import com.nbmediation.sdk.utils.request.network.Response;
 
 import java.io.File;
 import java.net.HttpURLConnection;

@@ -9,7 +9,7 @@ import com.crosspromotion.sdk.nativead.NativeAdListener;
 import com.crosspromotion.sdk.promotion.PromotionAdListener;
 import com.crosspromotion.sdk.utils.error.Error;
 import com.crosspromotion.sdk.video.RewardedVideoListener;
-import com.openmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.HandlerUtil;
 
 public class ListenerWrapper {
     private RewardedVideoListener mVideoListener;

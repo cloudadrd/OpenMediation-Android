@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 

@@ -19,10 +19,10 @@ import com.crosspromotion.sdk.utils.webview.AdsWebView;
 import com.crosspromotion.sdk.utils.webview.JsBridge;
 import com.crosspromotion.sdk.utils.webview.JsBridgeConstants;
 import com.crosspromotion.sdk.view.DrawCrossMarkView;
-import com.openmediation.sdk.utils.DensityUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.IOUtil;
-import com.openmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.DensityUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.IOUtil;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
 
 import org.json.JSONObject;
 

@@ -11,7 +11,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.openmediation.sdk.utils.DensityUtil;
+import com.nbmediation.sdk.utils.DensityUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

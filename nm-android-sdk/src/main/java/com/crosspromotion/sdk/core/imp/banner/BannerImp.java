@@ -27,17 +27,17 @@ import com.crosspromotion.sdk.utils.webview.BaseWebView;
 import com.crosspromotion.sdk.utils.webview.BaseWebViewClient;
 import com.crosspromotion.sdk.utils.webview.JsBridge;
 import com.crosspromotion.sdk.utils.webview.JsBridgeConstants;
-import com.openmediation.sdk.mediation.CustomBannerEvent;
-import com.openmediation.sdk.utils.DensityUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.HandlerUtil;
-import com.openmediation.sdk.utils.IOUtil;
-import com.openmediation.sdk.utils.SdkUtil;
-import com.openmediation.sdk.utils.cache.DataCache;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.constant.KeyConstants;
-import com.openmediation.sdk.utils.crash.CrashUtil;
-import com.openmediation.sdk.utils.model.PlacementInfo;
+import com.nbmediation.sdk.mediation.CustomBannerEvent;
+import com.nbmediation.sdk.utils.DensityUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.IOUtil;
+import com.nbmediation.sdk.utils.SdkUtil;
+import com.nbmediation.sdk.utils.cache.DataCache;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.model.PlacementInfo;
 
 import org.json.JSONObject;
 

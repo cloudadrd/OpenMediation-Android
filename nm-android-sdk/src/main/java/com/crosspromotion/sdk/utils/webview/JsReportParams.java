@@ -1,14 +1,14 @@
 package com.crosspromotion.sdk.utils.webview;
 
-import com.openmediation.sdk.utils.JsonUtil;
-import com.openmediation.sdk.utils.PlacementUtils;
-import com.openmediation.sdk.utils.SceneUtil;
-import com.openmediation.sdk.utils.cache.DataCache;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.constant.KeyConstants;
-import com.openmediation.sdk.utils.model.Placement;
-import com.openmediation.sdk.utils.model.Scene;
-import com.openmediation.sdk.utils.request.RequestBuilder;
+import com.nbmediation.sdk.utils.JsonUtil;
+import com.nbmediation.sdk.utils.PlacementUtils;
+import com.nbmediation.sdk.utils.SceneUtil;
+import com.nbmediation.sdk.utils.cache.DataCache;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.KeyConstants;
+import com.nbmediation.sdk.utils.model.Placement;
+import com.nbmediation.sdk.utils.model.Scene;
+import com.nbmediation.sdk.utils.request.RequestBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;

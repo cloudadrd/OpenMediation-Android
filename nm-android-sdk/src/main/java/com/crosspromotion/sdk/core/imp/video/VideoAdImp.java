@@ -8,8 +8,8 @@ import com.crosspromotion.sdk.core.AbstractAdsManager;
 import com.crosspromotion.sdk.core.CallbackBridge;
 import com.crosspromotion.sdk.utils.Cache;
 import com.crosspromotion.sdk.video.RewardedVideoListener;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
 
 import java.io.File;
 

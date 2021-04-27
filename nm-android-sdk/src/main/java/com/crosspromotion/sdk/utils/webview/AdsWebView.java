@@ -3,10 +3,10 @@
 
 package com.crosspromotion.sdk.utils.webview;
 
-import com.openmediation.sdk.utils.AdtUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.HandlerUtil;
-import com.openmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.AdtUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
 
 public class AdsWebView {
 

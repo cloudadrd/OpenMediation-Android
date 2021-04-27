@@ -16,10 +16,10 @@ import com.crosspromotion.sdk.utils.error.Error;
 import com.crosspromotion.sdk.utils.error.ErrorBuilder;
 import com.crosspromotion.sdk.utils.error.ErrorCode;
 import com.crosspromotion.sdk.view.PromotionAdView;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.HandlerUtil;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.model.Placement;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.model.Placement;
 
 import java.util.List;
 import java.util.Map;

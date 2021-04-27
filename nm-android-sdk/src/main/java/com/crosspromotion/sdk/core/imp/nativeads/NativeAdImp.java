@@ -22,15 +22,15 @@ import com.crosspromotion.sdk.utils.PUtils;
 import com.crosspromotion.sdk.utils.error.ErrorBuilder;
 import com.crosspromotion.sdk.utils.error.ErrorCode;
 import com.crosspromotion.sdk.view.AdMarketView;
-import com.openmediation.sdk.nativead.AdIconView;
-import com.openmediation.sdk.nativead.MediaView;
-import com.openmediation.sdk.nativead.NativeAdView;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.IOUtil;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.crash.CrashUtil;
-import com.openmediation.sdk.utils.request.network.AdRequest;
-import com.openmediation.sdk.utils.request.network.Response;
+import com.nbmediation.sdk.nativead.AdIconView;
+import com.nbmediation.sdk.nativead.MediaView;
+import com.nbmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.IOUtil;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.request.network.AdRequest;
+import com.nbmediation.sdk.utils.request.network.Response;
 
 import java.util.List;
 

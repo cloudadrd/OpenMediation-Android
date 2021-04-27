@@ -5,10 +5,10 @@ import android.text.TextUtils;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.HandlerUtil;
-import com.openmediation.sdk.utils.crash.CrashUtil;
-import com.openmediation.sdk.utils.device.DeviceUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.device.DeviceUtil;
 
 import org.json.JSONObject;
 

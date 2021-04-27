@@ -7,9 +7,9 @@ import android.content.Context;
 
 import com.crosspromotion.sdk.bean.AdBean;
 import com.crosspromotion.sdk.utils.PUtils;
-import com.openmediation.sdk.utils.SceneUtil;
-import com.openmediation.sdk.utils.WorkExecutor;
-import com.openmediation.sdk.utils.request.network.AdRequest;
+import com.nbmediation.sdk.utils.SceneUtil;
+import com.nbmediation.sdk.utils.WorkExecutor;
+import com.nbmediation.sdk.utils.request.network.AdRequest;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;

@@ -6,7 +6,7 @@ package com.crosspromotion.sdk.nativead;
 import android.content.Context;
 
 import com.crosspromotion.sdk.core.imp.nativeads.NativeAdImp;
-import com.openmediation.sdk.nativead.NativeAdView;
+import com.nbmediation.sdk.nativead.NativeAdView;
 
 import java.util.Map;
 

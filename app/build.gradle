@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.openmediation.sdk.demo"
+        applicationId "com.nbmediation.sdk.demo"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -93,7 +93,7 @@ dependencies {
     implementation project(path: ':adapter:adtiming')
     implementation project(path: ':adapter:unity')
     implementation project(path: ':adapter:vungle')
-    implementation project(path: ':om-android-sdk')
+    implementation project(path: ':nm-android-sdk')
     implementation project(path: ':adapter:mopub')
     implementation project(path: ':adapter:adcolony')
     implementation project(path: ':adapter:applovin')

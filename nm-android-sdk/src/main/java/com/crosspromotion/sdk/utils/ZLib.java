@@ -1,6 +1,6 @@
 package com.crosspromotion.sdk.utils;
 
-import com.openmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

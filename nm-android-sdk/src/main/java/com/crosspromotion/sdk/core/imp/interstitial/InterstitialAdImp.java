@@ -7,7 +7,7 @@ import com.crosspromotion.sdk.AdsActivity;
 import com.crosspromotion.sdk.core.AbstractAdsManager;
 import com.crosspromotion.sdk.core.CallbackBridge;
 import com.crosspromotion.sdk.interstitial.InterstitialAdListener;
-import com.openmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
 
 public final class InterstitialAdImp extends AbstractAdsManager {
 

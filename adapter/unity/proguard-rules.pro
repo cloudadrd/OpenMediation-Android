@@ -40,6 +40,6 @@
    *;
 }
 
--keep class com.openmediation.sdk.mediation.** { *; }
--keep class com.openmediation.sdk.mobileads.** { *; }
+-keep class com.nbmediation.sdk.mediation.** { *; }
+-keep class com.nbmediation.sdk.mobileads.** { *; }
 -dontwarn com.google.ar.core.**

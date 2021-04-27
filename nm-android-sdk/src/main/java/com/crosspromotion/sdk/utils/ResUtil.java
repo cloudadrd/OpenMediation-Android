@@ -9,10 +9,10 @@ import android.webkit.MimeTypeMap;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.IOUtil;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.IOUtil;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
 
 import java.io.File;
 import java.io.InputStream;

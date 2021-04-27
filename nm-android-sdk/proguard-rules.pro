@@ -23,7 +23,7 @@
 
 -dontskipnonpubliclibraryclasses
 # SDK API
--keep class com.openmediation.sdk.**{*;}
+-keep class com.nbmediation.sdk.**{*;}
 -keep class com.crosspromotion.sdk.**{*;}
 
  #R

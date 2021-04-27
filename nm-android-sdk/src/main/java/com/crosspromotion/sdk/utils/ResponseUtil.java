@@ -9,11 +9,11 @@ import com.crosspromotion.sdk.bean.AdAppBean;
 import com.crosspromotion.sdk.bean.AdBean;
 import com.crosspromotion.sdk.bean.AdMark;
 import com.crosspromotion.sdk.bean.AdVideoBean;
-import com.openmediation.sdk.utils.InsUtil;
-import com.openmediation.sdk.utils.PlacementUtils;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.model.BaseInstance;
-import com.openmediation.sdk.utils.model.Placement;
+import com.nbmediation.sdk.utils.InsUtil;
+import com.nbmediation.sdk.utils.PlacementUtils;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.model.BaseInstance;
+import com.nbmediation.sdk.utils.model.Placement;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

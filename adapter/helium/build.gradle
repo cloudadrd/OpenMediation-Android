@@ -28,7 +28,7 @@ android.libraryVariants.all { variant ->
 }
 
 dependencies {
-    implementation project (':om-android-sdk')
+    implementation project (':nm-android-sdk')
     // Chartboost helium
     implementation rootProject.ext.dependencies.helium
     implementation rootProject.ext.dependencies.eventbus

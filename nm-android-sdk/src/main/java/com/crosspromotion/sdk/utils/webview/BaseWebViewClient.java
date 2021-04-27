@@ -9,10 +9,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.crosspromotion.sdk.utils.GpUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.SdkUtil;
-import com.openmediation.sdk.utils.crash.CrashUtil;
-import com.openmediation.sdk.utils.device.DeviceUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.SdkUtil;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.device.DeviceUtil;
 
 import java.lang.ref.WeakReference;
 

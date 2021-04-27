@@ -24,14 +24,14 @@ import com.crosspromotion.sdk.utils.webview.BaseWebView;
 import com.crosspromotion.sdk.utils.webview.BaseWebViewClient;
 import com.crosspromotion.sdk.utils.webview.JsBridge;
 import com.crosspromotion.sdk.utils.webview.JsBridgeConstants;
-import com.openmediation.sdk.utils.AdtUtil;
-import com.openmediation.sdk.utils.DensityUtil;
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.HandlerUtil;
-import com.openmediation.sdk.utils.IOUtil;
-import com.openmediation.sdk.utils.SdkUtil;
-import com.openmediation.sdk.utils.constant.CommonConstants;
-import com.openmediation.sdk.utils.crash.CrashUtil;
+import com.nbmediation.sdk.utils.AdtUtil;
+import com.nbmediation.sdk.utils.DensityUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.HandlerUtil;
+import com.nbmediation.sdk.utils.IOUtil;
+import com.nbmediation.sdk.utils.SdkUtil;
+import com.nbmediation.sdk.utils.constant.CommonConstants;
+import com.nbmediation.sdk.utils.crash.CrashUtil;
 
 import org.json.JSONObject;
 

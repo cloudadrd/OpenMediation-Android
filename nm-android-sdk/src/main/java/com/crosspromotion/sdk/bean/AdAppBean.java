@@ -2,8 +2,8 @@ package com.crosspromotion.sdk.bean;
 
 import android.text.TextUtils;
 
-import com.openmediation.sdk.utils.DeveloperLog;
-import com.openmediation.sdk.utils.JsonUtil;
+import com.nbmediation.sdk.utils.DeveloperLog;
+import com.nbmediation.sdk.utils.JsonUtil;
 
 import org.json.JSONObject;
 

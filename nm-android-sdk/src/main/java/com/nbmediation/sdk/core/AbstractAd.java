@@ -93,7 +93,7 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
      * The Is manual triggered.
      */
     protected boolean isManualTriggered;
-    private OmManager.LOAD_TYPE mLoadType;
+    private NmManager.LOAD_TYPE mLoadType;
 
     /**
      * The M total ins.
@@ -197,10 +197,10 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
      *
      * @param type the type
      */
-    public void loadAd(OmManager.LOAD_TYPE type) {
+    public void loadAd(NmManager.LOAD_TYPE type) {
         //load returns if in the middle of initialization
         if (InitImp.isInitRunning()) {
-            OmManager.getInstance().pendingInit(this);
+            NmManager.getInstance().pendingInit(this);
             return;
         }
 
@@ -229,7 +229,7 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
     @Override
     public void onSuccess() {
         //initialization successful. starts loading
-        delayLoad(OmManager.LOAD_TYPE.INIT);
+        delayLoad(NmManager.LOAD_TYPE.INIT);
     }
 
     @Override
@@ -440,10 +440,10 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
             return;
         }
         if (isManualTriggered) {
-            LrReportHelper.report(mReqId, mRuleId, mPlacementId, OmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(mReqId, mRuleId, mPlacementId, NmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.WATERFALL_READY, 0);
         } else {
-            LrReportHelper.report(mReqId, mRuleId, mPlacementId, OmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(mReqId, mRuleId, mPlacementId, NmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.WATERFALL_READY, 0);
         }
     }
@@ -458,10 +458,10 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
             return;
         }
         if (isManualTriggered) {
-            LrReportHelper.report(instance, OmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(instance, NmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.INSTANCE_LOAD, 0);
         } else {
-            LrReportHelper.report(instance, OmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(instance, NmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.INSTANCE_LOAD, 0);
         }
     }
@@ -476,10 +476,10 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
             return;
         }
         if (isManualTriggered) {
-            LrReportHelper.report(instance, OmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(instance, NmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.INSTANCE_READY, 0);
         } else {
-            LrReportHelper.report(instance, OmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(instance, NmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.INSTANCE_READY, 0);
         }
     }
@@ -509,10 +509,10 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
                 bid = 1;
             }
             if (isManualTriggered) {
-                LrReportHelper.report(instance, OmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
+                LrReportHelper.report(instance, NmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
                         CommonConstants.INSTANCE_IMPR, bid);
             } else {
-                LrReportHelper.report(instance, OmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
+                LrReportHelper.report(instance, NmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
                         CommonConstants.INSTANCE_IMPR, bid);
             }
         } catch (Exception e) {
@@ -535,10 +535,10 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
             bid = 1;
         }
         if (isManualTriggered) {
-            LrReportHelper.report(instance, OmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(instance, NmManager.LOAD_TYPE.MANUAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.INSTANCE_CLICK, bid);
         } else {
-            LrReportHelper.report(instance, OmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
+            LrReportHelper.report(instance, NmManager.LOAD_TYPE.INTERVAL.getValue(), mPlacement.getWfAbt(),
                     CommonConstants.INSTANCE_CLICK, bid);
         }
     }
@@ -584,7 +584,7 @@ public abstract class AbstractAd extends Callback implements Request.OnRequestCa
         });
     }
 
-    private void delayLoad(OmManager.LOAD_TYPE type) {
+    private void delayLoad(NmManager.LOAD_TYPE type) {
         try {
             //returns if load can't start
             Error error = checkLoadAvailable();

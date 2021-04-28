@@ -5,16 +5,16 @@ package com.nbmediation.sdk;
 
 import android.app.Activity;
 
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.utils.AFManager;
 import com.nbmediation.sdk.utils.AdLog;
 
 import java.util.Map;
 
 /**
- * The type Om ads.
+ * The type Nm ads.
  */
-public abstract class OmAds {
+public abstract class NmAds {
 
     /**
      * mediation SDK init method
@@ -27,7 +27,7 @@ public abstract class OmAds {
         if (configuration != null) {
             AdLog.getSingleton().isDebug(configuration.isLogEnable());
         }
-        OmManager.getInstance().init(activity, configuration, callback);
+        NmManager.getInstance().init(activity, configuration, callback);
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class OmAds {
      * @param activity current resume activity
      */
     public static void onResume(Activity activity) {
-        OmManager.getInstance().onResume(activity);
+        NmManager.getInstance().onResume(activity);
     }
 
     /**
@@ -45,7 +45,7 @@ public abstract class OmAds {
      * @param activity currently paused activity
      */
     public static void onPause(Activity activity) {
-        OmManager.getInstance().onPause(activity);
+        NmManager.getInstance().onPause(activity);
     }
 
     /**
@@ -54,7 +54,7 @@ public abstract class OmAds {
      * @return true : init OK; or false: init wrong
      */
     public static boolean isInit() {
-        return OmManager.getInstance().isInit();
+        return NmManager.getInstance().isInit();
     }
 
     /**
@@ -64,7 +64,7 @@ public abstract class OmAds {
      * @param currency the IAP currency unit
      */
     public static void setIAP(float iapCount, String currency) {
-        OmManager.getInstance().setIAP(iapCount, currency);
+        NmManager.getInstance().setIAP(iapCount, currency);
     }
 
     /**
@@ -73,7 +73,7 @@ public abstract class OmAds {
      * @return the sdk version
      */
     public static String getSDKVersion() {
-        return OmManager.getInstance().getSDKVersion();
+        return NmManager.getInstance().getSDKVersion();
     }
 
     /**
@@ -90,11 +90,11 @@ public abstract class OmAds {
      * @param userId userId
      */
     public static void setUserId(String userId) {
-        OmManager.getInstance().setUserId(userId);
+        NmManager.getInstance().setUserId(userId);
     }
 
     public static String getUserId() {
-        return OmManager.getInstance().getUserId();
+        return NmManager.getInstance().getUserId();
     }
 
     /**
@@ -103,7 +103,7 @@ public abstract class OmAds {
      * @param map Support basic data types and array types
      */
     public static void setCustomTags(Map<String, Object> map) {
-        OmManager.getInstance().setCustomTags(map);
+        NmManager.getInstance().setCustomTags(map);
     }
 
     /**
@@ -111,49 +111,49 @@ public abstract class OmAds {
      * Returns null if not set
      */
     public static Map<String, Object> getCustomTags() {
-        return OmManager.getInstance().getCustomTags();
+        return NmManager.getInstance().getCustomTags();
     }
 
     /**
      * App defined user tag
      */
     public static void setCustomTag(String key, String value) {
-        OmManager.getInstance().setCustomTagObject(key, value);
+        NmManager.getInstance().setCustomTagObject(key, value);
     }
 
     /**
      * App defined user tag
      */
     public static void setCustomTag(String key, String... values) {
-        OmManager.getInstance().setCustomTagObjects(key, values);
+        NmManager.getInstance().setCustomTagObjects(key, values);
     }
 
     /**
      * App defined user tag
      */
     public static void setCustomTag(String key, Number value) {
-        OmManager.getInstance().setCustomTagObject(key, value);
+        NmManager.getInstance().setCustomTagObject(key, value);
     }
 
     /**
      * App defined user tag
      */
     public static void setCustomTag(String key, Number... values) {
-        OmManager.getInstance().setCustomTagObjects(key, values);
+        NmManager.getInstance().setCustomTagObjects(key, values);
     }
 
     /**
      * Remove app defined user tag
      */
     public static void removeCustomTag(String key) {
-        OmManager.getInstance().removeCustomTag(key);
+        NmManager.getInstance().removeCustomTag(key);
     }
 
     /**
      * Remove app defined user tag
      */
     public static void clearCustomTags() {
-        OmManager.getInstance().clearCustomTags();
+        NmManager.getInstance().clearCustomTags();
     }
 
     /**
@@ -181,7 +181,7 @@ public abstract class OmAds {
      * @param consent whether the user provided consent
      */
     public static void setGDPRConsent(boolean consent) {
-        OmManager.getInstance().setGDPRConsent(consent);
+        NmManager.getInstance().setGDPRConsent(consent);
     }
 
     /**
@@ -190,7 +190,7 @@ public abstract class OmAds {
      * @param restricted whether you want your content treated as child-directed for purposes of COPPA
      */
     public static void setAgeRestricted(boolean restricted) {
-        OmManager.getInstance().setAgeRestricted(restricted);
+        NmManager.getInstance().setAgeRestricted(restricted);
     }
 
     /**
@@ -199,7 +199,7 @@ public abstract class OmAds {
      * @param age user age
      */
     public static void setUserAge(int age) {
-        OmManager.getInstance().setUserAge(age);
+        NmManager.getInstance().setUserAge(age);
     }
 
     /**
@@ -208,7 +208,7 @@ public abstract class OmAds {
      * @param gender user gender
      */
     public static void setUserGender(String gender) {
-        OmManager.getInstance().setUserGender(gender);
+        NmManager.getInstance().setUserGender(gender);
     }
 
     /**
@@ -220,7 +220,7 @@ public abstract class OmAds {
      * @param value privacy limit
      */
     public static void setUSPrivacyLimit(boolean value) {
-        OmManager.getInstance().setUSPrivacyLimit(value);
+        NmManager.getInstance().setUSPrivacyLimit(value);
     }
 
     /**
@@ -229,7 +229,7 @@ public abstract class OmAds {
      * @return consent status
      */
     public static Boolean getGDPRConsent() {
-        return OmManager.getInstance().getGDPRConsent();
+        return NmManager.getInstance().getGDPRConsent();
     }
 
     /**
@@ -238,7 +238,7 @@ public abstract class OmAds {
      * @return COPPA status
      */
     public static Boolean getAgeRestricted() {
-        return OmManager.getInstance().getAgeRestricted();
+        return NmManager.getInstance().getAgeRestricted();
     }
 
     /**
@@ -247,7 +247,7 @@ public abstract class OmAds {
      * @return the user's current age
      */
     public static Integer getUserAge() {
-        return OmManager.getInstance().getUserAge();
+        return NmManager.getInstance().getUserAge();
     }
 
     /**
@@ -256,7 +256,7 @@ public abstract class OmAds {
      * @return the user's current gender
      */
     public static String getUserGender() {
-        return OmManager.getInstance().getUserGender();
+        return NmManager.getInstance().getUserGender();
     }
 
     /**
@@ -265,7 +265,7 @@ public abstract class OmAds {
      * @return CCPA status
      */
     public static Boolean getUSPrivacyLimit() {
-        return OmManager.getInstance().getUSPrivacyLimit();
+        return NmManager.getInstance().getUSPrivacyLimit();
     }
 
     /**

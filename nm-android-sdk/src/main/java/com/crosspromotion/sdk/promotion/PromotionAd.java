@@ -5,7 +5,7 @@ package com.crosspromotion.sdk.promotion;
 
 import android.app.Activity;
 
-import com.crosspromotion.sdk.core.OmAdNetworkManager;
+import com.crosspromotion.sdk.core.NmAdNetworkManager;
 
 import java.util.Map;
 
@@ -17,28 +17,28 @@ public final class PromotionAd {
      * @return true or false
      */
     public static boolean isReady(String placementId) {
-        return OmAdNetworkManager.getInstance().isPromotionAdReady(placementId);
+        return NmAdNetworkManager.getInstance().isPromotionAdReady(placementId);
     }
 
     /**
      * Load ad.
      */
     public static void loadAd(String placementId, Map extras) {
-        OmAdNetworkManager.getInstance().loadPromotionAd(placementId, extras);
+        NmAdNetworkManager.getInstance().loadPromotionAd(placementId, extras);
     }
 
     /**
      * shows ad with default placement and default scene
      */
     public static void showAd(Activity activity, PromotionAdRect rect, String placementId) {
-        OmAdNetworkManager.getInstance().showPromotionAd(activity, rect, placementId);
+        NmAdNetworkManager.getInstance().showPromotionAd(activity, rect, placementId);
     }
 
     /**
      * shows ad with default placement and default scene
      */
     public static void hideAd(String placementId) {
-        OmAdNetworkManager.getInstance().hidePromotionAd(placementId);
+        NmAdNetworkManager.getInstance().hidePromotionAd(placementId);
     }
 
     /**
@@ -48,6 +48,6 @@ public final class PromotionAd {
      * @param listener the listener
      */
     public static void setAdListener(String placementId, PromotionAdListener listener) {
-        OmAdNetworkManager.getInstance().setPromotionAdListener(placementId, listener);
+        NmAdNetworkManager.getInstance().setPromotionAdListener(placementId, listener);
     }
 }

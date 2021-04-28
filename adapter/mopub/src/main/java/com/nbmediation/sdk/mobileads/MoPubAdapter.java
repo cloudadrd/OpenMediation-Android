@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public class MoPubAdapter extends CustomAdsAdapter implements MoPubRewardedAdListener
         , MoPubInterstitial.InterstitialAdListener {
-    private static final String TAG = "OM-MoPub";
+    private static final String TAG = "NM-MoPub";
     private static final String TP_PARAM = "imext";
 
     private volatile InitState mInitState = InitState.NOT_INIT;

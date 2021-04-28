@@ -20,7 +20,7 @@ public class AdLog {
     }
 
     private boolean isDebug = false;
-    private static final String TAG = "OmAds";
+    private static final String TAG = "NmAds";
 
     private AdLog() {
 

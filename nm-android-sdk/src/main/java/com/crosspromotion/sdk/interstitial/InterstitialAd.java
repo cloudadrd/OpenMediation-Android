@@ -3,7 +3,7 @@
 
 package com.crosspromotion.sdk.interstitial;
 
-import com.crosspromotion.sdk.core.OmAdNetworkManager;
+import com.crosspromotion.sdk.core.NmAdNetworkManager;
 
 import java.util.Map;
 
@@ -15,21 +15,21 @@ public final class InterstitialAd {
      * @return true or false
      */
     public static boolean isReady(String placementId) {
-        return OmAdNetworkManager.getInstance().isInterstitialAdReady(placementId);
+        return NmAdNetworkManager.getInstance().isInterstitialAdReady(placementId);
     }
 
     /**
      * Load ad.
      */
     public static void loadAdWithPayload(String placementId, String payload, Map extras) {
-        OmAdNetworkManager.getInstance().loadInterstitialAd(placementId, payload, extras);
+        NmAdNetworkManager.getInstance().loadInterstitialAd(placementId, payload, extras);
     }
 
     /**
      * shows ad with default placement and default scene
      */
     public static void showAd(String placementId) {
-        OmAdNetworkManager.getInstance().showInterstitialAd(placementId);
+        NmAdNetworkManager.getInstance().showInterstitialAd(placementId);
     }
 
     /**
@@ -39,6 +39,6 @@ public final class InterstitialAd {
      * @param listener the listener
      */
     public static void setAdListener(String placementId, InterstitialAdListener listener) {
-        OmAdNetworkManager.getInstance().setInterstitialAdListener(placementId, listener);
+        NmAdNetworkManager.getInstance().setInterstitialAdListener(placementId, listener);
     }
 }

@@ -23,7 +23,7 @@ import com.nbmediation.sdk.ImpressionData;
 import com.nbmediation.sdk.ImpressionDataListener;
 import com.nbmediation.sdk.InitCallback;
 import com.nbmediation.sdk.InitConfiguration;
-import com.nbmediation.sdk.OmAds;
+import com.nbmediation.sdk.NmAds;
 import com.nbmediation.sdk.banner.AdSize;
 import com.nbmediation.sdk.banner.BannerAd;
 import com.nbmediation.sdk.banner.BannerAdListener;
@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
                 .appKey(NewApiUtils.APPKEY)
                 .logEnable(true)
                 .build();
-        OmAds.init(this, configuration, new InitCallback() {
+        NmAds.init(this, configuration, new InitCallback() {
             @Override
             public void onSuccess() {
                 NewApiUtils.printLog("init success");
@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
                 Log.d("MainActivity", "-----onImpression-----error: " + error + ", impressionData: " + impressionData);
             }
         };
-        OmAds.addImpressionDataListener(mDataListener);
+        NmAds.addImpressionDataListener(mDataListener);
     }
 
     private void setVideoListener() {
@@ -411,7 +411,7 @@ public class MainActivity extends Activity {
             nativeAd.destroy();
         }
         if (mDataListener != null) {
-            OmAds.removeImpressionDataListener(mDataListener);
+            NmAds.removeImpressionDataListener(mDataListener);
         }
     }
 }

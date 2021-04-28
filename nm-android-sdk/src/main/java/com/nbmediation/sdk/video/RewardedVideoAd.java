@@ -3,15 +3,15 @@
 
 package com.nbmediation.sdk.video;
 
-import com.nbmediation.sdk.core.OmManager;
-import com.nbmediation.sdk.core.BaseOmAds;
+import com.nbmediation.sdk.core.NmManager;
+import com.nbmediation.sdk.core.BaseNmAds;
 import com.nbmediation.sdk.utils.constant.CommonConstants;
 import com.nbmediation.sdk.utils.model.Scene;
 
 /**
  * RewardedVideoAd ads API
  */
-public final class RewardedVideoAd extends BaseOmAds {
+public final class RewardedVideoAd extends BaseNmAds {
 
     /**
      * Returns default placement availability
@@ -19,7 +19,7 @@ public final class RewardedVideoAd extends BaseOmAds {
      * @return true or false
      */
     public static boolean isReady() {
-        return OmManager.getInstance().isRewardedVideoReady("");
+        return NmManager.getInstance().isRewardedVideoReady("");
     }
 
     /**
@@ -46,7 +46,7 @@ public final class RewardedVideoAd extends BaseOmAds {
      * Loads ads with default placement
      */
     public static void loadAd() {
-        OmManager.getInstance().loadRewardedVideo("");
+        NmManager.getInstance().loadRewardedVideo("");
     }
 
     /**
@@ -62,7 +62,7 @@ public final class RewardedVideoAd extends BaseOmAds {
      * @param scene optional param ,if null, shows default scene
      */
     public static void showAd(String scene) {
-        OmManager.getInstance().showRewardedVideo("", scene);
+        NmManager.getInstance().showRewardedVideo("", scene);
     }
 
     /**
@@ -72,7 +72,7 @@ public final class RewardedVideoAd extends BaseOmAds {
      * @param extId custom id
      */
     public static void setExtId(String scene, String extId) {
-        OmManager.getInstance().setRewardedExtId("", scene, extId);
+        NmManager.getInstance().setRewardedExtId("", scene, extId);
     }
 
     /**
@@ -82,7 +82,7 @@ public final class RewardedVideoAd extends BaseOmAds {
      * @param listener the listener
      */
     public static void setAdListener(RewardedVideoListener listener) {
-        OmManager.getInstance().setRewardedVideoListener("", listener);
+        NmManager.getInstance().setRewardedVideoListener("", listener);
     }
 
     /**
@@ -92,10 +92,10 @@ public final class RewardedVideoAd extends BaseOmAds {
      * @param listener the listener
      */
     public static void addAdListener(RewardedVideoListener listener) {
-        OmManager.getInstance().addRewardedVideoListener("", listener);
+        NmManager.getInstance().addRewardedVideoListener("", listener);
     }
 
     public static void removeAdListener(RewardedVideoListener listener) {
-        OmManager.getInstance().removeRewardedVideoListener("", listener);
+        NmManager.getInstance().removeRewardedVideoListener("", listener);
     }
 }

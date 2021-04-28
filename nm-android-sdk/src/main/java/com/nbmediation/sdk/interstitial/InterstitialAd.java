@@ -3,15 +3,15 @@
 
 package com.nbmediation.sdk.interstitial;
 
-import com.nbmediation.sdk.core.OmManager;
-import com.nbmediation.sdk.core.BaseOmAds;
+import com.nbmediation.sdk.core.NmManager;
+import com.nbmediation.sdk.core.BaseNmAds;
 import com.nbmediation.sdk.utils.constant.CommonConstants;
 import com.nbmediation.sdk.utils.model.Scene;
 
 /**
  * InterstitialAd API
  */
-public class InterstitialAd extends BaseOmAds {
+public class InterstitialAd extends BaseNmAds {
 
     /**
      * Returns default placement availability
@@ -19,7 +19,7 @@ public class InterstitialAd extends BaseOmAds {
      * @return true or false
      */
     public static boolean isReady() {
-        return OmManager.getInstance().isInterstitialAdReady("");
+        return NmManager.getInstance().isInterstitialAdReady("");
     }
 
     /**
@@ -46,7 +46,7 @@ public class InterstitialAd extends BaseOmAds {
      * Load ad.
      */
     public static void loadAd() {
-        OmManager.getInstance().loadInterstitialAd("");
+        NmManager.getInstance().loadInterstitialAd("");
     }
 
     /**
@@ -62,7 +62,7 @@ public class InterstitialAd extends BaseOmAds {
      * @param scene optional param ,if null, show default scene
      */
     public static void showAd(String scene) {
-        OmManager.getInstance().showInterstitialAd("", scene);
+        NmManager.getInstance().showInterstitialAd("", scene);
     }
 
     /**
@@ -72,14 +72,14 @@ public class InterstitialAd extends BaseOmAds {
      * @param listener the listener
      */
     public static void setAdListener(InterstitialAdListener listener) {
-        OmManager.getInstance().setInterstitialAdListener("", listener);
+        NmManager.getInstance().setInterstitialAdListener("", listener);
     }
 
     public static void addAdListener(InterstitialAdListener listener) {
-        OmManager.getInstance().addInterstitialAdListener("", listener);
+        NmManager.getInstance().addInterstitialAdListener("", listener);
     }
 
     public static void removeAdListener(InterstitialAdListener listener) {
-        OmManager.getInstance().removeInterstitialAdListener("", listener);
+        NmManager.getInstance().removeInterstitialAdListener("", listener);
     }
 }

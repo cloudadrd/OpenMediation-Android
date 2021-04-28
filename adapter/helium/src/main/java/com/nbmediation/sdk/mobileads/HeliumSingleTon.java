@@ -114,7 +114,7 @@ public class HeliumSingleTon {
             });
         } catch (Exception e) {
             mInitState = InitState.NOT_INIT;
-            AdLog.getSingleton().LogE("OM-ChartboostBid", e.getMessage());
+            AdLog.getSingleton().LogE("NM-ChartboostBid", e.getMessage());
             for (HeliumInitCallback callback : mCallbacks) {
                 if (callback != null) {
                     callback.initFailed(e.getMessage());

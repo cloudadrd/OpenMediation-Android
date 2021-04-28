@@ -332,7 +332,7 @@ public class AppLovinAdapter extends CustomAdsAdapter implements AppLovinAdVideo
 
     @Override
     public void adClicked(AppLovinAd appLovinAd) {
-        AdLog.getSingleton().LogD("OM-AppLovin", "adClicked:" + appLovinAd);
+        AdLog.getSingleton().LogD("NM-AppLovin", "adClicked:" + appLovinAd);
         if (appLovinAd != null) {
             RewardedVideoCallback callback = mRvCallbacks.get(appLovinAd.getZoneId());
             if (callback != null) {
@@ -348,7 +348,7 @@ public class AppLovinAdapter extends CustomAdsAdapter implements AppLovinAdVideo
 
     @Override
     public void adDisplayed(AppLovinAd appLovinAd) {
-        AdLog.getSingleton().LogD("OM-AppLovin", "adDisplayed:" + appLovinAd);
+        AdLog.getSingleton().LogD("NM-AppLovin", "adDisplayed:" + appLovinAd);
         if (appLovinAd != null) {
             RewardedVideoCallback callback = mRvCallbacks.get(appLovinAd.getZoneId());
             if (callback != null) {
@@ -364,7 +364,7 @@ public class AppLovinAdapter extends CustomAdsAdapter implements AppLovinAdVideo
 
     @Override
     public void adHidden(AppLovinAd appLovinAd) {
-        AdLog.getSingleton().LogD("OM-AppLovin", "adHidden:" + appLovinAd);
+        AdLog.getSingleton().LogD("NM-AppLovin", "adHidden:" + appLovinAd);
         if (appLovinAd != null) {
             RewardedVideoCallback callback = mRvCallbacks.get(appLovinAd.getZoneId());
             if (callback != null) {
@@ -380,7 +380,7 @@ public class AppLovinAdapter extends CustomAdsAdapter implements AppLovinAdVideo
 
     @Override
     public void videoPlaybackBegan(AppLovinAd appLovinAd) {
-        AdLog.getSingleton().LogD("OM-AppLovin", "videoPlaybackBegan:" + appLovinAd);
+        AdLog.getSingleton().LogD("NM-AppLovin", "videoPlaybackBegan:" + appLovinAd);
         if (appLovinAd != null) {
             RewardedVideoCallback callback = mRvCallbacks.get(appLovinAd.getZoneId());
             if (callback != null) {
@@ -391,7 +391,7 @@ public class AppLovinAdapter extends CustomAdsAdapter implements AppLovinAdVideo
 
     @Override
     public void videoPlaybackEnded(AppLovinAd appLovinAd, double percentViewed, boolean fullyWatched) {
-        AdLog.getSingleton().LogD("OM-AppLovin", "videoPlaybackEnded:" + appLovinAd
+        AdLog.getSingleton().LogD("NM-AppLovin", "videoPlaybackEnded:" + appLovinAd
                 + ", percentViewed:" + percentViewed + ", fullyWatched:" + fullyWatched);
         if (appLovinAd != null) {
             RewardedVideoCallback callback = mRvCallbacks.get(appLovinAd.getZoneId());

@@ -13,7 +13,7 @@ import android.webkit.WebView;
 import android.widget.FrameLayout;
 
 import com.crosspromotion.sdk.bean.AdBean;
-import com.crosspromotion.sdk.core.OmAdNetworkManager;
+import com.crosspromotion.sdk.core.NmAdNetworkManager;
 import com.crosspromotion.sdk.promotion.PromotionAdRect;
 import com.crosspromotion.sdk.report.AdReport;
 import com.crosspromotion.sdk.utils.Cache;
@@ -234,18 +234,18 @@ public final class PromotionAdView implements JsBridge.MessageListener {
         DeveloperLog.LogD("PromotionAdView js called click");
         AdReport.CLKReport(mContext, mPlacementId, mAdBean);
         PUtils.doClick(mContext, mPlacementId, mAdBean);
-        OmAdNetworkManager.getInstance().getPromotionManager(mPlacementId).onAdsClicked();
+        NmAdNetworkManager.getInstance().getPromotionManager(mPlacementId).onAdsClicked();
     }
 
     private void addEvent(String event) {
         DeveloperLog.LogD("PromotionAdView js called addEvent");
-        OmAdNetworkManager.getInstance().getPromotionManager(mPlacementId).onAddEvents(event);
+        NmAdNetworkManager.getInstance().getPromotionManager(mPlacementId).onAddEvents(event);
     }
 
     private void wvClick() {
         DeveloperLog.LogD("PromotionAdView js called wvClick");
         AdReport.CLKReport(mContext, mPlacementId, mAdBean);
-        OmAdNetworkManager.getInstance().getPromotionManager(mPlacementId).onAdsClicked();
+        NmAdNetworkManager.getInstance().getPromotionManager(mPlacementId).onAdsClicked();
     }
 
     private ViewGroup.LayoutParams getViewLayoutParams(PromotionAdRect rect, Activity activity) {

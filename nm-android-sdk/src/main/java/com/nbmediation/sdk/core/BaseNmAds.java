@@ -14,7 +14,7 @@ import com.nbmediation.sdk.utils.model.Scene;
 /**
  * The type Base om ads.
  */
-public abstract class BaseOmAds {
+public abstract class BaseNmAds {
     /**
      * Returns whether this scene is capped
      *

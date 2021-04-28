@@ -5,13 +5,13 @@ package com.crosspromotion.sdk;
 
 import android.content.Context;
 
-import com.crosspromotion.sdk.core.OmAdNetworkManager;
+import com.crosspromotion.sdk.core.NmAdNetworkManager;
 import com.crosspromotion.sdk.utils.CpConstants;
 
 public final class CrossPromotionAds {
 
     public static void init(Context context) {
-        OmAdNetworkManager.getInstance().init(context);
+        NmAdNetworkManager.getInstance().init(context);
     }
 
     /**

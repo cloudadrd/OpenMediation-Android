@@ -49,12 +49,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.nbmediation.sdk.OmAds.AD_TYPE;
+import static com.nbmediation.sdk.NmAds.AD_TYPE;
 
 /**
- * The type Om manager.
+ * The type Nm manager.
  */
-public final class OmManager implements InitCallback {
+public final class NmManager implements InitCallback {
     private final Map<String, IsManager> mIsManagers;
     private final Map<String, RvManager> mRvManagers;
     private final Map<String, CpManager> mCpManagers;
@@ -79,8 +79,8 @@ public final class OmManager implements InitCallback {
 
     private Map<String, Object> mTagsMap;
 
-    private static final class OmHolder {
-        private static final OmManager INSTANCE = new OmManager();
+    private static final class NmHolder {
+        private static final NmManager INSTANCE = new NmManager();
     }
 
     /**
@@ -124,7 +124,7 @@ public final class OmManager implements InitCallback {
         }
     }
 
-    private OmManager() {
+    private NmManager() {
         mIsManagers = new HashMap<>();
         mRvManagers = new HashMap<>();
         mCpManagers = new HashMap<>();
@@ -141,8 +141,8 @@ public final class OmManager implements InitCallback {
      *
      * @return the instance
      */
-    public static OmManager getInstance() {
-        return OmHolder.INSTANCE;
+    public static NmManager getInstance() {
+        return NmHolder.INSTANCE;
     }
 
     /**
@@ -297,7 +297,7 @@ public final class OmManager implements InitCallback {
             mTagsMap = new ConcurrentHashMap<>();
         }
         if (mTagsMap.size() + map.size() > 10) {
-            Log.w("OmAds", "The number of tags should not be more than 10!");
+            Log.w("NmAds", "The number of tags should not be more than 10!");
             return;
         }
         mTagsMap.putAll(map);
@@ -313,18 +313,18 @@ public final class OmManager implements InitCallback {
 
     private boolean checkValidMap(Map<String, Object> map) {
         if (map == null) {
-            Log.w("OmAds", "The map of tags is empty!");
+            Log.w("NmAds", "The map of tags is empty!");
             return false;
         }
         if (map.size() >= 10) {
-            Log.w("OmAds", "The number of tags should not be more than 10!");
+            Log.w("NmAds", "The number of tags should not be more than 10!");
             return false;
         }
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
             if (TextUtils.isEmpty(key)) {
-                Log.w("OmAds", "The key of tag should not be empty!");
+                Log.w("NmAds", "The key of tag should not be empty!");
                 return false;
             }
             if (checkInvalidTagValue(value)) {
@@ -336,11 +336,11 @@ public final class OmManager implements InitCallback {
 
     public void setCustomTagObject(String key, Object value) {
         if (TextUtils.isEmpty(key)) {
-            Log.w("OmAds", "The key of tag should not be empty!");
+            Log.w("NmAds", "The key of tag should not be empty!");
             return;
         }
         if (value == null) {
-            Log.w("OmAds", "The value of tag should not be empty!");
+            Log.w("NmAds", "The value of tag should not be empty!");
             return;
         }
         if (checkInvalidTagValue(value)) {
@@ -350,7 +350,7 @@ public final class OmManager implements InitCallback {
             mTagsMap = new ConcurrentHashMap<>();
         }
         if (mTagsMap.size() >= 10) {
-            Log.w("OmAds", "The number of tags should not be more than 10!");
+            Log.w("NmAds", "The number of tags should not be more than 10!");
             return;
         }
         mTagsMap.put(key, value);
@@ -358,11 +358,11 @@ public final class OmManager implements InitCallback {
 
     public void setCustomTagObjects(String key, Object[] values) {
         if (TextUtils.isEmpty(key)) {
-            Log.w("OmAds", "The key of tag should not be empty!");
+            Log.w("NmAds", "The key of tag should not be empty!");
             return;
         }
         if (values == null || values.length == 0) {
-            Log.w("OmAds", "The value of tag should not be empty!");
+            Log.w("NmAds", "The value of tag should not be empty!");
             return;
         }
         for (Object value : values) {
@@ -374,7 +374,7 @@ public final class OmManager implements InitCallback {
             mTagsMap = new ConcurrentHashMap<>();
         }
         if (mTagsMap.size() >= 10) {
-            Log.w("OmAds", "The number of tags should not be more than 10!");
+            Log.w("NmAds", "The number of tags should not be more than 10!");
             return;
         }
         mTagsMap.put(key, values);
@@ -382,17 +382,17 @@ public final class OmManager implements InitCallback {
 
     private boolean checkInvalidTagValue(Object value) {
         if (value == null) {
-            Log.w("OmAds", "The value of tag should not be empty!");
+            Log.w("NmAds", "The value of tag should not be empty!");
             return true;
         }
         if (value instanceof String) {
             String stringValue = (String) value;
             if (stringValue.length() == 0) {
-                Log.w("OmAds", "The value of tag should not be empty!");
+                Log.w("NmAds", "The value of tag should not be empty!");
                 return true;
             }
             if (stringValue.length() > 48) {
-                Log.w("OmAds", "The length of tag value should not be more than 48!");
+                Log.w("NmAds", "The length of tag value should not be more than 48!");
                 return true;
             }
         }
@@ -433,7 +433,7 @@ public final class OmManager implements InitCallback {
      * @return the boolean
      */
     public boolean isSceneCapped(String placementId, String sceneName) {
-        return BaseOmAds.isSceneCapped(placementId, sceneName);
+        return BaseNmAds.isSceneCapped(placementId, sceneName);
     }
 
     /**

@@ -225,7 +225,7 @@ public class MoPubNative extends CustomNativeEvent implements com.mopub.nativead
             public void onResponse(Bitmap bitmap) {
                 mContent = bitmap;
                 onInsReady(mAdInfo);
-                AdLog.getSingleton().LogD("OM-Mopub", "Mopub Native ad load success ");
+                AdLog.getSingleton().LogD("NM-Mopub", "Mopub Native ad load success ");
             }
         }, new Response.ErrorListener() {
             @Override
@@ -296,7 +296,7 @@ public class MoPubNative extends CustomNativeEvent implements com.mopub.nativead
             mNativeAd.prepare(parent);
             mNativeAd.renderAdView(parent);
         } catch (Throwable e) {
-            AdLog.getSingleton().LogE("Om-Mopub: addAndShowAdLogo error : " + e.getMessage());
+            AdLog.getSingleton().LogE("Nm-Mopub: addAndShowAdLogo error : " + e.getMessage());
         }
     }
 }

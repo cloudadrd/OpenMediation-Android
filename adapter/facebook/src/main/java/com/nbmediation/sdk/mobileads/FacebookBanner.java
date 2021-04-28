@@ -76,7 +76,7 @@ public class FacebookBanner extends CustomBannerEvent implements AdListener {
         if (isDestroyed) {
             return;
         }
-        AdLog.getSingleton().LogD("OM-Facebook", "Facebook Banner ad load success ");
+        AdLog.getSingleton().LogD("NM-Facebook", "Facebook Banner ad load success ");
         onInsReady(adView);
     }
 

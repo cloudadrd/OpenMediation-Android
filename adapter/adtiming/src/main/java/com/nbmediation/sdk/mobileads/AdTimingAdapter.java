@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class AdTimingAdapter extends CustomAdsAdapter implements RewardedVideoListener, InterstitialAdListener {
-    private static final String TAG = "OM-AdTiming: ";
+    private static final String TAG = "NM-AdTiming: ";
     private static final String PAY_LOAD = "pay_load";
     private ConcurrentMap<String, RewardedVideoCallback> mInitVideoListeners;
     private ConcurrentMap<String, InterstitialAdCallback> mInitInterstitialListeners;

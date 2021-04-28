@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.nbmediation.sdk.bid.BidResponse;
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.utils.AdsUtil;
 import com.nbmediation.sdk.utils.AdtUtil;
 import com.nbmediation.sdk.utils.DeveloperLog;
@@ -82,7 +82,7 @@ public class WaterFallHelper {
      * @param reqId     the reqId
      * @throws Exception the exception
      */
-    public static void wfRequest(final PlacementInfo info, final OmManager.LOAD_TYPE type,
+    public static void wfRequest(final PlacementInfo info, final NmManager.LOAD_TYPE type,
                                  final List<BidResponse> c2sResult,
                                  final List<BidResponse> s2sResult,
                                  final List<InstanceLoadStatus> statusList,

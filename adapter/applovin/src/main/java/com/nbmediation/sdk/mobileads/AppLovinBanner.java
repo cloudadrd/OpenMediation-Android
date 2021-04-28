@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class AppLovinBanner extends CustomBannerEvent implements AppLovinAdLoadListener, AppLovinAdClickListener, AppLovinAdDisplayListener {
     private AppLovinAdView mAppLovinAdView;
-    private static final String TAG = "OM-AppLovin";
+    private static final String TAG = "NM-AppLovin";
 
     @Override
     public void setGDPRConsent(Context context, boolean consent) {

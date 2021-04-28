@@ -73,7 +73,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
                     Chartboost.setAutoCacheAds(true);
                     hasInit.set(true);
                 } catch (Throwable e) {
-                    AdLog.getSingleton().LogE("OM-Chartboost", e.getMessage());
+                    AdLog.getSingleton().LogE("NM-Chartboost", e.getMessage());
                 }
             }
         };
@@ -289,7 +289,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
         @Override
         public void didCacheInterstitial(String location) {
             InterstitialAdCallback listener = mIsCallbacks.get(location);
-            AdLog.getSingleton().LogD("OM-Chartboost Interstitial ad load success");
+            AdLog.getSingleton().LogD("NM-Chartboost Interstitial ad load success");
             if (listener != null && mIsLoadTriggerIds.contains(location)) {
                 listener.onInterstitialAdLoadSuccess();
                 mIsLoadTriggerIds.remove(location);
@@ -309,7 +309,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
 
         @Override
         public void didClickInterstitial(String location) {
-            AdLog.getSingleton().LogD("OM-Chartboost Interstitial ad click");
+            AdLog.getSingleton().LogD("NM-Chartboost Interstitial ad click");
             InterstitialAdCallback listener = mIsCallbacks.get(location);
             if (listener != null) {
                 listener.onInterstitialAdClick();
@@ -318,7 +318,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
 
         @Override
         public void didDisplayInterstitial(String location) {
-            AdLog.getSingleton().LogD("OM-Chartboost Interstitial ad display");
+            AdLog.getSingleton().LogD("NM-Chartboost Interstitial ad display");
             InterstitialAdCallback listener = mIsCallbacks.get(location);
             if (listener != null) {
                 listener.onInterstitialAdShowSuccess();
@@ -327,7 +327,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
 
         @Override
         public void didDismissInterstitial(String location) {
-            AdLog.getSingleton().LogD("OM-Chartboost Interstitial ad close");
+            AdLog.getSingleton().LogD("NM-Chartboost Interstitial ad close");
             InterstitialAdCallback listener = mIsCallbacks.get(location);
             if (listener != null) {
                 listener.onInterstitialAdClosed();
@@ -337,7 +337,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
         @Override
         public void didCacheRewardedVideo(String location) {
             RewardedVideoCallback listener = mRvCallbacks.get(location);
-            AdLog.getSingleton().LogD("OM-Chartboost RewardVideo ad load success");
+            AdLog.getSingleton().LogD("NM-Chartboost RewardVideo ad load success");
             if (listener != null && mRvLoadTriggerIds.contains(location)) {
                 listener.onRewardedVideoLoadSuccess();
                 mRvLoadTriggerIds.remove(location);
@@ -358,7 +358,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
         @Override
         public void didClickRewardedVideo(String location) {
             RewardedVideoCallback listener = mRvCallbacks.get(location);
-            AdLog.getSingleton().LogD("OM-Chartboost RewardVideo ad click");
+            AdLog.getSingleton().LogD("NM-Chartboost RewardVideo ad click");
             if (listener != null) {
                 listener.onRewardedVideoAdClicked();
             }
@@ -367,7 +367,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
         @Override
         public void didCompleteRewardedVideo(String location, int reward) {
             RewardedVideoCallback listener = mRvCallbacks.get(location);
-            AdLog.getSingleton().LogD("OM-Chartboost RewardVideo ad complete");
+            AdLog.getSingleton().LogD("NM-Chartboost RewardVideo ad complete");
             if (listener != null) {
                 listener.onRewardedVideoAdEnded();
                 listener.onRewardedVideoAdRewarded();
@@ -376,7 +376,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
 
         @Override
         public void didDismissRewardedVideo(String location) {
-            AdLog.getSingleton().LogD("OM-Chartboost RewardVideo ad close");
+            AdLog.getSingleton().LogD("NM-Chartboost RewardVideo ad close");
             RewardedVideoCallback listener = mRvCallbacks.get(location);
             if (listener != null) {
                 listener.onRewardedVideoAdClosed();
@@ -385,7 +385,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
 
         @Override
         public void didDisplayRewardedVideo(String location) {
-            AdLog.getSingleton().LogD("OM-Chartboost RewardVideo ad display");
+            AdLog.getSingleton().LogD("NM-Chartboost RewardVideo ad display");
             RewardedVideoCallback listener = mRvCallbacks.get(location);
             if (listener != null) {
                 listener.onRewardedVideoAdShowSuccess();
@@ -396,7 +396,7 @@ public class ChartboostAdapter extends CustomAdsAdapter {
         @Override
         public void didInitialize() {
             super.didInitialize();
-            AdLog.getSingleton().LogD("OM-Chartboost init success");
+            AdLog.getSingleton().LogD("NM-Chartboost init success");
             onInitCallback();
         }
     }

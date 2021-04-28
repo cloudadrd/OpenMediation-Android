@@ -9,7 +9,7 @@ import android.text.TextUtils;
 
 import com.nbmediation.sdk.bid.BidResponse;
 import com.nbmediation.sdk.core.MetaData;
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.utils.AdtUtil;
 import com.nbmediation.sdk.utils.DensityUtil;
 import com.nbmediation.sdk.utils.DeveloperLog;
@@ -395,9 +395,9 @@ public class RequestBuilder {
         }
         String channel = DataCache.getInstance().getFromMem(KeyConstants.KEY_APP_CHANNEL, String.class);
         body.put(KeyConstants.RequestBody.KEY_CHANNEL, channel);
-        body.put(KeyConstants.RequestBody.KEY_CDID, OmManager.getInstance().getUserId());
-        body.put(KeyConstants.RequestBody.KEY_TAGS, OmManager.getInstance().getTagsObject());
-        appendRegsObject(body, OmManager.getInstance().getMetaData());
+        body.put(KeyConstants.RequestBody.KEY_CDID, NmManager.getInstance().getUserId());
+        body.put(KeyConstants.RequestBody.KEY_TAGS, NmManager.getInstance().getTagsObject());
+        appendRegsObject(body, NmManager.getInstance().getMetaData());
         return body;
     }
 

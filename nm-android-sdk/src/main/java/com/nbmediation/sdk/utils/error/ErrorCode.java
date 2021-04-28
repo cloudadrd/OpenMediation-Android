@@ -33,7 +33,7 @@ public interface ErrorCode {
     String ERROR_EMPTY_INSTANCE_KEY = "instance key is empty";
     String ERROR_AD_OBJECT_DESTROYED = "ad object is destroyed";
     String ERROR_AD_IS_SHOWING = "ad is showing";
-    String ERROR_INIT_FAILED = "Om SDK init failed";
+    String ERROR_INIT_FAILED = "Nm SDK init failed";
     String ERROR_LOAD_AD_FAILED_CAUSE_NOT_INIT_WITH_EMPTY_APPKEY = "Load ads failed cause sdk hasn't been init with empty appKey";
 
     /**

@@ -16,7 +16,7 @@ import com.qq.e.comm.util.AdError;
 import java.util.Map;
 
 public class TencentAdBanner extends CustomBannerEvent implements UnifiedBannerADListener {
-    private static String TAG = "OM-TencentAd: ";
+    private static String TAG = "NM-TencentAd: ";
     private UnifiedBannerView mBannerView;
 
     @Override

@@ -5,15 +5,15 @@ package com.nbmediation.sdk.promotion;
 
 import android.app.Activity;
 
-import com.nbmediation.sdk.core.BaseOmAds;
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.BaseNmAds;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.utils.constant.CommonConstants;
 import com.nbmediation.sdk.utils.model.Scene;
 
 /**
  * AdTiming PromotionAd API
  */
-public class PromotionAd extends BaseOmAds {
+public class PromotionAd extends BaseNmAds {
 
     /**
      * Returns default placement's availability
@@ -21,7 +21,7 @@ public class PromotionAd extends BaseOmAds {
      * @return true or false
      */
     public static boolean isReady() {
-        return OmManager.getInstance().isPromotionAdReady("");
+        return NmManager.getInstance().isPromotionAdReady("");
     }
 
     /**
@@ -46,7 +46,7 @@ public class PromotionAd extends BaseOmAds {
      * Loads ad for default Placement
      */
     public static void loadAd() {
-        OmManager.getInstance().loadPromotionAd("");
+        NmManager.getInstance().loadPromotionAd("");
     }
 
     /**
@@ -62,14 +62,14 @@ public class PromotionAd extends BaseOmAds {
      * @param scene optional param ,if null, shows default scene
      */
     public static void showAd(Activity activity, PromotionAdRect rect, String scene) {
-        OmManager.getInstance().showPromotionAd(activity, "", rect, scene);
+        NmManager.getInstance().showPromotionAd(activity, "", rect, scene);
     }
 
     /**
      * hide ad with default placement and specific scene
      */
     public static void hideAd() {
-        OmManager.getInstance().hidePromotionAd("");
+        NmManager.getInstance().hidePromotionAd("");
     }
 
     /**
@@ -77,14 +77,14 @@ public class PromotionAd extends BaseOmAds {
      * rewarded video system. Set this to null to stop receiving event callbacks.
      */
     public static void setAdListener(PromotionAdListener listener) {
-        OmManager.getInstance().setPromotionAdListener("", listener);
+        NmManager.getInstance().setPromotionAdListener("", listener);
     }
 
     public static void addAdListener(PromotionAdListener listener) {
-        OmManager.getInstance().addPromotionAdListener("", listener);
+        NmManager.getInstance().addPromotionAdListener("", listener);
     }
 
     public static void removeAdListener(PromotionAdListener listener) {
-        OmManager.getInstance().removePromotionAdListener("", listener);
+        NmManager.getInstance().removePromotionAdListener("", listener);
     }
 }

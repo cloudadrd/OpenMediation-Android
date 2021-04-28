@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 
 import com.nbmediation.sdk.core.AbstractAdsManager;
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.promotion.PromotionAdListener;
 import com.nbmediation.sdk.promotion.PromotionAdRect;
 import com.nbmediation.sdk.utils.AdLog;
@@ -36,7 +36,7 @@ public final class CpManager extends AbstractAdsManager implements CpManagerList
     }
 
     public void loadPromotionAd() {
-        loadAdWithAction(OmManager.LOAD_TYPE.MANUAL);
+        loadAdWithAction(NmManager.LOAD_TYPE.MANUAL);
     }
 
     public void showPromotionAd(Activity activity, PromotionAdRect rect, String scene) {

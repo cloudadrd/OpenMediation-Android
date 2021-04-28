@@ -2,7 +2,7 @@ package com.nbmediation.sdk.utils;
 
 import android.content.Context;
 
-import com.nbmediation.sdk.OmAds;
+import com.nbmediation.sdk.NmAds;
 import com.nbmediation.sdk.utils.helper.AfHelper;
 
 public class AFManager {
@@ -25,7 +25,7 @@ public class AFManager {
     }
 
     public static void sendAFConversionData(Object conversionData) {
-        if (!OmAds.isInit()) {
+        if (!NmAds.isInit()) {
             sConversionData = conversionData;
             return;
         }
@@ -33,7 +33,7 @@ public class AFManager {
     }
 
     public static void sendAFDeepLinkData(Object deepLinkData) {
-        if (!OmAds.isInit()) {
+        if (!NmAds.isInit()) {
             sDeepLinkData = deepLinkData;
             return;
         }

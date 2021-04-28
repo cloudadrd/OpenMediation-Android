@@ -19,7 +19,7 @@ import com.nbmediation.sdk.mediation.MediationInfo;
 import java.util.Map;
 
 public class AdTimingBanner extends CustomBannerEvent implements BannerAdListener {
-    private static final String TAG = "OM-AdTiming: ";
+    private static final String TAG = "NM-AdTiming: ";
     private static final String PAY_LOAD = "pay_load";
     private BannerAd mBannerAd;
 

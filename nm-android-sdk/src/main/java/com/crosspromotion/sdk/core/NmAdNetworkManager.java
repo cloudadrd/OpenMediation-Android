@@ -21,16 +21,16 @@ import com.crosspromotion.sdk.video.RewardedVideoListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class OmAdNetworkManager {
+public final class NmAdNetworkManager {
     private Map<String, InterstitialAdImp> mIsManagers;
     private Map<String, VideoAdImp> mRvManagers;
     private Map<String, PromotionAdImp> mPromotionManagers;
 
-    private static final class OmHolder {
-        private static final OmAdNetworkManager INSTANCE = new OmAdNetworkManager();
+    private static final class NmHolder {
+        private static final NmAdNetworkManager INSTANCE = new NmAdNetworkManager();
     }
 
-    private OmAdNetworkManager() {
+    private NmAdNetworkManager() {
         mIsManagers = new HashMap<>();
         mRvManagers = new HashMap<>();
         mPromotionManagers = new HashMap<>();
@@ -41,8 +41,8 @@ public final class OmAdNetworkManager {
      *
      * @return the instance
      */
-    public static OmAdNetworkManager getInstance() {
-        return OmHolder.INSTANCE;
+    public static NmAdNetworkManager getInstance() {
+        return NmHolder.INSTANCE;
     }
 
     /**

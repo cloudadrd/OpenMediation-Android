@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.splash.SplashAdListener;
 import com.nbmediation.sdk.utils.ActLifecycle;
 import com.nbmediation.sdk.utils.AdsUtil;
@@ -69,7 +69,7 @@ public class SplashAdManager {
             }
             return;
         }
-        splashAdImp.loadAd(OmManager.LOAD_TYPE.MANUAL);
+        splashAdImp.loadAd(NmManager.LOAD_TYPE.MANUAL);
     }
 
     public boolean isReady(String placementId) {

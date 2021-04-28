@@ -160,7 +160,7 @@ public class FacebookNative extends CustomNativeEvent implements NativeAdListene
         mAdInfo.setTitle(nativeAd.getAdHeadline());
 
         onInsReady(mAdInfo);
-        AdLog.getSingleton().LogD("OM-Facebook", "Facebook Native ad load success ");
+        AdLog.getSingleton().LogD("NM-Facebook", "Facebook Native ad load success ");
     }
 
     @Override

@@ -9,7 +9,7 @@ public class InitConfiguration {
     private String mInitHost;
     private String mChannel;
     private boolean isLogEnable;
-    private List<OmAds.AD_TYPE> mAdTypes;
+    private List<NmAds.AD_TYPE> mAdTypes;
 
     private InitConfiguration(Builder builder) {
         mAppKey = builder.appKey;
@@ -35,7 +35,7 @@ public class InitConfiguration {
         return isLogEnable;
     }
 
-    public List<OmAds.AD_TYPE> getAdTypes() {
+    public List<NmAds.AD_TYPE> getAdTypes() {
         return mAdTypes;
     }
 
@@ -44,7 +44,7 @@ public class InitConfiguration {
         private String initHost;
         private String channel;
         private boolean logEnable;
-        private List<OmAds.AD_TYPE> mPreloadAdTypes;
+        private List<NmAds.AD_TYPE> mPreloadAdTypes;
 
         public Builder appKey(String appKey) {
             this.appKey = appKey;
@@ -66,7 +66,7 @@ public class InitConfiguration {
             return this;
         }
 
-        public Builder preloadAdTypes(OmAds.AD_TYPE... adTypes) {
+        public Builder preloadAdTypes(NmAds.AD_TYPE... adTypes) {
             this.mPreloadAdTypes = new ArrayList<>();
             this.mPreloadAdTypes.addAll(Arrays.asList(adTypes));
             return this;

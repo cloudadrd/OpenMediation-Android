@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class TencentAdAdapter extends CustomAdsAdapter {
-    private static final String TAG = "OM-TencentAd: ";
+    private static final String TAG = "NM-TencentAd: ";
     private final ConcurrentMap<String, RewardVideoAD> mRvAds;
     private final ConcurrentMap<String, UnifiedInterstitialAD> mIsAds;
 

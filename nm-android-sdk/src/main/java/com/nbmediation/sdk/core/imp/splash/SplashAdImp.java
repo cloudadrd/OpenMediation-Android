@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.nbmediation.sdk.bid.AuctionUtil;
 import com.nbmediation.sdk.core.AbstractHybridAd;
 import com.nbmediation.sdk.core.AdManager;
-import com.nbmediation.sdk.core.OmManager;
+import com.nbmediation.sdk.core.NmManager;
 import com.nbmediation.sdk.mediation.CustomSplashEvent;
 import com.nbmediation.sdk.splash.SplashAdListener;
 import com.nbmediation.sdk.utils.AdsUtil;
@@ -39,7 +39,7 @@ public class SplashAdImp extends AbstractHybridAd {
     }
 
     @Override
-    public void loadAd(OmManager.LOAD_TYPE type) {
+    public void loadAd(NmManager.LOAD_TYPE type) {
         AdsUtil.callActionReport(mPlacementId, 0, EventId.CALLED_LOAD);
         super.loadAd(type);
     }

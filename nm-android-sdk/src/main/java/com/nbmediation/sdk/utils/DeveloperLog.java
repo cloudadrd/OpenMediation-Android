@@ -12,7 +12,7 @@ import java.io.File;
  * 
  */
 public class DeveloperLog {
-    private static final String TAG = "OmDev";
+    private static final String TAG = "NmDev";
     private static boolean debug = false;
 
     public static void enableDebug(Context context, boolean enable) {

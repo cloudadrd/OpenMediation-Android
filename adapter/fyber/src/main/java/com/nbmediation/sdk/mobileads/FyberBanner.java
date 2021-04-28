@@ -130,7 +130,7 @@ public class FyberBanner extends CustomBannerEvent implements InneractiveAdSpot.
 
             @Override
             public void onAdEnteredErrorState(InneractiveAdSpot inneractiveAdSpot, AdDisplayError error) {
-                AdLog.getSingleton().LogE("OM-Fyber: onAdEnteredErrorState - " + error.getMessage());
+                AdLog.getSingleton().LogE("NM-Fyber: onAdEnteredErrorState - " + error.getMessage());
                 onInsError(AdapterErrorBuilder.buildLoadError(
                         AdapterErrorBuilder.AD_UNIT_BANNER, mAdapterName, error.getMessage()));
             }

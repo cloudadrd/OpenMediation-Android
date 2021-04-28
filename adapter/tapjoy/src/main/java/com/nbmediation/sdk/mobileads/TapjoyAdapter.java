@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener, TJPlacementListener, TJPlacementVideoListener {
 
-    private static final String ADT_MEDIATION_NAME = "OM";
+    private static final String ADT_MEDIATION_NAME = "NM";
     private InitState mInitState = InitState.NOT_INIT;
     private ConcurrentMap<String, TJPlacement> mVideos;
     private ConcurrentMap<TJPlacement, RewardedVideoCallback> mVideoCallbacks;
@@ -330,7 +330,7 @@ public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener
 
     @Override
     public void onConnectSuccess() {
-        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy init success ");
+        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy init success ");
         for (TJPlacement tjPlacement : mVideoCallbacks.keySet()) {
             callbackOnMainThread(8, tjPlacement, null);
         }
@@ -416,7 +416,7 @@ public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener
             public void run() {
                 switch (callbackType) {
                     case 0:
-                        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy ad load success " + placement.getName());
+                        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy ad load success " + placement.getName());
                         if (videoCallback != null) {
                             videoCallback.onRewardedVideoLoadSuccess();
                         }
@@ -469,13 +469,13 @@ public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener
                         }
                         break;
                     case 7:
-                        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy video ad start");
+                        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy video ad start");
                         if (videoCallback != null) {
                             videoCallback.onRewardedVideoAdStarted();
                         }
                         break;
                     case 3:
-                        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy ad open");
+                        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy ad open");
                         if (videoCallback != null) {
                             videoCallback.onRewardedVideoAdShowSuccess();
                         }
@@ -484,7 +484,7 @@ public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener
                         }
                         break;
                     case 4:
-                        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy ad click");
+                        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy ad click");
                         if (videoCallback != null) {
                             videoCallback.onRewardedVideoAdClicked();
                         }
@@ -493,7 +493,7 @@ public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener
                         }
                         break;
                     case 5:
-                        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy ad close");
+                        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy ad close");
                         if (videoCallback != null) {
                             videoCallback.onRewardedVideoAdClosed();
                             removeRvCallbackKey(placement);
@@ -504,7 +504,7 @@ public class TapjoyAdapter extends CustomAdsAdapter implements TJConnectListener
                         }
                         break;
                     case 6:
-                        AdLog.getSingleton().LogD("Om-Tapjoy", "Tapjoy video ad end");
+                        AdLog.getSingleton().LogD("Nm-Tapjoy", "Tapjoy video ad end");
                         if (videoCallback != null) {
                             videoCallback.onRewardedVideoAdEnded();
                             videoCallback.onRewardedVideoAdRewarded();

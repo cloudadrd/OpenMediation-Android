@@ -137,7 +137,7 @@ public final class InitImp {
 
     private static void requestConfig(Activity activity, InitConfiguration configuration) {
         try {
-            DeveloperLog.LogD("Om init request config");
+            DeveloperLog.LogD("Nm init request config");
             //requests Config
             ConfigurationHelper.getConfiguration(configuration.getAppKey(), configuration.getInitHost(),
                     new InitRequestCallback(activity, configuration.getAppKey()));
@@ -197,7 +197,7 @@ public final class InitImp {
 
         @Override
         public void run() {
-            DeveloperLog.LogD("Om init Success ");
+            DeveloperLog.LogD("Nm init Success ");
             hasInit.set(true);
             isInitRunning.set(false);
             if (mCallback != null) {
@@ -274,7 +274,7 @@ public final class InitImp {
 
         @Override
         public void run() {
-            DeveloperLog.LogD("Om init error  " + mError);
+            DeveloperLog.LogD("Nm init error  " + mError);
             hasInit.set(false);
             isInitRunning.set(false);
             if (mCallback != null) {
@@ -305,7 +305,7 @@ public final class InitImp {
                 if (response.code() != HttpURLConnection.HTTP_OK) {
                     Error error = new Error(ErrorCode.CODE_INIT_SERVER_ERROR
                             , ErrorCode.MSG_INIT_SERVER_ERROR, ErrorCode.CODE_INTERNAL_SERVER_ERROR);
-                    DeveloperLog.LogE(error.toString() + "Om init request config response code not 200 : " + response.code());
+                    DeveloperLog.LogE(error.toString() + "Nm init request config response code not 200 : " + response.code());
                     callbackInitErrorOnUIThread(error);
                     return;
                 }
@@ -314,14 +314,14 @@ public final class InitImp {
                 if (TextUtils.isEmpty(requestData)) {
                     Error error = new Error(ErrorCode.CODE_INIT_SERVER_ERROR
                             , ErrorCode.MSG_INIT_SERVER_ERROR, ErrorCode.CODE_INTERNAL_SERVER_ERROR);
-                    DeveloperLog.LogE(error.toString() + ", Om init response data is null: " + requestData);
+                    DeveloperLog.LogE(error.toString() + ", Nm init response data is null: " + requestData);
                     callbackInitErrorOnUIThread(error);
                     return;
                 }
                 //adds global data to memory
                 Configurations config = ConfigurationHelper.parseFormServerResponse(requestData);
                 if (config != null) {
-                    DeveloperLog.LogD("Om init request config success");
+                    DeveloperLog.LogD("Nm init request config success");
                     DataCache.getInstance().setMEM(KeyConstants.KEY_CONFIGURATION, config);
                     try {
                         BidAuctionManager.getInstance().initBid(mActivity, config);
@@ -334,7 +334,7 @@ public final class InitImp {
                 } else {
                     Error error = new Error(ErrorCode.CODE_INIT_SERVER_ERROR
                             , ErrorCode.MSG_INIT_SERVER_ERROR, ErrorCode.CODE_INTERNAL_SERVER_ERROR);
-                    DeveloperLog.LogE(error.toString() + ", Om init format config is null");
+                    DeveloperLog.LogE(error.toString() + ", Nm init format config is null");
                     callbackInitErrorOnUIThread(error);
                 }
             } catch (Exception e) {

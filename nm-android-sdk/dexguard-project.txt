@@ -33,8 +33,8 @@
 -keep class nbmediation.sdk.promotion.**{*;}
 -keep class nbmediation.sdk.utils.**{*;}
 -keep class nbmediation.sdk.video.**{*;}
--keep class nbmediation.sdk.OmAds{*;}
--keep class nbmediation.sdk.OmAds$AD_TYPE{*;}
+-keep class nbmediation.sdk.NmAds{*;}
+-keep class nbmediation.sdk.NmAds$AD_TYPE{*;}
 -keep class nbmediation.sdk.InitCallback{*;}
 -keep class nbmediation.sdk.InitConfiguration{*;}
 -keep class nbmediation.sdk.InitConfiguration$*{*;}
